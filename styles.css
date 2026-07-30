@@ -216,197 +216,90 @@ section {
    Hero
    ========================================================================== */
 
-.hero {
-    padding: 80px 20px 70px;
+.hero-title{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    margin:0 0 25px;
+
 }
 
-.hero-content {
-    width: 100%;
-    max-width: 850px;
-    margin: 0 auto;
+/* 80 Riscos Exclusivos */
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.hero-title-main{
 
-    text-align: center;
+    font-family:var(--font-title);
+
+    font-size:clamp(3.8rem,7vw,6rem);
+
+    font-weight:600;
+
+    line-height:1;
+
+    color:var(--heading);
+
+    letter-spacing:-0.03em;
+
 }
 
-/*
-Usa a mesma identidade da seção "Como funciona".
-Não define uma nova fonte aqui.
-*/
-.hero-kicker {
-    margin-bottom: 18px;
+/* para Pintura em */
+
+.hero-title-sub{
+
+    margin-top:14px;
+
+    font-family:var(--font-title);
+
+    font-size:clamp(1.6rem,3vw,2.5rem);
+
+    font-weight:500;
+
+    line-height:1.2;
+
+    color:var(--heading);
+
 }
 
-.hero-title {
-    max-width: 760px;
-    margin: 0 auto;
+/* Pano de Prato */
+
+.hero-title-script{
+
+    margin-top:6px;
+
+    font-family:var(--font-script);
+
+    font-size:clamp(3rem,6vw,5.5rem);
+
+    font-weight:400;
+
+    line-height:1;
+
+    color:#d8a98c;
+
 }
 
-/*
-A classe .script deve ser exatamente a mesma
-usada na palavra "funciona".
-*/
-.hero-title .script {
-    white-space: nowrap;
+@media(max-width:768px){
+
+.hero-title-main{
+
+    font-size:3rem;
+
 }
 
-/* Ornamento igual ao restante da página */
+.hero-title-sub{
 
-.section-ornament {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    font-size:1.4rem;
 
-    margin: 22px auto 28px;
 }
 
-.section-ornament span {
-    width: 30px;
-    height: 1px;
-    background-color: var(--border, #ead4c4);
+.hero-title-script{
+
+    font-size:3.2rem;
+
 }
 
-.section-ornament i {
-    font-size: 0.85rem;
-    font-style: normal;
-    color: var(--accent, #cf7844);
-}
-
-/* Mockup */
-
-.hero-visual {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-
-    margin-bottom: 28px;
-}
-
-.hero-mockup {
-    width: min(430px, 100%);
-    min-height: 190px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px dashed var(--border, #ead4c4);
-    border-radius: 18px;
-
-    background-color: rgba(255, 255, 255, 0.45);
-}
-
-.hero-mockup-label,
-.hero-mockup-sublabel {
-    font-family: inherit;
-    color: var(--text, #633415);
-}
-
-.hero-mockup-label {
-    font-size: 1.05rem;
-    font-weight: 600;
-}
-
-.hero-mockup-sublabel {
-    margin-top: 4px;
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-
-/* Descrição */
-
-.hero-subtitle {
-    max-width: 680px;
-    margin: 0 auto 25px;
-
-    font-family: inherit;
-    font-size: 1.08rem;
-    line-height: 1.65;
-
-    color: var(--text, #633415);
-}
-
-/* Preço */
-
-.hero-price {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-
-    margin-bottom: 29px;
-
-    font-family: inherit;
-}
-
-.hero-price .old-price {
-    font-size: 1rem;
-    text-decoration: line-through;
-
-    color: var(--muted, #987e6d);
-}
-
-.hero-price .new-price {
-    font-size: clamp(1.9rem, 3vw, 2.35rem);
-    font-weight: 700;
-
-    color: var(--heading, #502607);
-}
-
-/* Botão */
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-}
-
-.hero .btn-primary {
-    min-width: 210px;
-    padding: 17px 30px;
-
-    border-radius: 24px;
-
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: none;
-}
-
-/* Responsivo */
-
-@media (max-width: 768px) {
-    .hero {
-        padding: 55px 18px 50px;
-    }
-
-    .hero-title {
-        max-width: 500px;
-    }
-
-    .hero-mockup {
-        min-height: 160px;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-
-    .hero-price {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .hero .btn-primary {
-        width: 100%;
-        max-width: 310px;
-    }
 }
 
 /* ==========================================================================
