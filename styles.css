@@ -1269,7 +1269,11 @@ section {
 
 .a4-carousel-track {
     display: flex;
+    width: max-content;
     gap: 22px;
+
+    transition: none !important;
+    transform: translate3d(0, 0, 0);
     will-change: transform;
     backface-visibility: hidden;
 }
