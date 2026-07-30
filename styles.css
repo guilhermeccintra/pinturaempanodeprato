@@ -379,30 +379,24 @@ section {
 }
 
 /* Linha do parcelamento */
-.installment-price{
-    display:flex;
-    align-items:flex-end;
-    gap:8px;
+.installment-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
 }
 
-.times{
-    font-size:20px;
-    font-weight:700;
-    line-height:1;
+.small-text,
+.times {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
 }
 
-/* "6x" */
-.times{
-    font-size:20px;
-    font-weight:700;
-    line-height:1;
-}
-
-/* Valor da parcela */
-.installment-value{
-    font-size:52px;
-    font-weight:800;
-    line-height:0.9;
+.installment-value {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 0.9;
 }
 
 /* À vista */
