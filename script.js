@@ -335,13 +335,30 @@ document.addEventListener("DOMContentLoaded", () => {
         /*
          * Recalcula o carrossel quando a tela muda de tamanho.
          */
-        window.addEventListener("resize", () => {
-            window.clearTimeout(resizeTimeout);
+let previousViewportWidth = window.innerWidth;
 
-            resizeTimeout = window.setTimeout(() => {
-                rebuildCarousel();
-            }, 200);
-        });
+window.addEventListener("resize", () => {
+    const currentViewportWidth = window.innerWidth;
+    const widthDifference = Math.abs(
+        currentViewportWidth - previousViewportWidth
+    );
+
+    /*
+     * Ignora pequenas alterações causadas pela interface
+     * do navegador mobile.
+     */
+    if (widthDifference < 5) {
+        return;
+    }
+
+    previousViewportWidth = currentViewportWidth;
+
+    window.clearTimeout(resizeTimeout);
+
+    resizeTimeout = window.setTimeout(() => {
+        rebuildCarousel();
+    }, 200);
+});
 
         /*
          * Recalcula depois que as imagens terminarem de carregar.
