@@ -169,10 +169,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const autoplayDelay = 3500;
         const transitionDuration = 600;
 
-        let currentIndex = 0;
         let visibleSlides = 1;
+        let currentIndex = 0;
         let autoplayInterval = null;
         let isTransitioning = false;
+        let resizeTimeout = null;
 
         function getVisibleSlides() {
             if (window.innerWidth <= 600) {
@@ -184,6 +185,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             return 3;
+        }
+
+        function getAllSlides() {
+            return Array.from(
+                track.querySelectorAll(".a4-carousel-slide")
+            );
         }
 
         function removeClones() {
@@ -203,72 +210,113 @@ document.addEventListener("DOMContentLoaded", () => {
             const firstSlides = originalSlides.slice(0, visibleSlides);
             const lastSlides = originalSlides.slice(-visibleSlides);
 
+            /*
+             * Clona os últimos slides e coloca no começo.
+             * O reverse mantém a ordem visual correta ao usar prepend.
+             */
             lastSlides
                 .slice()
                 .reverse()
                 .forEach((slide) => {
                     const clone = slide.cloneNode(true);
+
                     clone.classList.add("a4-carousel-clone");
                     clone.setAttribute("aria-hidden", "true");
+
                     track.prepend(clone);
                 });
 
+            /*
+             * Clona os primeiros slides e coloca no final.
+             */
             firstSlides.forEach((slide) => {
                 const clone = slide.cloneNode(true);
+
                 clone.classList.add("a4-carousel-clone");
                 clone.setAttribute("aria-hidden", "true");
+
                 track.appendChild(clone);
             });
         }
 
-        function getAllSlides() {
-            return Array.from(
-                track.querySelectorAll(".a4-carousel-slide")
-            );
-        }
-
         function getSlideDistance() {
-            const allSlides = getAllSlides();
+            const slides = getAllSlides();
 
-            if (allSlides.length < 2) {
-                return allSlides[0]?.getBoundingClientRect().width || 0;
+            if (slides.length < 2) {
+                return slides[0]?.getBoundingClientRect().width || 0;
             }
 
-            return allSlides[1].offsetLeft - allSlides[0].offsetLeft;
+            return slides[1].offsetLeft - slides[0].offsetLeft;
         }
 
-        function setTrackPosition(animate = true) {
+        function updateTrack(animate = true) {
             const slideDistance = getSlideDistance();
 
             track.style.transition = animate
                 ? `transform ${transitionDuration}ms ease`
                 : "none";
 
-            track.style.transform = `translateX(
-                -${(currentIndex + visibleSlides) * slideDistance}px
-            )`;
-
-            if (!animate) {
-                track.offsetHeight;
-                track.style.transition =
-                    `transform ${transitionDuration}ms ease`;
-            }
+            track.style.transform =
+                `translate3d(-${currentIndex * slideDistance}px, 0, 0)`;
 
             updateDots();
         }
 
-        function goToSlide(index) {
+        function jumpWithoutAnimation(index) {
+            currentIndex = index;
+
+            track.style.transition = "none";
+
+            const slideDistance = getSlideDistance();
+
+            track.style.transform =
+                `translate3d(-${currentIndex * slideDistance}px, 0, 0)`;
+
+            /*
+             * Força o navegador a aplicar imediatamente
+             * a posição sem transição.
+             */
+            void track.offsetWidth;
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    track.style.transition =
+                        `transform ${transitionDuration}ms ease`;
+
+                    isTransitioning = false;
+                    updateDots();
+                });
+            });
+        }
+
+        function getRealIndex() {
+            return (
+                (currentIndex - visibleSlides) %
+                    originalSlides.length +
+                originalSlides.length
+            ) % originalSlides.length;
+        }
+
+        function nextSlide() {
             if (isTransitioning) {
                 return;
             }
 
-            currentIndex = index;
             isTransitioning = true;
-            setTrackPosition(true);
+            currentIndex += 1;
+
+            updateTrack(true);
         }
 
-        function nextSlide() {
-            goToSlide(currentIndex + 1);
+        function goToRealSlide(index) {
+            if (isTransitioning) {
+                return;
+            }
+
+            isTransitioning = true;
+            currentIndex = visibleSlides + index;
+
+            updateTrack(true);
         }
 
         function createDots() {
@@ -289,11 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
                 dot.addEventListener("click", () => {
-                    if (isTransitioning) {
-                        return;
-                    }
-
-                    goToSlide(index);
+                    goToRealSlide(index);
                     restartAutoplay();
                 });
 
@@ -308,10 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const normalizedIndex =
-                ((currentIndex % originalSlides.length) +
-                    originalSlides.length) %
-                originalSlides.length;
+            const realIndex = getRealIndex();
 
             const dots = dotsContainer.querySelectorAll(
                 ".a4-carousel-dot"
@@ -320,7 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
             dots.forEach((dot, index) => {
                 dot.classList.toggle(
                     "active",
-                    index === normalizedIndex
+                    index === realIndex
                 );
             });
         }
@@ -353,26 +394,42 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         track.addEventListener("transitionend", (event) => {
-            if (event.propertyName !== "transform") {
+            if (
+                event.target !== track ||
+                event.propertyName !== "transform"
+            ) {
                 return;
             }
 
-            if (currentIndex >= originalSlides.length) {
-                currentIndex = 0;
-                setTrackPosition(false);
-            } else if (currentIndex < 0) {
-                currentIndex = originalSlides.length - 1;
-                setTrackPosition(false);
+            /*
+             * Quando chega aos clones do final,
+             * reposiciona silenciosamente nos slides reais.
+             *
+             * Visualmente:
+             * última imagem → clone da primeira → primeira real.
+             */
+            if (
+                currentIndex >=
+                originalSlides.length + visibleSlides
+            ) {
+                jumpWithoutAnimation(visibleSlides);
+                return;
+            }
+
+            /*
+             * Proteção para navegação no sentido contrário,
+             * caso ela seja adicionada futuramente.
+             */
+            if (currentIndex < visibleSlides) {
+                jumpWithoutAnimation(
+                    originalSlides.length + currentIndex
+                );
+                return;
             }
 
             isTransitioning = false;
+            updateDots();
         });
-
-        carousel.addEventListener("mouseenter", stopAutoplay);
-        carousel.addEventListener("mouseleave", startAutoplay);
-
-        carousel.addEventListener("focusin", stopAutoplay);
-        carousel.addEventListener("focusout", startAutoplay);
 
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
@@ -382,36 +439,49 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        let resizeTimeout = null;
-
         window.addEventListener("resize", () => {
             window.clearTimeout(resizeTimeout);
 
             resizeTimeout = window.setTimeout(() => {
-                stopAutoplay();
+                const realIndex = getRealIndex();
 
-                currentIndex =
-                    ((currentIndex % originalSlides.length) +
-                        originalSlides.length) %
-                    originalSlides.length;
+                stopAutoplay();
+                isTransitioning = false;
 
                 createClones();
+
+                currentIndex = visibleSlides + realIndex;
+
                 createDots();
-                setTrackPosition(false);
+                jumpWithoutAnimation(currentIndex);
                 startAutoplay();
             }, 150);
         });
 
-        // Remove completamente eventuais botões antigos.
+        /*
+         * Remove completamente os botões antigos.
+         */
         carousel
-            .querySelectorAll(".a4-carousel-prev, .a4-carousel-next")
+            .querySelectorAll(
+                ".a4-carousel-btn, .a4-carousel-prev, .a4-carousel-next"
+            )
             .forEach((button) => button.remove());
 
+        /*
+         * Montagem inicial do carrossel.
+         */
         createClones();
+
+        /*
+         * O índice inicial começa depois dos clones
+         * colocados no início.
+         */
+        currentIndex = visibleSlides;
+
         createDots();
 
         requestAnimationFrame(() => {
-            setTrackPosition(false);
+            jumpWithoutAnimation(currentIndex);
             startAutoplay();
         });
     });
