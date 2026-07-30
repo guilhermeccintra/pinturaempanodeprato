@@ -611,6 +611,7 @@ section {
 
 .category-block {
   margin-bottom: 60px;
+  background-color: var(--color-white);
 }
 
 .category-block:last-child {
