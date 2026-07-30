@@ -386,13 +386,6 @@ section {
     gap:8px;
 }
 
-/* "por apenas" */
-.small-text{
-    font-size:20px;
-    font-weight:600;
-    line-height:1;
-}
-
 /* "6x" */
 .times{
     font-size:20px;
