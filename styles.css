@@ -1177,3 +1177,48 @@ section {
     grid-template-columns: 1fr;
   }
 }
+
+.hero-content{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:80px;
+}
+
+.hero-text{
+    flex:1;
+}
+
+.hero-visual{
+    flex:1;
+    text-align:center;
+}
+
+.desktop-only{
+    display:block;
+}
+
+.mobile-only{
+    display:none;
+}
+
+@media (max-width:768px){
+
+.hero-content{
+    display:block;
+}
+
+.desktop-only{
+    display:none;
+}
+
+.mobile-only{
+    display:block;
+    margin:24px 0;
+}
+
+.hero-buttons{
+    text-align:center;
+}
+
+}
