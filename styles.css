@@ -221,34 +221,61 @@ section {
     overflow:hidden;
 
     padding:50px 20px 60px;
+
+    background:var(--color-bg);
 }
 
-.hero::before{
+.hero .container{
+    position:relative;
+    z-index:2;
+}
 
-    content:"༺❀༻";
+/* ==========================================
+   Ornamentos decorativos do Hero
+========================================== */
+
+.hero::before,
+.hero::after{
 
     position:absolute;
 
-    top:48%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    font-family:var(--font-display);
-
-    font-size:320px;
-
-    color:rgba(196,120,74,.035);
+    font-size:120px;
 
     line-height:1;
 
-    white-space:nowrap;
+    color:rgba(196,120,74,.045);
 
     pointer-events:none;
 
     user-select:none;
 
-    z-index:0;
+    z-index:1;
+
+}
+
+/* Superior esquerdo */
+
+.hero::before{
+
+    content:"༺❀༻";
+
+    top:-18px;
+    left:-18px;
+
+    transform:rotate(-12deg);
+
+}
+
+/* Inferior direito */
+
+.hero::after{
+
+    content:"༺❀༻";
+
+    right:-18px;
+    bottom:-18px;
+
+    transform:rotate(168deg);
 
 }
 
