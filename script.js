@@ -158,17 +158,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         /*
-         * Seleciona apenas os slides originais.
-         * Clones criados anteriormente não entram nessa lista.
+         * Remove clones que possam ter ficado no HTML.
          */
+        track
+            .querySelectorAll(".a4-carousel-clone")
+            .forEach((clone) => clone.remove());
+
         const originalSlides = Array.from(
-            track.children
-        ).filter((slide) => {
-            return (
-                slide.classList.contains("a4-carousel-slide") &&
-                !slide.classList.contains("a4-carousel-clone")
-            );
-        });
+            track.querySelectorAll(":scope > .a4-carousel-slide")
+        );
 
         if (originalSlides.length === 0) {
             return;
@@ -176,22 +174,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         /*
          * Velocidade em pixels por segundo.
+         * Aumente para acelerar.
          */
         const speed = Number(carousel.dataset.speed) || 35;
 
         let currentPosition = 0;
         let cycleWidth = 0;
 
-        let animationFrame = null;
+        let animationFrameId = null;
         let previousTimestamp = null;
-
-        let previousViewportWidth = viewport.clientWidth;
         let resizeTimeout = null;
 
-        let isPaused = false;
-        let isRebuilding = false;
+        let previousViewportWidth = viewport.clientWidth;
+        let documentIsHidden = document.hidden;
 
-        function removeOldControls() {
+        function removeControls() {
             carousel
                 .querySelectorAll(
                     ".a4-carousel-btn, " +
@@ -225,32 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return clone;
         }
 
-        function getTrackGap() {
-            const styles = window.getComputedStyle(track);
-            const gap = parseFloat(styles.columnGap || styles.gap);
-
-            return Number.isFinite(gap) ? gap : 0;
-        }
-
-        function calculateCycleWidth() {
-            const gap = getTrackGap();
-
-            /*
-             * Soma a largura real das seis imagens originais
-             * e os espaços existentes entre elas.
-             */
-            const slidesWidth = originalSlides.reduce(
-                (total, slide) => {
-                    return total + slide.getBoundingClientRect().width;
-                },
-                0
-            );
-
-            cycleWidth =
-                slidesWidth + gap * originalSlides.length;
-        }
-
-        function appendOriginalSetAsClones() {
+        function appendCloneSet() {
             const fragment = document.createDocumentFragment();
 
             originalSlides.forEach((slide) => {
@@ -260,24 +232,78 @@ document.addEventListener("DOMContentLoaded", () => {
             track.appendChild(fragment);
         }
 
-        function createCopies() {
-            removeClones();
+        function getGap() {
+            const trackStyle = window.getComputedStyle(track);
 
-            calculateCycleWidth();
+            const parsedGap = parseFloat(
+                trackStyle.columnGap || trackStyle.gap || "0"
+            );
 
-            if (cycleWidth <= 0) {
+            return Number.isFinite(parsedGap) ? parsedGap : 0;
+        }
+
+        function calculateCycleWidth() {
+            const firstOriginal = originalSlides[0];
+
+            const firstClone = track.querySelector(
+                ":scope > .a4-carousel-clone"
+            );
+
+            if (!firstOriginal || !firstClone) {
+                cycleWidth = 0;
                 return;
             }
 
             /*
-             * Adiciona pelo menos duas cópias completas.
-             * Assim, sempre existe conteúdo depois da última imagem.
+             * A distância entre a primeira imagem original
+             * e a primeira imagem clonada corresponde exatamente
+             * à largura das seis imagens mais os espaços.
              */
-            appendOriginalSetAsClones();
-            appendOriginalSetAsClones();
+            cycleWidth =
+                firstClone.offsetLeft -
+                firstOriginal.offsetLeft;
 
             /*
-             * Caso o carrossel seja muito largo, adiciona mais conjuntos.
+             * Plano alternativo caso offsetLeft retorne zero.
+             */
+            if (cycleWidth <= 0) {
+                const gap = getGap();
+
+                cycleWidth = originalSlides.reduce(
+                    (total, slide) => {
+                        return (
+                            total +
+                            slide.getBoundingClientRect().width +
+                            gap
+                        );
+                    },
+                    0
+                );
+            }
+        }
+
+        function createCopies() {
+            removeClones();
+
+            /*
+             * Primeira cópia completa das seis imagens.
+             */
+            appendCloneSet();
+
+            calculateCycleWidth();
+
+            if (cycleWidth <= 0) {
+                return false;
+            }
+
+            /*
+             * Adiciona outra cópia para garantir que nunca
+             * apareça um espaço vazio no final.
+             */
+            appendCloneSet();
+
+            /*
+             * Adiciona mais conjuntos se a tela for muito larga.
              */
             let safetyCounter = 0;
 
@@ -286,12 +312,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     viewport.clientWidth + cycleWidth * 2 &&
                 safetyCounter < 10
             ) {
-                appendOriginalSetAsClones();
+                appendCloneSet();
                 safetyCounter += 1;
             }
+
+            return true;
         }
 
-        function updatePosition() {
+        function renderPosition() {
             track.style.transform =
                 `translate3d(-${currentPosition}px, 0, 0)`;
         }
@@ -302,17 +330,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             /*
-             * Retira apenas um ciclo completo da posição.
+             * Quando completa as seis imagens, volta para
+             * a posição visualmente equivalente na cópia.
              *
-             * Como o novo ponto representa exatamente a mesma imagem,
-             * a troca não é visível.
+             * Essa alteração não é perceptível porque os conjuntos
+             * são idênticos.
              */
-            while (currentPosition >= cycleWidth) {
-                currentPosition -= cycleWidth;
-            }
-
-            while (currentPosition < 0) {
-                currentPosition += cycleWidth;
+            if (currentPosition >= cycleWidth) {
+                currentPosition %= cycleWidth;
             }
         }
 
@@ -327,97 +352,87 @@ document.addEventListener("DOMContentLoaded", () => {
             previousTimestamp = timestamp;
 
             /*
-             * Evita avanço grande depois de a aba ficar inativa.
+             * Limita intervalos grandes quando o navegador
+             * reduz temporariamente a animação.
              */
             const elapsedSeconds =
                 Math.min(elapsedMilliseconds, 100) / 1000;
 
             if (
-                !isPaused &&
-                !isRebuilding &&
+                !documentIsHidden &&
                 cycleWidth > 0
             ) {
                 currentPosition += speed * elapsedSeconds;
 
                 normalizePosition();
-                updatePosition();
+                renderPosition();
             }
 
-            animationFrame =
+            animationFrameId =
                 window.requestAnimationFrame(animate);
         }
 
         function startAnimation() {
-            if (animationFrame !== null) {
+            if (animationFrameId !== null) {
                 return;
             }
 
             previousTimestamp = null;
 
-            animationFrame =
+            animationFrameId =
                 window.requestAnimationFrame(animate);
         }
 
         function stopAnimation() {
-            if (animationFrame !== null) {
-                window.cancelAnimationFrame(animationFrame);
-                animationFrame = null;
+            if (animationFrameId !== null) {
+                window.cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
             }
 
             previousTimestamp = null;
         }
 
-        function rebuildCarousel({
-            preservePosition = true
-        } = {}) {
-            if (isRebuilding) {
+        function rebuildCarousel() {
+            const oldCycleWidth = cycleWidth;
+
+            const progress =
+                oldCycleWidth > 0
+                    ? currentPosition / oldCycleWidth
+                    : 0;
+
+            stopAnimation();
+
+            track.style.transform = "translate3d(0, 0, 0)";
+
+            const successfullyCreated = createCopies();
+
+            if (!successfullyCreated) {
+                /*
+                 * Tenta novamente no próximo ciclo de renderização
+                 * caso o layout ainda não esteja pronto.
+                 */
+                window.requestAnimationFrame(() => {
+                    window.requestAnimationFrame(rebuildCarousel);
+                });
+
                 return;
             }
 
-            isRebuilding = true;
-
-            const previousCycleWidth = cycleWidth;
-            let progress = 0;
-
-            /*
-             * Preserva o ponto atual durante mudanças reais de largura.
-             */
-            if (
-                preservePosition &&
-                previousCycleWidth > 0
-            ) {
-                progress =
-                    currentPosition / previousCycleWidth;
-            }
-
-            createCopies();
-
-            if (preservePosition && cycleWidth > 0) {
-                currentPosition = progress * cycleWidth;
-            } else {
-                currentPosition = 0;
-            }
+            currentPosition = progress * cycleWidth;
 
             normalizePosition();
-            updatePosition();
-
-            previousTimestamp = null;
-            isRebuilding = false;
+            renderPosition();
+            startAnimation();
         }
 
-        /*
-         * Pausa somente quando a aba fica oculta.
-         */
         document.addEventListener("visibilitychange", () => {
-            isPaused = document.hidden;
+            documentIsHidden = document.hidden;
             previousTimestamp = null;
         });
 
         /*
-         * Reconstrói apenas quando a largura realmente muda.
-         *
-         * Mudanças na altura causadas pela barra do navegador mobile
-         * são ignoradas.
+         * No mobile, a barra do navegador altera a altura da tela.
+         * O carrossel só é reconstruído se a largura realmente mudar.
          */
         window.addEventListener("resize", () => {
             const currentViewportWidth = viewport.clientWidth;
@@ -435,42 +450,20 @@ document.addEventListener("DOMContentLoaded", () => {
             window.clearTimeout(resizeTimeout);
 
             resizeTimeout = window.setTimeout(() => {
-                rebuildCarousel({
-                    preservePosition: true
-                });
+                rebuildCarousel();
             }, 200);
         });
 
+        removeControls();
+
         /*
-         * Aguarda todas as imagens originais carregarem.
+         * Espera dois ciclos de renderização para garantir
+         * que o CSS e as larguras já estejam aplicados.
          */
-        const imagePromises = originalSlides
-            .map((slide) => slide.querySelector("img"))
-            .filter(Boolean)
-            .map((image) => {
-                if (image.complete) {
-                    return Promise.resolve();
-                }
-
-                return new Promise((resolve) => {
-                    image.addEventListener("load", resolve, {
-                        once: true
-                    });
-
-                    image.addEventListener("error", resolve, {
-                        once: true
-                    });
-                });
+        window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+                rebuildCarousel();
             });
-
-        removeOldControls();
-
-        Promise.all(imagePromises).then(() => {
-            createCopies();
-
-            currentPosition = 0;
-            updatePosition();
-            startAnimation();
         });
     });
 });
