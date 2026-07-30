@@ -1419,3 +1419,46 @@ section {
         margin-top: 16px;
     }
 }
+
+
+/* ==========================================================================
+   Carrossel de resultados
+   ========================================================================== */
+
+.results-carousel {
+    max-width: 1120px;
+}
+
+/*
+As fotos dos panos de prato podem ter proporção mais fotográfica,
+sem ficarem tão altas quanto uma folha A4.
+*/
+.results-carousel .a4-carousel-slide {
+    aspect-ratio: 4 / 5;
+    background-color: var(--color-white);
+}
+
+.results-carousel .a4-carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .results-carousel {
+        max-width: 760px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .results-carousel {
+        max-width: 390px;
+    }
+
+    .results-carousel .a4-carousel-slide {
+        max-height: 440px;
+    }
+}
