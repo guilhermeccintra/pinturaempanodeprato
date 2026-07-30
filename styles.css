@@ -1425,17 +1425,25 @@ section {
    Carrossel de resultados
    ========================================================================== */
 
+
 .results-carousel {
-    max-width: 1120px;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
 }
 
-/*
-As fotos dos panos de prato podem ter proporção mais fotográfica,
-sem ficarem tão altas quanto uma folha A4.
-*/
+.results-carousel .a4-carousel-viewport {
+    overflow: hidden;
+}
+
+.results-carousel .a4-carousel-track {
+    gap: 24px;
+}
+
 .results-carousel .a4-carousel-slide {
+    flex: 0 0 calc(33.333% - 16px);
     aspect-ratio: 4 / 5;
-    background-color: var(--color-white);
+    background: transparent;
 }
 
 .results-carousel .a4-carousel-slide img {
@@ -1443,22 +1451,34 @@ sem ficarem tão altas quanto uma folha A4.
     height: 100%;
     object-fit: cover;
     object-position: center;
+    border-radius: 18px;
+    display: block;
+}
+
+/* Remove as setas */
+.results-carousel .a4-carousel-btn {
+    display: none;
+}
+
+/* Remove os indicadores */
+.results-carousel .a4-carousel-dots {
+    display: none;
 }
 
 /* Tablet */
 @media (max-width: 900px) {
-    .results-carousel {
-        max-width: 760px;
+
+    .results-carousel .a4-carousel-slide {
+        flex: 0 0 calc(50% - 12px);
     }
+
 }
 
 /* Mobile */
 @media (max-width: 600px) {
-    .results-carousel {
-        max-width: 390px;
-    }
 
     .results-carousel .a4-carousel-slide {
-        max-height: 440px;
+        flex: 0 0 82%;
     }
+
 }
