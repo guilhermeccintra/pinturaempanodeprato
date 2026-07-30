@@ -152,7 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
     carousels.forEach((carousel) => {
         const viewport = carousel.querySelector(".a4-carousel-viewport");
         const track = carousel.querySelector(".a4-carousel-track");
-        const dotsContainer = carousel.querySelector(".a4-carousel-dots");
 
         if (!viewport || !track) {
             return;
@@ -166,31 +165,30 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const autoplayDelay = 3500;
-        const transitionDuration = 600;
+        /*
+         * Velocidade do movimento em pixels por segundo.
+         *
+         * Aumente para passar mais rápido.
+         * Diminua para passar mais devagar.
+         */
+        const speed = Number(carousel.dataset.speed) || 35;
 
-        let visibleSlides = 1;
-        let currentIndex = 0;
-        let autoplayInterval = null;
-        let isTransitioning = false;
+        let animationFrame = null;
+        let previousTimestamp = null;
+        let currentPosition = 0;
+        let cycleWidth = 0;
         let resizeTimeout = null;
+        let isPaused = false;
 
-        function getVisibleSlides() {
-            if (window.innerWidth <= 600) {
-                return 1;
-            }
-
-            if (window.innerWidth <= 900) {
-                return 2;
-            }
-
-            return 3;
-        }
-
-        function getAllSlides() {
-            return Array.from(
-                track.querySelectorAll(".a4-carousel-slide")
-            );
+        function removeOldControls() {
+            carousel
+                .querySelectorAll(
+                    ".a4-carousel-btn, " +
+                    ".a4-carousel-prev, " +
+                    ".a4-carousel-next, " +
+                    ".a4-carousel-dots"
+                )
+                .forEach((element) => element.remove());
         }
 
         function removeClones() {
@@ -199,290 +197,175 @@ document.addEventListener("DOMContentLoaded", () => {
                 .forEach((clone) => clone.remove());
         }
 
-        function createClones() {
+        function createClone(slide) {
+            const clone = slide.cloneNode(true);
+
+            clone.classList.add("a4-carousel-clone");
+            clone.setAttribute("aria-hidden", "true");
+
+            /*
+             * Evita elementos focáveis dentro dos clones.
+             */
+            clone
+                .querySelectorAll(
+                    "a, button, input, textarea, select, [tabindex]"
+                )
+                .forEach((element) => {
+                    element.setAttribute("tabindex", "-1");
+                });
+
+            return clone;
+        }
+
+        function createCopies() {
             removeClones();
 
-            visibleSlides = Math.min(
-                getVisibleSlides(),
-                originalSlides.length
-            );
-
-            const firstSlides = originalSlides.slice(0, visibleSlides);
-            const lastSlides = originalSlides.slice(-visibleSlides);
-
             /*
-             * Clona os últimos slides e coloca no começo.
-             * O reverse mantém a ordem visual correta ao usar prepend.
+             * Adiciona uma cópia completa inicialmente.
              */
-            lastSlides
-                .slice()
-                .reverse()
-                .forEach((slide) => {
-                    const clone = slide.cloneNode(true);
-
-                    clone.classList.add("a4-carousel-clone");
-                    clone.setAttribute("aria-hidden", "true");
-
-                    track.prepend(clone);
-                });
-
-            /*
-             * Clona os primeiros slides e coloca no final.
-             */
-            firstSlides.forEach((slide) => {
-                const clone = slide.cloneNode(true);
-
-                clone.classList.add("a4-carousel-clone");
-                clone.setAttribute("aria-hidden", "true");
-
-                track.appendChild(clone);
+            originalSlides.forEach((slide) => {
+                track.appendChild(createClone(slide));
             });
-        }
 
-        function getSlideDistance() {
-            const slides = getAllSlides();
+            /*
+             * A distância entre a primeira imagem original
+             * e a primeira imagem clonada representa um ciclo completo.
+             */
+            const firstOriginal = originalSlides[0];
+            const firstClone = track.querySelector(".a4-carousel-clone");
 
-            if (slides.length < 2) {
-                return slides[0]?.getBoundingClientRect().width || 0;
+            if (!firstOriginal || !firstClone) {
+                return;
             }
 
-            return slides[1].offsetLeft - slides[0].offsetLeft;
+            cycleWidth =
+                firstClone.offsetLeft -
+                firstOriginal.offsetLeft;
+
+            /*
+             * Cria mais cópias caso o conteúdo original seja menor
+             * que a largura visível do carrossel.
+             */
+            let safetyCounter = 0;
+
+            while (
+                track.scrollWidth <
+                    viewport.clientWidth + cycleWidth * 2 &&
+                safetyCounter < 20
+            ) {
+                originalSlides.forEach((slide) => {
+                    track.appendChild(createClone(slide));
+                });
+
+                safetyCounter += 1;
+            }
         }
 
-        function updateTrack(animate = true) {
-            const slideDistance = getSlideDistance();
-
-            track.style.transition = animate
-                ? `transform ${transitionDuration}ms ease`
-                : "none";
-
+        function updatePosition() {
             track.style.transform =
-                `translate3d(-${currentIndex * slideDistance}px, 0, 0)`;
-
-            updateDots();
+                `translate3d(-${currentPosition}px, 0, 0)`;
         }
 
-        function jumpWithoutAnimation(index) {
-            currentIndex = index;
+        function animate(timestamp) {
+            if (previousTimestamp === null) {
+                previousTimestamp = timestamp;
+            }
 
-            track.style.transition = "none";
+            const elapsedSeconds =
+                (timestamp - previousTimestamp) / 1000;
 
-            const slideDistance = getSlideDistance();
+            previousTimestamp = timestamp;
 
-            track.style.transform =
-                `translate3d(-${currentIndex * slideDistance}px, 0, 0)`;
+            if (!isPaused && cycleWidth > 0) {
+                currentPosition += speed * elapsedSeconds;
 
-            /*
-             * Força o navegador a aplicar imediatamente
-             * a posição sem transição.
-             */
-            void track.offsetWidth;
+                /*
+                 * Ao completar um ciclo, retorna à posição equivalente.
+                 *
+                 * Como as imagens estão duplicadas, essa mudança
+                 * é visualmente imperceptível.
+                 */
+                if (currentPosition >= cycleWidth) {
+                    currentPosition %= cycleWidth;
+                }
 
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    track.style.transition =
-                        `transform ${transitionDuration}ms ease`;
+                updatePosition();
+            }
 
-                    isTransitioning = false;
-                    updateDots();
-                });
-            });
+            animationFrame = window.requestAnimationFrame(animate);
         }
 
-        function getRealIndex() {
-            return (
-                (currentIndex - visibleSlides) %
-                    originalSlides.length +
-                originalSlides.length
-            ) % originalSlides.length;
-        }
-
-        function nextSlide() {
-            if (isTransitioning) {
+        function startAnimation() {
+            if (animationFrame !== null) {
                 return;
             }
 
-            isTransitioning = true;
-            currentIndex += 1;
-
-            updateTrack(true);
+            previousTimestamp = null;
+            animationFrame = window.requestAnimationFrame(animate);
         }
 
-        function goToRealSlide(index) {
-            if (isTransitioning) {
-                return;
+        function stopAnimation() {
+            if (animationFrame !== null) {
+                window.cancelAnimationFrame(animationFrame);
+                animationFrame = null;
             }
 
-            isTransitioning = true;
-            currentIndex = visibleSlides + index;
-
-            updateTrack(true);
+            previousTimestamp = null;
         }
 
-        function createDots() {
-            if (!dotsContainer) {
-                return;
-            }
+        function rebuildCarousel() {
+            stopAnimation();
 
-            dotsContainer.innerHTML = "";
+            currentPosition = 0;
+            track.style.transform = "translate3d(0, 0, 0)";
 
-            originalSlides.forEach((_, index) => {
-                const dot = document.createElement("button");
-
-                dot.type = "button";
-                dot.className = "a4-carousel-dot";
-                dot.setAttribute(
-                    "aria-label",
-                    `Ir para a imagem ${index + 1}`
-                );
-
-                dot.addEventListener("click", () => {
-                    goToRealSlide(index);
-                    restartAutoplay();
-                });
-
-                dotsContainer.appendChild(dot);
-            });
-
-            updateDots();
+            createCopies();
+            updatePosition();
+            startAnimation();
         }
 
-        function updateDots() {
-            if (!dotsContainer) {
-                return;
-            }
-
-            const realIndex = getRealIndex();
-
-            const dots = dotsContainer.querySelectorAll(
-                ".a4-carousel-dot"
-            );
-
-            dots.forEach((dot, index) => {
-                dot.classList.toggle(
-                    "active",
-                    index === realIndex
-                );
-            });
-        }
-
-        function startAutoplay() {
-            if (
-                carousel.dataset.autoplay !== "true" ||
-                originalSlides.length <= visibleSlides
-            ) {
-                return;
-            }
-
-            stopAutoplay();
-
-            autoplayInterval = window.setInterval(() => {
-                nextSlide();
-            }, autoplayDelay);
-        }
-
-        function stopAutoplay() {
-            if (autoplayInterval !== null) {
-                window.clearInterval(autoplayInterval);
-                autoplayInterval = null;
-            }
-        }
-
-        function restartAutoplay() {
-            stopAutoplay();
-            startAutoplay();
-        }
-
-        track.addEventListener("transitionend", (event) => {
-            if (
-                event.target !== track ||
-                event.propertyName !== "transform"
-            ) {
-                return;
-            }
-
-            /*
-             * Quando chega aos clones do final,
-             * reposiciona silenciosamente nos slides reais.
-             *
-             * Visualmente:
-             * última imagem → clone da primeira → primeira real.
-             */
-            if (
-                currentIndex >=
-                originalSlides.length + visibleSlides
-            ) {
-                jumpWithoutAnimation(visibleSlides);
-                return;
-            }
-
-            /*
-             * Proteção para navegação no sentido contrário,
-             * caso ela seja adicionada futuramente.
-             */
-            if (currentIndex < visibleSlides) {
-                jumpWithoutAnimation(
-                    originalSlides.length + currentIndex
-                );
-                return;
-            }
-
-            isTransitioning = false;
-            updateDots();
-        });
-
+        /*
+         * Para a animação quando a aba não está visível.
+         */
         document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-                stopAutoplay();
-            } else {
-                startAutoplay();
-            }
+            isPaused = document.hidden;
+            previousTimestamp = null;
         });
 
+        /*
+         * Recalcula o carrossel quando a tela muda de tamanho.
+         */
         window.addEventListener("resize", () => {
             window.clearTimeout(resizeTimeout);
 
             resizeTimeout = window.setTimeout(() => {
-                const realIndex = getRealIndex();
-
-                stopAutoplay();
-                isTransitioning = false;
-
-                createClones();
-
-                currentIndex = visibleSlides + realIndex;
-
-                createDots();
-                jumpWithoutAnimation(currentIndex);
-                startAutoplay();
-            }, 150);
+                rebuildCarousel();
+            }, 200);
         });
 
         /*
-         * Remove completamente os botões antigos.
+         * Recalcula depois que as imagens terminarem de carregar.
          */
-        carousel
-            .querySelectorAll(
-                ".a4-carousel-btn, .a4-carousel-prev, .a4-carousel-next"
-            )
-            .forEach((button) => button.remove());
+        const images = track.querySelectorAll("img");
 
-        /*
-         * Montagem inicial do carrossel.
-         */
-        createClones();
+        images.forEach((image) => {
+            if (!image.complete) {
+                image.addEventListener(
+                    "load",
+                    () => {
+                        rebuildCarousel();
+                    },
+                    { once: true }
+                );
+            }
+        });
 
-        /*
-         * O índice inicial começa depois dos clones
-         * colocados no início.
-         */
-        currentIndex = visibleSlides;
-
-        createDots();
+        removeOldControls();
 
         requestAnimationFrame(() => {
-            jumpWithoutAnimation(currentIndex);
-            startAutoplay();
+            createCopies();
+            updatePosition();
+            startAnimation();
         });
     });
 });
