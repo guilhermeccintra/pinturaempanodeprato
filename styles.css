@@ -1,6 +1,6 @@
 /* Importação de Fontes do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Italiana&family=Parisienne&display=swap');
+
 /* ==========================================================================
    Variáveis e Tokens de Design (Design Tokens)
    ========================================================================== */
@@ -213,94 +213,200 @@ section {
 }
 
 /* ==========================================================================
-   Hero Section
+   Hero
    ========================================================================== */
-.hero{
-    padding:90px 0 70px;
+
+.hero {
+    padding: 80px 20px 70px;
 }
 
-.hero-content{
-    max-width:760px;
-    margin:0 auto;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
+.hero-content {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
 }
 
-.hero-tag{
-    margin-bottom:18px;
+/*
+Usa a mesma identidade da seção "Como funciona".
+Não define uma nova fonte aqui.
+*/
+.hero-kicker {
+    margin-bottom: 18px;
 }
 
-.hero-title{
-    margin-bottom:26px;
+.hero-title {
+    max-width: 760px;
+    margin: 0 auto;
 }
 
-.hero-visual{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    margin-bottom:28px;
+/*
+A classe .script deve ser exatamente a mesma
+usada na palavra "funciona".
+*/
+.hero-title .script {
+    white-space: nowrap;
 }
 
-.hero-mockup{
-    width:min(420px,100%);
+/* Ornamento igual ao restante da página */
+
+.section-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin: 22px auto 28px;
 }
 
-.hero-subtitle{
-    max-width:640px;
-    margin:0 auto 24px;
+.section-ornament span {
+    width: 30px;
+    height: 1px;
+    background-color: var(--border, #ead4c4);
 }
 
-.hero-price{
-    display:flex;
-    gap:10px;
-    align-items:center;
-    justify-content:center;
-    flex-wrap:wrap;
-    margin-bottom:28px;
+.section-ornament i {
+    font-size: 0.85rem;
+    font-style: normal;
+    color: var(--accent, #cf7844);
 }
 
-.hero-price .old-price{
-    text-decoration:line-through;
-    opacity:.7;
+/* Mockup */
+
+.hero-visual {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 28px;
 }
 
-.hero-price .new-price{
-    font-size:2rem;
-    font-weight:700;
-    color:var(--accent);
+.hero-mockup {
+    width: min(430px, 100%);
+    min-height: 190px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px dashed var(--border, #ead4c4);
+    border-radius: 18px;
+
+    background-color: rgba(255, 255, 255, 0.45);
 }
 
-.hero-buttons{
-    display:flex;
-    justify-content:center;
+.hero-mockup-label,
+.hero-mockup-sublabel {
+    font-family: inherit;
+    color: var(--text, #633415);
 }
 
-@media (max-width:768px){
+.hero-mockup-label {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
 
-    .hero{
-        padding-top:40px;
-        padding-bottom:40px;
+.hero-mockup-sublabel {
+    margin-top: 4px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Descrição */
+
+.hero-subtitle {
+    max-width: 680px;
+    margin: 0 auto 25px;
+
+    font-family: inherit;
+    font-size: 1.08rem;
+    line-height: 1.65;
+
+    color: var(--text, #633415);
+}
+
+/* Preço */
+
+.hero-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-bottom: 29px;
+
+    font-family: inherit;
+}
+
+.hero-price .old-price {
+    font-size: 1rem;
+    text-decoration: line-through;
+
+    color: var(--muted, #987e6d);
+}
+
+.hero-price .new-price {
+    font-size: clamp(1.9rem, 3vw, 2.35rem);
+    font-weight: 700;
+
+    color: var(--heading, #502607);
+}
+
+/* Botão */
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.hero .btn-primary {
+    min-width: 210px;
+    padding: 17px 30px;
+
+    border-radius: 24px;
+
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: none;
+}
+
+/* Responsivo */
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 55px 18px 50px;
     }
 
-    .hero-title{
-        font-size:clamp(2.3rem,9vw,3.4rem);
+    .hero-title {
+        max-width: 500px;
     }
 
-    .hero-mockup{
-        width:100%;
-        max-width:340px;
+    .hero-mockup {
+        min-height: 160px;
     }
 
-    .hero-subtitle{
-        font-size:1rem;
+    .hero-subtitle {
+        font-size: 1rem;
     }
 
-    .hero-price .new-price{
-        font-size:1.7rem;
+    .hero-price {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
     }
 
+    .hero .btn-primary {
+        width: 100%;
+        max-width: 310px;
+    }
 }
 
 /* ==========================================================================
