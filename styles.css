@@ -216,60 +216,82 @@ section {
    Hero
    ========================================================================== */
 
-.hero-title{
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-
-    margin:0 0 25px;
-
+.hero {
+    padding: 50px 20px 60px;
 }
 
-/* 80 Riscos Exclusivos */
-
-.hero-title-main{
-
-    font-size:clamp(3rem,5vw,4.5rem);
-
-    line-height:.95;
-
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 20px;
 }
 
-.hero-title-sub{
-
-    margin-top:10px;
-
-    font-size:clamp(1.4rem,2.2vw,2rem);
-
+/* Mantém a fonte serifada original */
+.hero-title-main {
+    font-family: var(--font-title);
+    font-size: clamp(3rem, 5vw, 4.6rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--heading);
 }
 
-.hero-title-script{
-
-    margin-top:2px;
-
-    font-size:clamp(2.7rem,4.5vw,4.3rem);
-
+/* Mesma fonte do título principal, apenas menor */
+.hero-title-sub {
+    margin-top: 10px;
+    font-family: var(--font-title);
+    font-size: clamp(1.45rem, 2.2vw, 2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--heading);
 }
 
-@media(max-width:768px){
-
-.hero-title-main{
-
-    font-size:3rem;
-
+/* Mantém a fonte manuscrita */
+.hero-title-script {
+    margin-top: 4px;
+    font-family: var(--font-script);
+    font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1;
+    color: #d8a98c;
 }
 
-.hero-title-sub{
-
-    font-size:1.4rem;
-
+.hero-visual {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 18px 0 24px;
 }
 
-.hero-title-script{
+.hero-mockup {
+    display: block;
+    width: min(100%, 340px);
+    height: auto;
+    margin: 0 auto;
+}
 
-    font-size:3.2rem;
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 16px 45px;
+    }
 
+    .hero-title-main {
+        font-size: clamp(2.5rem, 11vw, 3.4rem);
+    }
+
+    .hero-title-sub {
+        font-size: clamp(1.25rem, 5vw, 1.55rem);
+    }
+
+    .hero-title-script {
+        font-size: clamp(2.5rem, 11vw, 3.5rem);
+    }
+
+    .hero-mockup {
+        width: min(100%, 280px);
+    }
 }
 
 
