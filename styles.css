@@ -269,7 +269,7 @@ section {
   font-size: clamp(2.8rem, 4.5vw, 4.2rem);
   font-weight: 700;
   line-height: 1;
-  color: #d8a98c;
+  color: var(--color-primary);
 }
 
 .hero-visual {
