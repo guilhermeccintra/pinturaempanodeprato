@@ -1522,19 +1522,24 @@ section {
 
 @media (max-width: 600px) {
     .a4-carousel {
-        width: calc(100% - 32px);
-        max-width: 430px;
+        width: calc(100% - 8px);
+        max-width: none;
         margin-top: 32px;
+        padding: 0;
+    }
+
+    .a4-carousel-viewport {
+        width: 100%;
     }
 
     .a4-carousel-track {
-        gap: 14px;
+        gap: 10px;
     }
 
     .a4-carousel-slide {
-        flex: 0 0 min(calc(100vw - 32px), 430px);
-        width: min(calc(100vw - 32px), 430px);
-        max-height: 520px;
+        flex: 0 0 calc(100vw - 16px);
+        width: calc(100vw - 16px);
+        max-height: none;
     }
 }
 
@@ -1559,18 +1564,26 @@ section {
     object-position: center;
 }
 
+/* Tablet */
+
 @media (max-width: 900px) {
     .results-carousel {
         max-width: 820px;
     }
 }
 
+/* Mobile */
+
 @media (max-width: 600px) {
     .results-carousel {
-        max-width: 430px;
+        width: calc(100% - 8px);
+        max-width: none;
+        margin: 32px auto 0;
     }
 
     .results-carousel .a4-carousel-slide {
-        max-height: 500px;
+        flex: 0 0 calc(100vw - 16px);
+        width: calc(100vw - 16px);
+        max-height: none;
     }
 }
