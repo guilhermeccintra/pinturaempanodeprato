@@ -1090,10 +1090,18 @@ section {
     justify-content: center;
   }
 
-  .hero-mockup {
-    width: 280px;
-    height: 350px;
-  }
+.hero-visual{
+    display:flex;
+    justify-content:center;
+    margin:35px 0;
+}
+
+.hero-mockup{
+    display:block;
+    width:100%;
+    max-width:520px;
+    height:auto;
+}
 
   .benefits-grid {
     grid-template-columns: 1fr;
