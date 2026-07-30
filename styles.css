@@ -366,44 +366,53 @@ section {
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:4px;
+    gap:2px;
 }
 
+/* Preço riscado */
 .old-price{
     font-size:18px;
+    color:#8d7c70;
     text-decoration:line-through;
-    opacity:.75;
+    font-weight:500;
+    margin-bottom:4px;
 }
 
+/* Linha do parcelamento */
 .installment-price{
     display:flex;
-    align-items:flex-start;
+    align-items:center;          /* <- era flex-start */
     justify-content:center;
-    gap:6px;
+    gap:8px;
 }
 
+/* "por apenas" */
 .small-text{
-    font-size:18px;
+    font-size:20px;
     font-weight:600;
-    margin-top:12px;
-}
-
-.times{
-    font-size:18px;
-    font-weight:700;
-    margin-top:12px;
-}
-
-.installment-value{
-    font-size:52px;
-    font-weight:800;
     line-height:1;
 }
 
-.cash-price{
-    font-size:24px;
+/* "6x" */
+.times{
+    font-size:20px;
     font-weight:700;
-    color:#1a1a1a;
+    line-height:1;
+}
+
+/* Valor da parcela */
+.installment-value{
+    font-size:68px;
+    font-weight:800;
+    line-height:0.9;
+}
+
+/* À vista */
+.cash-price{
+    margin-top:6px;
+    font-size:18px;          /* mesmo tamanho do preço riscado */
+    color:#8d7c70;           /* mesma cor */
+    font-weight:500;
 }
 
 .hero-buttons {
