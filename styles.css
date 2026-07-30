@@ -1270,8 +1270,8 @@ section {
 .a4-carousel-track {
     display: flex;
     gap: 22px;
-    transition: transform 0.55s ease;
     will-change: transform;
+    backface-visibility: hidden;
 }
 
 /* Proporção A4 vertical: 210 × 297 */
