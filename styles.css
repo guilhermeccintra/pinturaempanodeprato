@@ -1569,3 +1569,26 @@ section {
         aspect-ratio: 4 / 5;
     }
 }
+
+
+/* ========================================================================== */
+/* Bonuses Dark */
+/* ========================================================================== */
+
+.bonuses-dark{
+    background: var(--color-text);
+}
+
+.bonuses-dark .section-tag,
+.bonuses-dark .section-title,
+.bonuses-dark .section-title span{
+    color: var(--color-bg);
+}
+
+.bonuses-dark .bonus-card{
+    background: var(--color-white);
+}
+
+.bonuses-dark .bonus-icon{
+    color: var(--color-primary);
+}
