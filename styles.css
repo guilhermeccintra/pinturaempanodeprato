@@ -1592,3 +1592,43 @@ section {
 .bonuses-dark .bonus-icon{
     color: var(--color-primary);
 }
+
+
+.categories-tags{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:40px;
+}
+
+.categories-tags span{
+    padding:10px 18px;
+    border-radius:999px;
+    background:#fff;
+    border:1px solid rgba(196,120,74,.25);
+    color:#C4784A;
+    font-size:.95rem;
+    font-weight:600;
+    transition:.3s;
+}
+
+.categories-tags span:hover{
+    background:#C4784A;
+    color:#fff;
+}
+
+@media (max-width:768px){
+
+.categories-tags{
+    gap:10px;
+    margin-top:28px;
+}
+
+.categories-tags span{
+    font-size:.85rem;
+    padding:8px 14px;
+}
+
+}
