@@ -216,8 +216,48 @@ section {
    Hero
    ========================================================================== */
 
-.hero {
-  padding: 50px 20px 60px;
+.hero{
+    position:relative;
+    overflow:hidden;
+
+    padding:50px 20px 60px;
+}
+
+.hero::before{
+
+    content:"༺❀༻";
+
+    position:absolute;
+
+    top:48%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    font-family:var(--font-display);
+
+    font-size:320px;
+
+    color:rgba(196,120,74,.035);
+
+    line-height:1;
+
+    white-space:nowrap;
+
+    pointer-events:none;
+
+    user-select:none;
+
+    z-index:0;
+
+}
+
+.hero .container{
+
+    position:relative;
+
+    z-index:2;
+
 }
 
 .hero .container {
