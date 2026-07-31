@@ -325,20 +325,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function normalizePosition() {
-            if (cycleWidth <= 0) {
-                return;
-            }
+    if (cycleWidth <= 0) {
+        return;
+    }
 
-            /*
-             * Quando completa as seis imagens, volta para
-             * a posição visualmente equivalente na cópia.
-             *
-             * Essa alteração não é perceptível porque os conjuntos
-             * são idênticos.
-             */
-            if (currentPosition >= cycleWidth) {
-                currentPosition %= cycleWidth;
-            }
+    /*
+     * Mantém a posição entre 0 e cycleWidth,
+     * funcionando com velocidade positiva ou negativa.
+     */
+    currentPosition =
+        ((currentPosition % cycleWidth) + cycleWidth) %
+        cycleWidth;
+}
         }
 
         function animate(timestamp) {
