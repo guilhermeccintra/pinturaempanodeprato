@@ -324,9 +324,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 `translate3d(-${currentPosition}px, 0, 0)`;
         }
 
-        function normalizePosition() { if (cycleWidth <= 0) { return; } /* * Quando completa as seis imagens, volta para * a posição visualmente equivalente na cópia. * * Essa alteração não é perceptível porque os conjuntos * são idênticos. */ if (currentPosition >= cycleWidth) { currentPosition %= cycleWidth; }
-        }
+       function normalizePosition() {
+    if (cycleWidth <= 0) {
+        return;
+    }
 
+    if (currentPosition >= cycleWidth) {
+        currentPosition %= cycleWidth;
+    }
+}
+      
         function animate(timestamp) {
             if (previousTimestamp === null) {
                 previousTimestamp = timestamp;
