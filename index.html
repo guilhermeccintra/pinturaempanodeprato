@@ -163,171 +163,331 @@ src="https://www.facebook.com/tr?id=1901694047194455&ev=PageView&noscript=1"/>
 </section>
 
 
-<!-- 6. RESULTS SECTION -->
-<section class="results bg-white fade-in" id="resultados">
+<!-- =========================================================
+     SEÇÃO ANTES E DEPOIS
+     ========================================================= -->
+<section
+    class="comparison-section bg-white fade-in"
+    id="resultados"
+    aria-labelledby="comparison-title"
+>
     <div class="container">
 
-        <div class="text-center">
-            <span class="section-tag">Resultados Reais</span>
+        <!-- Cabeçalho -->
+        <div class="text-center comparison-heading">
 
-            <h2 class="section-title">
-                Veja como fica <span>depois de pronto</span>
+            <span class="section-tag">
+                Veja na prática
+            </span>
+
+            <h2 class="section-title" id="comparison-title">
+                Do risco impresso ao
+                <span>pano de prato finalizado</span>
             </h2>
 
             <p class="section-subtitle">
-                Resultados reais em panos de prato finalizados.
+                Você escolhe o modelo, imprime, transfere para o tecido
+                e transforma o risco em uma linda peça pintada.
             </p>
+
         </div>
 
+        <!-- Estrutura do carrossel mobile/grid desktop -->
         <div
-            class="a4-carousel results-carousel"
-            data-autoplay="true"
-            data-speed="35"
-            aria-label="Carrossel de resultados"
+            class="comparison-carousel"
+            data-comparison-carousel
+            aria-label="Comparações entre os riscos e os panos de prato finalizados"
         >
-            <div class="a4-carousel-viewport">
-                <div class="a4-carousel-track">
 
-                    <div class="a4-carousel-slide">
-                        <img
-                            src="images/resultado-01.webp"
-                            alt="Pano de prato finalizado com pintura artesanal 1"
-                            loading="lazy"
-                        >
-                    </div>
+            <div class="comparison-viewport" data-comparison-viewport>
 
-                    <div class="a4-carousel-slide">
-                        <img
-                            src="images/resultado-02.webp"
-                            alt="Pano de prato finalizado com pintura artesanal 2"
-                            loading="lazy"
-                        >
-                    </div>
+                <div class="comparison-track" data-comparison-track>
 
-                    <div class="a4-carousel-slide">
-                        <img
-                            src="images/resultado-03.webp"
-                            alt="Pano de prato finalizado com pintura artesanal 3"
-                            loading="lazy"
-                        >
-                    </div>
+                    <!-- =====================================================
+                         COMPARAÇÃO 1
+                         As duas imagens precisam mostrar o mesmo desenho.
+                         ===================================================== -->
+                    <article class="comparison-card" data-comparison-card>
 
-                    <div class="a4-carousel-slide">
-                        <img
-                            src="images/resultado-04.webp"
-                            alt="Pano de prato finalizado com pintura artesanal 4"
-                            loading="lazy"
-                        >
-                    </div>
+                        <div class="comparison-card-header">
+                            <span class="comparison-number">
+                                Exemplo 1
+                            </span>
 
-                    <div class="a4-carousel-slide">
-                        <img
-                            src="images/resultado-05.webp"
-                            alt="Pano de prato finalizado com pintura artesanal 5"
-                            loading="lazy"
-                        >
-                    </div>
+                            <h3>
+                                Do desenho ao resultado
+                            </h3>
+                        </div>
 
-                    <div class="a4-carousel-slide">
-                        <img
-                            src="images/resultado-06.webp"
-                            alt="Pano de prato finalizado com pintura artesanal 6"
-                            loading="lazy"
-                        >
-                    </div>
+                        <div class="comparison-pair">
+
+                            <figure class="comparison-image">
+
+                                <span class="comparison-label">
+                                    ANTES: RISCO
+                                </span>
+
+                                <img
+                                    src="images/risco-01.webp"
+                                    alt="Risco impresso em preto e branco antes da pintura"
+                                    loading="lazy"
+                                    width="800"
+                                    height="1000"
+                                >
+
+                                <figcaption>
+                                    Arquivo pronto para imprimir
+                                </figcaption>
+
+                            </figure>
+
+                            <div class="comparison-arrow" aria-hidden="true">
+                                <span>→</span>
+                            </div>
+
+                            <figure class="comparison-image comparison-image-result">
+
+                                <span class="comparison-label comparison-label-result">
+                                    DEPOIS: PINTADO
+                                </span>
+
+                                <img
+                                    src="images/resultado-01.webp"
+                                    alt="Pano de prato finalizado com o mesmo desenho pintado"
+                                    loading="lazy"
+                                    width="800"
+                                    height="1000"
+                                >
+
+                                <figcaption>
+                                    Resultado no pano de prato
+                                </figcaption>
+
+                            </figure>
+
+                        </div>
+
+                    </article>
+
+                    <!-- =====================================================
+                         COMPARAÇÃO 2
+                         ===================================================== -->
+                    <article class="comparison-card" data-comparison-card>
+
+                        <div class="comparison-card-header">
+                            <span class="comparison-number">
+                                Exemplo 2
+                            </span>
+
+                            <h3>
+                                Imprima, transfira e pinte
+                            </h3>
+                        </div>
+
+                        <div class="comparison-pair">
+
+                            <figure class="comparison-image">
+
+                                <span class="comparison-label">
+                                    ANTES: RISCO
+                                </span>
+
+                                <img
+                                    src="images/risco-02.webp"
+                                    alt="Segundo risco impresso em preto e branco"
+                                    loading="lazy"
+                                    width="800"
+                                    height="1000"
+                                >
+
+                                <figcaption>
+                                    Risco em alta resolução
+                                </figcaption>
+
+                            </figure>
+
+                            <div class="comparison-arrow" aria-hidden="true">
+                                <span>→</span>
+                            </div>
+
+                            <figure class="comparison-image comparison-image-result">
+
+                                <span class="comparison-label comparison-label-result">
+                                    DEPOIS: PINTADO
+                                </span>
+
+                                <img
+                                    src="images/resultado-02.webp"
+                                    alt="Segundo pano de prato finalizado com o mesmo desenho"
+                                    loading="lazy"
+                                    width="800"
+                                    height="1000"
+                                >
+
+                                <figcaption>
+                                    Peça finalizada e colorida
+                                </figcaption>
+
+                            </figure>
+
+                        </div>
+
+                    </article>
+
+                    <!-- =====================================================
+                         COMPARAÇÃO 3
+                         ===================================================== -->
+                    <article class="comparison-card" data-comparison-card>
+
+                        <div class="comparison-card-header">
+                            <span class="comparison-number">
+                                Exemplo 3
+                            </span>
+
+                            <h3>
+                                Uma nova ideia para pintar
+                            </h3>
+                        </div>
+
+                        <div class="comparison-pair">
+
+                            <figure class="comparison-image">
+
+                                <span class="comparison-label">
+                                    ANTES: RISCO
+                                </span>
+
+                                <img
+                                    src="images/risco-03.webp"
+                                    alt="Terceiro risco impresso em preto e branco"
+                                    loading="lazy"
+                                    width="800"
+                                    height="1000"
+                                >
+
+                                <figcaption>
+                                    Modelo pronto para transferir
+                                </figcaption>
+
+                            </figure>
+
+                            <div class="comparison-arrow" aria-hidden="true">
+                                <span>→</span>
+                            </div>
+
+                            <figure class="comparison-image comparison-image-result">
+
+                                <span class="comparison-label comparison-label-result">
+                                    DEPOIS: PINTADO
+                                </span>
+
+                                <img
+                                    src="images/resultado-03.webp"
+                                    alt="Terceiro pano de prato finalizado com o mesmo desenho"
+                                    loading="lazy"
+                                    width="800"
+                                    height="1000"
+                                >
+
+                                <figcaption>
+                                    Trabalho pronto para usar ou vender
+                                </figcaption>
+
+                            </figure>
+
+                        </div>
+
+                    </article>
 
                 </div>
+
             </div>
+
+            <!-- Controles: aparecem somente no mobile -->
+            <div class="comparison-controls">
+
+                <button
+                    type="button"
+                    class="comparison-button comparison-button-prev"
+                    data-comparison-prev
+                    aria-label="Ver comparação anterior"
+                >
+                    <span aria-hidden="true">‹</span>
+                </button>
+
+                <div
+                    class="comparison-dots"
+                    data-comparison-dots
+                    aria-label="Selecionar comparação"
+                ></div>
+
+                <button
+                    type="button"
+                    class="comparison-button comparison-button-next"
+                    data-comparison-next
+                    aria-label="Ver próxima comparação"
+                >
+                    <span aria-hidden="true">›</span>
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Benefício central -->
+        <div class="comparison-benefit">
+
+            <div class="comparison-benefit-icon" aria-hidden="true">
+                ✓
+            </div>
+
+            <div class="comparison-benefit-text">
+                <strong>Você recebe o desenho pronto.</strong>
+
+                <span>
+                    Basta imprimir, transferir para o tecido e começar a pintar.
+                </span>
+            </div>
+
+        </div>
+
+        <!-- Categorias -->
+        <div class="comparison-tags" aria-label="Temas incluídos na coleção">
+
+            <span>Flores</span>
+            <span>Frutas</span>
+            <span>Café e Cozinha</span>
+            <span>Galinhas</span>
+            <span>Animais</span>
+            <span>Doces</span>
+            <span>Páscoa</span>
+            <span>Natal</span>
+            <span>E muito mais</span>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="comparison-cta">
+
+            <p class="comparison-cta-highlight">
+                🌸 São 120 modelos para você ter sempre uma nova ideia para pintar
+            </p>
+
+            <a
+                href="https://pay.hotmart.com/S106956139O"
+                class="btn-primary btn-large"
+            >
+                QUERO RECEBER OS 120 RISCOS
+            </a>
+
+            <p class="comparison-payment-info">
+                Pagamento único • Acesso imediato • Arquivos em PDF
+            </p>
+
         </div>
 
     </div>
 </section>
-  
-  
-    <!-- 5. CATEGORIES SECTION -->
-  <section class="categories bg-default fade-in" id="categorias">
-    <div class="container">
-      <div class="text-center">
-        <span class="section-tag">Variedade de Temas</span>
-        <h2 class="section-title">Conheça alguns dos <span>riscos que vai receber</span></h2>
-        <p class="section-subtitle">Encontre o tema perfeito para cada projeto.</p>
-      </div>
-
-
-    <div class="a4-carousel" data-autoplay="true">
-
-   
-
-    <div class="a4-carousel-viewport">
-        <div class="a4-carousel-track">
-
-            <div class="a4-carousel-slide">
-                <img
-                    src="images/risco-01.webp"
-                    alt="Risco para pintura em pano de prato 1"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="a4-carousel-slide">
-                <img
-                    src="images/risco-02.webp"
-                    alt="Risco para pintura em pano de prato 2"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="a4-carousel-slide">
-                <img
-                    src="images/risco-03.webp"
-                    alt="Risco para pintura em pano de prato 3"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="a4-carousel-slide">
-                <img
-                    src="images/risco-04.webp"
-                    alt="Risco para pintura em pano de prato 4"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="a4-carousel-slide">
-                <img
-                    src="images/risco-05.webp"
-                    alt="Risco para pintura em pano de prato 5"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="a4-carousel-slide">
-                <img
-                    src="images/risco-06.webp"
-                    alt="Risco para pintura em pano de prato 6"
-                    loading="lazy"
-                >
-            </div>
-
-          
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="categories-tags">
-    <span>Café e Cozinha</span>
-    <span>Flores</span>
-    <span>Doces e Padaria</span>
-    <span>Páscoa</span>
-    <span>Hortaliças e Legumes</span>
-    <span>Frutas</span>
-    <span>Natal</span>
-    <span>E muito mais...</span>
-
-
-    </div>
-  </section>
-
   
   
   <!-- 2. HOW IT WORKS SECTION -->
