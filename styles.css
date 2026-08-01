@@ -133,9 +133,10 @@ section {
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: 18px;
   color: var(--color-text-light);
-  max-width: 600px;
+  max-width: 650px;
+  line-height: 1.6;
   margin-bottom: 40px;
 }
 
