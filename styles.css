@@ -1713,3 +1713,12 @@ section {
 }
 
 }
+
+.hero-highlight {
+  margin: 0 auto 20px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-align: center;
+}
+
