@@ -373,19 +373,31 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 6px;
 }
 
-/* Preço riscado */
+/* Preço antigo riscado */
 .old-price {
-  margin-bottom: 4px;
-  font-size: 18px;
+  margin-bottom: 2px;
+  font-size: 20px;
   font-weight: 500;
+  line-height: 1.2;
   color: #8d7c70;
   text-decoration: line-through;
 }
 
-/* Linha do parcelamento */
+/* Preço atual em destaque */
+.current-price {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 5vw, 4.8rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+}
+
+/* Classes antigas mantidas para preservar compatibilidade */
 .installment-price {
   display: flex;
   align-items: baseline;
@@ -406,7 +418,6 @@ section {
   line-height: 0.9;
 }
 
-/* À vista */
 .cash-price {
   margin-top: 6px;
   font-size: 18px;
@@ -426,6 +437,19 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+}
+
+/* Informação abaixo do botão */
+.hero-info {
+  width: 100%;
+  margin: 16px auto 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  color: #7a6d62;
 }
 
 @media (max-width: 768px) {
@@ -461,10 +485,28 @@ section {
   .hero-price {
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
+  }
+
+  .old-price {
+    font-size: 18px;
+  }
+
+  .current-price {
+    font-size: clamp(3rem, 15vw, 4rem);
+  }
+
+  .hero-buttons .btn-primary {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .hero-info {
+    max-width: 320px;
+    margin-top: 14px;
+    font-size: 14px;
   }
 }
-
 
 /* ==========================================================================
    Seção de Benefícios (Benefits)
