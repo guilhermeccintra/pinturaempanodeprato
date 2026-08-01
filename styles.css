@@ -322,7 +322,7 @@ section {
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.03em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--color-text);
 }
 
