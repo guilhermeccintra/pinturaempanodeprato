@@ -1762,9 +1762,11 @@ section {
 
 .comparison-track {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  grid-template-columns: 1fr;
+  gap: 32px;
   width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
 }
 
 /* ==========================================================================
@@ -1772,8 +1774,9 @@ section {
    ========================================================================== */
 
 .comparison-card {
+  width: 100%;
   min-width: 0;
-  padding: 16px;
+  padding: 24px;
   border: 1px solid rgba(196, 120, 74, 0.24);
   border-radius: 22px;
   background-color: var(--color-white, #ffffff);
@@ -1812,27 +1815,31 @@ section {
 
 .comparison-pair {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 50px minmax(0, 1fr);
   align-items: center;
-  gap: 8px;
+  gap: 24px;
 }
 
 .comparison-image {
   position: relative;
+  width: 100%;
   min-width: 0;
   margin: 0;
   overflow: hidden;
   border: 1px solid rgba(196, 120, 74, 0.16);
-  border-radius: 15px;
+  border-radius: 18px;
   background-color: #fffaf5;
 }
 
 .comparison-image img {
   display: block;
   width: 100%;
+  height: auto;
+  max-height: 620px;
   aspect-ratio: 4 / 5;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+  background-color: #ffffff;
 }
 
 .comparison-image figcaption {
@@ -2080,14 +2087,13 @@ section {
 
 @media (max-width: 1024px) {
   .comparison-track {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+    max-width: 850px;
   }
 
   .comparison-card:last-child {
-    grid-column: 1 / -1;
-    width: calc(50% - 11px);
-    margin-right: auto;
-    margin-left: auto;
+    width: 100%;
+    margin: 0;
   }
 }
 
