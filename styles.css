@@ -313,11 +313,16 @@ section {
 }
 
 .hero-title-main {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
   font-family: var(--font-display);
-  font-size: clamp(3rem, 5vw, 4.6rem);
-  font-weight: 600;
-  line-height: 1;
+  font-size: clamp(2.2rem, 4.8vw, 4.3rem);
+  font-weight: 700;
+  line-height: 1.08;
   letter-spacing: -0.03em;
+  text-transform: uppercase;
   color: var(--color-text);
 }
 
@@ -331,11 +336,14 @@ section {
 }
 
 .hero-title-script {
-  margin-top: 4px;
+  display: block;
+  width: 100%;
+  margin-top: 8px;
   font-family: var(--font-script);
-  font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
   font-weight: 700;
-  line-height: 1;
+  line-height: 0.95;
+  text-transform: none;
   color: var(--color-primary);
 }
 
@@ -362,49 +370,49 @@ section {
   text-align: center;
 }
 
-.hero-price{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:2px;
+.hero-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 
 /* Preço riscado */
-.old-price{
-    font-size:18px;
-    color:#8d7c70;
-    text-decoration:line-through;
-    font-weight:500;
-    margin-bottom:4px;
+.old-price {
+  margin-bottom: 4px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #8d7c70;
+  text-decoration: line-through;
 }
 
 /* Linha do parcelamento */
 .installment-price {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 5px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 5px;
 }
 
 .small-text,
 .times {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .installment-value {
-    font-size: 52px;
-    font-weight: 800;
-    line-height: 0.9;
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 0.9;
 }
 
 /* À vista */
-.cash-price{
-    margin-top:6px;
-    font-size:18px;          /* mesmo tamanho do preço riscado */
-    color:#8d7c70;           /* mesma cor */
-    font-weight:500;
+.cash-price {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #8d7c70;
 }
 
 .hero-buttons {
@@ -426,8 +434,15 @@ section {
     padding: 40px 16px 45px;
   }
 
+  .hero-title {
+    margin-bottom: 18px;
+  }
+
   .hero-title-main {
-    font-size: clamp(2.5rem, 11vw, 3.4rem);
+    max-width: 100%;
+    font-size: clamp(1.9rem, 8.8vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
   }
 
   .hero-title-sub {
@@ -435,7 +450,9 @@ section {
   }
 
   .hero-title-script {
-    font-size: clamp(2.5rem, 11vw, 3.5rem);
+    margin-top: 6px;
+    font-size: clamp(2.5rem, 12vw, 3.9rem);
+    line-height: 0.95;
   }
 
   .hero-mockup {
