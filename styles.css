@@ -137,7 +137,7 @@ section {
   color: var(--color-text-light);
   max-width: 650px;
   line-height: 1.6;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .text-center {
@@ -380,7 +380,7 @@ section {
 /* Preço antigo riscado */
 .old-price {
   margin-bottom: 2px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   line-height: 1.2;
   color: #8d7c70;
