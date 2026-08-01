@@ -2406,184 +2406,211 @@ section {
 
 
 /* ==========================================================================
-   Como transferir o risco para o tecido
+   Processo de transferência para o tecido
    ========================================================================== */
 
-.transfer-section {
+.transfer-process {
   position: relative;
   overflow: hidden;
   padding: 80px 20px;
   background-color: #fff7ed;
 }
 
-.transfer-heading {
+.transfer-process-heading {
   width: 100%;
-  max-width: 760px;
-  margin: 0 auto 48px;
+  max-width: 780px;
+  margin: 0 auto 46px;
 }
 
-.transfer-heading .section-subtitle {
-  max-width: 680px;
+.transfer-process-heading .section-subtitle {
+  max-width: 690px;
   margin-right: auto;
   margin-left: auto;
 }
 
 /* ==========================================================================
-   Etapas
+   Grade das etapas
    ========================================================================== */
 
-.transfer-steps {
+.transfer-process-grid {
   display: grid;
-  grid-template-columns:
-    minmax(0, 1fr)
-    38px
-    minmax(0, 1fr)
-    38px
-    minmax(0, 1fr)
-    38px
-    minmax(0, 1fr)
-    38px
-    minmax(0, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   width: 100%;
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
-  align-items: center;
-  gap: 8px;
+  gap: 18px;
 }
 
-.transfer-step {
-  position: relative;
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.transfer-process-card {
   min-width: 0;
-  min-height: 290px;
-  padding: 28px 18px 22px;
+  overflow: hidden;
   border: 1px solid rgba(196, 120, 74, 0.22);
   border-radius: 20px;
   background-color: #ffffff;
-  box-shadow: 0 12px 32px rgba(71, 47, 31, 0.07);
-  text-align: center;
+  box-shadow: 0 13px 34px rgba(71, 47, 31, 0.08);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.transfer-step-highlight {
+.transfer-process-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 42px rgba(71, 47, 31, 0.13);
+}
+
+.transfer-process-card-highlight {
   border: 2px solid var(--color-primary);
-  background-color: #fffaf5;
-  box-shadow: 0 15px 38px rgba(196, 120, 74, 0.14);
+  box-shadow: 0 16px 40px rgba(196, 120, 74, 0.15);
 }
 
-.transfer-step-number {
+/* ==========================================================================
+   Imagens quadradas
+   ========================================================================== */
+
+.transfer-process-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background-color: #f8f1e9;
+}
+
+.transfer-process-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ==========================================================================
+   Número das etapas
+   ========================================================================== */
+
+.transfer-process-number {
   position: absolute;
-  top: 13px;
-  right: 15px;
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--color-primary);
-}
-
-.transfer-step-icon {
+  top: 12px;
+  left: 12px;
+  z-index: 2;
   display: flex;
-  width: 72px;
-  height: 72px;
-  margin: 8px auto 18px;
+  width: 38px;
+  height: 38px;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--color-primary-light);
+  border: 2px solid rgba(255, 255, 255, 0.85);
   border-radius: 50%;
-  background-color: #fff8f1;
-  color: var(--color-primary);
-}
-
-.transfer-step-highlight .transfer-step-icon {
-  border-color: var(--color-primary);
   background-color: var(--color-primary);
+  box-shadow: 0 5px 15px rgba(53, 34, 22, 0.18);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
   color: #ffffff;
 }
 
-.transfer-step h3 {
-  margin: 0 0 10px;
+/* ==========================================================================
+   Selo carbono para tecido
+   ========================================================================== */
+
+.transfer-process-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+  display: block;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background-color: rgba(196, 120, 74, 0.94);
+  box-shadow: 0 6px 16px rgba(56, 35, 23, 0.18);
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Conteúdo dos cards
+   ========================================================================== */
+
+.transfer-process-content {
+  padding: 20px 17px 22px;
+  text-align: center;
+}
+
+.transfer-process-content h3 {
+  margin: 0 0 9px;
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 600;
   line-height: 1.25;
   color: var(--color-text);
 }
 
-.transfer-step p {
+.transfer-process-content p {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.55;
-  color: #77685e;
+  color: #75665c;
 }
 
-.transfer-step p strong {
+.transfer-process-content strong {
+  font-weight: 700;
   color: var(--color-text);
 }
 
 /* ==========================================================================
-   Setas
+   Resumo do guia incluído
    ========================================================================== */
 
-.transfer-arrow {
+.transfer-process-summary {
   display: flex;
-  width: 36px;
-  height: 36px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  box-shadow: 0 6px 16px rgba(196, 120, 74, 0.2);
-  font-family: Arial, sans-serif;
-  font-size: 21px;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-/* ==========================================================================
-   Aviso do guia
-   ========================================================================== */
-
-.transfer-note {
-  display: flex;
-  width: min(100%, 760px);
+  width: min(100%, 780px);
   margin: 38px auto 0;
   align-items: flex-start;
   gap: 15px;
   padding: 20px 22px;
-  border: 1px solid rgba(196, 120, 74, 0.28);
+  border: 1px solid rgba(196, 120, 74, 0.27);
   border-radius: 18px;
   background-color: #ffffff;
-  box-shadow: 0 10px 28px rgba(72, 47, 31, 0.07);
+  box-shadow: 0 11px 30px rgba(71, 47, 31, 0.07);
 }
 
-.transfer-note-icon {
+.transfer-process-summary-icon {
   display: flex;
-  flex: 0 0 40px;
-  width: 40px;
-  height: 40px;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background-color: var(--color-primary);
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 800;
   color: #ffffff;
 }
 
-.transfer-note strong {
+.transfer-process-summary-content strong {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
   font-family: var(--font-display);
   font-size: 17px;
   line-height: 1.35;
   color: var(--color-text);
 }
 
-.transfer-note p {
+.transfer-process-summary-content p {
   margin: 0;
   font-family: var(--font-body);
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: #75665c;
 }
 
@@ -2591,14 +2618,14 @@ section {
    CTA
    ========================================================================== */
 
-.transfer-cta {
+.transfer-process-cta {
   margin-top: 34px;
   text-align: center;
 }
 
-.transfer-cta-text {
+.transfer-process-highlight {
   max-width: 620px;
-  margin: 0 auto 17px;
+  margin: 0 auto 18px;
   font-family: var(--font-body);
   font-size: 18px;
   font-weight: 700;
@@ -2606,14 +2633,14 @@ section {
   color: var(--color-primary);
 }
 
-.transfer-cta .btn-primary {
+.transfer-process-cta .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
 
-.transfer-payment-info {
+.transfer-process-payment {
   margin: 13px auto 0;
   font-family: var(--font-body);
   font-size: 14px;
@@ -2627,21 +2654,45 @@ section {
    ========================================================================== */
 
 @media (max-width: 1100px) {
-  .transfer-steps {
+  .transfer-process-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 900px;
+  }
+
+  .transfer-process-card:nth-child(4),
+  .transfer-process-card:nth-child(5) {
+    width: 100%;
+  }
+
+  .transfer-process-card:nth-child(4) {
+    grid-column: 1 / 2;
+  }
+
+  .transfer-process-card:nth-child(5) {
+    grid-column: 2 / 3;
+  }
+}
+
+/* ==========================================================================
+   Tablet menor
+   ========================================================================== */
+
+@media (max-width: 850px) {
+  .transfer-process {
+    padding: 65px 18px;
+  }
+
+  .transfer-process-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 820px;
-    gap: 18px;
+    max-width: 680px;
   }
 
-  .transfer-arrow {
-    display: none;
+  .transfer-process-card:nth-child(4),
+  .transfer-process-card:nth-child(5) {
+    grid-column: auto;
   }
 
-  .transfer-step {
-    min-height: 250px;
-  }
-
-  .transfer-step:last-child {
+  .transfer-process-card:last-child {
     grid-column: 1 / -1;
     width: calc(50% - 9px);
     margin: 0 auto;
@@ -2652,97 +2703,105 @@ section {
    Mobile
    ========================================================================== */
 
-@media (max-width: 768px) {
-  .transfer-section {
-    padding: 55px 16px;
+@media (max-width: 600px) {
+  .transfer-process {
+    padding: 52px 14px;
   }
 
-  .transfer-heading {
-    margin-bottom: 30px;
+  .transfer-process-heading {
+    margin-bottom: 28px;
   }
 
-  .transfer-steps {
+  .transfer-process-grid {
     grid-template-columns: 1fr;
-    width: 100%;
-    max-width: 430px;
-    gap: 14px;
+    max-width: 420px;
+    gap: 16px;
   }
 
-  .transfer-step,
-  .transfer-step:last-child {
+  .transfer-process-card,
+  .transfer-process-card:last-child {
     display: grid;
-    grid-template-columns: 64px minmax(0, 1fr);
-    grid-template-areas:
-      "icon title"
-      "icon text";
+    grid-template-columns: 130px minmax(0, 1fr);
     width: 100%;
-    min-height: auto;
     margin: 0;
-    padding: 20px 18px;
-    align-items: center;
-    column-gap: 15px;
+    align-items: stretch;
+  }
+
+  .transfer-process-image {
+    width: 130px;
+    height: 100%;
+    min-height: 170px;
+    aspect-ratio: auto;
+  }
+
+  .transfer-process-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .transfer-process-number {
+    top: 9px;
+    left: 9px;
+    width: 32px;
+    height: 32px;
+    font-size: 11px;
+  }
+
+  .transfer-process-badge {
+    right: 6px;
+    bottom: 7px;
+    left: 6px;
+    padding: 6px 5px;
+    font-size: 7px;
+  }
+
+  .transfer-process-content {
+    display: flex;
+    padding: 18px 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     text-align: left;
   }
 
-  .transfer-step-number {
-    top: 10px;
-    right: 12px;
-    font-size: 10px;
+  .transfer-process-content h3 {
+    font-size: 17px;
   }
 
-  .transfer-step-icon {
-    grid-area: icon;
-    width: 60px;
-    height: 60px;
-    margin: 0;
+  .transfer-process-content p {
+    font-size: 12.5px;
   }
 
-  .transfer-step-icon svg {
-    width: 27px;
-    height: 27px;
-  }
-
-  .transfer-step h3 {
-    grid-area: title;
-    margin: 0 26px 5px 0;
-    font-size: 18px;
-  }
-
-  .transfer-step p {
-    grid-area: text;
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-  .transfer-note {
+  .transfer-process-summary {
     padding: 17px;
   }
 
-  .transfer-note-icon {
-    flex-basis: 35px;
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
+  .transfer-process-summary-icon {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
   }
 
-  .transfer-note strong {
-    font-size: 16px;
+  .transfer-process-summary-content strong {
+    font-size: 15px;
   }
 
-  .transfer-note p {
+  .transfer-process-summary-content p {
     font-size: 13px;
   }
 
-  .transfer-cta-text {
+  .transfer-process-highlight {
     font-size: 16px;
   }
 
-  .transfer-cta .btn-primary {
+  .transfer-process-cta .btn-primary {
     width: 100%;
     max-width: 350px;
   }
 
-  .transfer-payment-info {
+  .transfer-process-payment {
     max-width: 310px;
     font-size: 13px;
   }
@@ -2752,29 +2811,41 @@ section {
    Mobile pequeno
    ========================================================================== */
 
-@media (max-width: 400px) {
-  .transfer-section {
-    padding-right: 10px;
-    padding-left: 10px;
+@media (max-width: 380px) {
+  .transfer-process {
+    padding-right: 9px;
+    padding-left: 9px;
   }
 
-  .transfer-step,
-  .transfer-step:last-child {
-    grid-template-columns: 54px minmax(0, 1fr);
-    padding: 17px 13px;
-    column-gap: 11px;
+  .transfer-process-card,
+  .transfer-process-card:last-child {
+    grid-template-columns: 108px minmax(0, 1fr);
   }
 
-  .transfer-step-icon {
-    width: 52px;
-    height: 52px;
+  .transfer-process-image {
+    width: 108px;
+    min-height: 165px;
   }
 
-  .transfer-step h3 {
-    font-size: 17px;
+  .transfer-process-content {
+    padding: 15px 11px;
   }
 
-  .transfer-step p {
+  .transfer-process-content h3 {
+    font-size: 16px;
+  }
+
+  .transfer-process-content p {
     font-size: 12px;
+  }
+}
+
+/* ==========================================================================
+   Redução de movimento
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .transfer-process-card {
+    transition: none;
   }
 }
