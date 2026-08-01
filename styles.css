@@ -313,17 +313,14 @@ section {
 }
 
 .hero-title-main {
-  display: block;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+  display: inline;
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 4.8vw, 4.3rem);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: -0.03em;
-  text-transform: none;
   color: var(--color-text);
+  text-transform: none;
 }
 
 .hero-title-sub {
@@ -336,15 +333,15 @@ section {
 }
 
 .hero-title-script {
-  display: block;
-  width: 100%;
-  margin-top: 8px;
+  display: inline;
+  margin-left: 8px;
   font-family: var(--font-script);
-  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-size: 1.15em;
   font-weight: 700;
-  line-height: 0.95;
-  text-transform: none;
+  line-height: inherit;
   color: var(--color-primary);
+  text-transform: none;
+  vertical-align: baseline;
 }
 
 .hero-visual {
