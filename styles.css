@@ -3580,3 +3580,126 @@ section {
         font-size: 15px;
     }
 }
+
+
+
+
+/* ==========================================================================
+   Botão principal do Hero — animação elegante
+   ========================================================================== */
+
+.hero-buttons .btn-primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  animation:
+    heroButtonBreathe 3.6s ease-in-out infinite,
+    heroButtonShadow 3.6s ease-in-out infinite;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+/* Brilho suave passando pelo botão */
+.hero-buttons .btn-primary::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: -130%;
+
+  width: 55%;
+  height: 100%;
+
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 248, 235, 0.12) 25%,
+    rgba(255, 255, 255, 0.42) 50%,
+    rgba(255, 248, 235, 0.12) 75%,
+    transparent 100%
+  );
+
+  transform: skewX(-18deg);
+  pointer-events: none;
+  z-index: 1;
+
+  animation: heroButtonShine 4.8s ease-in-out infinite;
+}
+
+/* Mantém o texto acima do brilho */
+.hero-buttons .btn-primary > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Respiração quase imperceptível */
+@keyframes heroButtonBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.018);
+  }
+}
+
+/* Sombra suave e controlada */
+@keyframes heroButtonShadow {
+  0%,
+  100% {
+    box-shadow: 0 8px 20px rgba(159, 30, 49, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 12px 28px rgba(159, 30, 49, 0.3);
+  }
+}
+
+/* Brilho com pausa entre as passagens */
+@keyframes heroButtonShine {
+  0%,
+  58% {
+    left: -130%;
+  }
+
+  78% {
+    left: 145%;
+  }
+
+  100% {
+    left: 145%;
+  }
+}
+
+/* Desktop: interação ao passar o mouse */
+@media (hover: hover) {
+  .hero-buttons .btn-primary:hover {
+    transform: scale(1.025) translateY(-1px);
+    filter: brightness(1.03);
+    box-shadow: 0 14px 32px rgba(159, 30, 49, 0.32);
+  }
+
+  .hero-buttons .btn-primary:active {
+    transform: scale(0.99);
+  }
+}
+
+/* Acessibilidade: remove animações para quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-primary::after {
+    animation: none;
+  }
+
+  .hero-buttons .btn-primary {
+    transition: none;
+  }
+}
