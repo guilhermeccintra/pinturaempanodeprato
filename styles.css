@@ -3588,14 +3588,14 @@ section {
    Botão principal do Hero — animação elegante
    ========================================================================== */
 
-.hero-buttons .btn-primary{
+.btn-primary btn-large{
 
     position:relative;
     overflow:hidden;
 
 }
 
-.hero-buttons .btn-primary::before{
+.btn-primary btn-large::before{
 
     content:"";
 
