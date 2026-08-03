@@ -3490,7 +3490,7 @@ section {
 .hero-benefits {
     width: fit-content;
     max-width: 620px;
-    margin: 0px auto 32px;
+    margin: 20px auto 32px;
     padding: 0;
     list-style: none;
 
@@ -3556,7 +3556,7 @@ section {
     .hero-benefits {
         width: 100%;
         max-width: 420px;
-        margin: 22px auto 28px;
+        margin: 20px auto 28px;
         padding: 0 12px;
         gap: 14px;
         box-sizing: border-box;
