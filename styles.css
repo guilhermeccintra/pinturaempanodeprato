@@ -325,6 +325,7 @@ section {
 
 .hero-mockup {
   display: block;
+margin-bottom: 18px;
   width: min(100%, 480px);
   height: auto;
   margin: 0 auto;
