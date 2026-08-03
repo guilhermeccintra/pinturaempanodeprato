@@ -3478,25 +3478,49 @@ section {
   }
 }
 
-.hero-benefits{
-    list-style:none;
-    padding:0;
-    margin:24px 0 32px;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    text-align:left;
+.hero-benefits {
+    width: 100%;
+    max-width: 620px;
+    margin: 24px auto 30px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
 }
 
-.hero-benefits li{
-    display:flex;
-    align-items:flex-start;
-    gap:10px;
-    font-size:18px;
-    line-height:1.6;
-
+.hero-benefits li {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    align-items: start;
+    column-gap: 10px;
+    margin: 0;
+    padding: 0;
+    color: var(--color-text-light);
+    font-size: 17px;
+    line-height: 1.45;
 }
 
-.hero-benefits strong{
+.hero-benefits .benefit-icon {
+    display: block;
+    width: 28px;
+    line-height: 1.45;
+    text-align: center;
+    flex-shrink: 0;
+}
 
+.hero-benefits .benefit-text {
+    display: block;
+    min-width: 0;
+    color: var(--color-text-light);
+    text-align: left;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.hero-benefits strong {
+    color: var(--color-text-light);
+    font-weight: 700;
 }
