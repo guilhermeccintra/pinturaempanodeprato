@@ -334,15 +334,18 @@ section {
 }
 
 .hero-title-script {
-  display: inline;
-  margin-left: 8px;
-  font-family: var(--font-script);
-  font-size: 1.15em;
-  font-weight: 700;
-  line-height: inherit;
-  color: var(--color-primary);
-  text-transform: none;
-  vertical-align: baseline;
+    display: inline;
+    margin-left: 6px;
+
+    font-family: var(--font-script);
+    font-size: 1.05em;
+
+    font-weight: 700;
+    line-height: inherit;
+
+    color: var(--color-primary);
+    text-transform: none;
+    vertical-align: baseline;
 }
 
 .hero-visual {
@@ -474,11 +477,13 @@ section {
     font-size: clamp(1.25rem, 5vw, 1.55rem);
   }
 
-  .hero-title-script {
-    margin-top: 6px;
-    font-size: clamp(2.5rem, 12vw, 3.9rem);
+.hero-title-script {
+    margin-top: 4px;
+
+    font-size: clamp(2rem, 9vw, 2.7rem);
+
     line-height: 0.95;
-  }
+}
 
   .hero-mockup {
     width: min(100%, 280px);
