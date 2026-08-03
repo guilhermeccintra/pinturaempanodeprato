@@ -3481,21 +3481,21 @@ section {
 .hero-benefits {
     width: 100%;
     max-width: 620px;
-    margin: 24px auto 30px;
+    margin: 26px auto 32px;
     padding: 0;
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
     text-align: left;
 }
 
 .hero-benefits li {
     width: 100%;
     display: grid;
-    grid-template-columns: 28px minmax(0, 1fr);
-    align-items: start;
-    column-gap: 10px;
+    grid-template-columns: 40px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 12px;
     margin: 0;
     padding: 0;
     color: var(--color-text-light);
@@ -3504,10 +3504,24 @@ section {
 }
 
 .hero-benefits .benefit-icon {
-    display: block;
-    width: 28px;
-    line-height: 1.45;
-    text-align: center;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #E9A56C;
+    border-radius: 50%;
+
+    font-size: 17px;
+    line-height: 1;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
     flex-shrink: 0;
 }
 
@@ -3516,11 +3530,34 @@ section {
     min-width: 0;
     color: var(--color-text-light);
     text-align: left;
-    overflow-wrap: normal;
+    overflow-wrap: break-word;
     word-break: normal;
 }
 
 .hero-benefits strong {
     color: var(--color-text-light);
     font-weight: 700;
+}
+
+@media (max-width: 768px) {
+
+    .hero-benefits {
+        margin: 22px auto 28px;
+        gap: 14px;
+    }
+
+    .hero-benefits li {
+        grid-template-columns: 36px minmax(0, 1fr);
+        column-gap: 10px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .hero-benefits .benefit-icon {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        font-size: 15px;
+    }
+
 }
