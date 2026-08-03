@@ -3588,23 +3588,39 @@ section {
    Botão principal do Hero — animação elegante
    ========================================================================== */
 
-.btn-primary {
+/* ===========================================================
+   CTA Animation
+=========================================================== */
+
+.btn-primary{
 
     position:relative;
+
     overflow:hidden;
+
+    isolation:isolate;
+
+    transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
+
+    animation:
+    btnPulse 3.5s ease-in-out infinite,
+    btnShadow 3.5s ease-in-out infinite;
 
 }
 
-.btn-primary ::before{
+.btn-primary::before{
 
     content:"";
 
     position:absolute;
 
     top:0;
-    left:-150%;
+    left:-140%;
 
-    width:50%;
+    width:45%;
     height:100%;
 
     background:linear-gradient(
@@ -3616,22 +3632,66 @@ section {
 
     transform:skewX(-20deg);
 
-    animation:shine 4s infinite;
+    animation:btnShine 4.5s infinite;
+
+    pointer-events:none;
 
 }
 
-@keyframes shine{
+.btn-primary>*{
 
-    0%{
-        left:-150%;
+    position:relative;
+
+    z-index:2;
+
+}
+
+@keyframes btnPulse{
+
+    0%,100%{
+        transform:scale(1);
     }
 
-    25%{
+    50%{
+        transform:scale(1.018);
+    }
+
+}
+
+@keyframes btnShadow{
+
+    0%,100%{
+        box-shadow:
+        0 8px 18px rgba(0,0,0,.16);
+    }
+
+    50%{
+        box-shadow:
+        0 12px 28px rgba(0,0,0,.22);
+    }
+
+}
+
+@keyframes btnShine{
+
+    0%,55%{
+        left:-140%;
+    }
+
+    80%{
         left:160%;
     }
 
     100%{
         left:160%;
     }
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-2px);
+
+    filter:brightness(1.03);
 
 }
