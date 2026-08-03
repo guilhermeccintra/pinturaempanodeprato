@@ -367,7 +367,7 @@ section {
 
 .hero-subtitle {
   width: 100%;
-  max-width: 650px;
+  max-width: 480px;
   margin: 0 auto 25px;
   font-family: var(--font-body);
   text-align: center;
