@@ -375,10 +375,6 @@ section {
   text-align: center;
 }
 
-.hero-subtitle strong {
-  color: inherit;
-  font-weight: 400; /* remove o bold mesmo que exista <strong> no HTML */
-}
 
 .hero-price {
   display: flex;
