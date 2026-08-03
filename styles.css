@@ -133,11 +133,13 @@ section {
 }
 
 .section-subtitle {
+  max-width: 620px;
+  margin: 0 auto 18px;
+  font-family: var(--font-body);
   font-size: 18px;
-  color: var(--color-text-light);
-  max-width: 650px;
-  line-height: 1.6;
-
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--color-primary);
 }
 
 .text-center {
