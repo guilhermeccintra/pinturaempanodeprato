@@ -335,10 +335,10 @@ section {
 
 .hero-title-script {
     display: inline;
-    margin-left: 6px;
+    margin-left: 5px;
 
     font-family: var(--font-script);
-    font-size: 2em;
+    font-size: 1.15em;
 
     font-weight: 700;
     line-height: inherit;
