@@ -3750,10 +3750,10 @@ section {
 
   .hero-rating__stars {
     gap: 3px;
-    font-size: 19px;
+    font-size: 15px;
   }
 
   .hero-rating__text {
-    font-size: 14px;
+    font-size: 11px;
   }
 }
