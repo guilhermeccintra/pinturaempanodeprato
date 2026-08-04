@@ -3745,7 +3745,7 @@ section {
   .hero-rating {
     flex-wrap: wrap;
     gap: 7px;
-    margin-top: 10px;
+    margin-top: 18px;
   }
 
   .hero-rating__stars {
