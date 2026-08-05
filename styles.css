@@ -3757,3 +3757,57 @@ section {
     font-size: 11px;
   }
 }
+
+.benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: fit-content;
+    max-width: 100%;
+
+    margin: 36px auto;
+    padding: 0;
+
+    list-style: none;
+}
+
+.benefits-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 0;
+    padding: 0;
+}
+
+.benefit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background-color: #f6e8dc;
+
+    font-size: 16px;
+    line-height: 1;
+}
+
+.benefit-text {
+    display: block;
+
+    color: #684534;
+    font-size: 16px;
+    line-height: 1.35;
+    text-align: left;
+}
+
+.benefit-text strong {
+    font-weight: 700;
+}
+
