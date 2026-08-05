@@ -134,7 +134,6 @@ section {
 
 .section-subtitle {
   max-width: 620px;
-  margin: 0 auto 18px;
   font-family: var(--font-body);
   font-size: 18px;
   font-weight: 700;
