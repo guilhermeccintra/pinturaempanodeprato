@@ -3831,10 +3831,6 @@ body {
 }
 
 
-/* ==================================================
-   MOBILE
-================================================== */
-
 @media (max-width: 768px) {
 
     .promo-bar {
@@ -3880,7 +3876,12 @@ body {
     }
 
     body {
-        padding-top: 58px;
+        padding-top: 47px;
+    }
+
+    .hero {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
     }
 }
 
@@ -3913,6 +3914,11 @@ body {
     }
 
     body {
-        padding-top: 56px;
+        padding-top: 45px;
+    }
+
+    .hero {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
     }
 }
