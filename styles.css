@@ -3756,135 +3756,133 @@ section {
   }
 }
 
-/* =========================
+/* ==================================================
    BARRA PROMOCIONAL
-========================= */
+================================================== */
 
 .promo-bar {
-  background-color: #9f1e31;
-  color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-  position: fixed;
-  top: 0;
-  left: 0;
+    width: 100%;
+    z-index: 999999;
 
-  width: 100%;
-  z-index: 99999;
+    background: #9F1E31;
+    color: #ffffff;
 
-  padding: 10px 16px;
+    padding: 10px 16px;
 
-  text-align: center;
+    box-sizing: border-box;
 
-  font-family: "Outfit", sans-serif;
-  font-weight: 600;
-  font-size: 16px;
+    font-family: 'Outfit', sans-serif;
 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-
-  box-sizing: border-box;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
 }
 
 .promo-bar-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+    width: 100%;
+    max-width: 1200px;
 
-  width: 100%;
-  max-width: 1200px;
+    margin: 0 auto;
 
-  margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    text-align: center;
 }
 
 .promo-text {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-}
+    font-size: 15px;
+    font-weight: 700;
 
-.promo-text i {
-  font-size: 17px;
+    line-height: 1.2;
 }
 
 .countdown {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-  min-width: 92px;
+    background: rgba(0, 0, 0, 0.25);
 
-  padding: 5px 9px;
+    padding: 6px 10px;
 
-  background: rgba(0, 0, 0, 0.22);
+    border-radius: 6px;
 
-  border-radius: 5px;
+    min-width: 94px;
 
-  font-size: 17px;
-  font-weight: 700;
+    font-size: 18px;
+    font-weight: 800;
 
-  letter-spacing: 1px;
+    line-height: 1;
 
-  line-height: 1;
+    letter-spacing: 1px;
+
+    white-space: nowrap;
 }
 
-/* Evita que a barra cubra o início da página */
+
+/* Espaço para a barra fixa */
+
 body {
-  padding-top: 48px;
+    padding-top: 48px;
 }
 
-/* =========================
+
+/* ==================================================
    MOBILE
-========================= */
+================================================== */
 
 @media (max-width: 768px) {
-  .promo-bar {
-    padding: 8px 8px;
-    font-size: 12px;
-  }
 
-  .promo-bar-content {
-    gap: 6px;
-  }
+    .promo-bar {
+        padding: 9px 10px;
+    }
 
-  .promo-text {
-    gap: 5px;
-  }
+    .promo-bar-content {
+        flex-direction: column;
 
-  .promo-text i {
-    font-size: 13px;
-  }
+        gap: 5px;
+    }
 
-  .countdown {
-    min-width: 75px;
+    .promo-text {
+        font-size: 13px;
+        font-weight: 700;
 
-    padding: 5px 6px;
+        line-height: 1.25;
 
-    font-size: 13px;
+        max-width: 320px;
+    }
 
-    letter-spacing: 0.5px;
-  }
+    .countdown {
+        font-size: 16px;
 
-  body {
-    padding-top: 42px;
-  }
+        min-width: 92px;
+
+        padding: 5px 10px;
+    }
+
+    body {
+        padding-top: 69px;
+    }
 }
 
-@media (max-width: 480px) {
-  .promo-bar {
-    font-size: 11px;
-  }
 
-  .promo-bar-content {
-    flex-wrap: wrap;
-    row-gap: 4px;
-  }
+@media (max-width: 380px) {
 
-  .countdown {
-    font-size: 13px;
-  }
+    .promo-text {
+        font-size: 12.5px;
+    }
 
-  body {
-    padding-top: 58px;
-  }
+    .countdown {
+        font-size: 16px;
+    }
+
+    body {
+        padding-top: 70px;
+    }
 }
