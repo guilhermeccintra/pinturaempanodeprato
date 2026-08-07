@@ -3830,7 +3830,9 @@ body {
     padding-top: 48px;
 }
 
-
+/* ==================================================
+   CELULARES
+================================================== */
 @media (max-width: 768px) {
 
     .promo-bar {
@@ -3876,7 +3878,7 @@ body {
     }
 
     body {
-        padding-top: 47px;
+        padding-top: 52px;
     }
 
     .hero {
@@ -3914,7 +3916,7 @@ body {
     }
 
     body {
-        padding-top: 45px;
+        padding-top: 48px;
     }
 
     .hero {
