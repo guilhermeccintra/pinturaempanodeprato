@@ -660,3 +660,53 @@ document.addEventListener("DOMContentLoaded", function () {
     updateControls();
   });
 });
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const countdownElement = document.getElementById("countdown");
+
+    function updateCountdown() {
+
+        const now = new Date();
+
+        // Define a próxima meia-noite
+        const midnight = new Date();
+        midnight.setHours(24, 0, 0, 0);
+
+        // Diferença entre agora e meia-noite
+        const difference = midnight.getTime() - now.getTime();
+
+        // Converte para segundos
+        const totalSeconds = Math.floor(difference / 1000);
+
+        const hours = Math.floor(totalSeconds / 3600);
+
+        const minutes = Math.floor(
+            (totalSeconds % 3600) / 60
+        );
+
+        const seconds = totalSeconds % 60;
+
+        // Formatação 00:00:00
+        const formattedHours =
+            String(hours).padStart(2, "0");
+
+        const formattedMinutes =
+            String(minutes).padStart(2, "0");
+
+        const formattedSeconds =
+            String(seconds).padStart(2, "0");
+
+        countdownElement.textContent =
+            `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    }
+
+    // Executa imediatamente
+    updateCountdown();
+
+    // Atualiza a cada segundo
+    setInterval(updateCountdown, 1000);
+
+});
+</script>
