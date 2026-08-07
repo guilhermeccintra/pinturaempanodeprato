@@ -3756,9 +3756,6 @@ section {
   }
 }
 
-/* ==================================================
-   BARRA PROMOCIONAL
-================================================== */
 
 /* ==================================================
    BARRA PROMOCIONAL
@@ -3784,9 +3781,6 @@ section {
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
 }
 
-
-/* CONTEÚDO DA BARRA */
-
 .promo-bar-content {
     width: 100%;
     max-width: 1200px;
@@ -3797,42 +3791,17 @@ section {
     align-items: center;
     justify-content: center;
 
-    gap: 10px;
+    gap: 12px;
 
     text-align: center;
 }
 
-
-/* TEXTO DA OFERTA */
-
 .promo-text {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
     font-size: 15px;
     font-weight: 700;
 
     line-height: 1.2;
 }
-
-
-/* ÍCONE 🎁 */
-
-.promo-icon {
-    display: inline-block;
-
-    font-size: 20px;
-
-    margin-right: 12px;
-
-    line-height: 1;
-
-    flex-shrink: 0;
-}
-
-
-/* CONTADOR */
 
 .countdown {
     display: inline-flex;
@@ -3857,12 +3826,10 @@ section {
     white-space: nowrap;
 }
 
-
-/* Espaço para a barra fixa */
-
 body {
     padding-top: 48px;
 }
+
 
 /* ==================================================
    MOBILE
@@ -3871,90 +3838,49 @@ body {
 @media (max-width: 768px) {
 
     .promo-bar {
-        padding: 9px 12px 10px;
+        padding: 10px 12px;
     }
 
     .promo-bar-content {
-        width: 100%;
-        max-width: 100%;
-
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
 
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
 
-        gap: 7px;
+        gap: 10px;
 
-        margin: 0 auto;
+        text-align: left;
     }
 
     .promo-text {
-        width: 100%;
+        flex: 1;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        gap: 9px;
-
-        max-width: none;
-
-        padding: 0 5px;
-
-        box-sizing: border-box;
-
-        font-size: 12.5px;
+        font-size: 12px;
         font-weight: 700;
 
-        line-height: 1.25;
+        line-height: 1.2;
 
-        text-align: center;
-    }
-
-    .promo-text > span:last-child {
-        max-width: 245px;
-
-        text-align: center;
-    }
-
-    .promo-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 20px;
-
-        margin-right: 0;
-
-        line-height: 1;
-
-        flex: 0 0 auto;
+        text-align: left;
     }
 
     .countdown {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        flex-shrink: 0;
 
-        min-width: 100px;
+        min-width: 88px;
 
-        padding: 5px 12px;
+        padding: 7px 8px;
 
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 800;
 
-        line-height: 1;
+        border-radius: 6px;
 
-        letter-spacing: 1px;
-
-        border-radius: 5px;
-
-        background: rgba(0, 0, 0, 0.25);
+        text-align: center;
     }
 
     body {
-        padding-top: 72px;
+        padding-top: 58px;
     }
 }
 
@@ -3966,40 +3892,27 @@ body {
 @media (max-width: 380px) {
 
     .promo-bar {
-        padding: 8px 8px 9px;
+        padding: 9px 10px;
     }
 
     .promo-bar-content {
-        gap: 6px;
+        gap: 8px;
     }
 
     .promo-text {
-        gap: 8px;
-
-        font-size: 12px;
-
+        font-size: 11px;
         line-height: 1.2;
-
-        padding: 0 3px;
-    }
-
-    .promo-text > span:last-child {
-        max-width: 235px;
-    }
-
-    .promo-icon {
-        font-size: 19px;
     }
 
     .countdown {
-        min-width: 96px;
+        min-width: 82px;
 
-        padding: 5px 10px;
+        padding: 6px 7px;
 
-        font-size: 15px;
+        font-size: 14px;
     }
 
     body {
-        padding-top: 70px;
+        padding-top: 56px;
     }
 }
