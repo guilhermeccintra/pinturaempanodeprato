@@ -3833,6 +3833,7 @@ body {
 /* ==================================================
    CELULARES
 ================================================== */
+
 @media (max-width: 768px) {
 
     .promo-bar {
@@ -3877,12 +3878,14 @@ body {
         text-align: center;
     }
 
+    /* Remove o espaço criado no body */
     body {
-        padding-top: 68px;
+        padding-top: 0 !important;
     }
 
+    /* Empurra somente a HERO para baixo da barra */
     .hero {
-        margin-top: 0 !important;
+        margin-top: 47px !important;
         padding-top: 0 !important;
     }
 }
@@ -3915,12 +3918,14 @@ body {
         font-size: 14px;
     }
 
+    /* Continua sem espaçamento no body */
     body {
-        padding-top: 62px;
+        padding-top: 0 !important;
     }
 
+    /* Ajuste para barra um pouco menor */
     .hero {
-        margin-top: 0 !important;
+        margin-top: 45px !important;
         padding-top: 0 !important;
     }
 }
