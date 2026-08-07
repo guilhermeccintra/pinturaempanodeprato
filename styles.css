@@ -3864,7 +3864,6 @@ body {
     padding-top: 48px;
 }
 
-
 /* ==================================================
    MOBILE
 ================================================== */
@@ -3872,46 +3871,90 @@ body {
 @media (max-width: 768px) {
 
     .promo-bar {
-        padding: 9px 10px;
+        padding: 9px 12px 10px;
     }
 
     .promo-bar-content {
+        width: 100%;
+        max-width: 100%;
+
+        display: flex;
         flex-direction: column;
 
-        gap: 5px;
-    }
-
-    .promo-text {
-        display: inline-flex;
         align-items: center;
         justify-content: center;
 
-        font-size: 13px;
+        gap: 7px;
+
+        margin: 0 auto;
+    }
+
+    .promo-text {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 9px;
+
+        max-width: none;
+
+        padding: 0 5px;
+
+        box-sizing: border-box;
+
+        font-size: 12.5px;
         font-weight: 700;
 
         line-height: 1.25;
 
-        max-width: 340px;
+        text-align: center;
+    }
+
+    .promo-text > span:last-child {
+        max-width: 245px;
+
+        text-align: center;
     }
 
     .promo-icon {
-        font-size: 19px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        margin-right: 10px;
+        font-size: 20px;
 
-        flex-shrink: 0;
+        margin-right: 0;
+
+        line-height: 1;
+
+        flex: 0 0 auto;
     }
 
     .countdown {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 100px;
+
+        padding: 5px 12px;
+
         font-size: 16px;
+        font-weight: 800;
 
-        min-width: 92px;
+        line-height: 1;
 
-        padding: 5px 10px;
+        letter-spacing: 1px;
+
+        border-radius: 5px;
+
+        background: rgba(0, 0, 0, 0.25);
     }
 
     body {
-        padding-top: 69px;
+        padding-top: 72px;
     }
 }
 
@@ -3922,20 +3965,38 @@ body {
 
 @media (max-width: 380px) {
 
-    .promo-text {
-        font-size: 12.5px;
+    .promo-bar {
+        padding: 8px 8px 9px;
+    }
 
-        max-width: 330px;
+    .promo-bar-content {
+        gap: 6px;
+    }
+
+    .promo-text {
+        gap: 8px;
+
+        font-size: 12px;
+
+        line-height: 1.2;
+
+        padding: 0 3px;
+    }
+
+    .promo-text > span:last-child {
+        max-width: 235px;
     }
 
     .promo-icon {
-        font-size: 18px;
-
-        margin-right: 9px;
+        font-size: 19px;
     }
 
     .countdown {
-        font-size: 16px;
+        min-width: 96px;
+
+        padding: 5px 10px;
+
+        font-size: 15px;
     }
 
     body {
