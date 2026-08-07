@@ -661,52 +661,66 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+function iniciarContadorOferta() {
 
     const countdownElement = document.getElementById("countdown");
 
-    function updateCountdown() {
+    // Se não encontrar o contador, não executa
+    if (!countdownElement) {
+        console.error("Elemento #countdown não encontrado.");
+        return;
+    }
 
-        const now = new Date();
+    function atualizarContador() {
 
-        // Define a próxima meia-noite
-        const midnight = new Date();
-        midnight.setHours(24, 0, 0, 0);
+        const agora = new Date();
 
-        // Diferença entre agora e meia-noite
-        const difference = midnight.getTime() - now.getTime();
-
-        // Converte para segundos
-        const totalSeconds = Math.floor(difference / 1000);
-
-        const hours = Math.floor(totalSeconds / 3600);
-
-        const minutes = Math.floor(
-            (totalSeconds % 3600) / 60
+        // Cria a próxima meia-noite
+        const proximaMeiaNoite = new Date(
+            agora.getFullYear(),
+            agora.getMonth(),
+            agora.getDate() + 1,
+            0,
+            0,
+            0,
+            0
         );
 
-        const seconds = totalSeconds % 60;
+        // Diferença em milissegundos
+        const diferenca = proximaMeiaNoite.getTime() - agora.getTime();
 
-        // Formatação 00:00:00
-        const formattedHours =
-            String(hours).padStart(2, "0");
+        // Converte para segundos
+        const totalSegundos = Math.max(
+            0,
+            Math.floor(diferenca / 1000)
+        );
 
-        const formattedMinutes =
-            String(minutes).padStart(2, "0");
+        const horas = Math.floor(totalSegundos / 3600);
 
-        const formattedSeconds =
-            String(seconds).padStart(2, "0");
+        const minutos = Math.floor(
+            (totalSegundos % 3600) / 60
+        );
+
+        const segundos = totalSegundos % 60;
+
+        const horasFormatadas = String(horas).padStart(2, "0");
+        const minutosFormatados = String(minutos).padStart(2, "0");
+        const segundosFormatados = String(segundos).padStart(2, "0");
 
         countdownElement.textContent =
-            `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+            `${horasFormatadas}:${minutosFormatados}:${segundosFormatados}`;
     }
 
     // Executa imediatamente
-    updateCountdown();
+    atualizarContador();
 
     // Atualiza a cada segundo
-    setInterval(updateCountdown, 1000);
+    setInterval(atualizarContador, 1000);
+}
 
-});
-</script>
+
+/*
+Como script.js está sendo carregado com "defer",
+o HTML já estará carregado quando isso executar.
+*/
+iniciarContadorOferta();
