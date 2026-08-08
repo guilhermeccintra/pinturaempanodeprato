@@ -1907,6 +1907,7 @@ section {
     display: block;
 
     width: 100%;
+    height: auto;
 
     aspect-ratio: 4 / 3;
 
@@ -1947,11 +1948,18 @@ section {
 
     top: 18px;
     left: 18px;
+    bottom: auto;
 
     z-index: 3;
 
+    display: block;
+
     width: 29%;
     max-width: 220px;
+
+    height: auto;
+    min-height: 0;
+    max-height: none;
 
     margin: 0;
 
@@ -1970,6 +1978,7 @@ section {
     display: block;
 
     width: 100%;
+    height: auto;
 
     aspect-ratio: 4 / 5;
 
@@ -2450,14 +2459,22 @@ section {
     .comparison-image:not(.comparison-image-result) {
         top: 10px;
         left: 10px;
+        bottom: auto;
 
         width: 31%;
         max-width: 145px;
+
+        height: auto;
+        min-height: 0;
+        max-height: none;
 
         border-radius: 11px;
     }
 
     .comparison-image:not(.comparison-image-result) img {
+        width: 100%;
+        height: auto;
+
         aspect-ratio: 4 / 5;
 
         object-fit: contain;
