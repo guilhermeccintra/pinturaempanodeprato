@@ -4019,7 +4019,7 @@ body {
     .bonus-deadline {
         display: inline;
 
-        margin-left: 4px;
+        margin-left: 0px;
         margin-top: 0;
 
         font-size: 0.88em;
@@ -4038,7 +4038,7 @@ body {
 @media (max-width: 380px) {
 
     .bonus-deadline {
-        margin-left: 3px;
+        margin-left: 0px;
         font-size: 0.86em;
     }
 
