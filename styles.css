@@ -4072,3 +4072,31 @@ body {
         font-size: 13px;
     }
 }
+
+/* ==================================================
+   ESPAÇO ENTRE CABEÇALHO E CARROSSEL
+================================================== */
+
+.comparison-heading {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto 42px;
+}
+
+.comparison-heading .section-subtitle {
+    max-width: 650px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (max-width: 1024px) {
+    .comparison-heading {
+        margin-bottom: 34px;
+    }
+}
+
+@media (max-width: 768px) {
+    .comparison-heading {
+        margin-bottom: 24px;
+    }
+}
