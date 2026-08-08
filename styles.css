@@ -4016,50 +4016,18 @@ body {
 
 @media (max-width: 768px) {
 
-    .bonus-benefit {
-        display: flex;
-        flex-direction: row;
-
-        align-items: center;
-
-        width: 100%;
-
-        gap: 10px;
-
-        padding: 10px 12px;
-    }
-
-    .bonus-benefit .benefit-icon {
-        flex-shrink: 0;
-    }
-
-    .bonus-benefit .benefit-text {
-        flex: 1;
-
-        width: auto;
-        max-width: none;
-
-        min-width: 0;
-
-        font-size: inherit;
-        line-height: inherit;
-
-        white-space: normal;
-        word-break: normal;
-        overflow-wrap: normal;
-
-        text-align: left;
-    }
-
     .bonus-deadline {
-        display: block;
+        display: inline;
 
-        margin-left: 0;
-        margin-top: 3px;
+        margin-left: 4px;
+        margin-top: 0;
 
         font-size: 0.88em;
         font-weight: 700;
+
+        white-space: nowrap;
     }
+
 }
 
 
@@ -4069,15 +4037,9 @@ body {
 
 @media (max-width: 380px) {
 
-    .bonus-benefit {
-        gap: 8px;
-
-        padding: 9px 10px;
-    }
-
     .bonus-deadline {
-        margin-top: 3px;
-
+        margin-left: 3px;
         font-size: 0.86em;
     }
+
 }
