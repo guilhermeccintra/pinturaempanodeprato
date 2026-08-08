@@ -462,7 +462,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ==========================================================================
-   Carrossel: comparação risco x resultado
+   CARROSSEL: COMPARAÇÃO RISCO X RESULTADO
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -505,22 +505,34 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+
+        /* ==================================================
+           CONFIGURAÇÃO
+           ================================================== */
+
+        const AUTOPLAY_TIME = 5000;
+        const RESTART_DELAY = 8000;
+
         let currentIndex = 0;
 
-        /*
-         * Evita duplicação dos dots caso
-         * o script seja carregado novamente.
-         */
+        let autoplayInterval = null;
+        let restartTimeout = null;
+
+        let touchStartX = 0;
+
+
+        /* ==================================================
+           DOTS
+           ================================================== */
+
         dotsContainer.innerHTML = "";
 
-        /*
-         * Cria os indicadores.
-         */
         const dots = cards.map(function (_, index) {
 
             const dot = document.createElement("button");
 
             dot.type = "button";
+
             dot.className = "comparison-dot";
 
             dot.setAttribute(
@@ -529,7 +541,11 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
             dot.addEventListener("click", function () {
+
                 goToSlide(index);
+
+                restartAutoplay();
+
             });
 
             dotsContainer.appendChild(dot);
@@ -537,29 +553,40 @@ document.addEventListener("DOMContentLoaded", function () {
             return dot;
         });
 
-        /*
-         * Move para o slide selecionado.
-         */
+
+        /* ==================================================
+           TROCA DE SLIDE
+           ================================================== */
+
         function goToSlide(index) {
 
-            const safeIndex = Math.max(
-                0,
-                Math.min(index, cards.length - 1)
-            );
+            /*
+             * Autoplay pode circular.
+             */
 
-            currentIndex = safeIndex;
+            if (index >= cards.length) {
+                index = 0;
+            }
+
+            if (index < 0) {
+                index = cards.length - 1;
+            }
+
+            currentIndex = index;
 
             track.style.transform =
-                "translateX(-" +
+                "translate3d(-" +
                 currentIndex * 100 +
-                "%)";
+                "%, 0, 0)";
 
             updateControls();
         }
 
-        /*
-         * Atualiza dots e botões.
-         */
+
+        /* ==================================================
+           CONTROLES
+           ================================================== */
+
         function updateControls() {
 
             dots.forEach(function (dot, index) {
@@ -574,20 +601,103 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 dot.setAttribute(
                     "aria-current",
-                    isActive ? "true" : "false"
+                    isActive
+                        ? "true"
+                        : "false"
                 );
             });
 
-            previousButton.disabled =
-                currentIndex === 0;
 
-            nextButton.disabled =
-                currentIndex === cards.length - 1;
+            /*
+             * As setas continuam habilitadas porque
+             * o carrossel é circular.
+             */
+
+            previousButton.disabled = false;
+            nextButton.disabled = false;
         }
 
+
+        /* ==================================================
+           AUTOPLAY
+           ================================================== */
+
+        function stopAutoplay() {
+
+            if (autoplayInterval !== null) {
+
+                window.clearInterval(
+                    autoplayInterval
+                );
+
+                autoplayInterval = null;
+            }
+        }
+
+
+        function startAutoplay() {
+
+            stopAutoplay();
+
+            /*
+             * Respeita preferência por menos movimento.
+             */
+
+            if (
+                window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches
+            ) {
+                return;
+            }
+
+            autoplayInterval =
+                window.setInterval(
+                    function () {
+
+                        goToSlide(
+                            currentIndex + 1
+                        );
+
+                    },
+                    AUTOPLAY_TIME
+                );
+        }
+
+
         /*
-         * Botão anterior.
+         * Quando o usuário mexe no carrossel,
+         * espera 8 segundos antes de voltar
+         * ao autoplay.
          */
+
+        function restartAutoplay() {
+
+            stopAutoplay();
+
+            if (restartTimeout !== null) {
+
+                window.clearTimeout(
+                    restartTimeout
+                );
+            }
+
+            restartTimeout =
+                window.setTimeout(
+                    function () {
+
+                        startAutoplay();
+
+                    },
+                    RESTART_DELAY
+                );
+        }
+
+
+        /* ==================================================
+           SETA ANTERIOR
+           ================================================== */
+
         previousButton.addEventListener(
             "click",
             function () {
@@ -595,12 +705,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 goToSlide(
                     currentIndex - 1
                 );
+
+                restartAutoplay();
             }
         );
 
-        /*
-         * Botão próximo.
-         */
+
+        /* ==================================================
+           SETA PRÓXIMA
+           ================================================== */
+
         nextButton.addEventListener(
             "click",
             function () {
@@ -608,40 +722,53 @@ document.addEventListener("DOMContentLoaded", function () {
                 goToSlide(
                     currentIndex + 1
                 );
+
+                restartAutoplay();
             }
         );
 
-        /*
-         * Navegação pelo teclado.
-         */
+
+        /* ==================================================
+           TECLADO
+           ================================================== */
+
         carousel.addEventListener(
             "keydown",
             function (event) {
 
-                if (event.key === "ArrowLeft") {
+                if (
+                    event.key === "ArrowLeft"
+                ) {
 
                     event.preventDefault();
 
                     goToSlide(
                         currentIndex - 1
                     );
+
+                    restartAutoplay();
                 }
 
-                if (event.key === "ArrowRight") {
+
+                if (
+                    event.key === "ArrowRight"
+                ) {
 
                     event.preventDefault();
 
                     goToSlide(
                         currentIndex + 1
                     );
+
+                    restartAutoplay();
                 }
             }
         );
 
-        /*
-         * Swipe no celular.
-         */
-        let touchStartX = 0;
+
+        /* ==================================================
+           SWIPE MOBILE
+           ================================================== */
 
         track.addEventListener(
             "touchstart",
@@ -649,11 +776,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 touchStartX =
                     event.changedTouches[0].clientX;
+
+                stopAutoplay();
             },
             {
                 passive: true
             }
         );
+
 
         track.addEventListener(
             "touchend",
@@ -665,16 +795,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 const distance =
                     touchStartX - touchEndX;
 
+
                 /*
-                 * Ignora pequenos movimentos.
+                 * Movimento pequeno:
+                 * não muda o slide.
                  */
-                if (Math.abs(distance) < 40) {
+
+                if (
+                    Math.abs(distance) < 40
+                ) {
+
+                    restartAutoplay();
+
                     return;
                 }
 
+
                 /*
-                 * Arrastou para esquerda.
+                 * Swipe para esquerda.
                  */
+
                 if (distance > 0) {
 
                     goToSlide(
@@ -682,26 +822,101 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
                 }
 
+
                 /*
-                 * Arrastou para direita.
+                 * Swipe para direita.
                  */
+
                 else {
 
                     goToSlide(
                         currentIndex - 1
                     );
                 }
+
+
+                restartAutoplay();
             },
             {
                 passive: true
             }
         );
 
-        /*
-         * Inicialização.
-         */
+
+        /* ==================================================
+           PAUSA AO PASSAR O MOUSE
+           ================================================== */
+
+        carousel.addEventListener(
+            "mouseenter",
+            function () {
+
+                stopAutoplay();
+            }
+        );
+
+
+        carousel.addEventListener(
+            "mouseleave",
+            function () {
+
+                startAutoplay();
+            }
+        );
+
+
+        /* ==================================================
+           PAUSA QUANDO BOTÃO/DOT RECEBE FOCO
+           ================================================== */
+
+        carousel.addEventListener(
+            "focusin",
+            function () {
+
+                stopAutoplay();
+            }
+        );
+
+
+        carousel.addEventListener(
+            "focusout",
+            function () {
+
+                restartAutoplay();
+            }
+        );
+
+
+        /* ==================================================
+           ABA DO NAVEGADOR
+           ================================================== */
+
+        document.addEventListener(
+            "visibilitychange",
+            function () {
+
+                if (document.hidden) {
+
+                    stopAutoplay();
+
+                } else {
+
+                    startAutoplay();
+                }
+            }
+        );
+
+
+        /* ==================================================
+           INICIALIZAÇÃO
+           ================================================== */
+
         goToSlide(0);
+
+        startAutoplay();
+
     });
+
 });
 
 function iniciarContadorOferta() {
