@@ -1733,687 +1733,447 @@ section {
 }
 
 
-/* ==========================================================================
-   Comparação: risco impresso x pano pintado
-   ========================================================================== */
-
-.comparison-section {
-  position: relative;
-  overflow: hidden;
-  padding: 80px 20px;
-}
-
-.comparison-heading {
-  width: 100%;
-  max-width: 760px;
-  margin: 0 auto 42px;
-}
-
-.comparison-heading .section-subtitle {
-  max-width: 650px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-/* ==========================================================================
-   Estrutura principal
-   ========================================================================== */
+/* ==================================================
+   ANTES E DEPOIS — CARROSSEL
+================================================== */
 
 .comparison-carousel {
-  position: relative;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
 }
 
 .comparison-viewport {
-  width: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 .comparison-track {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  width: 100%;
-  max-width: 1050px;
-  margin: 0 auto;
-}
+    display: flex;
+    width: 100%;
 
-/* ==========================================================================
-   Card
-   ========================================================================== */
+    transition: transform 0.45s ease;
+}
 
 .comparison-card {
-  width: 100%;
-  min-width: 0;
-  padding: 24px;
-  border: 1px solid rgba(196, 120, 74, 0.24);
-  border-radius: 22px;
-  background-color: var(--color-white, #ffffff);
-  box-shadow: 0 14px 38px rgba(70, 47, 31, 0.09);
+    flex: 0 0 100%;
+    min-width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 28px 24px;
+
+    border: 1px solid rgba(202, 117, 67, 0.25);
+    border-radius: 20px;
+
+    background: #fff;
+
+    box-shadow:
+        0 12px 35px rgba(74, 46, 28, 0.06);
 }
 
+
+/* ==================================================
+   CABEÇALHO
+================================================== */
+
 .comparison-card-header {
-  margin-bottom: 14px;
-  text-align: center;
+    text-align: center;
+
+    margin-bottom: 18px;
 }
 
 .comparison-number {
-  display: inline-block;
-  margin-bottom: 5px;
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-primary);
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .comparison-card-header h3 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--color-text);
+    margin: 0;
+
+    font-size: 1.35rem;
+    line-height: 1.2;
 }
 
-/* ==========================================================================
-   Par antes e depois
-   ========================================================================== */
+
+/* ==================================================
+   ANTES X DEPOIS
+   30% RISCO / 70% RESULTADO
+================================================== */
 
 .comparison-pair {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 50px minmax(0, 1fr);
-  align-items: center;
-  gap: 24px;
+    display: grid;
+
+    /*
+       30% risco
+       seta central
+       70% resultado
+    */
+    grid-template-columns:
+        minmax(0, 0.43fr)
+        42px
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 14px;
 }
 
+
+/* ==================================================
+   IMAGENS
+================================================== */
+
 .comparison-image {
-  position: relative;
-  width: 100%;
-  min-width: 0;
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid rgba(196, 120, 74, 0.16);
-  border-radius: 18px;
-  background-color: #fffaf5;
+    position: relative;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background: #fff;
+
+    border: 1px solid rgba(202, 117, 67, 0.18);
 }
 
 .comparison-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 620px;
-  aspect-ratio: 4 / 5;
-  object-fit: contain;
-  object-position: center;
-  background-color: #ffffff;
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: cover;
 }
 
-.comparison-image figcaption {
-  min-height: 48px;
-  padding: 10px 8px;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.35;
-  text-align: center;
-  color: #77685e;
-  background-color: #fffaf5;
+
+/* ==================================================
+   RISCO — SECUNDÁRIO
+================================================== */
+
+.comparison-image:not(.comparison-image-result) {
+    opacity: 0.88;
 }
 
-/* ==========================================================================
-   Etiquetas sobre as imagens
-   ========================================================================== */
+
+/* ==================================================
+   RESULTADO — PRINCIPAL
+================================================== */
+
+.comparison-image-result {
+    border: 2px solid rgba(202, 117, 67, 0.42);
+
+    box-shadow:
+        0 14px 32px rgba(80, 48, 25, 0.14);
+}
+
+
+/* ==================================================
+   LABELS
+================================================== */
 
 .comparison-label {
-  position: absolute;
-  top: 9px;
-  left: 9px;
-  z-index: 2;
-  display: inline-flex;
-  min-height: 28px;
-  align-items: center;
-  padding: 6px 9px;
-  border: 1px solid rgba(77, 52, 37, 0.1);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 4px 14px rgba(45, 30, 20, 0.09);
-  font-family: var(--font-body);
-  font-size: 9px;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: 0.05em;
-  color: var(--color-text);
-  white-space: nowrap;
+    position: absolute;
+
+    top: 10px;
+    left: 10px;
+
+    z-index: 2;
 }
 
-.comparison-label-result {
-  border-color: rgba(196, 120, 74, 0.25);
-  color: var(--color-primary);
+
+/* ==================================================
+   LEGENDAS
+================================================== */
+
+.comparison-image figcaption {
+    padding: 10px 8px;
+
+    text-align: center;
+
+    font-size: 0.82rem;
+    line-height: 1.3;
 }
 
-/* ==========================================================================
-   Seta
-   ========================================================================== */
+
+/* ==================================================
+   SETA ENTRE AS IMAGENS
+================================================== */
 
 .comparison-arrow {
-  display: flex;
-  width: 34px;
-  height: 34px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  box-shadow: 0 6px 16px rgba(196, 120, 74, 0.22);
-  color: #ffffff;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
 }
 
 .comparison-arrow span {
-  display: block;
-  font-family: Arial, sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1;
+    font-size: 1.25rem;
 }
 
-/* ==========================================================================
-   Controles mobile
-   ========================================================================== */
+
+/* ==================================================
+   CONTROLES
+================================================== */
 
 .comparison-controls {
-  display: none;
-}
+    display: flex;
 
-.comparison-button {
-  width: 42px;
-  height: 42px;
-  padding: 0;
-  border: 1px solid rgba(196, 120, 74, 0.3);
-  border-radius: 50%;
-  background-color: #ffffff;
-  box-shadow: 0 6px 18px rgba(68, 45, 29, 0.1);
-  color: var(--color-primary);
-  cursor: pointer;
-}
+    align-items: center;
+    justify-content: center;
 
-.comparison-button span {
-  display: block;
-  font-family: Arial, sans-serif;
-  font-size: 30px;
-  line-height: 34px;
-}
+    gap: 16px;
 
-.comparison-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+    margin-top: 18px;
 }
 
 .comparison-dots {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
 }
 
 .comparison-dot {
-  width: 9px;
-  height: 9px;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background-color: rgba(196, 120, 74, 0.28);
-  cursor: pointer;
-  transition:
-    width 0.2s ease,
-    background-color 0.2s ease;
-}
+    width: 8px;
+    height: 8px;
 
-.comparison-dot.is-active {
-  width: 25px;
-  background-color: var(--color-primary);
-}
-
-/* ==========================================================================
-   Benefício
-   ========================================================================== */
-
-.comparison-benefit {
-  display: flex;
-  width: min(100%, 690px);
-  margin: 34px auto 0;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 18px 22px;
-  border: 1px solid rgba(196, 120, 74, 0.22);
-  border-radius: 16px;
-  background-color: #fff8f1;
-}
-
-.comparison-benefit-icon {
-  display: flex;
-  flex: 0 0 38px;
-  width: 38px;
-  height: 38px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  font-size: 20px;
-  font-weight: 800;
-  color: #ffffff;
-}
-
-.comparison-benefit-text {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  font-family: var(--font-body);
-  color: var(--color-text);
-}
-
-.comparison-benefit-text strong {
-  font-size: 16px;
-  line-height: 1.3;
-}
-
-.comparison-benefit-text span {
-  font-size: 14px;
-  line-height: 1.45;
-  color: #75665c;
-}
-
-/* ==========================================================================
-   Tags de categorias
-   ========================================================================== */
-
-.comparison-tags {
-  display: flex;
-  width: min(100%, 960px);
-  margin: 24px auto 0;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-}
-
-.comparison-tags span {
-  display: inline-flex;
-  min-height: 34px;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 14px;
-  border: 1px solid rgba(196, 120, 74, 0.28);
-  border-radius: 999px;
-  background-color: #ffffff;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1;
-  color: #71584a;
-}
-
-/* ==========================================================================
-   CTA
-   ========================================================================== */
-
-.comparison-cta {
-  margin-top: 34px;
-  text-align: center;
-}
-
-.comparison-cta-highlight {
-  max-width: 620px;
-  margin: 0 auto 18px;
-  font-family: var(--font-body);
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.45;
-  color: var(--color-primary);
-}
-
-.comparison-cta .btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.comparison-payment-info {
-  margin: 13px auto 0;
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.5;
-  color: #7a6d62;
-}
-
-/* ==========================================================================
-   Tablet
-   Mantém a mesma estrutura visual do desktop
-   ========================================================================== */
-
-@media (max-width: 1024px) {
-  .comparison-section {
-    padding: 65px 20px;
-  }
-
-  .comparison-heading {
-    margin-bottom: 34px;
-  }
-
-  .comparison-carousel {
-    width: 100%;
-    max-width: 850px;
-    margin: 0 auto;
-  }
-
-  .comparison-viewport {
-    width: 100%;
-    overflow: visible;
     padding: 0;
-  }
 
-  .comparison-track {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 28px;
-    width: 100%;
-    max-width: 850px;
-    margin: 0 auto;
-  }
+    border: 0;
+    border-radius: 50%;
 
-  .comparison-card,
-  .comparison-card:last-child {
-    display: block;
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding: 22px;
-  }
+    background: rgba(202, 117, 67, 0.25);
 
-  .comparison-pair {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 50px minmax(0, 1fr);
-    align-items: center;
-    gap: 20px;
-  }
+    cursor: pointer;
 
-  .comparison-image {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-  }
-
-  .comparison-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    object-fit: contain;
-    object-position: center;
-    background-color: #ffffff;
-  }
-
-  .comparison-arrow {
-    width: 42px;
-    height: 42px;
-    margin: 0 auto;
-    transform: none;
-  }
-
-  .comparison-controls {
-    display: none;
-  }
+    transition:
+        width 0.25s ease,
+        background 0.25s ease;
 }
 
-/* ==========================================================================
-   Mobile
-   Mantém o mesmo formato horizontal do desktop:
-   risco → resultado
-   ========================================================================== */
+.comparison-dot.active {
+    width: 24px;
+
+    border-radius: 20px;
+
+    background: #ca7543;
+}
+
+.comparison-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    padding: 0;
+
+    border: 1px solid rgba(202, 117, 67, 0.30);
+    border-radius: 50%;
+
+    background: #fff;
+
+    cursor: pointer;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
 
 @media (max-width: 768px) {
-  .comparison-section {
-    padding: 48px 12px;
-  }
 
-  .comparison-heading {
-    margin-bottom: 24px;
-  }
+    .comparison-carousel {
+        width: 100%;
+    }
 
-  .comparison-carousel {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
+    .comparison-card {
+        padding: 18px 10px 15px;
 
-  .comparison-viewport {
-    width: 100%;
-    overflow: visible;
-    padding: 0;
-    scroll-behavior: auto;
-    scroll-snap-type: none;
-    overscroll-behavior: auto;
-  }
+        border-radius: 16px;
+    }
 
-  .comparison-track {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 22px;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
+    .comparison-card-header {
+        margin-bottom: 14px;
+    }
 
-  .comparison-card,
-  .comparison-card:last-child {
-    display: block;
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding: 14px;
-    border-radius: 18px;
-    scroll-snap-align: none;
-  }
+    .comparison-number {
+        font-size: 0.66rem;
+    }
 
-  .comparison-card-header {
-    margin-bottom: 12px;
-  }
+    .comparison-card-header h3 {
+        font-size: 1.12rem;
+    }
 
-  .comparison-number {
-    font-size: 10px;
-  }
 
-  .comparison-card-header h3 {
-    font-size: 18px;
-    line-height: 1.25;
-  }
+    /* ==============================================
+       MOBILE — 30% RISCO / 70% RESULTADO
+    ============================================== */
 
-  /*
-   * Mantém risco e resultado lado a lado.
-   */
-  .comparison-pair {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
-    align-items: center;
-    gap: 8px;
-  }
+    .comparison-pair {
+        grid-template-columns:
+            minmax(0, 0.43fr)
+            24px
+            minmax(0, 1fr);
 
-  .comparison-image {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    border-radius: 13px;
-  }
+        gap: 5px;
 
-  .comparison-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: none;
-    aspect-ratio: 4 / 5;
-    object-fit: contain;
-    object-position: center;
-    background-color: #ffffff;
-  }
+        align-items: center;
+    }
 
-  .comparison-image figcaption {
-    min-height: 42px;
-    padding: 8px 5px;
-    font-size: 10px;
-    line-height: 1.3;
-  }
 
-  .comparison-label {
-    top: 7px;
-    left: 7px;
-    min-height: 24px;
-    padding: 5px 7px;
-    font-size: 7px;
-    letter-spacing: 0.02em;
-  }
+    /* IMAGENS */
 
-  .comparison-arrow {
-    width: 32px;
-    height: 32px;
-    margin: 0 auto;
-    transform: none;
-  }
+    .comparison-image {
+        width: 100%;
 
-  .comparison-arrow span {
-    font-size: 18px;
-  }
+        border-radius: 11px;
+    }
 
-  /*
-   * O carrossel deixa de existir no mobile.
-   */
-  .comparison-controls {
-    display: none;
-  }
+    .comparison-image img {
+        width: 100%;
+        height: auto;
 
-  .comparison-benefit {
-    align-items: flex-start;
-    padding: 15px;
-  }
+        display: block;
+    }
 
-  .comparison-benefit-icon {
-    flex-basis: 34px;
-    width: 34px;
-    height: 34px;
-    font-size: 17px;
-  }
 
-  .comparison-benefit-text strong {
-    font-size: 15px;
-  }
+    /* RISCO */
 
-  .comparison-benefit-text span {
-    font-size: 13px;
-  }
+    .comparison-image:not(.comparison-image-result) {
+        opacity: 0.82;
+    }
 
-  .comparison-tags {
-    gap: 7px;
-  }
 
-  .comparison-tags span {
-    min-height: 31px;
-    padding: 7px 10px;
-    font-size: 12px;
-  }
+    /* RESULTADO PINTADO */
 
-  .comparison-cta-highlight {
-    font-size: 16px;
-  }
+    .comparison-image-result {
+        opacity: 1;
 
-  .comparison-cta .btn-primary {
-    width: 100%;
-    max-width: 340px;
-  }
+        border: 2px solid rgba(202, 117, 67, 0.45);
 
-  .comparison-payment-info {
-    max-width: 310px;
-    font-size: 13px;
-  }
+        box-shadow:
+            0 10px 24px rgba(80, 48, 25, 0.16);
+    }
+
+
+    /* LABELS */
+
+    .comparison-label {
+        top: 6px;
+        left: 6px;
+
+        padding: 4px 6px;
+
+        font-size: 0.52rem;
+
+        white-space: nowrap;
+    }
+
+
+    /* LEGENDAS */
+
+    .comparison-image figcaption {
+        padding: 7px 3px;
+
+        font-size: 0.64rem;
+        line-height: 1.25;
+    }
+
+
+    /* SETA */
+
+    .comparison-arrow {
+        width: 24px;
+        height: 24px;
+    }
+
+    .comparison-arrow span {
+        font-size: 0.95rem;
+    }
+
+
+    /* CONTROLES */
+
+    .comparison-controls {
+        display: flex;
+
+        margin-top: 14px;
+
+        gap: 12px;
+    }
+
+    .comparison-button {
+        width: 34px;
+        height: 34px;
+    }
+
+    .comparison-dots {
+        gap: 7px;
+    }
 }
 
-/* ==========================================================================
-   Mobile pequeno
-   Continua com a mesma estrutura horizontal
-   ========================================================================== */
 
-@media (max-width: 400px) {
-  .comparison-section {
-    padding-right: 8px;
-    padding-left: 8px;
-  }
+/* ==================================================
+   CELULARES PEQUENOS
+================================================== */
 
-  .comparison-card,
-  .comparison-card:last-child {
-    width: 100%;
-    max-width: none;
-    padding: 10px;
-  }
+@media (max-width: 380px) {
 
-  .comparison-pair {
-    grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr);
-    gap: 5px;
-  }
+    .comparison-card {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
 
-  .comparison-image {
-    width: 100%;
-    max-width: none;
-  }
+    .comparison-pair {
+        grid-template-columns:
+            minmax(0, 0.43fr)
+            20px
+            minmax(0, 1fr);
 
-  .comparison-image img {
-    width: 100%;
-    height: auto;
-    max-height: none;
-    aspect-ratio: 4 / 5;
-    object-fit: contain;
-  }
+        gap: 3px;
+    }
 
-  .comparison-image figcaption {
-    min-height: 38px;
-    padding: 6px 3px;
-    font-size: 9px;
-  }
+    .comparison-arrow {
+        width: 20px;
+        height: 20px;
+    }
 
-  .comparison-label {
-    top: 5px;
-    left: 5px;
-    min-height: 21px;
-    padding: 4px 5px;
-    font-size: 6px;
-  }
+    .comparison-arrow span {
+        font-size: 0.82rem;
+    }
 
-  .comparison-arrow {
-    width: 26px;
-    height: 26px;
-  }
+    .comparison-image figcaption {
+        font-size: 0.60rem;
+    }
 
-  .comparison-arrow span {
-    font-size: 15px;
-  }
+    .comparison-label {
+        font-size: 0.48rem;
+    }
 }
-
-/* ==========================================================================
-   Acessibilidade: redução de movimento
-   ========================================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  .comparison-viewport {
-    scroll-behavior: auto;
-  }
-
-  .comparison-dot {
-    transition: none;
-  }
-}
-
 
 /* ==========================================================================
    Processo de transferência para o tecido
