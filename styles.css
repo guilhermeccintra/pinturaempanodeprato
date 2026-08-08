@@ -4065,40 +4065,4 @@ body {
     }
 }
 
-/* ==================================================
-   BÔNUS DENTRO DO BLOCO DE OFERTA
-================================================== */
 
-.offer-box .bonus-benefit {
-    width: 100%;
-    box-sizing: border-box;
-
-    display: flex;
-    align-items: center;
-
-    padding: 8px 10px;
-
-    overflow: visible;
-}
-
-.offer-box .bonus-benefit .benefit-text {
-    display: block;
-
-    flex: 1;
-    min-width: 0;
-
-    white-space: normal;
-    overflow: visible;
-    overflow-wrap: break-word;
-    word-break: normal;
-
-    text-align: left;
-}
-
-.offer-box .bonus-deadline {
-    display: inline;
-
-    margin-left: 5px;
-
-    white-space: normal;
-}
