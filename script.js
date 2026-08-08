@@ -465,17 +465,15 @@ document.addEventListener("DOMContentLoaded", () => {
    Carrossel mobile: comparação risco x resultado
    ========================================================================== */
 
-/* ==================================================
-   CARROSSEL — ANTES E DEPOIS
-================================================== */
-
 document.addEventListener("DOMContentLoaded", function () {
-
     const carousels = document.querySelectorAll(
         "[data-comparison-carousel]"
     );
 
     carousels.forEach(function (carousel) {
+        const viewport = carousel.querySelector(
+            "[data-comparison-viewport]"
+        );
 
         const track = carousel.querySelector(
             "[data-comparison-track]"
@@ -499,12 +497,8 @@ document.addEventListener("DOMContentLoaded", function () {
             "[data-comparison-dots]"
         );
 
-
-        /* ==================================================
-           VALIDAÇÃO
-        ================================================== */
-
         if (
+            !viewport ||
             !track ||
             cards.length === 0 ||
             !previousButton ||
@@ -514,27 +508,16 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-
         let currentIndex = 0;
+        let scrollEndTimer = null;
 
-
-        /* ==================================================
-           LIMPA DOTS EXISTENTES
-        ================================================== */
-
-        dotsContainer.innerHTML = "";
-
-
-        /* ==================================================
-           CRIA OS DOTS
-        ================================================== */
-
+        /*
+         * Cria os indicadores com base na quantidade de cards.
+         */
         const dots = cards.map(function (_, index) {
-
             const dot = document.createElement("button");
 
             dot.type = "button";
-
             dot.className = "comparison-dot";
 
             dot.setAttribute(
@@ -543,9 +526,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
             dot.addEventListener("click", function () {
-
-                goToSlide(index);
-
+                scrollToCard(index);
             });
 
             dotsContainer.appendChild(dot);
@@ -553,46 +534,78 @@ document.addEventListener("DOMContentLoaded", function () {
             return dot;
         });
 
+        /*
+         * Verifica se a página está no breakpoint mobile.
+         */
+        function isMobileCarousel() {
+            return window.matchMedia(
+                "(max-width: 768px)"
+            ).matches;
+        }
 
-        /* ==================================================
-           IR PARA UM SLIDE
-        ================================================== */
-
-        function goToSlide(index) {
-
-            /*
-             * Impede passar do primeiro
-             * ou do último slide.
-             */
+        /*
+         * Move o viewport até o card escolhido.
+         */
+        function scrollToCard(index, behavior = "smooth") {
+            if (!isMobileCarousel()) {
+                return;
+            }
 
             const safeIndex = Math.max(
                 0,
                 Math.min(index, cards.length - 1)
             );
 
+            const selectedCard = cards[safeIndex];
+
+            viewport.scrollTo({
+                left:
+                    selectedCard.offsetLeft -
+                    track.offsetLeft,
+                behavior: behavior
+            });
+
             currentIndex = safeIndex;
-
-
-            /*
-             * Cada card ocupa 100% do carrossel.
-             */
-
-            track.style.transform =
-                "translateX(-" + (currentIndex * 100) + "%)";
-
 
             updateControls();
         }
 
+        /*
+         * Descobre qual card está mais próximo
+         * do centro do viewport.
+         */
+        function getClosestCardIndex() {
+            const viewportCenter =
+                viewport.scrollLeft +
+                viewport.clientWidth / 2;
 
-        /* ==================================================
-           ATUALIZA DOTS E SETAS
-        ================================================== */
+            let closestIndex = 0;
+            let closestDistance = Infinity;
 
+            cards.forEach(function (card, index) {
+                const cardCenter =
+                    card.offsetLeft -
+                    track.offsetLeft +
+                    card.offsetWidth / 2;
+
+                const distance = Math.abs(
+                    viewportCenter - cardCenter
+                );
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestIndex = index;
+                }
+            });
+
+            return closestIndex;
+        }
+
+        /*
+         * Atualiza botões e indicadores.
+         */
         function updateControls() {
-
             dots.forEach(function (dot, index) {
-
                 const isActive =
                     index === currentIndex;
 
@@ -605,13 +618,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "aria-current",
                     isActive ? "true" : "false"
                 );
-
             });
-
-
-            /*
-             * Desativa seta no início/fim.
-             */
 
             previousButton.disabled =
                 currentIndex === 0;
@@ -620,147 +627,99 @@ document.addEventListener("DOMContentLoaded", function () {
                 currentIndex === cards.length - 1;
         }
 
-
-        /* ==================================================
-           BOTÃO ANTERIOR
-        ================================================== */
-
+        /*
+         * Botão anterior.
+         */
         previousButton.addEventListener(
             "click",
             function () {
-
-                goToSlide(currentIndex - 1);
-
+                scrollToCard(
+                    currentIndex - 1
+                );
             }
         );
 
-
-        /* ==================================================
-           BOTÃO PRÓXIMO
-        ================================================== */
-
+        /*
+         * Botão próximo.
+         */
         nextButton.addEventListener(
             "click",
             function () {
-
-                goToSlide(currentIndex + 1);
-
+                scrollToCard(
+                    currentIndex + 1
+                );
             }
         );
 
-
-        /* ==================================================
-           TECLADO
-        ================================================== */
-
-        carousel.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (event.key === "ArrowLeft") {
-
-                    event.preventDefault();
-
-                    goToSlide(currentIndex - 1);
-                }
-
-                if (event.key === "ArrowRight") {
-
-                    event.preventDefault();
-
-                    goToSlide(currentIndex + 1);
-                }
-
-            }
-        );
-
-
-        /* ==================================================
-           SWIPE — CELULAR / TABLET
-        ================================================== */
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-
-        track.addEventListener(
-            "touchstart",
-            function (event) {
-
-                touchStartX =
-                    event.changedTouches[0].clientX;
-
-            },
-            {
-                passive: true
-            }
-        );
-
-
-        track.addEventListener(
-            "touchend",
-            function (event) {
-
-                touchEndX =
-                    event.changedTouches[0].clientX;
-
-
-                const distance =
-                    touchStartX - touchEndX;
-
-
-                /*
-                 * Evita trocar de slide
-                 * com pequenos movimentos.
-                 */
-
-                if (Math.abs(distance) < 40) {
+        /*
+         * Atualiza o índice após o usuário
+         * arrastar o carrossel.
+         */
+        viewport.addEventListener(
+            "scroll",
+            function () {
+                if (!isMobileCarousel()) {
                     return;
                 }
 
+                window.clearTimeout(
+                    scrollEndTimer
+                );
 
-                /*
-                 * Arrastou para esquerda:
-                 * próximo.
-                 */
+                scrollEndTimer =
+                    window.setTimeout(
+                        function () {
+                            currentIndex =
+                                getClosestCardIndex();
 
-                if (distance > 0) {
-
-                    goToSlide(
-                        currentIndex + 1
+                            updateControls();
+                        },
+                        100
                     );
-
-                }
-
-
-                /*
-                 * Arrastou para direita:
-                 * anterior.
-                 */
-
-                else {
-
-                    goToSlide(
-                        currentIndex - 1
-                    );
-
-                }
-
             },
             {
                 passive: true
             }
         );
 
+        /*
+         * Suporte ao teclado quando o foco
+         * estiver dentro do carrossel.
+         */
+        carousel.addEventListener(
+            "keydown",
+            function (event) {
+                if (!isMobileCarousel()) {
+                    return;
+                }
 
-        /* ==================================================
-           INICIALIZA
-        ================================================== */
+                if (
+                    event.key === "ArrowLeft"
+                ) {
+                    event.preventDefault();
 
-        goToSlide(0);
+                    scrollToCard(
+                        currentIndex - 1
+                    );
+                }
 
+                if (
+                    event.key === "ArrowRight"
+                ) {
+                    event.preventDefault();
+
+                    scrollToCard(
+                        currentIndex + 1
+                    );
+                }
+            }
+        );
+
+        /*
+         * Estado inicial.
+         */
+        updateControls();
     });
-
 });
 
 
