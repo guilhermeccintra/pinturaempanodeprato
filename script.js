@@ -465,180 +465,304 @@ document.addEventListener("DOMContentLoaded", () => {
    Carrossel mobile: comparação risco x resultado
    ========================================================================== */
 
+/* ==================================================
+   CARROSSEL — ANTES E DEPOIS
+================================================== */
+
 document.addEventListener("DOMContentLoaded", function () {
-  const carousels = document.querySelectorAll("[data-comparison-carousel]");
 
-  carousels.forEach(function (carousel) {
-    const viewport = carousel.querySelector("[data-comparison-viewport]");
-    const track = carousel.querySelector("[data-comparison-track]");
-    const cards = Array.from(
-      carousel.querySelectorAll("[data-comparison-card]")
+    const carousels = document.querySelectorAll(
+        "[data-comparison-carousel]"
     );
 
-    const previousButton = carousel.querySelector("[data-comparison-prev]");
-    const nextButton = carousel.querySelector("[data-comparison-next]");
-    const dotsContainer = carousel.querySelector("[data-comparison-dots]");
+    carousels.forEach(function (carousel) {
 
-    if (
-      !viewport ||
-      !track ||
-      cards.length === 0 ||
-      !previousButton ||
-      !nextButton ||
-      !dotsContainer
-    ) {
-      return;
-    }
-
-    let currentIndex = 0;
-    let scrollEndTimer = null;
-
-    /*
-     * Cria os indicadores com base na quantidade de cards.
-     */
-    const dots = cards.map(function (_, index) {
-      const dot = document.createElement("button");
-
-      dot.type = "button";
-      dot.className = "comparison-dot";
-      dot.setAttribute(
-        "aria-label",
-        "Ver comparação " + String(index + 1)
-      );
-
-      dot.addEventListener("click", function () {
-        scrollToCard(index);
-      });
-
-      dotsContainer.appendChild(dot);
-
-      return dot;
-    });
-
-    /*
-     * Verifica se a página está no breakpoint mobile.
-     */
-    function isMobileCarousel() {
-      return window.matchMedia("(max-width: 768px)").matches;
-    }
-
-    /*
-     * Move o viewport até o card escolhido.
-     */
-    function scrollToCard(index, behavior = "smooth") {
-      if (!isMobileCarousel()) {
-        return;
-      }
-
-      const safeIndex = Math.max(0, Math.min(index, cards.length - 1));
-      const selectedCard = cards[safeIndex];
-
-      viewport.scrollTo({
-        left: selectedCard.offsetLeft - track.offsetLeft,
-        behavior: behavior
-      });
-
-      currentIndex = safeIndex;
-      updateControls();
-    }
-
-    /*
-     * Descobre qual card está mais próximo do centro do viewport.
-     */
-    function getClosestCardIndex() {
-      const viewportCenter =
-        viewport.scrollLeft + viewport.clientWidth / 2;
-
-      let closestIndex = 0;
-      let closestDistance = Infinity;
-
-      cards.forEach(function (card, index) {
-        const cardCenter =
-          card.offsetLeft -
-          track.offsetLeft +
-          card.offsetWidth / 2;
-
-        const distance = Math.abs(viewportCenter - cardCenter);
-
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = index;
-        }
-      });
-
-      return closestIndex;
-    }
-
-    /*
-     * Atualiza botões e indicadores.
-     */
-    function updateControls() {
-      dots.forEach(function (dot, index) {
-        const isActive = index === currentIndex;
-
-        dot.classList.toggle("is-active", isActive);
-        dot.setAttribute(
-          "aria-current",
-          isActive ? "true" : "false"
+        const track = carousel.querySelector(
+            "[data-comparison-track]"
         );
-      });
 
-      previousButton.disabled = currentIndex === 0;
-      nextButton.disabled = currentIndex === cards.length - 1;
-    }
+        const cards = Array.from(
+            carousel.querySelectorAll(
+                "[data-comparison-card]"
+            )
+        );
 
-    /*
-     * Botão anterior.
-     */
-    previousButton.addEventListener("click", function () {
-      scrollToCard(currentIndex - 1);
-    });
+        const previousButton = carousel.querySelector(
+            "[data-comparison-prev]"
+        );
 
-    /*
-     * Botão próximo.
-     */
-    nextButton.addEventListener("click", function () {
-      scrollToCard(currentIndex + 1);
-    });
+        const nextButton = carousel.querySelector(
+            "[data-comparison-next]"
+        );
 
-    /*
-     * Atualiza o índice após o usuário arrastar o carrossel.
-     */
-    viewport.addEventListener(
-      "scroll",
-      function () {
-        if (!isMobileCarousel()) {
-          return;
+        const dotsContainer = carousel.querySelector(
+            "[data-comparison-dots]"
+        );
+
+
+        /* ==================================================
+           VALIDAÇÃO
+        ================================================== */
+
+        if (
+            !track ||
+            cards.length === 0 ||
+            !previousButton ||
+            !nextButton ||
+            !dotsContainer
+        ) {
+            return;
         }
 
-        window.clearTimeout(scrollEndTimer);
 
-        scrollEndTimer = window.setTimeout(function () {
-          currentIndex = getClosestCardIndex();
-          updateControls();
-        }, 100);
-      },
-      { passive: true }
-    );
+        let currentIndex = 0;
 
-    /*
-     * Suporte ao teclado quando o foco estiver dentro do carrossel.
-     */
-    carousel.addEventListener("keydown", function (event) {
-      if (!isMobileCarousel()) {
-        return;
-      }
 
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        scrollToCard(currentIndex - 1);
-      }
+        /* ==================================================
+           LIMPA DOTS EXISTENTES
+        ================================================== */
 
-      if (event.key === "ArrowRight") {
-        event.preventDefault();
-        scrollToCard(currentIndex + 1);
-      }
+        dotsContainer.innerHTML = "";
+
+
+        /* ==================================================
+           CRIA OS DOTS
+        ================================================== */
+
+        const dots = cards.map(function (_, index) {
+
+            const dot = document.createElement("button");
+
+            dot.type = "button";
+
+            dot.className = "comparison-dot";
+
+            dot.setAttribute(
+                "aria-label",
+                "Ver comparação " + String(index + 1)
+            );
+
+            dot.addEventListener("click", function () {
+
+                goToSlide(index);
+
+            });
+
+            dotsContainer.appendChild(dot);
+
+            return dot;
+        });
+
+
+        /* ==================================================
+           IR PARA UM SLIDE
+        ================================================== */
+
+        function goToSlide(index) {
+
+            /*
+             * Impede passar do primeiro
+             * ou do último slide.
+             */
+
+            const safeIndex = Math.max(
+                0,
+                Math.min(index, cards.length - 1)
+            );
+
+            currentIndex = safeIndex;
+
+
+            /*
+             * Cada card ocupa 100% do carrossel.
+             */
+
+            track.style.transform =
+                "translateX(-" + (currentIndex * 100) + "%)";
+
+
+            updateControls();
+        }
+
+
+        /* ==================================================
+           ATUALIZA DOTS E SETAS
+        ================================================== */
+
+        function updateControls() {
+
+            dots.forEach(function (dot, index) {
+
+                const isActive =
+                    index === currentIndex;
+
+                dot.classList.toggle(
+                    "is-active",
+                    isActive
+                );
+
+                dot.setAttribute(
+                    "aria-current",
+                    isActive ? "true" : "false"
+                );
+
+            });
+
+
+            /*
+             * Desativa seta no início/fim.
+             */
+
+            previousButton.disabled =
+                currentIndex === 0;
+
+            nextButton.disabled =
+                currentIndex === cards.length - 1;
+        }
+
+
+        /* ==================================================
+           BOTÃO ANTERIOR
+        ================================================== */
+
+        previousButton.addEventListener(
+            "click",
+            function () {
+
+                goToSlide(currentIndex - 1);
+
+            }
+        );
+
+
+        /* ==================================================
+           BOTÃO PRÓXIMO
+        ================================================== */
+
+        nextButton.addEventListener(
+            "click",
+            function () {
+
+                goToSlide(currentIndex + 1);
+
+            }
+        );
+
+
+        /* ==================================================
+           TECLADO
+        ================================================== */
+
+        carousel.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "ArrowLeft") {
+
+                    event.preventDefault();
+
+                    goToSlide(currentIndex - 1);
+                }
+
+                if (event.key === "ArrowRight") {
+
+                    event.preventDefault();
+
+                    goToSlide(currentIndex + 1);
+                }
+
+            }
+        );
+
+
+        /* ==================================================
+           SWIPE — CELULAR / TABLET
+        ================================================== */
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+
+        track.addEventListener(
+            "touchstart",
+            function (event) {
+
+                touchStartX =
+                    event.changedTouches[0].clientX;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        track.addEventListener(
+            "touchend",
+            function (event) {
+
+                touchEndX =
+                    event.changedTouches[0].clientX;
+
+
+                const distance =
+                    touchStartX - touchEndX;
+
+
+                /*
+                 * Evita trocar de slide
+                 * com pequenos movimentos.
+                 */
+
+                if (Math.abs(distance) < 40) {
+                    return;
+                }
+
+
+                /*
+                 * Arrastou para esquerda:
+                 * próximo.
+                 */
+
+                if (distance > 0) {
+
+                    goToSlide(
+                        currentIndex + 1
+                    );
+
+                }
+
+
+                /*
+                 * Arrastou para direita:
+                 * anterior.
+                 */
+
+                else {
+
+                    goToSlide(
+                        currentIndex - 1
+                    );
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* ==================================================
+           INICIALIZA
+        ================================================== */
+
+        goToSlide(0);
+
     });
+
+});
+
 
     /*
      * Recalcula a posição quando a tela muda de tamanho.
