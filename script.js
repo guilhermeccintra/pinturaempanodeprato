@@ -724,3 +724,24 @@ Como script.js está sendo carregado com "defer",
 o HTML já estará carregado quando isso executar.
 */
 iniciarContadorOferta();
+
+/* ==================================================
+   DATA DA OFERTA DOS BÔNUS
+================================================== */
+
+function atualizarDataBonus() {
+
+    const bonusDate = document.getElementById("bonus-date");
+
+    if (!bonusDate) return;
+
+    const hoje = new Date();
+
+    const dia = String(hoje.getDate()).padStart(2, "0");
+    const mes = String(hoje.getMonth() + 1).padStart(2, "0");
+    const ano = hoje.getFullYear();
+
+    bonusDate.textContent = `${dia}/${mes}/${ano}`;
+}
+
+atualizarDataBonus();
