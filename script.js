@@ -462,18 +462,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ==========================================================================
-   Carrossel mobile: comparação risco x resultado
+   Carrossel: comparação risco x resultado
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
+
     const carousels = document.querySelectorAll(
         "[data-comparison-carousel]"
     );
 
     carousels.forEach(function (carousel) {
-        const viewport = carousel.querySelector(
-            "[data-comparison-viewport]"
-        );
 
         const track = carousel.querySelector(
             "[data-comparison-track]"
@@ -498,7 +496,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         if (
-            !viewport ||
             !track ||
             cards.length === 0 ||
             !previousButton ||
@@ -509,12 +506,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         let currentIndex = 0;
-        let scrollEndTimer = null;
 
         /*
-         * Cria os indicadores com base na quantidade de cards.
+         * Evita duplicação dos dots caso
+         * o script seja carregado novamente.
+         */
+        dotsContainer.innerHTML = "";
+
+        /*
+         * Cria os indicadores.
          */
         const dots = cards.map(function (_, index) {
+
             const dot = document.createElement("button");
 
             dot.type = "button";
@@ -526,7 +529,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
             dot.addEventListener("click", function () {
-                scrollToCard(index);
+                goToSlide(index);
             });
 
             dotsContainer.appendChild(dot);
@@ -535,77 +538,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         /*
-         * Verifica se a página está no breakpoint mobile.
+         * Move para o slide selecionado.
          */
-        function isMobileCarousel() {
-            return window.matchMedia(
-                "(max-width: 768px)"
-            ).matches;
-        }
-
-        /*
-         * Move o viewport até o card escolhido.
-         */
-        function scrollToCard(index, behavior = "smooth") {
-            if (!isMobileCarousel()) {
-                return;
-            }
+        function goToSlide(index) {
 
             const safeIndex = Math.max(
                 0,
                 Math.min(index, cards.length - 1)
             );
 
-            const selectedCard = cards[safeIndex];
-
-            viewport.scrollTo({
-                left:
-                    selectedCard.offsetLeft -
-                    track.offsetLeft,
-                behavior: behavior
-            });
-
             currentIndex = safeIndex;
+
+            track.style.transform =
+                "translateX(-" +
+                currentIndex * 100 +
+                "%)";
 
             updateControls();
         }
 
         /*
-         * Descobre qual card está mais próximo
-         * do centro do viewport.
-         */
-        function getClosestCardIndex() {
-            const viewportCenter =
-                viewport.scrollLeft +
-                viewport.clientWidth / 2;
-
-            let closestIndex = 0;
-            let closestDistance = Infinity;
-
-            cards.forEach(function (card, index) {
-                const cardCenter =
-                    card.offsetLeft -
-                    track.offsetLeft +
-                    card.offsetWidth / 2;
-
-                const distance = Math.abs(
-                    viewportCenter - cardCenter
-                );
-
-                if (distance < closestDistance) {
-                    closestDistance = distance;
-                    closestIndex = index;
-                }
-            });
-
-            return closestIndex;
-        }
-
-        /*
-         * Atualiza botões e indicadores.
+         * Atualiza dots e botões.
          */
         function updateControls() {
+
             dots.forEach(function (dot, index) {
+
                 const isActive =
                     index === currentIndex;
 
@@ -633,7 +591,8 @@ document.addEventListener("DOMContentLoaded", function () {
         previousButton.addEventListener(
             "click",
             function () {
-                scrollToCard(
+
+                goToSlide(
                     currentIndex - 1
                 );
             }
@@ -645,70 +604,34 @@ document.addEventListener("DOMContentLoaded", function () {
         nextButton.addEventListener(
             "click",
             function () {
-                scrollToCard(
+
+                goToSlide(
                     currentIndex + 1
                 );
             }
         );
 
         /*
-         * Atualiza o índice após o usuário
-         * arrastar o carrossel.
-         */
-        viewport.addEventListener(
-            "scroll",
-            function () {
-                if (!isMobileCarousel()) {
-                    return;
-                }
-
-                window.clearTimeout(
-                    scrollEndTimer
-                );
-
-                scrollEndTimer =
-                    window.setTimeout(
-                        function () {
-                            currentIndex =
-                                getClosestCardIndex();
-
-                            updateControls();
-                        },
-                        100
-                    );
-            },
-            {
-                passive: true
-            }
-        );
-
-        /*
-         * Suporte ao teclado quando o foco
-         * estiver dentro do carrossel.
+         * Navegação pelo teclado.
          */
         carousel.addEventListener(
             "keydown",
             function (event) {
-                if (!isMobileCarousel()) {
-                    return;
-                }
 
-                if (
-                    event.key === "ArrowLeft"
-                ) {
+                if (event.key === "ArrowLeft") {
+
                     event.preventDefault();
 
-                    scrollToCard(
+                    goToSlide(
                         currentIndex - 1
                     );
                 }
 
-                if (
-                    event.key === "ArrowRight"
-                ) {
+                if (event.key === "ArrowRight") {
+
                     event.preventDefault();
 
-                    scrollToCard(
+                    goToSlide(
                         currentIndex + 1
                     );
                 }
@@ -716,32 +639,69 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         /*
-         * Estado inicial.
+         * Swipe no celular.
          */
-        updateControls();
+        let touchStartX = 0;
+
+        track.addEventListener(
+            "touchstart",
+            function (event) {
+
+                touchStartX =
+                    event.changedTouches[0].clientX;
+            },
+            {
+                passive: true
+            }
+        );
+
+        track.addEventListener(
+            "touchend",
+            function (event) {
+
+                const touchEndX =
+                    event.changedTouches[0].clientX;
+
+                const distance =
+                    touchStartX - touchEndX;
+
+                /*
+                 * Ignora pequenos movimentos.
+                 */
+                if (Math.abs(distance) < 40) {
+                    return;
+                }
+
+                /*
+                 * Arrastou para esquerda.
+                 */
+                if (distance > 0) {
+
+                    goToSlide(
+                        currentIndex + 1
+                    );
+                }
+
+                /*
+                 * Arrastou para direita.
+                 */
+                else {
+
+                    goToSlide(
+                        currentIndex - 1
+                    );
+                }
+            },
+            {
+                passive: true
+            }
+        );
+
+        /*
+         * Inicialização.
+         */
+        goToSlide(0);
     });
-});
-
-
-    /*
-     * Recalcula a posição quando a tela muda de tamanho.
-     */
-    window.addEventListener("resize", function () {
-      window.clearTimeout(scrollEndTimer);
-
-      scrollEndTimer = window.setTimeout(function () {
-        if (isMobileCarousel()) {
-          scrollToCard(currentIndex, "auto");
-        } else {
-          viewport.scrollLeft = 0;
-          currentIndex = 0;
-          updateControls();
-        }
-      }, 150);
-    });
-
-    updateControls();
-  });
 });
 
 function iniciarContadorOferta() {
