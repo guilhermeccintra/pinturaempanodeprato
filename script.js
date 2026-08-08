@@ -731,9 +731,9 @@ iniciarContadorOferta();
 
 function atualizarDataBonus() {
 
-    const bonusDate = document.getElementById("bonus-date");
+    const bonusDates = document.querySelectorAll(".bonus-date");
 
-    if (!bonusDate) return;
+    if (!bonusDates.length) return;
 
     const hoje = new Date();
 
@@ -741,7 +741,12 @@ function atualizarDataBonus() {
     const mes = String(hoje.getMonth() + 1).padStart(2, "0");
     const ano = hoje.getFullYear();
 
-    bonusDate.textContent = `${dia}/${mes}/${ano}`;
+    const dataFormatada = `${dia}/${mes}/${ano}`;
+
+    bonusDates.forEach((elemento) => {
+        elemento.textContent = dataFormatada;
+    });
+
 }
 
 atualizarDataBonus();
