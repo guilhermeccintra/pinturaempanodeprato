@@ -66,8 +66,33 @@ s.parentNode.insertBefore(t,s)}
 
 fbq('init', '1901694047194455');
 
+// Função auxiliar para gerar um ID único para desduplicação
+function generateEventId() {
+  return 'evt_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+}
+
+// Função para disparar Pixel + CAPI simultaneamente
+function trackMetaEvent(eventName, customData = {}) {
+  const eventId = generateEventId();
+  
+  // 1. Dispara no Navegador (Pixel)
+  fbq('track', eventName, customData, { eventID: eventId });
+  
+  // 2. Dispara no Servidor (CAPI via Vercel)
+  fetch('/api/capi', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      eventName: eventName,
+      eventId: eventId,
+      eventSourceUrl: window.location.href,
+      eventCustomData: customData
+    })
+  }).catch(err => console.error('Erro CAPI:', err));
+}
+
 // Dispara ao carregar a página
-fbq('track', 'PageView');
+trackMetaEvent('PageView');
 
 // Dispara ViewContent ao atingir 20% da página
 let viewContentSent = false;
@@ -83,7 +108,7 @@ window.addEventListener('scroll', function () {
     const scrollPercent = (scrollTop + windowHeight) / documentHeight;
 
     if (scrollPercent >= 0.20) {
-        fbq('track', 'ViewContent');
+        trackMetaEvent('ViewContent');
         viewContentSent = true;
     }
 
