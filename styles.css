@@ -4044,178 +4044,86 @@ body {
 
 }
 
-/* ==========================================================================
-   POP-UP TERMOS DE USO
-   ========================================================================== */
 
-.modal-overlay {
-  position: fixed;
-  inset: 0;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ========================================
+   MODAIS - TERMOS E PRIVACIDADE
+======================================== */
 
-  padding: 20px;
-
-  background: rgba(50, 35, 25, 0.65);
-
-  opacity: 0;
-  visibility: hidden;
-
-  transition:
-    opacity 0.3s ease,
-    visibility 0.3s ease;
-
-  z-index: 9999;
+/* Ficam escondidos por padrão */
+#termsModal,
+#privacyModal {
+  display: none !important;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(0, 0, 0, 0.65) !important;
+  z-index: 99999 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
 }
 
-.modal-overlay.active {
-  opacity: 1;
-  visibility: visible;
+/* Classe usada pelo JavaScript para abrir */
+#termsModal.active,
+#privacyModal.active {
+  display: flex !important;
 }
 
-.terms-modal-content {
-  position: relative;
+/* Caixa do conteúdo */
+.legal-modal-content {
+  position: relative !important;
+  width: min(100%, 700px) !important;
+  max-height: 85vh !important;
+  overflow-y: auto !important;
 
-  width: 100%;
-  max-width: 700px;
-  max-height: 85vh;
+  background: var(--color-bg, #f8f3eb) !important;
+  color: var(--color-text, #4a3728) !important;
 
-  background-color: var(--color-bg);
-  border-radius: 16px;
-
-  overflow: hidden;
-
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-
-  transform: translateY(20px);
-  transition: transform 0.3s ease;
+  padding: 40px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35) !important;
 }
 
-.modal-overlay.active .terms-modal-content {
-  transform: translateY(0);
+/* Botão X */
+.legal-modal-close {
+  position: absolute !important;
+  top: 12px !important;
+  right: 16px !important;
+
+  width: 38px !important;
+  height: 38px !important;
+
+  border: none !important;
+  background: transparent !important;
+  color: #C4784A !important;
+
+  font-size: 32px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
 }
 
-.modal-close {
-  position: absolute;
-  top: 15px;
-  right: 18px;
-
-  width: 38px;
-  height: 38px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: none;
-  border-radius: 50%;
-
-  background: transparent;
-  color: var(--color-text);
-
-  font-size: 2rem;
-  line-height: 1;
-
-  cursor: pointer;
-  z-index: 2;
-
-  transition: 0.2s ease;
+/* Textos */
+.legal-modal-content h2 {
+  color: #C4784A !important;
+  margin: 0 0 24px !important;
 }
 
-.modal-close:hover {
-  background-color: var(--color-bg-alt);
-  color: #C4784A;
+.legal-modal-content h3 {
+  color: #C4784A !important;
+  margin: 24px 0 8px !important;
 }
 
-.terms-modal-header {
-  padding: 40px 55px 25px;
-
-  text-align: center;
-
-  border-bottom: 1px solid rgba(196, 120, 74, 0.15);
-}
-
-.terms-modal-header h2 {
-  font-family: var(--font-display);
-  color: var(--color-text);
-
-  margin: 8px 0 0;
-
-  font-size: 2rem;
-}
-
-.terms-modal-header h2 span {
-  color: #C4784A;
-}
-
-.terms-modal-body {
-  max-height: calc(85vh - 140px);
-
-  overflow-y: auto;
-
-  padding: 30px 45px 45px;
-
-  text-align: left;
-}
-
-.terms-modal-body h3 {
-  font-family: var(--font-display);
-
-  font-size: 1.05rem;
-  color: #C4784A;
-
-  margin: 0 0 8px;
-}
-
-.terms-modal-body p {
-  font-size: 0.95rem;
-  line-height: 1.7;
-
-  color: var(--color-text);
-
-  margin: 0 0 25px;
-}
-
-/* Scrollbar */
-.terms-modal-body::-webkit-scrollbar {
-  width: 6px;
-}
-
-.terms-modal-body::-webkit-scrollbar-thumb {
-  background: #C4784A;
-  border-radius: 10px;
+.legal-modal-content p {
+  margin: 0 0 14px !important;
+  line-height: 1.7 !important;
 }
 
 /* Mobile */
 @media (max-width: 600px) {
-
-  .modal-overlay {
-    padding: 12px;
+  .legal-modal-content {
+    padding: 28px 22px !important;
+    max-height: 90vh !important;
   }
-
-  .terms-modal-content {
-    max-height: 90vh;
-    border-radius: 12px;
-  }
-
-  .terms-modal-header {
-    padding: 35px 45px 20px;
-  }
-
-  .terms-modal-header h2 {
-    font-size: 1.6rem;
-  }
-
-  .terms-modal-body {
-    max-height: calc(90vh - 125px);
-
-    padding: 25px 25px 35px;
-  }
-
-  .terms-modal-body p {
-    font-size: 0.9rem;
-  }
-
 }
