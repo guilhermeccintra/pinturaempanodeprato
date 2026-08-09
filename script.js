@@ -1010,52 +1010,226 @@ function atualizarDataBonus() {
 atualizarDataBonus();
 
 
-/* ==========================================================================
-   POP-UP TERMOS DE USO
-   ========================================================================== */
+/* =========================================================
+   MODAIS - TERMOS DE USO E POLÍTICA DE PRIVACIDADE
+========================================================= */
 
-const openTerms = document.getElementById('open-terms');
-const termsModal = document.getElementById('terms-modal');
-const closeTerms = document.getElementById('close-terms');
+document.addEventListener('DOMContentLoaded', function () {
 
-if (openTerms && termsModal && closeTerms) {
+  const openTerms = document.getElementById('openTerms');
+  const openPrivacy = document.getElementById('openPrivacy');
 
-  // Abrir pop-up
-  openTerms.addEventListener('click', function (event) {
-    event.preventDefault();
+  const termsModal = document.getElementById('termsModal');
+  const privacyModal = document.getElementById('privacyModal');
 
-    termsModal.classList.add('active');
-    termsModal.setAttribute('aria-hidden', 'false');
+  const closeTerms = document.getElementById('closeTerms');
+  const closePrivacy = document.getElementById('closePrivacy');
+
+
+  /* =======================================================
+     FUNÇÃO PARA ABRIR MODAL
+  ======================================================= */
+
+  function openModal(modal) {
+
+    if (!modal) {
+      return;
+    }
+
+    modal.classList.add('active');
+
+    modal.setAttribute(
+      'aria-hidden',
+      'false'
+    );
 
     document.body.style.overflow = 'hidden';
-  });
 
-  // Fechar pelo botão X
-  closeTerms.addEventListener('click', function () {
-    termsModal.classList.remove('active');
-    termsModal.setAttribute('aria-hidden', 'true');
+  }
 
-    document.body.style.overflow = '';
-  });
 
-  // Fechar clicando fora da caixa
-  termsModal.addEventListener('click', function (event) {
-    if (event.target === termsModal) {
-      termsModal.classList.remove('active');
-      termsModal.setAttribute('aria-hidden', 'true');
+  /* =======================================================
+     FUNÇÃO PARA FECHAR MODAL
+  ======================================================= */
 
+  function closeModal(modal) {
+
+    if (!modal) {
+      return;
+    }
+
+    modal.classList.remove('active');
+
+    modal.setAttribute(
+      'aria-hidden',
+      'true'
+    );
+
+
+    /*
+      Só libera novamente o scroll se
+      nenhum outro modal estiver aberto.
+    */
+
+    const modalAberto =
+      document.querySelector('.legal-modal.active');
+
+    if (!modalAberto) {
       document.body.style.overflow = '';
     }
-  });
 
-  // Fechar com a tecla ESC
-  document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape' && termsModal.classList.contains('active')) {
-      termsModal.classList.remove('active');
-      termsModal.setAttribute('aria-hidden', 'true');
+  }
 
-      document.body.style.overflow = '';
+
+  /* =======================================================
+     ABRIR TERMOS DE USO
+  ======================================================= */
+
+  if (openTerms && termsModal) {
+
+    openTerms.addEventListener(
+      'click',
+      function (event) {
+
+        event.preventDefault();
+
+        openModal(termsModal);
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     ABRIR POLÍTICA DE PRIVACIDADE
+  ======================================================= */
+
+  if (openPrivacy && privacyModal) {
+
+    openPrivacy.addEventListener(
+      'click',
+      function (event) {
+
+        event.preventDefault();
+
+        openModal(privacyModal);
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     FECHAR TERMOS PELO X
+  ======================================================= */
+
+  if (closeTerms && termsModal) {
+
+    closeTerms.addEventListener(
+      'click',
+      function () {
+
+        closeModal(termsModal);
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     FECHAR PRIVACIDADE PELO X
+  ======================================================= */
+
+  if (closePrivacy && privacyModal) {
+
+    closePrivacy.addEventListener(
+      'click',
+      function () {
+
+        closeModal(privacyModal);
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     FECHAR CLICANDO FORA DO CONTEÚDO
+  ======================================================= */
+
+  if (termsModal) {
+
+    termsModal.addEventListener(
+      'click',
+      function (event) {
+
+        if (event.target === termsModal) {
+
+          closeModal(termsModal);
+
+        }
+
+      }
+    );
+
+  }
+
+
+  if (privacyModal) {
+
+    privacyModal.addEventListener(
+      'click',
+      function (event) {
+
+        if (event.target === privacyModal) {
+
+          closeModal(privacyModal);
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     FECHAR COM ESC
+  ======================================================= */
+
+  document.addEventListener(
+    'keydown',
+    function (event) {
+
+      if (event.key !== 'Escape') {
+        return;
+      }
+
+
+      if (
+        termsModal &&
+        termsModal.classList.contains('active')
+      ) {
+
+        closeModal(termsModal);
+
+      }
+
+
+      if (
+        privacyModal &&
+        privacyModal.classList.contains('active')
+      ) {
+
+        closeModal(privacyModal);
+
+      }
+
     }
-  });
+  );
 
-}
+});
