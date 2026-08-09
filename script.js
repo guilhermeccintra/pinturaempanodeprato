@@ -1008,3 +1008,54 @@ function atualizarDataBonus() {
 }
 
 atualizarDataBonus();
+
+
+/* ==========================================================================
+   POP-UP TERMOS DE USO
+   ========================================================================== */
+
+const openTerms = document.getElementById('open-terms');
+const termsModal = document.getElementById('terms-modal');
+const closeTerms = document.getElementById('close-terms');
+
+if (openTerms && termsModal && closeTerms) {
+
+  // Abrir pop-up
+  openTerms.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    termsModal.classList.add('active');
+    termsModal.setAttribute('aria-hidden', 'false');
+
+    document.body.style.overflow = 'hidden';
+  });
+
+  // Fechar pelo botão X
+  closeTerms.addEventListener('click', function () {
+    termsModal.classList.remove('active');
+    termsModal.setAttribute('aria-hidden', 'true');
+
+    document.body.style.overflow = '';
+  });
+
+  // Fechar clicando fora da caixa
+  termsModal.addEventListener('click', function (event) {
+    if (event.target === termsModal) {
+      termsModal.classList.remove('active');
+      termsModal.setAttribute('aria-hidden', 'true');
+
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Fechar com a tecla ESC
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && termsModal.classList.contains('active')) {
+      termsModal.classList.remove('active');
+      termsModal.setAttribute('aria-hidden', 'true');
+
+      document.body.style.overflow = '';
+    }
+  });
+
+}
