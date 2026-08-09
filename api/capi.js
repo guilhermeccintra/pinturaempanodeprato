@@ -40,7 +40,8 @@ export default async function handler(req, res) {
         },
         custom_data: eventCustomData || {},
       }
-    ]
+    ],
+    test_event_code: 'TEST88755'
   };
 
   try {
