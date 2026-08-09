@@ -4046,84 +4046,218 @@ body {
 
 
 
-/* ========================================
-   MODAIS - TERMOS E PRIVACIDADE
-======================================== */
+/* =========================================================
+   MODAIS - TERMOS DE USO E POLÍTICA DE PRIVACIDADE
+========================================================= */
 
-/* Ficam escondidos por padrão */
-#termsModal,
-#privacyModal {
-  display: none !important;
-  position: fixed !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background: rgba(0, 0, 0, 0.65) !important;
-  z-index: 99999 !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 20px !important;
+.legal-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  z-index: 999999;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
 }
 
-/* Classe usada pelo JavaScript para abrir */
-#termsModal.active,
-#privacyModal.active {
-  display: flex !important;
+
+/* Modal aberto */
+
+.legal-modal.active {
+  display: flex;
 }
 
-/* Caixa do conteúdo */
+
+/* Caixa interna */
+
 .legal-modal-content {
-  position: relative !important;
-  width: min(100%, 700px) !important;
-  max-height: 85vh !important;
-  overflow-y: auto !important;
+  position: relative;
 
-  background: var(--color-bg, #f8f3eb) !important;
-  color: var(--color-text, #4a3728) !important;
+  width: 100%;
+  max-width: 700px;
 
-  padding: 40px !important;
-  border-radius: 16px !important;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35) !important;
+  max-height: 85vh;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  background: var(--color-bg, #f8f3eb);
+  color: var(--color-text, #4a3728);
+
+  padding: 40px;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35);
+
+  box-sizing: border-box;
 }
 
-/* Botão X */
+
+/* Scrollbar */
+
+.legal-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.legal-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.legal-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(196, 120, 74, 0.5);
+  border-radius: 20px;
+}
+
+
+/* Botão fechar */
+
 .legal-modal-close {
-  position: absolute !important;
-  top: 12px !important;
-  right: 16px !important;
+  position: absolute;
 
-  width: 38px !important;
-  height: 38px !important;
+  top: 12px;
+  right: 16px;
 
-  border: none !important;
-  background: transparent !important;
-  color: #C4784A !important;
+  width: 40px;
+  height: 40px;
 
-  font-size: 32px !important;
-  line-height: 1 !important;
-  cursor: pointer !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #c4784a;
+
+  font-size: 34px;
+  font-family: Arial, sans-serif;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  padding: 0;
+
+  z-index: 2;
 }
 
-/* Textos */
+
+.legal-modal-close:hover {
+  opacity: 0.7;
+}
+
+
+.legal-modal-close:focus-visible {
+  outline: 2px solid #c4784a;
+  outline-offset: 2px;
+}
+
+
+/* Título */
+
 .legal-modal-content h2 {
-  color: #C4784A !important;
-  margin: 0 0 24px !important;
+  color: #c4784a;
+
+  margin:
+    0
+    45px
+    24px
+    0;
+
+  line-height: 1.2;
 }
+
+
+/* Subtítulos */
 
 .legal-modal-content h3 {
-  color: #C4784A !important;
-  margin: 24px 0 8px !important;
+  color: #c4784a;
+
+  margin:
+    24px
+    0
+    8px;
+
+  line-height: 1.35;
 }
+
+
+/* Parágrafos */
 
 .legal-modal-content p {
-  margin: 0 0 14px !important;
-  line-height: 1.7 !important;
+  margin:
+    0
+    0
+    14px;
+
+  line-height: 1.7;
 }
 
-/* Mobile */
+
+/* Links dentro do modal */
+
+.legal-modal-content a {
+  color: #c4784a;
+  text-decoration: underline;
+}
+
+
+.legal-modal-content a:hover {
+  opacity: 0.75;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 600px) {
-  .legal-modal-content {
-    padding: 28px 22px !important;
-    max-height: 90vh !important;
+
+  .legal-modal {
+    padding: 12px;
   }
+
+  .legal-modal-content {
+    padding:
+      32px
+      22px
+      28px;
+
+    max-height: 90vh;
+
+    border-radius: 12px;
+  }
+
+  .legal-modal-content h2 {
+    font-size: 24px;
+    margin-right: 38px;
+  }
+
+  .legal-modal-content h3 {
+    font-size: 18px;
+  }
+
+  .legal-modal-content p {
+    font-size: 15px;
+  }
+
+  .legal-modal-close {
+    top: 8px;
+    right: 10px;
+  }
+
 }
