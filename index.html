@@ -41,17 +41,28 @@
   }
   </script>
 
-<!-- Google tag (gtag.js) -->
+
+<!-- Google tag (gtag.js) - Google Ads + Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18379872794"></script>
+
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
   gtag('js', new Date());
 
+  /* Google Ads */
   gtag('config', 'AW-18379872794');
-</script>
-  
 
+  /* Google Analytics 4 */
+  gtag('config', 'G-04GHL0BCBB');
+</script>
+
+
+  
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
