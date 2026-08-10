@@ -71,6 +71,14 @@ function generateEventId() {
   return 'evt_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
 }
 
+// Função auxiliar para pegar cookies do Meta
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return undefined;
+}
+
 // Função para disparar Pixel + CAPI simultaneamente
 function trackMetaEvent(eventName, customData = {}) {
   const eventId = generateEventId();
@@ -78,6 +86,13 @@ function trackMetaEvent(eventName, customData = {}) {
   // 1. Dispara no Navegador (Pixel)
   fbq('track', eventName, customData, { eventID: eventId });
   
+  // Tenta capturar o fbc da URL se o cookie ainda não estiver pronto (cliques do Meta)
+  let fbc = getCookie('_fbc');
+  if (!fbc && window.location.search.includes('fbclid=')) {
+    const fbclid = new URLSearchParams(window.location.search).get('fbclid');
+    fbc = `fb.1.${Date.now()}.${fbclid}`;
+  }
+
   // 2. Dispara no Servidor (CAPI via Vercel)
   fetch('/api/capi', {
     method: 'POST',
@@ -86,6 +101,8 @@ function trackMetaEvent(eventName, customData = {}) {
       eventName: eventName,
       eventId: eventId,
       eventSourceUrl: window.location.href,
+      fbp: getCookie('_fbp'),
+      fbc: fbc,
       eventCustomData: customData
     })
   }).catch(err => console.error('Erro CAPI:', err));

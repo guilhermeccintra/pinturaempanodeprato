@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { eventName, eventId, eventSourceUrl, eventCustomData } = req.body;
+  const { eventName, eventId, eventSourceUrl, eventCustomData, fbp, fbc } = req.body;
   
   const PIXEL_ID = process.env.META_PIXEL_ID;
   const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
@@ -37,11 +37,12 @@ export default async function handler(req, res) {
         user_data: {
           client_ip_address: clientIpAddress,
           client_user_agent: clientUserAgent,
+          ...(fbp && { fbp }),
+          ...(fbc && { fbc })
         },
         custom_data: eventCustomData || {},
       }
-    ],
-    test_event_code: 'TEST88755'
+    ]
   };
 
   try {
