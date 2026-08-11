@@ -90,20 +90,40 @@ function getCookie(name) {
   return undefined;
 }
 
-// Função para disparar Pixel + CAPI simultaneamente
-function trackMetaEvent(eventName, customData = {}) {
-  const eventId = generateEventId();
-  
-  // 1. Dispara no Navegador (Pixel)
-  fbq('track', eventName, customData, { eventID: eventId });
-  
-  // Tenta capturar o fbc da URL se o cookie ainda não estiver pronto (cliques do Meta)
+// Função para garantir que o _fbp exista imediatamente, antes do pixel o gerar
+function getOrGenerateFBP() {
+  let fbp = getCookie('_fbp');
+  if (!fbp) {
+    const timestamp = Date.now();
+    const randomNumber = Math.floor(Math.random() * 10000000000);
+    fbp = `fb.1.${timestamp}.${randomNumber}`;
+    // Salva por 90 dias
+    document.cookie = `_fbp=${fbp}; expires=${new Date(timestamp + 90 * 24 * 60 * 60 * 1000).toUTCString()}; path=/; SameSite=Lax`;
+  }
+  return fbp;
+}
+
+// Função para garantir que o _fbc seja capturado da URL se ainda não for um cookie
+function getOrGenerateFBC() {
   let fbc = getCookie('_fbc');
   if (!fbc && window.location.search.includes('fbclid=')) {
     const fbclid = new URLSearchParams(window.location.search).get('fbclid');
     fbc = `fb.1.${Date.now()}.${fbclid}`;
+    // Salva por 90 dias
+    document.cookie = `_fbc=${fbc}; expires=${new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toUTCString()}; path=/; SameSite=Lax`;
   }
+  return fbc || undefined;
+}
 
+// Função para disparar Pixel + CAPI simultaneamente
+function trackMetaEvent(eventName, customData = {}) {
+  const eventId = generateEventId();
+  const fbp = getOrGenerateFBP();
+  const fbc = getOrGenerateFBC();
+  
+  // 1. Dispara no Navegador (Pixel)
+  fbq('track', eventName, customData, { eventID: eventId });
+  
   // 2. Dispara no Servidor (CAPI via Vercel)
   fetch('/api/capi', {
     method: 'POST',
@@ -112,7 +132,7 @@ function trackMetaEvent(eventName, customData = {}) {
       eventName: eventName,
       eventId: eventId,
       eventSourceUrl: window.location.href,
-      fbp: getCookie('_fbp'),
+      fbp: fbp,
       fbc: fbc,
       eventCustomData: customData
     })
