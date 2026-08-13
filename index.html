@@ -1,27 +1,294 @@
-<!DOCTYPE html> 
+```html
+<!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
+  <!-- =========================================================
+       GOOGLE TAG - GOOGLE ADS + GOOGLE ANALYTICS 4
+  ========================================================== -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18379872794"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    /* Google Ads */
+    gtag('config', 'AW-18379872794');
+
+    /* Google Analytics 4 */
+    gtag('config', 'G-04GHL0BCBB');
+  </script>
+
+
+  <!-- =========================================================
+       GOOGLE ADS - CONVERSÃO: VISUALIZAÇÃO DE PÁGINA
+  ========================================================== -->
+
+  <script>
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18379872794/tOsJCOvXo98cEJq0mrxE',
+      'value': 1.0,
+      'currency': 'BRL'
+    });
+  </script>
+
+
+  <!-- =========================================================
+       META PIXEL + CAPI
+  ========================================================== -->
+
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {
+      if(f.fbq)return;
+
+      n=f.fbq=function(){
+        n.callMethod ?
+        n.callMethod.apply(n,arguments) :
+        n.queue.push(arguments)
+      };
+
+      if(!f._fbq)f._fbq=n;
+
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+
+    }(
+      window,
+      document,
+      'script',
+      'https://connect.facebook.net/en_US/fbevents.js'
+    );
+
+
+    /* Inicializa o Meta Pixel */
+    fbq('init', '1901694047194455');
+
+
+    // Função auxiliar para gerar um ID único para desduplicação
+    function generateEventId() {
+      return 'evt_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+    }
+
+
+    // Função auxiliar para pegar cookies do Meta
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+
+      if (parts.length === 2) {
+        return parts.pop().split(';').shift();
+      }
+
+      return undefined;
+    }
+
+
+    // Função para garantir que o _fbp exista imediatamente,
+    // antes do pixel o gerar
+    function getOrGenerateFBP() {
+      let fbp = getCookie('_fbp');
+
+      if (!fbp) {
+        const timestamp = Date.now();
+        const randomNumber = Math.floor(Math.random() * 10000000000);
+
+        fbp = `fb.1.${timestamp}.${randomNumber}`;
+
+        // Salva por 90 dias
+        document.cookie =
+          `_fbp=${fbp}; expires=${new Date(
+            timestamp + 90 * 24 * 60 * 60 * 1000
+          ).toUTCString()}; path=/; SameSite=Lax`;
+      }
+
+      return fbp;
+    }
+
+
+    // Função para garantir que o _fbc seja capturado da URL
+    // se ainda não for um cookie
+    function getOrGenerateFBC() {
+      let fbc = getCookie('_fbc');
+
+      if (!fbc && window.location.search.includes('fbclid=')) {
+
+        const fbclid =
+          new URLSearchParams(window.location.search).get('fbclid');
+
+        fbc = `fb.1.${Date.now()}.${fbclid}`;
+
+        // Salva por 90 dias
+        document.cookie =
+          `_fbc=${fbc}; expires=${new Date(
+            Date.now() + 90 * 24 * 60 * 60 * 1000
+          ).toUTCString()}; path=/; SameSite=Lax`;
+      }
+
+      return fbc || undefined;
+    }
+
+
+    // Função para disparar Pixel + CAPI simultaneamente
+    function trackMetaEvent(eventName, customData = {}) {
+
+      const eventId = generateEventId();
+      const fbp = getOrGenerateFBP();
+      const fbc = getOrGenerateFBC();
+
+
+      // 1. Dispara no navegador (Meta Pixel)
+      fbq(
+        'track',
+        eventName,
+        customData,
+        {
+          eventID: eventId
+        }
+      );
+
+
+      // 2. Dispara no servidor (CAPI via Vercel)
+      fetch('/api/capi', {
+        method: 'POST',
+
+        headers: {
+          'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+          eventName: eventName,
+          eventId: eventId,
+          eventSourceUrl: window.location.href,
+          fbp: fbp,
+          fbc: fbc,
+          eventCustomData: customData
+        })
+
+      }).catch(err => console.error('Erro CAPI:', err));
+    }
+
+
+    // Dispara PageView ao carregar a página
+    trackMetaEvent('PageView');
+
+
+    // Dispara ViewContent ao atingir 20% da página
+    let viewContentSent = false;
+
+    window.addEventListener('scroll', function () {
+
+      if (viewContentSent) return;
+
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      const scrollPercent =
+        (scrollTop + windowHeight) / documentHeight;
+
+      if (scrollPercent >= 0.20) {
+
+        trackMetaEvent('ViewContent');
+
+        viewContentSent = true;
+      }
+
+    });
+  </script>
+
+
+  <!-- =========================================================
+       CONFIGURAÇÕES BÁSICAS / SEO
+  ========================================================== -->
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <meta name="description" content="TRANSFORME SEUS PANOS DE PRATO EM LINDOS TRABALHOS DE PINTURA">
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="TRANSFORME SEUS PANOS DE PRATO EM LINDOS TRABALHOS DE PINTURA">
-  <meta property="og:description" content="Tenha uma coleção completa com 120 riscos cuidadosamente preparados para você imprimir, transferir para o tecido e pintar, garantindo sempre uma nova ideia, mesmo que você não saiba desenhar.">
-  <meta property="og:type" content="product">  
-  <meta property="og:locale" content="pt_BR">
-  
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="TRANSFORME SEUS PANOS DE PRATO EM LINDOS TRABALHOS DE PINTURA"
+  >
+
   <meta name="theme-color" content="#C4784A">
-  <title>TRANSFORME SEUS PANOS DE PRATO EM LINDOS TRABALHOS DE PINTURA</title> 
-  
-  <!-- Google Fonts - single optimized request --> 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="styles.css">
-  
-  <!-- Schema.org Product -->
+
+  <title>TRANSFORME SEUS PANOS DE PRATO EM LINDOS TRABALHOS DE PINTURA</title>
+
+
+  <!-- =========================================================
+       OPEN GRAPH
+  ========================================================== -->
+
+  <meta
+    property="og:title"
+    content="TRANSFORME SEUS PANOS DE PRATO EM LINDOS TRABALHOS DE PINTURA"
+  >
+
+  <meta
+    property="og:description"
+    content="Tenha uma coleção completa com 120 riscos cuidadosamente preparados para você imprimir, transferir para o tecido e pintar, garantindo sempre uma nova ideia, mesmo que você não saiba desenhar."
+  >
+
+  <meta property="og:type" content="product">
+
+  <meta property="og:locale" content="pt_BR">
+
+
+  <!-- =========================================================
+       GOOGLE FONTS
+  ========================================================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- =========================================================
+       CSS
+  ========================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+
+  <!-- =========================================================
+       SCHEMA.ORG PRODUCT
+  ========================================================== -->
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,148 +308,28 @@
   }
   </script>
 
-
-<!-- Google tag (gtag.js) - Google Ads + Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18379872794"></script>
-
-<script>
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-
-  gtag('js', new Date());
-
-  /* Google Ads */
-  gtag('config', 'AW-18379872794');
-
-  /* Google Analytics 4 */
-  gtag('config', 'G-04GHL0BCBB');
-</script>
-
-<!-- Event snippet for Visualização de página conversion page -->
-<script>
-  gtag('event', 'conversion', {
-    'send_to': 'AW-18379872794/tOsJCOvXo98cEJq0mrxE',
-    'value': 1.0,
-    'currency': 'BRL'
-  });
-</script>
-
-
-  
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}
-(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-
-fbq('init', '1901694047194455');
-
-// Função auxiliar para gerar um ID único para desduplicação
-function generateEventId() {
-  return 'evt_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-}
-
-// Função auxiliar para pegar cookies do Meta
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-  return undefined;
-}
-
-// Função para garantir que o _fbp exista imediatamente, antes do pixel o gerar
-function getOrGenerateFBP() {
-  let fbp = getCookie('_fbp');
-  if (!fbp) {
-    const timestamp = Date.now();
-    const randomNumber = Math.floor(Math.random() * 10000000000);
-    fbp = `fb.1.${timestamp}.${randomNumber}`;
-    // Salva por 90 dias
-    document.cookie = `_fbp=${fbp}; expires=${new Date(timestamp + 90 * 24 * 60 * 60 * 1000).toUTCString()}; path=/; SameSite=Lax`;
-  }
-  return fbp;
-}
-
-// Função para garantir que o _fbc seja capturado da URL se ainda não for um cookie
-function getOrGenerateFBC() {
-  let fbc = getCookie('_fbc');
-  if (!fbc && window.location.search.includes('fbclid=')) {
-    const fbclid = new URLSearchParams(window.location.search).get('fbclid');
-    fbc = `fb.1.${Date.now()}.${fbclid}`;
-    // Salva por 90 dias
-    document.cookie = `_fbc=${fbc}; expires=${new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toUTCString()}; path=/; SameSite=Lax`;
-  }
-  return fbc || undefined;
-}
-
-// Função para disparar Pixel + CAPI simultaneamente
-function trackMetaEvent(eventName, customData = {}) {
-  const eventId = generateEventId();
-  const fbp = getOrGenerateFBP();
-  const fbc = getOrGenerateFBC();
-  
-  // 1. Dispara no Navegador (Pixel)
-  fbq('track', eventName, customData, { eventID: eventId });
-  
-  // 2. Dispara no Servidor (CAPI via Vercel)
-  fetch('/api/capi', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      eventName: eventName,
-      eventId: eventId,
-      eventSourceUrl: window.location.href,
-      fbp: fbp,
-      fbc: fbc,
-      eventCustomData: customData
-    })
-  }).catch(err => console.error('Erro CAPI:', err));
-}
-
-// Dispara ao carregar a página
-trackMetaEvent('PageView');
-
-// Dispara ViewContent ao atingir 20% da página
-let viewContentSent = false;
-
-window.addEventListener('scroll', function () {
-
-    if (viewContentSent) return;
-
-    const scrollTop = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-
-    const scrollPercent = (scrollTop + windowHeight) / documentHeight;
-
-    if (scrollPercent >= 0.20) {
-        trackMetaEvent('ViewContent');
-        viewContentSent = true;
-    }
-
-});
-</script>
-
-<noscript>
-<img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1901694047194455&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Meta Pixel Code -->
-
-
-  
-  
 </head>
+
+
 <body>
+
+  <!-- =========================================================
+       META PIXEL - FALLBACK SEM JAVASCRIPT
+  ========================================================== -->
+
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=1901694047194455&ev=PageView&noscript=1"
+      alt=""
+    >
+  </noscript>
+
+  <!-- End Meta Pixel Code -->
+```
+
 
 
 <!-- FONT AWESOME - necessário para o ícone do presente -->
