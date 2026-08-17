@@ -4268,3 +4268,8 @@ body {
   }
 
 }
+
+/* Corrige distância entre benefícios e preço no HERO principal */
+.hero-content > .hero-price {
+    margin-top: 0 !important;
+}
