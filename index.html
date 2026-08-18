@@ -39,174 +39,132 @@
   </script>
 
 
-  <!-- =========================================================
-       META PIXEL + CAPI
-  ========================================================== -->
+<!-- =========================================================
+     META PIXEL
+========================================================== -->
 
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {
-      if(f.fbq)return;
+<script>
 
-      n=f.fbq=function(){
-        n.callMethod ?
-        n.callMethod.apply(n,arguments) :
-        n.queue.push(arguments)
-      };
+!function(f,b,e,v,n,t,s)
+{
+  if(f.fbq)return;
 
-      if(!f._fbq)f._fbq=n;
+  n=f.fbq=function(){
+    n.callMethod ?
+    n.callMethod.apply(n,arguments) :
+    n.queue.push(arguments)
+  };
 
-      n.push=n;
-      n.loaded=!0;
-      n.version='2.0';
-      n.queue=[];
+  if(!f._fbq)f._fbq=n;
 
-      t=b.createElement(e);
-      t.async=!0;
-      t.src=v;
+  n.push=n;
+  n.loaded=!0;
+  n.version='2.0';
+  n.queue=[];
 
-      s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s);
+  t=b.createElement(e);
+  t.async=!0;
+  t.src=v;
 
-    }(
-      window,
-      document,
-      'script',
-      'https://connect.facebook.net/en_US/fbevents.js'
+  s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s);
+
+}
+(
+  window,
+  document,
+  'script',
+  'https://connect.facebook.net/en_US/fbevents.js'
+);
+
+
+/* Inicializa o Meta Pixel */
+
+fbq('init', '1901694047194455');
+
+
+
+/*
+=========================================================
+ENVIO DE EVENTOS DO SITE
+Somente eventos de navegação.
+Conversões ficam com a Hotmart.
+=========================================================
+*/
+
+
+function trackMetaEvent(eventName, customData = {}) {
+
+  fbq(
+    'track',
+    eventName,
+    customData
+  );
+
+}
+
+
+
+/*
+=========================================================
+PAGEVIEW
+=========================================================
+*/
+
+trackMetaEvent('PageView');
+
+
+
+/*
+=========================================================
+VIEWCONTENT APÓS 20% DE SCROLL
+=========================================================
+*/
+
+let viewContentSent = false;
+
+
+window.addEventListener('scroll', function () {
+
+
+  if(viewContentSent) return;
+
+
+  const scrollTop =
+    window.scrollY;
+
+
+  const windowHeight =
+    window.innerHeight;
+
+
+  const documentHeight =
+    document.documentElement.scrollHeight;
+
+
+
+  const scrollPercent =
+    (scrollTop + windowHeight) / documentHeight;
+
+
+
+  if(scrollPercent >= 0.20){
+
+
+    trackMetaEvent(
+      'ViewContent'
     );
 
 
-    /* Inicializa o Meta Pixel */
-    fbq('init', '1901694047194455');
+    viewContentSent = true;
+
+  }
 
 
-    // Função auxiliar para gerar um ID único para desduplicação
-    function generateEventId() {
-      return 'evt_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-    }
+});
 
 
-    // Função auxiliar para pegar cookies do Meta
-    function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-
-      if (parts.length === 2) {
-        return parts.pop().split(';').shift();
-      }
-
-      return undefined;
-    }
-
-
-    // Função para garantir que o _fbp exista imediatamente
-    function getOrGenerateFBP() {
-      let fbp = getCookie('_fbp');
-
-      if (!fbp) {
-        const timestamp = Date.now();
-        const randomNumber = Math.floor(Math.random() * 10000000000);
-
-        fbp = `fb.1.${timestamp}.${randomNumber}`;
-
-        document.cookie =
-          `_fbp=${fbp}; expires=${new Date(
-            timestamp + 90 * 24 * 60 * 60 * 1000
-          ).toUTCString()}; path=/; SameSite=Lax`;
-      }
-
-      return fbp;
-    }
-
-
-    // Função para garantir que o _fbc seja capturado da URL
-    function getOrGenerateFBC() {
-      let fbc = getCookie('_fbc');
-
-      if (!fbc && window.location.search.includes('fbclid=')) {
-
-        const fbclid =
-          new URLSearchParams(window.location.search).get('fbclid');
-
-        fbc = `fb.1.${Date.now()}.${fbclid}`;
-
-        document.cookie =
-          `_fbc=${fbc}; expires=${new Date(
-            Date.now() + 90 * 24 * 60 * 60 * 1000
-          ).toUTCString()}; path=/; SameSite=Lax`;
-      }
-
-      return fbc || undefined;
-    }
-
-
-    // Função para disparar Pixel + CAPI simultaneamente
-    function trackMetaEvent(eventName, customData = {}) {
-
-      const eventId = generateEventId();
-      const fbp = getOrGenerateFBP();
-      const fbc = getOrGenerateFBC();
-
-
-      // 1. Dispara no navegador
-      fbq(
-        'track',
-        eventName,
-        customData,
-        {
-          eventID: eventId
-        }
-      );
-
-
-      // 2. Dispara no servidor via CAPI
-      fetch('/api/capi', {
-        method: 'POST',
-
-        headers: {
-          'Content-Type': 'application/json'
-        },
-
-        body: JSON.stringify({
-          eventName: eventName,
-          eventId: eventId,
-          eventSourceUrl: window.location.href,
-          fbp: fbp,
-          fbc: fbc,
-          eventCustomData: customData
-        })
-
-      }).catch(err => console.error('Erro CAPI:', err));
-    }
-
-
-    // PageView
-    trackMetaEvent('PageView');
-
-
-    // ViewContent aos 20%
-    let viewContentSent = false;
-
-    window.addEventListener('scroll', function () {
-
-      if (viewContentSent) return;
-
-      const scrollTop = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-
-      const scrollPercent =
-        (scrollTop + windowHeight) / documentHeight;
-
-      if (scrollPercent >= 0.20) {
-
-        trackMetaEvent('ViewContent');
-
-        viewContentSent = true;
-      }
-
-    });
-  </script>
+</script>
 
 
   <!-- =========================================================
