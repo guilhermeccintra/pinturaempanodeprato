@@ -79,56 +79,40 @@ document.addEventListener(
         function updateCarousel(){
 
 
-
-            const cardWidth =
-                carousel.querySelector(
-                    "[data-comparison-card]"
-                ).offsetWidth;
-
-
-
-            track.scrollTo({
-
-                left:
-                currentIndex * cardWidth,
-
-                behavior:
-                "smooth"
-
-            });
+    track.style.transform =
+        "translateX(-" +
+        (currentIndex * 100) +
+        "%)";
 
 
 
+    if(dotsContainer){
 
 
-            if(dotsContainer){
+        const dots =
+            dotsContainer.querySelectorAll(
+                "button"
+            );
 
 
-                const dots =
-                    dotsContainer.querySelectorAll(
-                        "button"
-                    );
+        dots.forEach(
+            function(dot,index){
 
 
-
-                dots.forEach(
-                    function(dot,index){
-
-
-                        dot.classList.toggle(
-                            "active",
-                            index === currentIndex
-                        );
-
-
-                    }
+                dot.classList.toggle(
+                    "active",
+                    index === currentIndex
                 );
 
 
             }
+        );
 
 
-        }
+    }
+
+
+}
 
 
 
