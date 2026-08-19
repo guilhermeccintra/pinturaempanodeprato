@@ -13,321 +13,421 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /* ==========================================================
-   CARROSSEL COMPARAÇÃO
+   CARROSSEL DE COMPARAÇÃO
 ========================================================== */
 
-const comparisonTrack = document.querySelector(".comparison-track");
-const comparisonSlides = document.querySelectorAll(".comparison-slide");
-const comparisonPrev = document.querySelector(".comparison-prev");
-const comparisonNext = document.querySelector(".comparison-next");
-const comparisonDots = document.querySelector(".comparison-dots");
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+const comparisonCarousel =
+    document.querySelector(
+        "[data-comparison-carousel]"
+    );
+
+
+if (!comparisonCarousel) return;
+
+
+
+const comparisonTrack =
+    comparisonCarousel.querySelector(
+        "[data-comparison-track]"
+    );
+
+
+
+const comparisonSlides =
+    comparisonCarousel.querySelectorAll(
+        "[data-comparison-card]"
+    );
+
+
+
+const comparisonPrev =
+    comparisonCarousel.querySelector(
+        "[data-comparison-prev]"
+    );
+
+
+
+const comparisonNext =
+    comparisonCarousel.querySelector(
+        "[data-comparison-next]"
+    );
+
+
+
+const comparisonDots =
+    comparisonCarousel.querySelector(
+        "[data-comparison-dots]"
+    );
+
+
 
 
 if (
-    comparisonTrack &&
-    comparisonSlides.length &&
-    comparisonPrev &&
-    comparisonNext
-) {
+    !comparisonTrack ||
+    !comparisonSlides.length
+) return;
 
 
-    let currentSlide = 0;
-    let autoPlayInterval;
+
+let currentSlide = 0;
+
+let autoPlay;
 
 
-    function updateComparisonCarousel() {
 
-        comparisonTrack.style.transform =
-            `translateX(-${currentSlide * 100}%)`;
+function updateCarousel(){
 
 
-        if (comparisonDots) {
-
-            const dots =
-                comparisonDots.querySelectorAll("button");
+    comparisonTrack.style.transform =
+        `translateX(-${currentSlide * 100}%)`;
 
 
-            dots.forEach((dot, index) => {
+
+    if(comparisonDots){
+
+
+        const dots =
+            comparisonDots.querySelectorAll(
+                "button"
+            );
+
+
+        dots.forEach(
+            (dot,index)=>{
+
 
                 dot.classList.toggle(
                     "active",
                     index === currentSlide
                 );
 
-            });
-
-        }
-
-    }
-
-
-
-    function goToSlide(index) {
-
-
-        if (index < 0) {
-
-            currentSlide =
-                comparisonSlides.length - 1;
-
-        } 
-        else if (
-            index >= comparisonSlides.length
-        ) {
-
-            currentSlide = 0;
-
-        } 
-        else {
-
-            currentSlide = index;
-
-        }
-
-
-        updateComparisonCarousel();
-
-    }
-
-
-
-    function nextComparisonSlide() {
-
-        goToSlide(currentSlide + 1);
-
-    }
-
-
-
-    function previousComparisonSlide() {
-
-        goToSlide(currentSlide - 1);
-
-    }
-
-
-
-    comparisonNext.addEventListener(
-        "click",
-        function () {
-
-            nextComparisonSlide();
-            restartComparisonAutoPlay();
-
-        }
-    );
-
-
-
-    comparisonPrev.addEventListener(
-        "click",
-        function () {
-
-            previousComparisonSlide();
-            restartComparisonAutoPlay();
-
-        }
-    );
-
-
-
-    /* ==============================
-       CRIA DOTS
-    ============================== */
-
-
-    if (comparisonDots) {
-
-
-        comparisonDots.innerHTML = "";
-
-
-        comparisonSlides.forEach(
-            function (_, index) {
-
-
-                const dot =
-                    document.createElement("button");
-
-
-                dot.type = "button";
-
-
-                dot.setAttribute(
-                    "aria-label",
-                    `Ir para imagem ${index + 1}`
-                );
-
-
-                if (index === 0) {
-
-                    dot.classList.add("active");
-
-                }
-
-
-
-                dot.addEventListener(
-                    "click",
-                    function () {
-
-                        goToSlide(index);
-                        restartComparisonAutoPlay();
-
-                    }
-                );
-
-
-
-                comparisonDots.appendChild(dot);
-
 
             }
         );
 
-
     }
 
-
-
-
-    /* ==============================
-       AUTOPLAY
-    ============================== */
-
-
-    function startComparisonAutoPlay() {
-
-
-        autoPlayInterval =
-            setInterval(
-                function () {
-
-                    nextComparisonSlide();
-
-                },
-                5000
-            );
-
-
-    }
-
-
-
-    function stopComparisonAutoPlay() {
-
-
-        clearInterval(autoPlayInterval);
-
-
-    }
-
-
-
-    function restartComparisonAutoPlay() {
-
-
-        stopComparisonAutoPlay();
-
-        startComparisonAutoPlay();
-
-
-    }
-
-
-
-
-    comparisonTrack.addEventListener(
-        "mouseenter",
-        stopComparisonAutoPlay
-    );
-
-
-    comparisonTrack.addEventListener(
-        "mouseleave",
-        startComparisonAutoPlay
-    );
-
-
-
-    /* ==============================
-       SWIPE MOBILE
-    ============================== */
-
-
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-
-
-    comparisonTrack.addEventListener(
-        "touchstart",
-        function(event){
-
-            touchStartX =
-                event.changedTouches[0].screenX;
-
-        },
-        {
-            passive:true
-        }
-    );
-
-
-
-    comparisonTrack.addEventListener(
-        "touchend",
-        function(event){
-
-
-            touchEndX =
-                event.changedTouches[0].screenX;
-
-
-
-            if (
-                touchStartX - touchEndX > 50
-            ) {
-
-                nextComparisonSlide();
-
-            }
-
-
-
-            if (
-                touchEndX - touchStartX > 50
-            ) {
-
-                previousComparisonSlide();
-
-            }
-
-
-
-            restartComparisonAutoPlay();
-
-
-
-        },
-        {
-            passive:true
-        }
-    );
-
-
-
-    updateComparisonCarousel();
-
-    startComparisonAutoPlay();
 
 
 }
 
 
 
+
+function goToSlide(index){
+
+
+
+    if(index < 0){
+
+        currentSlide =
+            comparisonSlides.length - 1;
+
+
+    }
+    else if(
+        index >= comparisonSlides.length
+    ){
+
+        currentSlide = 0;
+
+
+    }
+    else{
+
+
+        currentSlide = index;
+
+
+    }
+
+
+
+    updateCarousel();
+
+
+
+}
+
+
+
+
+
+function nextSlide(){
+
+    goToSlide(
+        currentSlide + 1
+    );
+
+}
+
+
+
+function previousSlide(){
+
+    goToSlide(
+        currentSlide - 1
+    );
+
+}
+
+
+
+
+
+/* ==============================
+   BOTÕES
+============================== */
+
+
+if(comparisonNext){
+
+
+    comparisonNext.addEventListener(
+        "click",
+        function(){
+
+            nextSlide();
+
+            restartAutoPlay();
+
+        }
+    );
+
+
+}
+
+
+
+if(comparisonPrev){
+
+
+    comparisonPrev.addEventListener(
+        "click",
+        function(){
+
+            previousSlide();
+
+            restartAutoPlay();
+
+        }
+    );
+
+
+}
+
+
+
+
+/* ==============================
+   DOTS
+============================== */
+
+
+if(comparisonDots){
+
+
+    comparisonDots.innerHTML = "";
+
+
+
+    comparisonSlides.forEach(
+        function(_,index){
+
+
+            const dot =
+                document.createElement(
+                    "button"
+                );
+
+
+            dot.type = "button";
+
+
+            dot.setAttribute(
+                "aria-label",
+                `Ver comparação ${index + 1}`
+            );
+
+
+
+            if(index === 0){
+
+                dot.classList.add(
+                    "active"
+                );
+
+            }
+
+
+
+
+            dot.addEventListener(
+                "click",
+                function(){
+
+                    goToSlide(index);
+
+                    restartAutoPlay();
+
+                }
+            );
+
+
+
+            comparisonDots.appendChild(dot);
+
+
+        }
+    );
+
+
+}
+
+
+
+
+
+/* ==============================
+   AUTOPLAY
+============================== */
+
+
+function startAutoPlay(){
+
+
+    autoPlay =
+        setInterval(
+            function(){
+
+                nextSlide();
+
+            },
+            5000
+        );
+
+
+}
+
+
+
+function stopAutoPlay(){
+
+
+    clearInterval(autoPlay);
+
+
+}
+
+
+
+function restartAutoPlay(){
+
+
+    stopAutoPlay();
+
+    startAutoPlay();
+
+
+}
+
+
+
+
+
+comparisonCarousel.addEventListener(
+    "mouseenter",
+    stopAutoPlay
+);
+
+
+
+comparisonCarousel.addEventListener(
+    "mouseleave",
+    startAutoPlay
+);
+
+
+
+
+/* ==============================
+   SWIPE MOBILE
+============================== */
+
+
+let touchStart = 0;
+
+
+comparisonTrack.addEventListener(
+    "touchstart",
+    function(e){
+
+        touchStart =
+            e.changedTouches[0].screenX;
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+
+comparisonTrack.addEventListener(
+    "touchend",
+    function(e){
+
+
+        const touchEnd =
+            e.changedTouches[0].screenX;
+
+
+
+        if(
+            touchStart - touchEnd > 50
+        ){
+
+            nextSlide();
+
+        }
+
+
+
+        if(
+            touchEnd - touchStart > 50
+        ){
+
+            previousSlide();
+
+        }
+
+
+
+        restartAutoPlay();
+
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+
+
+updateCarousel();
+
+startAutoPlay();
+
+
+
 });
 
+   
 /* ==========================================================
    TIMER DA OFERTA
 ========================================================== */
