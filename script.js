@@ -1,636 +1,6 @@
 /* ==========================================================
-   SCRIPT.JS OTIMIZADO
-   Mantém:
-   - Carrossel comparação
-   - Setas
-   - Dots
-   - Autoplay
-   - Swipe
-   ========================================================== */
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-
-/* ==========================================================
    CARROSSEL DE COMPARAÇÃO
-========================================================== */
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-
-const comparisonCarousel =
-    document.querySelector(
-        "[data-comparison-carousel]"
-    );
-
-
-if (!comparisonCarousel) return;
-
-
-
-const comparisonTrack =
-    comparisonCarousel.querySelector(
-        "[data-comparison-track]"
-    );
-
-
-
-const comparisonSlides =
-    comparisonCarousel.querySelectorAll(
-        "[data-comparison-card]"
-    );
-
-
-
-const comparisonPrev =
-    comparisonCarousel.querySelector(
-        "[data-comparison-prev]"
-    );
-
-
-
-const comparisonNext =
-    comparisonCarousel.querySelector(
-        "[data-comparison-next]"
-    );
-
-
-
-const comparisonDots =
-    comparisonCarousel.querySelector(
-        "[data-comparison-dots]"
-    );
-
-
-
-
-if (
-    !comparisonTrack ||
-    !comparisonSlides.length
-) return;
-
-
-
-let currentSlide = 0;
-
-let autoPlay;
-
-
-
-function updateCarousel(){
-
-
-    comparisonTrack.style.transform =
-        `translateX(-${currentSlide * 100}%)`;
-
-
-
-    if(comparisonDots){
-
-
-        const dots =
-            comparisonDots.querySelectorAll(
-                "button"
-            );
-
-
-        dots.forEach(
-            (dot,index)=>{
-
-
-                dot.classList.toggle(
-                    "active",
-                    index === currentSlide
-                );
-
-
-            }
-        );
-
-    }
-
-
-
-}
-
-
-
-
-function goToSlide(index){
-
-
-
-    if(index < 0){
-
-        currentSlide =
-            comparisonSlides.length - 1;
-
-
-    }
-    else if(
-        index >= comparisonSlides.length
-    ){
-
-        currentSlide = 0;
-
-
-    }
-    else{
-
-
-        currentSlide = index;
-
-
-    }
-
-
-
-    updateCarousel();
-
-
-
-}
-
-
-
-
-
-function nextSlide(){
-
-    goToSlide(
-        currentSlide + 1
-    );
-
-}
-
-
-
-function previousSlide(){
-
-    goToSlide(
-        currentSlide - 1
-    );
-
-}
-
-
-
-
-
-/* ==============================
-   BOTÕES
-============================== */
-
-
-if(comparisonNext){
-
-
-    comparisonNext.addEventListener(
-        "click",
-        function(){
-
-            nextSlide();
-
-            restartAutoPlay();
-
-        }
-    );
-
-
-}
-
-
-
-if(comparisonPrev){
-
-
-    comparisonPrev.addEventListener(
-        "click",
-        function(){
-
-            previousSlide();
-
-            restartAutoPlay();
-
-        }
-    );
-
-
-}
-
-
-
-
-/* ==============================
-   DOTS
-============================== */
-
-
-if(comparisonDots){
-
-
-    comparisonDots.innerHTML = "";
-
-
-
-    comparisonSlides.forEach(
-        function(_,index){
-
-
-            const dot =
-                document.createElement(
-                    "button"
-                );
-
-
-            dot.type = "button";
-
-
-            dot.setAttribute(
-                "aria-label",
-                `Ver comparação ${index + 1}`
-            );
-
-
-
-            if(index === 0){
-
-                dot.classList.add(
-                    "active"
-                );
-
-            }
-
-
-
-
-            dot.addEventListener(
-                "click",
-                function(){
-
-                    goToSlide(index);
-
-                    restartAutoPlay();
-
-                }
-            );
-
-
-
-            comparisonDots.appendChild(dot);
-
-
-        }
-    );
-
-
-}
-
-
-
-
-
-/* ==============================
-   AUTOPLAY
-============================== */
-
-
-function startAutoPlay(){
-
-
-    autoPlay =
-        setInterval(
-            function(){
-
-                nextSlide();
-
-            },
-            5000
-        );
-
-
-}
-
-
-
-function stopAutoPlay(){
-
-
-    clearInterval(autoPlay);
-
-
-}
-
-
-
-function restartAutoPlay(){
-
-
-    stopAutoPlay();
-
-    startAutoPlay();
-
-
-}
-
-
-
-
-
-comparisonCarousel.addEventListener(
-    "mouseenter",
-    stopAutoPlay
-);
-
-
-
-comparisonCarousel.addEventListener(
-    "mouseleave",
-    startAutoPlay
-);
-
-
-
-
-/* ==============================
-   SWIPE MOBILE
-============================== */
-
-
-let touchStart = 0;
-
-
-comparisonTrack.addEventListener(
-    "touchstart",
-    function(e){
-
-        touchStart =
-            e.changedTouches[0].screenX;
-
-    },
-    {
-        passive:true
-    }
-);
-
-
-
-comparisonTrack.addEventListener(
-    "touchend",
-    function(e){
-
-
-        const touchEnd =
-            e.changedTouches[0].screenX;
-
-
-
-        if(
-            touchStart - touchEnd > 50
-        ){
-
-            nextSlide();
-
-        }
-
-
-
-        if(
-            touchEnd - touchStart > 50
-        ){
-
-            previousSlide();
-
-        }
-
-
-
-        restartAutoPlay();
-
-
-    },
-    {
-        passive:true
-    }
-);
-
-
-
-
-updateCarousel();
-
-startAutoPlay();
-
-
-
-});
-
-   
-/* ==========================================================
-   TIMER DA OFERTA
-========================================================== */
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-
-const countdownElement =
-    document.getElementById("countdown");
-
-
-if (countdownElement) {
-
-
-    const TIMER_DURATION =
-        15 * 60;
-
-
-    let remainingTime =
-        TIMER_DURATION;
-
-
-
-    function updateCountdown() {
-
-
-        const minutes =
-            Math.floor(
-                remainingTime / 60
-            );
-
-
-        const seconds =
-            remainingTime % 60;
-
-
-
-        countdownElement.textContent =
-            `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
-
-
-
-        if (remainingTime <= 0) {
-
-
-            remainingTime =
-                TIMER_DURATION;
-
-
-        }
-        else {
-
-
-            remainingTime--;
-
-        }
-
-
-    }
-
-
-
-    updateCountdown();
-
-
-    setInterval(
-        updateCountdown,
-        1000
-    );
-
-
-}
-
-
-
-
-/* ==========================================================
-   DATA DINÂMICA DOS BÔNUS
-========================================================== */
-
-
-const dateElements =
-    document.querySelectorAll(
-        "[data-current-date]"
-    );
-
-
-
-if (dateElements.length) {
-
-
-    const today =
-        new Date();
-
-
-
-    const formattedDate =
-        today.toLocaleDateString(
-            "pt-BR"
-        );
-
-
-
-    dateElements.forEach(
-        function(element){
-
-            element.textContent =
-                formattedDate;
-
-        }
-    );
-
-
-}
-
-
-
-
-/* ==========================================================
-   FAQ ACORDEÃO
-========================================================== */
-
-
-const faqItems =
-    document.querySelectorAll(
-        ".faq-item"
-    );
-
-
-
-if (faqItems.length) {
-
-
-    faqItems.forEach(
-        function(item){
-
-
-
-            const question =
-                item.querySelector(
-                    ".faq-question"
-                );
-
-
-
-            if (!question) return;
-
-
-
-            question.addEventListener(
-                "click",
-                function(){
-
-
-                    const isActive =
-                        item.classList.contains(
-                            "active"
-                        );
-
-
-
-                    faqItems.forEach(
-                        function(other){
-
-                            other.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-
-                    if (!isActive) {
-
-
-                        item.classList.add(
-                            "active"
-                        );
-
-
-                    }
-
-
-                }
-            );
-
-
-
-        }
-    );
-
-
-}
-
-
-
-});
-
-/* ==========================================================
-   MODAIS
-   TERMOS DE USO + POLÍTICA DE PRIVACIDADE
+   VERSÃO COMPATÍVEL COM HTML/CSS ORIGINAL
 ========================================================== */
 
 
@@ -640,10 +10,1132 @@ document.addEventListener(
 
 
 
+        const carousel =
+            document.querySelector(
+                ".carousel"
+            );
+
+
+
+        if (!carousel) return;
+
+
+
+        const track =
+            carousel.querySelector(
+                ".carousel-track"
+            );
+
+
+
+        const slides =
+            carousel.querySelectorAll(
+                ".carousel-slide"
+            );
+
+
+
+        const prevButton =
+            carousel.querySelector(
+                ".carousel-prev"
+            );
+
+
+
+        const nextButton =
+            carousel.querySelector(
+                ".carousel-next"
+            );
+
+
+
+        const dotsContainer =
+            carousel.querySelector(
+                ".carousel-dots"
+            );
+
+
+
+        if (
+            !track ||
+            !slides.length
+        ) return;
+
+
+
+        let currentIndex = 0;
+
+
+
+        let autoPlayTimer;
+
+
+
+
+
+        /*
+        ======================================
+        CRIAR DOTS
+        ======================================
+        */
+
+
+        function createDots(){
+
+
+            if(!dotsContainer)
+                return;
+
+
+
+            dotsContainer.innerHTML = "";
+
+
+
+            slides.forEach(
+                function(_, index){
+
+
+
+                    const dot =
+                        document.createElement(
+                            "button"
+                        );
+
+
+
+                    dot.type =
+                        "button";
+
+
+
+                    dot.className =
+                        "carousel-dot";
+
+
+
+                    dot.setAttribute(
+                        "aria-label",
+                        "Ir para imagem " + (index + 1)
+                    );
+
+
+
+                    if(index === 0){
+
+                        dot.classList.add(
+                            "active"
+                        );
+
+                    }
+
+
+
+                    dot.addEventListener(
+                        "click",
+                        function(){
+
+
+                            goToSlide(index);
+
+
+
+                        }
+                    );
+
+
+
+                    dotsContainer.appendChild(
+                        dot
+                    );
+
+
+
+                }
+            );
+
+
+        }
+
+
+
+
+
+
+        /*
+        ======================================
+        ATUALIZAR POSIÇÃO
+        ======================================
+        */
+
+
+        function updateCarousel(){
+
+
+
+            const slideWidth =
+                carousel.clientWidth;
+
+
+
+            track.scrollTo({
+
+                left:
+                currentIndex * slideWidth,
+
+                behavior:
+                "smooth"
+
+            });
+
+
+
+
+
+            const dots =
+                dotsContainer
+                ?
+                dotsContainer.querySelectorAll(
+                    ".carousel-dot"
+                )
+                :
+                [];
+
+
+
+            dots.forEach(
+                function(dot,index){
+
+
+
+                    dot.classList.toggle(
+                        "active",
+                        index === currentIndex
+                    );
+
+
+
+                }
+            );
+
+
+
+        }
+
+
+
+
+
+
+        /*
+        ======================================
+        IR PARA SLIDE
+        ======================================
+        */
+
+
+        function goToSlide(index){
+
+
+
+            if(index < 0){
+
+                currentIndex =
+                    slides.length - 1;
+
+
+            }
+            else if(
+                index >= slides.length
+            ){
+
+                currentIndex = 0;
+
+
+            }
+            else {
+
+
+                currentIndex = index;
+
+
+            }
+
+
+
+            updateCarousel();
+
+
+
+        }
+
+
+
+
+
+
+        /*
+        ======================================
+        SETAS
+        ======================================
+        */
+
+
+        if(nextButton){
+
+
+            nextButton.addEventListener(
+                "click",
+                function(){
+
+
+                    goToSlide(
+                        currentIndex + 1
+                    );
+
+
+                    restartAutoPlay();
+
+
+                }
+            );
+
+
+        }
+
+
+
+
+        if(prevButton){
+
+
+            prevButton.addEventListener(
+                "click",
+                function(){
+
+
+                    goToSlide(
+                        currentIndex - 1
+                    );
+
+
+                    restartAutoPlay();
+
+
+                }
+            );
+
+
+        }
+
+
+
+
+
+
+        /*
+        ======================================
+        AUTOPLAY
+        ======================================
+        */
+
+
+        function startAutoPlay(){
+
+
+            autoPlayTimer =
+                setInterval(
+                    function(){
+
+
+                        goToSlide(
+                            currentIndex + 1
+                        );
+
+
+                    },
+                    5000
+                );
+
+
+        }
+
+
+
+
+
+        function stopAutoPlay(){
+
+
+            clearInterval(
+                autoPlayTimer
+            );
+
+
+        }
+
+
+
+
+
+        function restartAutoPlay(){
+
+
+            stopAutoPlay();
+
+            startAutoPlay();
+
+
+        }
+
+
+
+
+
+
+        /*
+        ======================================
+        PAUSAR AO PASSAR MOUSE
+        ======================================
+        */
+
+
+        carousel.addEventListener(
+            "mouseenter",
+            function(){
+
+                stopAutoPlay();
+
+            }
+        );
+
+
+
+        carousel.addEventListener(
+            "mouseleave",
+            function(){
+
+                startAutoPlay();
+
+            }
+        );
+
+
+
+
+
+
+
+        /*
+        ======================================
+        SWIPE MOBILE
+        ======================================
+        */
+
+
+        let touchStartX = 0;
+
+
+
+        track.addEventListener(
+            "touchstart",
+            function(event){
+
+
+                touchStartX =
+                    event.changedTouches[0].screenX;
+
+
+            },
+            {
+                passive:true
+            }
+        );
+
+
+
+
+        track.addEventListener(
+            "touchend",
+            function(event){
+
+
+                const touchEndX =
+                    event.changedTouches[0].screenX;
+
+
+
+
+                if(
+                    touchStartX - touchEndX > 50
+                ){
+
+                    goToSlide(
+                        currentIndex + 1
+                    );
+
+
+                }
+
+
+
+
+                if(
+                    touchEndX - touchStartX > 50
+                ){
+
+                    goToSlide(
+                        currentIndex - 1
+                    );
+
+
+                }
+
+
+
+
+                restartAutoPlay();
+
+
+
+            },
+            {
+                passive:true
+            }
+        );
+
+
+
+
+
+
+
+        /*
+        ======================================
+        RESIZE
+        ======================================
+        */
+
+
+        window.addEventListener(
+            "resize",
+            function(){
+
+
+                updateCarousel();
+
+
+            }
+        );
+
+
+
+
+
+
+        /*
+        ======================================
+        INICIALIZAÇÃO
+        ======================================
+        */
+
+
+        createDots();
+
+        updateCarousel();
+
+        startAutoPlay();
+
+
+
+    }
+);
+
+/* ==========================================================
+   TIMER DA OFERTA
+   RESET AUTOMÁTICO À MEIA-NOITE
+========================================================== */
+
+
+function iniciarContadorOferta(){
+
+
+    const countdownElement =
+        document.getElementById(
+            "countdown"
+        );
+
+
+
+    if(!countdownElement){
+
+        return;
+
+    }
+
+
+
+
+
+    function atualizarContador(){
+
+
+
+        const agora =
+            new Date();
+
+
+
+
+        const meiaNoite =
+            new Date(
+                agora.getFullYear(),
+                agora.getMonth(),
+                agora.getDate() + 1,
+                0,
+                0,
+                0,
+                0
+            );
+
+
+
+
+        const diferenca =
+            meiaNoite.getTime()
+            -
+            agora.getTime();
+
+
+
+
+        const totalSegundos =
+            Math.max(
+                0,
+                Math.floor(
+                    diferenca / 1000
+                )
+            );
+
+
+
+
+
+        const horas =
+            Math.floor(
+                totalSegundos / 3600
+            );
+
+
+
+        const minutos =
+            Math.floor(
+                (totalSegundos % 3600) / 60
+            );
+
+
+
+        const segundos =
+            totalSegundos % 60;
+
+
+
+
+        countdownElement.textContent =
+
+            `${String(horas).padStart(2,"0")}:` +
+            `${String(minutos).padStart(2,"0")}:` +
+            `${String(segundos).padStart(2,"0")}`;
+
+
+
+    }
+
+
+
+
+
+    atualizarContador();
+
+
+
+    setInterval(
+        atualizarContador,
+        1000
+    );
+
+
+
+}
+
+
+
+iniciarContadorOferta();
+
+
+
+
+
+
+
+
+/* ==========================================================
+   DATA DOS BÔNUS
+========================================================== */
+
+
+function atualizarDataBonus(){
+
+
+
+    const bonusDates =
+        document.querySelectorAll(
+            ".bonus-date"
+        );
+
+
+
+    if(!bonusDates.length){
+
+        return;
+
+    }
+
+
+
+
+
+    const hoje =
+        new Date();
+
+
+
+
+    const dia =
+        String(
+            hoje.getDate()
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+
+    const mes =
+        String(
+            hoje.getMonth() + 1
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+
+    const ano =
+        hoje.getFullYear();
+
+
+
+
+    const data =
+        `${dia}/${mes}/${ano}`;
+
+
+
+
+
+    bonusDates.forEach(
+        function(element){
+
+            element.textContent =
+                data;
+
+        }
+    );
+
+
+
+}
+
+
+
+atualizarDataBonus();
+
+
+
+
+
+
+
+
+/* ==========================================================
+   FAQ ACORDEÃO
+========================================================== */
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+
+
+        const faqList =
+            document.querySelector(
+                ".faq-list"
+            );
+
+
+
+        const faqItems =
+            document.querySelectorAll(
+                ".faq-item"
+            );
+
+
+
+        if(!faqList){
+
+            return;
+
+        }
+
+
+
+
+
+        faqList.addEventListener(
+            "click",
+            function(event){
+
+
+
+                const question =
+                    event.target.closest(
+                        ".faq-question"
+                    );
+
+
+
+                if(!question){
+
+                    return;
+
+                }
+
+
+
+
+
+                const currentItem =
+                    question.closest(
+                        ".faq-item"
+                    );
+
+
+
+
+
+                const aberto =
+                    currentItem.classList.contains(
+                        "active"
+                    );
+
+
+
+
+
+                faqItems.forEach(
+                    function(item){
+
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+
+                    }
+                );
+
+
+
+
+
+                if(!aberto){
+
+
+                    currentItem.classList.add(
+                        "active"
+                    );
+
+
+                }
+
+
+
+
+            }
+        );
+
+
+
+    }
+);
+
+
+
+
+
+
+
+
+/* ==========================================================
+   ANIMAÇÕES DE ENTRADA
+========================================================== */
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+
+
+        const elementos =
+            document.querySelectorAll(
+                ".fade-in"
+            );
+
+
+
+        if(!elementos.length){
+
+            return;
+
+        }
+
+
+
+
+
+        const reduzirMovimento =
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            )
+            .matches;
+
+
+
+
+
+        if(reduzirMovimento){
+
+
+
+            elementos.forEach(
+                function(element){
+
+                    element.classList.add(
+                        "visible"
+                    );
+
+                }
+            );
+
+
+
+            return;
+
+
+        }
+
+
+
+
+
+        const observer =
+            new IntersectionObserver(
+                function(entries, observer){
+
+
+
+                    entries.forEach(
+                        function(entry){
+
+
+
+                            if(
+                                entry.isIntersecting
+                            ){
+
+
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+
+
+                            }
+
+
+
+                        }
+                    );
+
+
+
+                },
+                {
+                    threshold:0.1,
+                    rootMargin:
+                    "0px 0px -50px 0px"
+                }
+            );
+
+
+
+
+
+        elementos.forEach(
+            function(element){
+
+
+                observer.observe(
+                    element
+                );
+
+
+            }
+        );
+
+
+
+    }
+);
+
+
+
+
+
+
+
+
+/* ==========================================================
+   SMOOTH SCROLL
+========================================================== */
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+
+
+        const links =
+            document.querySelectorAll(
+                'a[href^="#"]'
+            );
+
+
+
+
+
+        links.forEach(
+            function(link){
+
+
+
+                link.addEventListener(
+                    "click",
+                    function(event){
+
+
+
+                        const id =
+                            this.getAttribute(
+                                "href"
+                            );
+
+
+
+                        if(
+                            id === "#" ||
+                            id === ""
+                        ){
+
+                            return;
+
+                        }
+
+
+
+
+
+                        const destino =
+                            document.querySelector(
+                                id
+                            );
+
+
+
+                        if(destino){
+
+
+
+                            event.preventDefault();
+
+
+
+                            destino.scrollIntoView(
+                                {
+                                    behavior:
+                                    "smooth"
+                                }
+                            );
+
+
+                        }
+
+
+
+
+                    }
+                );
+
+
+
+            }
+        );
+
+
+
+    }
+);
+
+/* ==========================================================
+   MODAIS
+   TERMOS DE USO + POLÍTICA DE PRIVACIDADE
+========================================================== */
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+
+
         const openTerms =
             document.getElementById(
                 "openTerms"
             );
+
 
 
         const openPrivacy =
@@ -659,6 +1151,7 @@ document.addEventListener(
             );
 
 
+
         const privacyModal =
             document.getElementById(
                 "privacyModal"
@@ -672,6 +1165,7 @@ document.addEventListener(
             );
 
 
+
         const closePrivacy =
             document.getElementById(
                 "closePrivacy"
@@ -680,10 +1174,18 @@ document.addEventListener(
 
 
 
-        function openModal(modal) {
 
 
-            if (!modal) return;
+        function openModal(modal){
+
+
+
+            if(!modal){
+
+                return;
+
+            }
+
 
 
 
@@ -704,15 +1206,24 @@ document.addEventListener(
                 "hidden";
 
 
+
         }
 
 
 
 
-        function closeModal(modal) {
+
+        function closeModal(modal){
 
 
-            if (!modal) return;
+
+            if(!modal){
+
+                return;
+
+            }
+
+
 
 
 
@@ -729,24 +1240,31 @@ document.addEventListener(
 
 
 
-            const anyModalOpen =
+
+
+            const outroModalAberto =
                 document.querySelector(
                     ".legal-modal.active"
                 );
 
 
 
-            if (!anyModalOpen) {
+            if(!outroModalAberto){
+
 
 
                 document.body.style.overflow =
                     "";
 
 
+
             }
 
 
+
         }
+
+
 
 
 
@@ -757,10 +1275,11 @@ document.addEventListener(
         ============================== */
 
 
-        if (
+        if(
             openTerms &&
             termsModal
-        ) {
+        ){
+
 
 
             openTerms.addEventListener(
@@ -768,7 +1287,9 @@ document.addEventListener(
                 function(event){
 
 
+
                     event.preventDefault();
+
 
 
                     openModal(
@@ -776,11 +1297,17 @@ document.addEventListener(
                     );
 
 
+
                 }
             );
 
 
+
         }
+
+
+
+
 
 
 
@@ -790,10 +1317,11 @@ document.addEventListener(
         ============================== */
 
 
-        if (
+        if(
             openPrivacy &&
             privacyModal
-        ) {
+        ){
+
 
 
             openPrivacy.addEventListener(
@@ -801,7 +1329,9 @@ document.addEventListener(
                 function(event){
 
 
+
                     event.preventDefault();
+
 
 
                     openModal(
@@ -809,8 +1339,10 @@ document.addEventListener(
                     );
 
 
+
                 }
             );
+
 
 
         }
@@ -819,15 +1351,19 @@ document.addEventListener(
 
 
 
+
+
+
         /* ==============================
-           FECHAR X
+           FECHAR PELO X
         ============================== */
 
 
-        if (
+        if(
             closeTerms &&
             termsModal
-        ) {
+        ){
+
 
 
             closeTerms.addEventListener(
@@ -835,13 +1371,16 @@ document.addEventListener(
                 function(){
 
 
+
                     closeModal(
                         termsModal
                     );
 
 
+
                 }
             );
+
 
 
         }
@@ -850,10 +1389,11 @@ document.addEventListener(
 
 
 
-        if (
+        if(
             closePrivacy &&
             privacyModal
-        ) {
+        ){
+
 
 
             closePrivacy.addEventListener(
@@ -861,16 +1401,22 @@ document.addEventListener(
                 function(){
 
 
+
                     closeModal(
                         privacyModal
                     );
+
 
 
                 }
             );
 
 
+
         }
+
+
+
 
 
 
@@ -881,7 +1427,8 @@ document.addEventListener(
         ============================== */
 
 
-        if (termsModal) {
+        if(termsModal){
+
 
 
             termsModal.addEventListener(
@@ -889,9 +1436,11 @@ document.addEventListener(
                 function(event){
 
 
-                    if (
+
+                    if(
                         event.target === termsModal
-                    ) {
+                    ){
+
 
 
                         closeModal(
@@ -899,11 +1448,14 @@ document.addEventListener(
                         );
 
 
+
                     }
+
 
 
                 }
             );
+
 
 
         }
@@ -911,7 +1463,10 @@ document.addEventListener(
 
 
 
-        if (privacyModal) {
+
+
+        if(privacyModal){
+
 
 
             privacyModal.addEventListener(
@@ -919,9 +1474,11 @@ document.addEventListener(
                 function(event){
 
 
-                    if (
+
+                    if(
                         event.target === privacyModal
-                    ) {
+                    ){
+
 
 
                         closeModal(
@@ -929,14 +1486,20 @@ document.addEventListener(
                         );
 
 
+
                     }
+
 
 
                 }
             );
 
 
+
         }
+
+
+
 
 
 
@@ -952,9 +1515,10 @@ document.addEventListener(
             function(event){
 
 
-                if (
+
+                if(
                     event.key !== "Escape"
-                ) {
+                ){
 
                     return;
 
@@ -963,12 +1527,14 @@ document.addEventListener(
 
 
 
-                if (
+
+                if(
                     termsModal &&
                     termsModal.classList.contains(
                         "active"
                     )
-                ) {
+                ){
+
 
 
                     closeModal(
@@ -976,17 +1542,20 @@ document.addEventListener(
                     );
 
 
+
                 }
 
 
 
 
-                if (
+
+                if(
                     privacyModal &&
                     privacyModal.classList.contains(
                         "active"
                     )
-                ) {
+                ){
+
 
 
                     closeModal(
@@ -994,7 +1563,9 @@ document.addEventListener(
                     );
 
 
+
                 }
+
 
 
             }
@@ -1007,6 +1578,10 @@ document.addEventListener(
 
 
 
+
+
+
+
 /* ==========================================================
-   FIM DO SCRIPT
+   FIM DO SCRIPT.JS
 ========================================================== */
