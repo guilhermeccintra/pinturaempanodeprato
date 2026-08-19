@@ -1,71 +1,74 @@
 /* ==========================================================
    CARROSSEL DE COMPARAÇÃO
-   VERSÃO COMPATÍVEL COM HTML/CSS ORIGINAL
+   COMPATÍVEL COM HTML ATUAL
 ========================================================== */
 
 
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
-
+    function(){
 
 
         const carousel =
             document.querySelector(
-                ".carousel"
+                "[data-comparison-carousel]"
             );
 
 
-
-        if (!carousel) return;
+        if(!carousel) return;
 
 
 
         const track =
             carousel.querySelector(
-                ".carousel-track"
+                "[data-comparison-track]"
             );
 
 
 
-        const slides =
+        const cards =
             carousel.querySelectorAll(
-                ".carousel-slide"
+                "[data-comparison-card]"
             );
 
 
 
         const prevButton =
             carousel.querySelector(
-                ".carousel-prev"
+                "[data-comparison-prev]"
             );
 
 
 
         const nextButton =
             carousel.querySelector(
-                ".carousel-next"
+                "[data-comparison-next]"
             );
 
 
 
         const dotsContainer =
             carousel.querySelector(
-                ".carousel-dots"
+                "[data-comparison-dots]"
             );
 
 
 
-        if (
+
+        if(
             !track ||
-            !slides.length
-        ) return;
+            !cards.length
+        ){
+
+            return;
+
+        }
+
+
 
 
 
         let currentIndex = 0;
-
-
 
         let autoPlayTimer;
 
@@ -73,14 +76,107 @@ document.addEventListener(
 
 
 
-        /*
-        ======================================
-        CRIAR DOTS
-        ======================================
-        */
+        function updateCarousel(){
+
+
+
+            const cardWidth =
+                carousel.querySelector(
+                    "[data-comparison-card]"
+                ).offsetWidth;
+
+
+
+            track.scrollTo({
+
+                left:
+                currentIndex * cardWidth,
+
+                behavior:
+                "smooth"
+
+            });
+
+
+
+
+
+            if(dotsContainer){
+
+
+                const dots =
+                    dotsContainer.querySelectorAll(
+                        "button"
+                    );
+
+
+
+                dots.forEach(
+                    function(dot,index){
+
+
+                        dot.classList.toggle(
+                            "active",
+                            index === currentIndex
+                        );
+
+
+                    }
+                );
+
+
+            }
+
+
+        }
+
+
+
+
+
+        function goToSlide(index){
+
+
+
+            if(index < 0){
+
+
+                currentIndex =
+                    cards.length - 1;
+
+
+            }
+            else if(
+                index >= cards.length
+            ){
+
+
+                currentIndex = 0;
+
+
+            }
+            else{
+
+
+                currentIndex = index;
+
+
+            }
+
+
+
+            updateCarousel();
+
+
+        }
+
+
+
+
 
 
         function createDots(){
+
 
 
             if(!dotsContainer)
@@ -92,8 +188,9 @@ document.addEventListener(
 
 
 
-            slides.forEach(
-                function(_, index){
+
+            cards.forEach(
+                function(_,index){
 
 
 
@@ -110,13 +207,14 @@ document.addEventListener(
 
 
                     dot.className =
-                        "carousel-dot";
+                        "comparison-dot";
 
 
 
                     dot.setAttribute(
                         "aria-label",
-                        "Ir para imagem " + (index + 1)
+                        "Ir para comparação " +
+                        (index + 1)
                     );
 
 
@@ -131,6 +229,8 @@ document.addEventListener(
 
 
 
+
+
                     dot.addEventListener(
                         "click",
                         function(){
@@ -138,6 +238,7 @@ document.addEventListener(
 
                             goToSlide(index);
 
+                            restartAutoPlay();
 
 
                         }
@@ -150,7 +251,6 @@ document.addEventListener(
                     );
 
 
-
                 }
             );
 
@@ -160,184 +260,6 @@ document.addEventListener(
 
 
 
-
-
-        /*
-        ======================================
-        ATUALIZAR POSIÇÃO
-        ======================================
-        */
-
-
-        function updateCarousel(){
-
-
-
-            const slideWidth =
-                carousel.clientWidth;
-
-
-
-            track.scrollTo({
-
-                left:
-                currentIndex * slideWidth,
-
-                behavior:
-                "smooth"
-
-            });
-
-
-
-
-
-            const dots =
-                dotsContainer
-                ?
-                dotsContainer.querySelectorAll(
-                    ".carousel-dot"
-                )
-                :
-                [];
-
-
-
-            dots.forEach(
-                function(dot,index){
-
-
-
-                    dot.classList.toggle(
-                        "active",
-                        index === currentIndex
-                    );
-
-
-
-                }
-            );
-
-
-
-        }
-
-
-
-
-
-
-        /*
-        ======================================
-        IR PARA SLIDE
-        ======================================
-        */
-
-
-        function goToSlide(index){
-
-
-
-            if(index < 0){
-
-                currentIndex =
-                    slides.length - 1;
-
-
-            }
-            else if(
-                index >= slides.length
-            ){
-
-                currentIndex = 0;
-
-
-            }
-            else {
-
-
-                currentIndex = index;
-
-
-            }
-
-
-
-            updateCarousel();
-
-
-
-        }
-
-
-
-
-
-
-        /*
-        ======================================
-        SETAS
-        ======================================
-        */
-
-
-        if(nextButton){
-
-
-            nextButton.addEventListener(
-                "click",
-                function(){
-
-
-                    goToSlide(
-                        currentIndex + 1
-                    );
-
-
-                    restartAutoPlay();
-
-
-                }
-            );
-
-
-        }
-
-
-
-
-        if(prevButton){
-
-
-            prevButton.addEventListener(
-                "click",
-                function(){
-
-
-                    goToSlide(
-                        currentIndex - 1
-                    );
-
-
-                    restartAutoPlay();
-
-
-                }
-            );
-
-
-        }
-
-
-
-
-
-
-        /*
-        ======================================
-        AUTOPLAY
-        ======================================
-        */
 
 
         function startAutoPlay(){
@@ -393,44 +315,76 @@ document.addEventListener(
 
 
 
-        /*
-        ======================================
-        PAUSAR AO PASSAR MOUSE
-        ======================================
-        */
+        if(nextButton){
+
+
+            nextButton.addEventListener(
+                "click",
+                function(){
+
+
+                    goToSlide(
+                        currentIndex + 1
+                    );
+
+
+                    restartAutoPlay();
+
+
+                }
+            );
+
+
+        }
+
+
+
+
+
+
+        if(prevButton){
+
+
+            prevButton.addEventListener(
+                "click",
+                function(){
+
+
+                    goToSlide(
+                        currentIndex - 1
+                    );
+
+
+                    restartAutoPlay();
+
+
+                }
+            );
+
+
+        }
+
+
+
+
 
 
         carousel.addEventListener(
             "mouseenter",
-            function(){
-
-                stopAutoPlay();
-
-            }
+            stopAutoPlay
         );
 
 
 
         carousel.addEventListener(
             "mouseleave",
-            function(){
-
-                startAutoPlay();
-
-            }
+            startAutoPlay
         );
 
 
 
 
 
-
-
-        /*
-        ======================================
-        SWIPE MOBILE
-        ======================================
-        */
 
 
         let touchStartX = 0;
@@ -455,9 +409,11 @@ document.addEventListener(
 
 
 
+
         track.addEventListener(
             "touchend",
             function(event){
+
 
 
                 const touchEndX =
@@ -474,7 +430,6 @@ document.addEventListener(
                         currentIndex + 1
                     );
 
-
                 }
 
 
@@ -488,14 +443,11 @@ document.addEventListener(
                         currentIndex - 1
                     );
 
-
                 }
 
 
 
-
                 restartAutoPlay();
-
 
 
             },
@@ -509,37 +461,6 @@ document.addEventListener(
 
 
 
-
-        /*
-        ======================================
-        RESIZE
-        ======================================
-        */
-
-
-        window.addEventListener(
-            "resize",
-            function(){
-
-
-                updateCarousel();
-
-
-            }
-        );
-
-
-
-
-
-
-        /*
-        ======================================
-        INICIALIZAÇÃO
-        ======================================
-        */
-
-
         createDots();
 
         updateCarousel();
@@ -550,6 +471,8 @@ document.addEventListener(
 
     }
 );
+
+
 
 /* ==========================================================
    TIMER DA OFERTA
