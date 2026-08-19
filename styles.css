@@ -4272,3 +4272,21 @@ body {
 .hero-content > .hero-price {
     margin-top: 0 !important;
 }
+
+
+.comparison-dot {
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    border:none;
+    padding:0;
+    cursor:pointer;
+    background:var(--color-border);
+    transition:.3s;
+}
+
+
+.comparison-dot.active {
+    background:var(--color-primary);
+    transform:scale(1.25);
+}
