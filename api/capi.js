@@ -212,8 +212,7 @@ export default async function handler(req, res) {
 
     data: [
       metaEvent
-    ],
-test_event_code: 'TEST31411'
+    ]
   };
 
 
