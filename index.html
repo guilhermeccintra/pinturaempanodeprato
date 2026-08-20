@@ -119,11 +119,11 @@
   </script>
 
 <!-- =========================================================
-     META PIXEL
-========================================================== -->
+     META PIXEL + CAPI
+     PageView e ViewContent com deduplicação
+========================================================= -->
 
 <script>
-
 !function(f,b,e,v,n,t,s)
 {
   if(f.fbq)return;
@@ -131,7 +131,7 @@
   n=f.fbq=function(){
     n.callMethod ?
     n.callMethod.apply(n,arguments) :
-    n.queue.push(arguments)
+    n.queue.push(arguments);
   };
 
   if(!f._fbq)f._fbq=n;
@@ -148,8 +148,7 @@
   s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s);
 
-}
-(
+}(
   window,
   document,
   'script',
@@ -157,91 +156,271 @@
 );
 
 
-/* Inicializa o Meta Pixel */
+/* =========================================================
+   INICIALIZA PIXEL
+========================================================= */
 
 fbq('init', '1901694047194455');
 
 
+/* =========================================================
+   FUNÇÕES AUXILIARES
+========================================================= */
 
-/*
-=========================================================
-ENVIO DE EVENTOS DO SITE
-Somente eventos de navegação.
-Conversões ficam com a Hotmart.
-=========================================================
-*/
+function generateMetaEventId(eventName) {
 
-
-function trackMetaEvent(eventName, customData = {}) {
-
-  fbq(
-    'track',
-    eventName,
-    customData
+  return (
+    eventName +
+    '_' +
+    Date.now() +
+    '_' +
+    Math.random().toString(36).substring(2, 12)
   );
 
 }
 
 
+function getCookie(name) {
 
-/*
-=========================================================
-PAGEVIEW
-=========================================================
-*/
+  const cookies =
+    document.cookie
+      .split(';')
+      .map(cookie => cookie.trim());
 
-trackMetaEvent('PageView');
+  for (const cookie of cookies) {
 
+    if (cookie.startsWith(name + '=')) {
 
+      return decodeURIComponent(
+        cookie.substring(name.length + 1)
+      );
 
-/*
-=========================================================
-VIEWCONTENT APÓS 20% DE SCROLL
-=========================================================
-*/
-
-let viewContentSent = false;
-
-
-window.addEventListener('scroll', function () {
-
-
-  if(viewContentSent) return;
-
-
-  const scrollTop =
-    window.scrollY;
-
-
-  const windowHeight =
-    window.innerHeight;
-
-
-  const documentHeight =
-    document.documentElement.scrollHeight;
-
-
-
-  const scrollPercent =
-    (scrollTop + windowHeight) / documentHeight;
-
-
-
-  if(scrollPercent >= 0.20){
-
-
-    trackMetaEvent(
-      'ViewContent'
-    );
-
-
-    viewContentSent = true;
+    }
 
   }
 
+  return null;
 
-});
+}
 
+
+function getStoredFbclid() {
+
+  try {
+
+    const savedTracking =
+      JSON.parse(
+        localStorage.getItem('traffic_tracking') || '{}'
+      );
+
+    return savedTracking.fbclid || null;
+
+  } catch (error) {
+
+    return null;
+
+  }
+
+}
+
+
+function buildFbc() {
+
+  /*
+    1. Prioridade para o cookie _fbc já criado pela Meta
+  */
+
+  const existingFbc =
+    getCookie('_fbc');
+
+  if (existingFbc) {
+    return existingFbc;
+  }
+
+
+  /*
+    2. Depois tenta pegar fbclid da URL
+  */
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const urlFbclid =
+    params.get('fbclid');
+
+
+  /*
+    3. Se a URL atual não tiver,
+       tenta usar o fbclid salvo pelo tracking.js
+  */
+
+  const fbclid =
+    urlFbclid ||
+    getStoredFbclid();
+
+
+  if (!fbclid) {
+    return null;
+  }
+
+
+  return (
+    'fb.1.' +
+    Date.now() +
+    '.' +
+    fbclid
+  );
+
+}
+
+
+/* =========================================================
+   ENVIA EVENTO PARA CAPI
+========================================================= */
+
+async function sendMetaCapi(
+  eventName,
+  eventId,
+  eventCustomData = {}
+) {
+
+  try {
+
+    const payload = {
+
+      eventName:
+        eventName,
+
+      eventId:
+        eventId,
+
+      eventSourceUrl:
+        window.location.href,
+
+      eventCustomData:
+        eventCustomData,
+
+      fbp:
+        getCookie('_fbp'),
+
+      fbc:
+        buildFbc()
+
+    };
+
+
+    const response =
+      await fetch('/api/capi', {
+
+        method: 'POST',
+
+        headers: {
+          'Content-Type': 'application/json'
+        },
+
+        body:
+          JSON.stringify(payload)
+
+      });
+
+
+    if (!response.ok) {
+
+      console.warn(
+        'Meta CAPI não enviada:',
+        response.status
+      );
+
+    }
+
+  } catch (error) {
+
+    console.warn(
+      'Erro ao enviar Meta CAPI:',
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   PAGEVIEW
+   Browser + Server
+========================================================= */
+
+const pageViewEventId =
+  generateMetaEventId('PageView');
+
+
+fbq(
+  'track',
+  'PageView',
+  {},
+  {
+    eventID:
+      pageViewEventId
+  }
+);
+
+
+sendMetaCapi(
+  'PageView',
+  pageViewEventId
+);
+
+
+/* =========================================================
+   VIEWCONTENT
+   Browser + Server
+========================================================= */
+
+const viewContentEventId =
+  generateMetaEventId('ViewContent');
+
+
+const viewContentData = {
+
+  content_name:
+    '120 Riscos para Pintura em Pano de Prato',
+
+  content_category:
+    'Artesanato - Pintura em Tecido',
+
+  content_ids:
+    ['120-riscos-pano-de-prato'],
+
+  content_type:
+    'product',
+
+  value:
+    27.90,
+
+  currency:
+    'BRL'
+
+};
+
+
+fbq(
+  'track',
+  'ViewContent',
+  viewContentData,
+  {
+    eventID:
+      viewContentEventId
+  }
+);
+
+
+sendMetaCapi(
+  'ViewContent',
+  viewContentEventId,
+  viewContentData
+);
 
 </script>
 
