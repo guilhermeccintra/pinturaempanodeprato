@@ -220,7 +220,7 @@ section {
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 0px 20px 60px;
+  padding: 50px 20px 60px;
   background: var(--color-bg);
 }
 
