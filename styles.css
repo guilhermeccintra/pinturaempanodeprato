@@ -4148,11 +4148,6 @@ section {
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
 }
 
-
-/* ==================================================
-   CONTEÚDO DA BARRA
-================================================== */
-
 .promo-bar-content {
     width: 100%;
     max-width: 1200px;
@@ -4166,15 +4161,9 @@ section {
     text-align: center;
 }
 
-
-/* ==================================================
-   TEXTO DA BARRA
-================================================== */
-
 .promo-text {
     font-size: 15px;
     font-weight: 400;
-
     line-height: 1.2;
 
     white-space: nowrap;
@@ -4188,21 +4177,23 @@ section {
 
 /* ==================================================
    BODY
-   NÃO RESERVA ESPAÇO PARA A BARRA FIXA
+   NÃO CRIA ESPAÇO ENTRE A BARRA E O CONTEÚDO
 ================================================== */
 
 body {
     padding-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 
 /* ==================================================
-   HERO
-   ESPAÇO PADRÃO ABAIXO DA BARRA
+   PRIMEIRA SEÇÃO
+   O BACKGROUND DO HERO COMEÇA DIRETAMENTE
+   ABAIXO DA BARRA
 ================================================== */
 
-.hero {
-    margin-top: 42px !important;
+#inicio {
+    margin-top: 0 !important;
 }
 
 
@@ -4226,8 +4217,8 @@ body {
         margin-left: 4px;
     }
 
-    .hero {
-        margin-top: 42px !important;
+    #inicio {
+        margin-top: 0 !important;
     }
 
 }
@@ -4251,8 +4242,8 @@ body {
         margin-left: 3px;
     }
 
-    .hero {
-        margin-top: 42px !important;
+    #inicio {
+        margin-top: 0 !important;
     }
 
 }
