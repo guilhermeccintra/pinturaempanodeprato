@@ -4189,12 +4189,13 @@ body {
 /* ==================================================
    PRIMEIRA SEÇÃO / HERO
    BACKGROUND COMEÇA DIRETAMENTE ABAIXO DA BARRA
-   E O ESPAÇO É CRIADO DENTRO DO HERO
+   ESPAÇO ENTRE A BARRA E A HEADLINE
+   É CRIADO DENTRO DO HERO
 ================================================== */
 
 #inicio {
     margin-top: 0 !important;
-    padding-top: 35px !important;
+    padding-top: 70px !important;
 }
 
 
@@ -4220,7 +4221,7 @@ body {
 
     #inicio {
         margin-top: 0 !important;
-        padding-top: 28px !important;
+        padding-top: 55px !important;
     }
 
 }
@@ -4246,7 +4247,7 @@ body {
 
     #inicio {
         margin-top: 0 !important;
-        padding-top: 24px !important;
+        padding-top: 48px !important;
     }
 
 }
