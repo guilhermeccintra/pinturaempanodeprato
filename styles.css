@@ -4122,3 +4122,116 @@ section {
     background:var(--color-primary);
     transform:scale(1.25);
 }
+
+
+
+/* ==================================================
+   BARRA PROMOCIONAL
+================================================== */
+
+.promo-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999999;
+    background: #9F1E31;
+    color: #ffffff;
+    padding: 10px 16px;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+}
+
+.promo-bar-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.promo-text {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.promo-text strong {
+    font-weight: 800;
+    margin-left: 5px;
+}
+
+
+/* ==================================================
+   ESPAÇO PARA A BARRA FIXA
+================================================== */
+
+body {
+    padding-top: 70px !important;
+}
+
+
+/* ==================================================
+   CELULARES
+================================================== */
+
+@media (max-width: 768px) {
+
+    .promo-bar {
+        padding: 10px 12px;
+    }
+
+    .promo-text {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .promo-text strong {
+        font-weight: 800;
+        margin-left: 4px;
+    }
+
+    body {
+        padding-top: 60px !important;
+    }
+
+    .hero {
+        margin-top: 0 !important;
+        padding-top: 18px !important;
+    }
+}
+
+
+/* ==================================================
+   CELULARES PEQUENOS
+================================================== */
+
+@media (max-width: 380px) {
+
+    .promo-bar {
+        padding: 9px 10px;
+    }
+
+    .promo-text {
+        font-size: 11px;
+    }
+
+    .promo-text strong {
+        margin-left: 3px;
+    }
+
+    body {
+        padding-top: 55px !important;
+    }
+
+    .hero {
+        margin-top: 0 !important;
+        padding-top: 15px !important;
+    }
+
+}
+
