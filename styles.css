@@ -4135,28 +4135,48 @@ section {
     left: 0;
     width: 100%;
     z-index: 999999;
+
     background: #9F1E31;
     color: #ffffff;
+
     padding: 10px 16px;
+
     box-sizing: border-box;
+
     font-family: 'Outfit', sans-serif;
+
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
 }
+
+
+/* ==================================================
+   CONTEÚDO DA BARRA
+================================================== */
 
 .promo-bar-content {
     width: 100%;
     max-width: 1200px;
+
     margin: 0 auto;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     text-align: center;
 }
+
+
+/* ==================================================
+   TEXTO DA BARRA
+================================================== */
 
 .promo-text {
     font-size: 15px;
     font-weight: 400;
+
     line-height: 1.2;
+
     white-space: nowrap;
 }
 
@@ -4167,11 +4187,22 @@ section {
 
 
 /* ==================================================
-   ESPAÇO PARA A BARRA FIXA
+   BODY
+   NÃO RESERVA ESPAÇO PARA A BARRA FIXA
 ================================================== */
 
 body {
-    padding-top: 70px !important;
+    padding-top: 0 !important;
+}
+
+
+/* ==================================================
+   HERO
+   ESPAÇO PADRÃO ABAIXO DA BARRA
+================================================== */
+
+.hero {
+    margin-top: 42px !important;
 }
 
 
@@ -4195,14 +4226,10 @@ body {
         margin-left: 4px;
     }
 
-    body {
-        padding-top: 60px !important;
+    .hero {
+        margin-top: 42px !important;
     }
 
-    .hero {
-        margin-top: 0 !important;
-        padding-top: 18px !important;
-    }
 }
 
 
@@ -4224,13 +4251,8 @@ body {
         margin-left: 3px;
     }
 
-    body {
-        padding-top: 55px !important;
-    }
-
     .hero {
-        margin-top: 0 !important;
-        padding-top: 15px !important;
+        margin-top: 42px !important;
     }
 
 }
