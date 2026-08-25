@@ -4223,7 +4223,7 @@ body {
 .hero-comparison-card {
     padding: 0 !important;
     border: 0 !important;
-    border-radius: 15 !important;
+    border-radius: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
 }
@@ -4237,11 +4237,19 @@ body {
 }
 
 
-/* Remove qualquer limitação visual da área de resultado */
+/* Mantém o acabamento da imagem principal */
 
 .hero-comparison-card .comparison-image-result {
-    border-radius: 0;
-    box-shadow: none;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+
+/* Faz o wrapper interno respeitar o arredondamento */
+
+.hero-comparison-card .comparison-result-media {
+    border-radius: 18px;
+    overflow: hidden;
 }
 
 
