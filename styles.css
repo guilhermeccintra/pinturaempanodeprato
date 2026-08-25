@@ -358,6 +358,11 @@ section {
   color: var(--color-text-light);
 }
 
+.hero-subtitle strong {
+  color: var(--color-text-light);
+  font-weight: 700;
+}
+
 .hero-price {
   display: flex;
   flex-direction: column;
@@ -503,7 +508,11 @@ section {
     color: var(--color-text-light);
   }
 
-
+.hero-subtitle strong {
+    color: var(--color-text-light);
+    font-weight: 700;
+  }
+   
   .hero-price {
     flex-direction: column;
     align-items: center;
