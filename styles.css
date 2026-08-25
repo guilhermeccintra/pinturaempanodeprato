@@ -4207,34 +4207,55 @@ body {
 
 
 .risks-gallery {
-    padding: 80px 20px;
+    padding:80px 20px;
 }
+
 
 
 .risks-gallery-heading {
-    max-width: 760px;
-    margin: 0 auto 50px;
+
+    max-width:760px;
+
+    margin:0 auto 50px;
+
 }
+
 
 
 
 .risk-category {
-    margin-bottom: 50px;
+
+    margin-bottom:55px;
+
 }
+
 
 
 .risk-category-title {
 
-    margin-bottom: 22px;
+    margin-bottom:22px;
 
-    font-family: var(--font-display);
-    font-size: 26px;
-    font-weight: 600;
+    font-family:var(--font-display);
 
-    color: var(--color-text);
+    font-size:26px;
+
+    font-weight:600;
+
+    color:var(--color-text);
 
     text-align:center;
+
 }
+
+
+
+
+.risk-carousel-wrapper {
+
+    position:relative;
+
+}
+
 
 
 
@@ -4250,22 +4271,27 @@ body {
 
     scrollbar-width:none;
 
-    padding:10px 0;
+    padding:10px 5px 15px;
 
 }
+
 
 
 .risk-carousel::-webkit-scrollbar {
+
     display:none;
+
 }
+
 
 
 
 .risk-carousel img {
 
-    flex:0 0 calc((100% - 44px) / 3);
 
-    width:100%;
+    flex:0 0 230px;
+
+    width:230px;
 
     aspect-ratio:210 / 297;
 
@@ -4285,19 +4311,104 @@ body {
 
 
 
-@media(max-width:900px){
 
-    .risk-carousel img {
 
-        flex-basis:calc((100% - 22px) / 2);
+.risk-carousel-hint {
 
-    }
+
+    display:block;
+
+    margin-top:12px;
+
+    text-align:center;
+
+    font-family:var(--font-body);
+
+    font-size:14px;
+
+    color:var(--color-primary);
+
+    opacity:.85;
 
 }
 
 
 
+
+
+.risks-gallery-footer {
+
+
+    width:min(100%,700px);
+
+    margin:40px auto 0;
+
+    padding:22px 28px;
+
+    border-radius:16px;
+
+    background:#fff8f1;
+
+    border:1px solid rgba(196,120,74,.22);
+
+    text-align:center;
+
+}
+
+
+
+
+.risks-gallery-footer span {
+
+    display:block;
+
+    font-size:16px;
+
+    color:var(--color-text-light);
+
+}
+
+
+
+.risks-gallery-footer strong {
+
+
+    display:block;
+
+    margin-top:6px;
+
+    font-family:var(--font-display);
+
+    font-size:21px;
+
+    color:var(--color-primary);
+
+}
+
+
+
+
+
+@media(max-width:900px){
+
+
+    .risk-carousel img {
+
+        flex-basis:200px;
+
+        width:200px;
+
+    }
+
+
+}
+
+
+
+
+
 @media(max-width:600px){
+
 
     .risks-gallery {
 
@@ -4310,15 +4421,39 @@ body {
 
         gap:14px;
 
+        padding-right:45px;
+
     }
+
 
 
     .risk-carousel img {
 
-        flex-basis:85%;
+
+        flex-basis:78%;
+
+        width:78%;
 
         border-radius:14px;
 
     }
+
+
+
+    .risk-category-title {
+
+        font-size:22px;
+
+    }
+
+
+
+    .risk-carousel-hint {
+
+        font-size:13px;
+
+    }
+
+
 
 }
