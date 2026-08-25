@@ -4305,174 +4305,42 @@ body {
 
 
 
-/* FECHAMENTO */
-
-.risks-gallery-footer {
-
-    width:min(100%,700px);
-
-    margin:40px auto 0;
-
-    padding:24px 30px;
-
-    border-radius:16px;
-
-    background:#fff8f1;
-
-    border:1px solid rgba(196,120,74,.22);
-
-    text-align:center;
-
-}
-
-
-.risks-gallery-footer span {
-
-    display:block;
-
-    font-size:16px;
-
-    color:var(--color-text-light);
-
-}
-
-
-.risks-gallery-footer strong {
-
-    display:block;
-
-    margin-top:8px;
-
-    font-family:var(--font-display);
-
-    font-size:22px;
-
-    color:var(--color-primary);
-
-}
-
-
-
-
-
 /* =========================================================
-   TABLET
+   FECHAMENTO DA GALERIA
 ========================================================= */
-
-@media(max-width:900px){
-
-
-    .risk-carousel {
-
-        grid-template-columns:repeat(2,1fr);
-
-    }
-
-
-}
-
-
-
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:600px){
-
-
-    .risks-gallery {
-
-        padding:55px 10px;
-
-    }
-
-
-    .risk-carousel {
-
-
-        display:flex;
-
-        gap:14px;
-
-        overflow-x:auto;
-
-        scroll-snap-type:x mandatory;
-
-        scrollbar-width:none;
-
-        padding-right:45px;
-
-    }
-
-
-    .risk-carousel::-webkit-scrollbar {
-
-        display:none;
-
-    }
-
-
-
-    .risk-carousel img {
-
-    flex:0 0 78%;
-
-    width:78%;
-
-    height:auto;
-
-    aspect-ratio:210 / 297;
-
-    border-radius:14px;
-
-    scroll-snap-align:start;
-
-}
-
-
-
-    .risk-carousel-hint {
-
-
-        display:block;
-
-        margin-top:14px;
-
-        text-align:center;
-
-        font-size:13px;
-
-        color:var(--color-primary);
-
-    }
-
-
-
-}
 
 
 .risks-gallery-footer {
 
     display:flex;
 
-    align-items:center;
+    align-items:flex-start;
 
-    gap:15px;
+    gap:16px;
 
-    text-align:left;
+    width:min(100%,760px);
+
+    margin:45px auto 0;
+
+    padding:26px 30px;
+
+    border-radius:18px;
+
+    background:#fff8f1;
+
+    border:1px solid rgba(196,120,74,.22);
 
 }
 
 
+
 .risks-gallery-footer-icon {
 
-    flex:0 0 38px;
+    flex:0 0 40px;
 
-    width:38px;
+    width:40px;
 
-    height:38px;
+    height:40px;
 
     display:flex;
 
@@ -4486,6 +4354,8 @@ body {
 
     color:white;
 
+    font-size:20px;
+
     font-weight:700;
 
 }
@@ -4496,11 +4366,13 @@ body {
 
     display:block;
 
-    font-family:var(--font-body);
+    font-family:var(--font-display);
 
-    font-size:16px;
+    font-size:20px;
 
     color:var(--color-text);
+
+    line-height:1.3;
 
 }
 
@@ -4510,7 +4382,55 @@ body {
 
     display:block;
 
-    margin-top:5px;
+    margin-top:8px;
+
+    font-size:15px;
+
+    color:var(--color-text-light);
+
+}
+
+
+
+.risks-theme-list {
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-top:14px;
+
+}
+
+
+
+.risks-theme-list span {
+
+    display:inline-flex;
+
+    padding:7px 12px;
+
+    border-radius:999px;
+
+    background:#ffffff;
+
+    border:1px solid rgba(196,120,74,.22);
+
+    font-size:13px;
+
+    color:var(--color-primary);
+
+    font-weight:600;
+
+}
+
+
+
+.risks-gallery-footer-content p {
+
+    margin-top:14px;
 
     font-size:14px;
 
@@ -4521,13 +4441,43 @@ body {
 }
 
 
+
+
+
 @media(max-width:600px){
 
     .risks-gallery-footer {
 
-        align-items:flex-start;
+        padding:20px;
 
-        padding:18px;
+    }
+
+
+    .risks-gallery-footer-icon {
+
+        flex-basis:34px;
+
+        width:34px;
+
+        height:34px;
+
+        font-size:16px;
+
+    }
+
+
+    .risks-gallery-footer-content strong {
+
+        font-size:17px;
+
+    }
+
+
+    .risks-theme-list span {
+
+        font-size:12px;
+
+        padding:6px 10px;
 
     }
 
