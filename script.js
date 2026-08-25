@@ -1488,7 +1488,6 @@ document.addEventListener(
    CONTADOR BARRA TOPO
 ========================================================== */
 
-<script>
 document.addEventListener("DOMContentLoaded", function () {
 
     const dateElement = document.getElementById("promo-date");
@@ -1504,7 +1503,6 @@ document.addEventListener("DOMContentLoaded", function () {
     dateElement.textContent = `${day}/${month}/${year}`;
 
 });
-</script>
 
 
 
