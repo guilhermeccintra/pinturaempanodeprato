@@ -4193,8 +4193,8 @@ section {
 
   box-sizing: border-box;
 
-  background-color: var(--color-text);
-  color: var(--color-bg);
+  background-color: #4E3524;
+  color: #FFFFFF;
 
   font-family: var(--font-body);
   font-size: 14px;
