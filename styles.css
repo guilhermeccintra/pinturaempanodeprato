@@ -3206,7 +3206,7 @@ section {
   max-width: 660px;
   margin-right: auto;
   margin-left: auto;
-  color: var(--color-primary);
+  color: rgba(255, 255, 255, 0.76);
 }
 
 /* ==========================================================================
