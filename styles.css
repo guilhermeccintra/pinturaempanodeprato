@@ -130,12 +130,17 @@ section {
 }
 
 .section-subtitle {
-  max-width: 620px;
-  font-family: var(--font-body);
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.45;
-  color: var(--color-primary);
+    max-width: 620px;
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--color-text-light);
+}
+
+.section-subtitle strong {
+    font-weight: 700;
+    color: var(--color-text-light);
 }
 
 .text-center {
