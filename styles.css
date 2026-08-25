@@ -350,12 +350,12 @@ section {
   margin: 0 auto 0;
 
   font-family: var(--font-body);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 400;
   line-height: 1.45;
 
   text-align: center;
-  color: var(--color-text);
+  color: var(--color-text-light);
 }
 
 .hero-price {
@@ -493,12 +493,16 @@ section {
 
   .hero-subtitle {
     max-width: 560px;
+
     font-family: var(--font-body);
     font-size: 16px;
-    font-weight: 700;
-    line-height: 1.45;
+    font-weight: 400;
+    line-height: 1.5;
+
     text-align: center;
+    color: var(--color-text-light);
   }
+
 
   .hero-price {
     flex-direction: column;
