@@ -4417,11 +4417,13 @@ body {
 
     .risk-carousel img {
 
-    flex-basis:78%;
+    flex:0 0 78%;
 
     width:78%;
 
-    height:430px;
+    height:auto;
+
+    aspect-ratio:210 / 297;
 
     border-radius:14px;
 
