@@ -1871,8 +1871,8 @@ section {
     overflow: hidden;
     border: 1px solid rgba(196, 120, 74, 0.22);
     border-radius: 18px;
-    background: #ffffff;
-    box-shadow: 0 12px 28px rgba(67, 42, 26, 0.10);
+    background: transparent;
+    box-shadow: none;
 }
 
 /* Novo wrapper que será usado no HTML corrigido */
@@ -1881,7 +1881,8 @@ section {
     width: 100%;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    background: #ffffff;
+    border-radius: inherit;
+    background: transparent;
 }
 
 .comparison-result-media img {
@@ -1893,18 +1894,7 @@ section {
     aspect-ratio: auto !important;
     object-fit: cover !important;
     object-position: center !important;
-}
-
-/* Compatibilidade temporária com o HTML atual, enquanto o wrapper ainda não existe */
-.comparison-image-result > img {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    max-width: 100% !important;
-    aspect-ratio: 4 / 3;
-    object-fit: cover !important;
-    object-position: center !important;
-    background: #ffffff;
+    border-radius: inherit;
 }
 
 
@@ -4203,20 +4193,6 @@ body {
 }
 
 
-/* Mantém o acabamento da imagem principal */
-
-.hero-comparison-card .comparison-image-result {
-    border-radius: 18px;
-    overflow: hidden;
-}
-
-
-/* Faz o wrapper interno respeitar o arredondamento */
-
-.hero-comparison-card .comparison-result-media {
-    border-radius: 18px;
-    overflow: hidden;
-}
 
 
 /* Mantém o risco sobreposto funcionando */
