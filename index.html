@@ -466,35 +466,6 @@ sendMetaCapi(
   <!-- RESTANTE DO SEU SITE CONTINUA AQUI -->
 
 
-<!-- BARRA TOPO -->
-<div class="promo-bar">
-    <div class="promo-bar-content">
-        <div class="promo-text">
-            <span>🔥 OFERTA VÁLIDA ATÉ</span>
-            <strong id="promo-date"></strong>
-        </div>
-    </div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const promoDate = document.getElementById("promo-date");
-
-    if (!promoDate) return;
-
-    const hoje = new Date();
-
-    const dia = String(hoje.getDate()).padStart(2, "0");
-    const mes = String(hoje.getMonth() + 1).padStart(2, "0");
-    const ano = hoje.getFullYear();
-
-    promoDate.textContent = `${dia}/${mes}/${ano}`;
-
-});
-</script>
-
-<!-- FIM BARRA TOPO -->
 
 <!-- HERO -->
 <section class="hero bg-default fade-in" id="inicio">
@@ -503,23 +474,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <div class="hero-content centered">
 
-            <h1 class="hero-title">
-
-    <span class="hero-title-main">
-        120 Riscos <span class="hero-title-accent">Exclusivos</span>
-    </span>
-
-    <span class="hero-title-sub">
-        para pintura em
-    </span>
-
-    <span class="hero-title-script">
-        Pano de Prato
-    </span>
-
-</h1>
-
-
+            <!-- AVALIAÇÕES -->
             <div
                 class="hero-rating"
                 aria-label="Avaliação de 4,91 de 5 com 10.943 avaliações"
@@ -538,6 +493,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 </p>
             </div>
 
+
+            <!-- HEADLINE -->
+            <h1 class="hero-title">
+
+                <span class="hero-title-main">
+                    120 Riscos <span class="hero-title-accent">Exclusivos</span>
+                </span>
+
+                <span class="hero-title-sub">
+                    para pintura em
+                </span>
+
+                <span class="hero-title-script">
+                    Pano de Prato
+                </span>
+
+            </h1>
+
+
+         <p class="section-subtitle">
+    <strong>
+        Transforme panos de prato simples em verdadeiras obras de arte, mesmo sem saber desenhar.
+    </strong>
+</p>  
+          
+
             <picture class="hero-visual">
 
                 <source
@@ -555,11 +536,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             </picture>
 
-                    <p class="section-subtitle">
-    <strong>
-        Transforme panos de prato simples em verdadeiras obras de arte, mesmo sem saber desenhar.
-    </strong>
-</p>  
+                
 
 <ul class="hero-benefits">
 
