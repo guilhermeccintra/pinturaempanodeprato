@@ -3771,28 +3771,49 @@ section {
     width: 100%;
     box-sizing: border-box;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
     align-items: center;
-    gap: 10px;
+    column-gap: 12px;
+
+    margin: 0;
+    padding: 8px 10px;
 
     background: #F0F7EC;
     border: 1px solid #C8DDBD;
     border-radius: 10px;
-
-    padding: 8px 10px;
 }
 
 
 /* ÍCONE */
 
 .bonus-benefit .benefit-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+    padding: 0;
+
     flex-shrink: 0;
+
+    background: #f7e6d8;
+    border-radius: 50%;
+
     font-size: 0;
+    line-height: 1;
+
+    box-sizing: border-box;
 }
 
 .bonus-benefit .benefit-icon::before {
     content: "▶️";
     display: block;
+
     font-size: 17px;
     line-height: 1;
 }
@@ -3802,22 +3823,23 @@ section {
 
 .bonus-benefit .benefit-text {
     display: block;
-
-    flex: 1;
-    width: auto;
+    width: 100%;
     min-width: 0;
+
+    margin: 0;
+    padding: 0;
 
     font-family: var(--font-body);
     font-size: 17px;
     font-weight: 400;
     line-height: 1.45;
+
     color: var(--color-text-light);
+    text-align: left;
 
     white-space: normal;
     word-break: normal;
     overflow-wrap: break-word;
-
-    text-align: left;
 }
 
 .bonus-benefit .benefit-text strong {
@@ -3849,7 +3871,16 @@ section {
 @media (max-width: 768px) {
 
     .bonus-benefit {
-        padding: 8px;
+        grid-template-columns: 36px minmax(0, 1fr);
+        column-gap: 10px;
+
+        padding: 8px 10px;
+    }
+
+    .bonus-benefit .benefit-icon {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
     }
 
     .bonus-benefit .benefit-icon::before {
