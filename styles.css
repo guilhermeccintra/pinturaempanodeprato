@@ -4200,3 +4200,125 @@ body {
     top: 18px;
     left: 18px;
 }
+
+/* =========================================================
+   GALERIA DE RISCOS POR TEMAS
+========================================================= */
+
+
+.risks-gallery {
+    padding: 80px 20px;
+}
+
+
+.risks-gallery-heading {
+    max-width: 760px;
+    margin: 0 auto 50px;
+}
+
+
+
+.risk-category {
+    margin-bottom: 50px;
+}
+
+
+.risk-category-title {
+
+    margin-bottom: 22px;
+
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 600;
+
+    color: var(--color-text);
+
+    text-align:center;
+}
+
+
+
+.risk-carousel {
+
+    display:flex;
+
+    gap:22px;
+
+    overflow-x:auto;
+
+    scroll-snap-type:x mandatory;
+
+    scrollbar-width:none;
+
+    padding:10px 0;
+
+}
+
+
+.risk-carousel::-webkit-scrollbar {
+    display:none;
+}
+
+
+
+.risk-carousel img {
+
+    flex:0 0 calc((100% - 44px) / 3);
+
+    width:100%;
+
+    aspect-ratio:210 / 297;
+
+    object-fit:contain;
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    border:1px solid rgba(196,120,74,.22);
+
+    box-shadow:0 8px 22px rgba(70,47,31,.08);
+
+    scroll-snap-align:start;
+
+}
+
+
+
+@media(max-width:900px){
+
+    .risk-carousel img {
+
+        flex-basis:calc((100% - 22px) / 2);
+
+    }
+
+}
+
+
+
+@media(max-width:600px){
+
+    .risks-gallery {
+
+        padding:55px 10px;
+
+    }
+
+
+    .risk-carousel {
+
+        gap:14px;
+
+    }
+
+
+    .risk-carousel img {
+
+        flex-basis:85%;
+
+        border-radius:14px;
+
+    }
+
+}
