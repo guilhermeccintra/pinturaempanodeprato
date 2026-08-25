@@ -3759,7 +3759,7 @@ section {
 
   .hero-rating__stars {
     gap: 3px;
-    font-size: 15px;
+    font-size: 12px;
   }
 
   .hero-rating__text {
