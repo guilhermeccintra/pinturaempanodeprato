@@ -135,12 +135,12 @@ section {
     font-size: 17px;
     font-weight: 400;
     line-height: 1.45;
-    color: var(--color-text-light);
+    color: var(--color-primary);
 }
 
 .section-subtitle strong {
     font-weight: 700;
-    color: var(--color-text-light);
+    color: var(--color-primary);
 }
 
 .text-center {
