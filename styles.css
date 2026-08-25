@@ -3858,21 +3858,6 @@ section {
 }
 
 
-/* DATA DO BÔNUS */
-
-.bonus-deadline {
-    display: inline-block;
-
-    margin-left: 0px;
-
-    color: #9F1E31;
-
-    font-size: 0.9em;
-    font-weight: 700;
-
-    white-space: normal;
-}
-
 
 /* ==================================================
    MOBILE
@@ -3902,34 +3887,7 @@ section {
         line-height: 1.5;
     }
 
-    .bonus-deadline {
-        display: inline;
-
-        margin-left: 0px;
-        margin-top: 0;
-
-        font-size: 0.88em;
-        font-weight: 700;
-
-        white-space: nowrap;
-    }
-
 }
-
-
-/* ==================================================
-   CELULARES PEQUENOS
-================================================== */
-
-@media (max-width: 380px) {
-
-    .bonus-deadline {
-        margin-left: 0px;
-        font-size: 0.86em;
-    }
-
-}
-
 
 
 /* =========================================================
@@ -4214,13 +4172,6 @@ section {
   font-weight: 800;
 }
 
-/* Destaque da data */
-.promo-bar .promo-date {
-  font-weight: 800;
-  margin-left: 4px;
-
-}
-
 
 /* =========================================================
    RESERVA ESPAÇO PARA A BARRA
@@ -4247,10 +4198,6 @@ body {
     padding: 8px 12px;
 
     font-size: 12px;
-  }
-
-  .promo-bar .promo-date {
-    margin-left: 3px;
   }
 
   body {
