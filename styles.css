@@ -4277,7 +4277,7 @@ body {
 
     width:100%;
 
-    aspect-ratio:210 / 297;
+    height:360px;
 
     object-fit:contain;
 
@@ -4417,18 +4417,17 @@ body {
 
     .risk-carousel img {
 
+    flex-basis:78%;
 
-        flex:0 0 78%;
+    width:78%;
 
-        width:78%;
+    height:430px;
 
-        aspect-ratio:210 / 297;
+    border-radius:14px;
 
-        border-radius:14px;
+    scroll-snap-align:start;
 
-        scroll-snap-align:start;
-
-    }
+}
 
 
 
