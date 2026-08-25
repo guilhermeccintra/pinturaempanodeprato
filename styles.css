@@ -349,10 +349,12 @@ section {
   width: 100%;
   max-width: 720px;
   margin: 0 auto 28px;
+
   font-family: var(--font-body);
   font-size: 18px;
   font-weight: 700;
   line-height: 1.45;
+
   text-align: center;
   color: var(--color-primary);
 }
@@ -493,8 +495,12 @@ section {
   .hero-subtitle {
     max-width: 560px;
     margin-bottom: 24px;
+    font-family: var(--font-body);
     font-size: 16px;
-
+    font-weight: 700;
+    line-height: 1.45;
+    text-align: center;
+    color: var(--color-primary);
   }
 
   .hero-price {
