@@ -95,7 +95,7 @@ a {
 }
 
 section {
-  padding: 80px 0;
+  padding: 48px 0;
   position: relative;
 }
 
@@ -1113,7 +1113,7 @@ section {
 .final-cta {
   background: linear-gradient(135deg, var(--color-bg-alt), var(--color-bg-warm));
   text-align: center;
-  padding: 100px 0;
+  padding: 48px 0;
 }
 
 .final-cta-title {
@@ -1305,7 +1305,7 @@ section {
 /* Mobile (max-width: 768px) */
 @media (max-width: 768px) {
   section {
-    padding: 60px 0;
+    padding: 32px 0;
   }
 
   .section-title {
@@ -1338,6 +1338,10 @@ section {
 
   .advantages-grid {
     grid-template-columns: 1fr;
+  }
+
+  .final-cta {
+    padding: 32px 0;
   }
 
   .final-cta-title {
@@ -1772,7 +1776,7 @@ section {
 .comparison-section {
     position: relative;
     overflow: hidden;
-    padding: 80px 20px;
+    padding: 48px 20px;
 }
 
 /* ==========================================================================
@@ -2222,7 +2226,7 @@ section {
 
 @media (max-width: 1024px) {
     .comparison-section {
-        padding: 65px 20px;
+        padding: 48px 20px;
     }
 
     .comparison-heading {
@@ -2246,7 +2250,7 @@ section {
 
 @media (max-width: 768px) {
     .comparison-section {
-        padding: 48px 10px;
+        padding: 32px 10px;
     }
 
     .comparison-heading {
@@ -2427,7 +2431,7 @@ section {
 .transfer-process {
   position: relative;
   overflow: hidden;
-  padding: 80px 20px;
+  padding: 48px 20px;
 }
 
 .transfer-process-heading {
@@ -2693,7 +2697,7 @@ section {
 
 @media (max-width: 850px) {
   .transfer-process {
-    padding: 65px 18px;
+    padding: 48px 18px;
   }
 
   .transfer-process-grid {
@@ -2719,7 +2723,7 @@ section {
 
 @media (max-width: 600px) {
   .transfer-process {
-    padding: 52px 14px;
+    padding: 32px 14px;
   }
 
   .transfer-process-heading {
@@ -2872,7 +2876,7 @@ section {
 .guarantee-section {
   position: relative;
   overflow: hidden;
-  padding: 80px 20px;
+  padding: 48px 20px;
   background-color: #fff8f0;
 }
 
@@ -3102,7 +3106,7 @@ section {
 
 @media (max-width: 650px) {
   .guarantee-section {
-    padding: 55px 14px;
+    padding: 32px 14px;
   }
 
   .guarantee-wrapper {
@@ -3181,7 +3185,7 @@ section {
 .bonuses {
   position: relative;
   overflow: hidden;
-  padding: 80px 20px;
+  padding: 48px 20px;
 }
 
 .bonuses-dark {
@@ -3386,7 +3390,7 @@ section {
 
 @media (max-width: 600px) {
   .bonuses {
-    padding: 55px 14px;
+    padding: 32px 14px;
   }
 
   .bonuses-heading {
@@ -4286,7 +4290,7 @@ body {
 
 
 .risks-gallery {
-    padding:80px 20px;
+    padding:48px 20px;
 }
 
 
