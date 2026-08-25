@@ -1784,7 +1784,7 @@ section {
 .comparison-carousel {
     position: relative;
     width: 100%;
-    max-width: 900px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -2250,7 +2250,7 @@ section {
     }
 
     .comparison-carousel {
-        max-width: 800px;
+        max-width: 100%;
     }
 
     .comparison-before,
@@ -4212,4 +4212,42 @@ body {
     padding-top: var(--promo-bar-height);
   }
 
+}
+
+
+/* =========================================================
+   REMOVE O BLOCO EXTERNO DO CARROSSEL
+   MANTÉM O FUNCIONAMENTO DO SLIDE
+========================================================= */
+
+.hero-comparison-card {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+
+/* Faz o bloco interno ocupar exatamente o espaço do card */
+
+.hero-comparison-card .comparison-pair {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Remove qualquer limitação visual da área de resultado */
+
+.hero-comparison-card .comparison-image-result {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+/* Mantém o risco sobreposto funcionando */
+
+.hero-comparison-card .comparison-before {
+    top: 18px;
+    left: 18px;
 }
