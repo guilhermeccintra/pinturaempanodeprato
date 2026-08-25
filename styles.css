@@ -4450,3 +4450,84 @@ body {
 
 
 }
+
+
+.risks-gallery-footer {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    text-align:left;
+
+}
+
+
+.risks-gallery-footer-icon {
+
+    flex:0 0 38px;
+
+    width:38px;
+
+    height:38px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:var(--color-primary);
+
+    color:white;
+
+    font-weight:700;
+
+}
+
+
+
+.risks-gallery-footer-content strong {
+
+    display:block;
+
+    font-family:var(--font-body);
+
+    font-size:16px;
+
+    color:var(--color-text);
+
+}
+
+
+
+.risks-gallery-footer-content span {
+
+    display:block;
+
+    margin-top:5px;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    color:var(--color-text-light);
+
+}
+
+
+@media(max-width:600px){
+
+    .risks-gallery-footer {
+
+        align-items:flex-start;
+
+        padding:18px;
+
+    }
+
+}
