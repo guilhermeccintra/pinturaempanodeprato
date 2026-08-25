@@ -4211,7 +4211,6 @@ body {
 }
 
 
-
 .risks-gallery-heading {
 
     max-width:760px;
@@ -4221,14 +4220,13 @@ body {
 }
 
 
-
+/* CATEGORIAS */
 
 .risk-category {
 
     margin-bottom:55px;
 
 }
-
 
 
 .risk-category-title {
@@ -4249,49 +4247,35 @@ body {
 
 
 
+/* ÁREA DAS IMAGENS */
 
 .risk-carousel-wrapper {
 
-    position:relative;
+    width:100%;
 
 }
-
 
 
 
 .risk-carousel {
 
-    display:flex;
+    display:grid;
 
-    gap:22px;
+    grid-template-columns:repeat(4, 1fr);
 
-    overflow-x:auto;
+    gap:20px;
 
-    scroll-snap-type:x mandatory;
-
-    scrollbar-width:none;
-
-    padding:10px 5px 15px;
+    width:100%;
 
 }
 
 
 
-.risk-carousel::-webkit-scrollbar {
-
-    display:none;
-
-}
-
-
-
+/* CARDS */
 
 .risk-carousel img {
 
-
-    flex:0 0 230px;
-
-    width:230px;
+    width:100%;
 
     aspect-ratio:210 / 297;
 
@@ -4305,45 +4289,31 @@ body {
 
     box-shadow:0 8px 22px rgba(70,47,31,.08);
 
-    scroll-snap-align:start;
-
 }
 
 
 
 
+
+/* TEXTO DE ARRASTAR - SOMENTE MOBILE */
 
 .risk-carousel-hint {
 
-
-    display:block;
-
-    margin-top:12px;
-
-    text-align:center;
-
-    font-family:var(--font-body);
-
-    font-size:14px;
-
-    color:var(--color-primary);
-
-    opacity:.85;
+    display:none;
 
 }
 
 
 
-
+/* FECHAMENTO */
 
 .risks-gallery-footer {
-
 
     width:min(100%,700px);
 
     margin:40px auto 0;
 
-    padding:22px 28px;
+    padding:24px 30px;
 
     border-radius:16px;
 
@@ -4354,8 +4324,6 @@ body {
     text-align:center;
 
 }
-
-
 
 
 .risks-gallery-footer span {
@@ -4369,17 +4337,15 @@ body {
 }
 
 
-
 .risks-gallery-footer strong {
-
 
     display:block;
 
-    margin-top:6px;
+    margin-top:8px;
 
     font-family:var(--font-display);
 
-    font-size:21px;
+    font-size:22px;
 
     color:var(--color-primary);
 
@@ -4389,14 +4355,16 @@ body {
 
 
 
+/* =========================================================
+   TABLET
+========================================================= */
+
 @media(max-width:900px){
 
 
-    .risk-carousel img {
+    .risk-carousel {
 
-        flex-basis:200px;
-
-        width:200px;
+        grid-template-columns:repeat(2,1fr);
 
     }
 
@@ -4406,6 +4374,10 @@ body {
 
 
 
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:600px){
 
@@ -4419,9 +4391,25 @@ body {
 
     .risk-carousel {
 
+
+        display:flex;
+
         gap:14px;
 
+        overflow-x:auto;
+
+        scroll-snap-type:x mandatory;
+
+        scrollbar-width:none;
+
         padding-right:45px;
+
+    }
+
+
+    .risk-carousel::-webkit-scrollbar {
+
+        display:none;
 
     }
 
@@ -4430,19 +4418,15 @@ body {
     .risk-carousel img {
 
 
-        flex-basis:78%;
+        flex:0 0 78%;
 
         width:78%;
 
+        aspect-ratio:210 / 297;
+
         border-radius:14px;
 
-    }
-
-
-
-    .risk-category-title {
-
-        font-size:22px;
+        scroll-snap-align:start;
 
     }
 
@@ -4450,7 +4434,16 @@ body {
 
     .risk-carousel-hint {
 
+
+        display:block;
+
+        margin-top:14px;
+
+        text-align:center;
+
         font-size:13px;
+
+        color:var(--color-primary);
 
     }
 
