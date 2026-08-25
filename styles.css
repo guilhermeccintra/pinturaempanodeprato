@@ -274,7 +274,7 @@ section {
 
 .hero-title {
   width: 100%;
-  margin: 0 auto 0;
+  margin: 0 auto 20px;
 
   display: flex;
   flex-direction: column;
