@@ -4128,3 +4128,88 @@ section {
 }
 
 
+/* =========================================================
+   BARRA FIXA DE OFERTA ESPECIAL
+========================================================= */
+
+:root {
+  --promo-bar-height: 44px;
+}
+
+.promo-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--promo-bar-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  background-color: #ffecb3;
+  color: #c4784a;
+
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+
+  padding: 8px 16px;
+
+  z-index: 999998;
+
+  box-shadow: 0 2px 8px rgba(74, 55, 40, 0.08);
+}
+
+/* Destaque "OFERTA ESPECIAL" */
+.promo-bar strong {
+  font-weight: 800;
+}
+
+/* Destaque da data */
+.promo-bar .promo-date {
+  font-weight: 800;
+  margin-left: 4px;
+}
+
+
+/* =========================================================
+   RESERVA ESPAÇO PARA A BARRA
+========================================================= */
+
+body {
+  padding-top: var(--promo-bar-height);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  :root {
+    --promo-bar-height: 46px;
+  }
+
+  .promo-bar {
+    height: var(--promo-bar-height);
+
+    padding: 8px 12px;
+
+    font-size: 12px;
+  }
+
+  .promo-bar .promo-date {
+    margin-left: 3px;
+  }
+
+  body {
+    padding-top: var(--promo-bar-height);
+  }
+
+}
