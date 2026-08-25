@@ -4303,6 +4303,96 @@ body {
 }
 
 
+/* =========================================================
+   RESPONSIVIDADE DA GALERIA
+========================================================= */
+
+
+/* TABLET */
+
+@media(max-width:900px){
+
+    .risk-carousel {
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+
+
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+
+    .risk-carousel {
+
+        display:flex;
+
+        gap:14px;
+
+        overflow-x:auto;
+
+        scroll-snap-type:x mandatory;
+
+        scrollbar-width:none;
+
+        padding-right:45px;
+
+    }
+
+
+
+    .risk-carousel::-webkit-scrollbar {
+
+        display:none;
+
+    }
+
+
+
+    .risk-carousel img {
+
+
+        flex:0 0 78%;
+
+        width:78%;
+
+        height:auto;
+
+        aspect-ratio:210 / 297;
+
+        border-radius:14px;
+
+        scroll-snap-align:start;
+
+    }
+
+
+
+    .risk-carousel-hint {
+
+        display:block;
+
+        margin-top:14px;
+
+        text-align:center;
+
+        font-family:var(--font-body);
+
+        font-size:13px;
+
+        color:var(--color-primary);
+
+    }
+
+
+}
+
 
 /* =========================================================
    FECHAMENTO DA GALERIA
