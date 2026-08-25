@@ -3732,7 +3732,7 @@ section {
   gap: 9px;
 
   width: 100%;
-  margin: 18px auto 0;
+  margin: 0px auto 20px;
   padding: 0 16px;
 
   line-height: 1;
@@ -3773,7 +3773,7 @@ section {
   .hero-rating {
     flex-wrap: wrap;
     gap: 7px;
-    margin-top: 18px;
+
   }
 
   .hero-rating__stars {
