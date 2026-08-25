@@ -4636,11 +4636,11 @@ body {
     line-height: 1.45;
 
     text-align: center;
-    color: var(--color-text-light);
+    color: var(--color-primary);
 }
 
 .final-cta .section-subtitle strong {
-    color: var(--color-text-light);
+    color: var(--color-primary);
     font-weight: 700;
 }
 
