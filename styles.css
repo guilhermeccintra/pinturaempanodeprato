@@ -355,7 +355,7 @@ section {
   line-height: 1.45;
 
   text-align: center;
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .hero-price {
