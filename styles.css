@@ -224,7 +224,7 @@ section {
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 0 20px 48px;
+  padding: 10px 20px 48px;
   background: var(--color-bg);
 }
 
@@ -459,7 +459,7 @@ section {
 
 @media (max-width: 768px) {
   .hero {
-    padding: 0 16px 32px;
+    padding: 10px 16px 32px;
   }
 
   .hero-content {
