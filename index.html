@@ -150,18 +150,10 @@
 
 
 /* =========================================================
-   INICIALIZA PIXEL
-========================================================= */
-
-fbq('init', '1901694047194455');
-
-
-/* =========================================================
    FUNÇÕES AUXILIARES
 ========================================================= */
 
 function generateMetaEventId(eventName) {
-
   return (
     eventName +
     '_' +
@@ -169,103 +161,95 @@ function generateMetaEventId(eventName) {
     '_' +
     Math.random().toString(36).substring(2, 12)
   );
-
 }
 
+function generateUuidV4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 function getCookie(name) {
-
-  const cookies =
-    document.cookie
-      .split(';')
-      .map(cookie => cookie.trim());
-
-  for (const cookie of cookies) {
-
-    if (cookie.startsWith(name + '=')) {
-
-      return decodeURIComponent(
-        cookie.substring(name.length + 1)
-      );
-
-    }
-
-  }
-
-  return null;
-
+  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
 }
 
+function getExternalId() {
+  try {
+    var extId = localStorage.getItem('meta_external_id');
+    if (!extId) {
+      extId = generateUuidV4();
+      localStorage.setItem('meta_external_id', extId);
+    }
+    return extId;
+  } catch(e) {
+    return null;
+  }
+}
 
 function getStoredFbclid() {
-
   try {
-
-    const savedTracking =
-      JSON.parse(
-        localStorage.getItem('traffic_tracking') || '{}'
-      );
-
+    var savedTracking = JSON.parse(localStorage.getItem('traffic_tracking') || '{}');
     return savedTracking.fbclid || null;
-
   } catch (error) {
-
     return null;
-
   }
-
 }
 
-
 function buildFbc() {
+  // 1. Tenta recuperar do sessionStorage (já calculado nesta sessão)
+  try {
+    var sessionFbc = sessionStorage.getItem('meta_fbc');
+    if (sessionFbc) return sessionFbc;
+  } catch(e) {}
 
-  /*
-    1. Prioridade para o cookie _fbc já criado pela Meta
-  */
-
-  const existingFbc =
-    getCookie('_fbc');
-
+  // 2. Prioridade para o cookie _fbc já criado pela Meta
+  var existingFbc = getCookie('_fbc');
   if (existingFbc) {
+    try { sessionStorage.setItem('meta_fbc', existingFbc); } catch(e) {}
     return existingFbc;
   }
 
+  // 3. Tenta pegar fbclid da URL
+  var params = new URLSearchParams(window.location.search);
+  var urlFbclid = params.get('fbclid');
 
-  /*
-    2. Depois tenta pegar fbclid da URL
-  */
-
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
-
-  const urlFbclid =
-    params.get('fbclid');
-
-
-  /*
-    3. Se a URL atual não tiver,
-       tenta usar o fbclid salvo pelo tracking.js
-  */
-
-  const fbclid =
-    urlFbclid ||
-    getStoredFbclid();
-
+  // 4. Se a URL atual não tiver, tenta usar o fbclid salvo pelo tracking.js
+  var fbclid = urlFbclid || getStoredFbclid();
 
   if (!fbclid) {
     return null;
   }
 
+  var newFbc = 'fb.1.' + Date.now() + '.' + fbclid;
+  
+  try { sessionStorage.setItem('meta_fbc', newFbc); } catch(e) {}
 
-  return (
-    'fb.1.' +
-    Date.now() +
-    '.' +
-    fbclid
-  );
+  return newFbc;
+}
 
+
+/* =========================================================
+   WAIT FOR FBP
+========================================================= */
+
+function waitForFbp(callback, maxWaitMs = 2000, intervalMs = 50) {
+  var elapsed = 0;
+  
+  var check = function() {
+    var fbp = getCookie('_fbp');
+    if (fbp) {
+      callback(fbp);
+    } else if (elapsed >= maxWaitMs) {
+      callback(null); // Timeout
+    } else {
+      elapsed += intervalMs;
+      setTimeout(check, intervalMs);
+    }
+  };
+  
+  check();
 }
 
 
@@ -273,70 +257,45 @@ function buildFbc() {
    ENVIA EVENTO PARA CAPI
 ========================================================= */
 
-async function sendMetaCapi(
-  eventName,
-  eventId,
-  eventCustomData = {}
-) {
-
-  try {
-
-    const payload = {
-
-      eventName:
-        eventName,
-
-      eventId:
-        eventId,
-
-      eventSourceUrl:
-        window.location.href,
-
-      eventCustomData:
-        eventCustomData,
-
-      fbp:
-        getCookie('_fbp'),
-
-      fbc:
-        buildFbc()
-
+function sendMetaCapi(eventName, eventId, eventCustomData = {}) {
+  // Ler valores consistentes
+  var currentFbc = buildFbc();
+  var currentExternalId = getExternalId();
+  
+  waitForFbp(function(currentFbp) {
+    var payload = {
+      eventName: eventName,
+      eventId: eventId,
+      eventSourceUrl: window.location.href,
+      eventCustomData: eventCustomData,
+      fbp: currentFbp || undefined,
+      fbc: currentFbc || undefined,
+      externalId: currentExternalId || undefined
     };
 
-
-    const response =
-      await fetch('/api/capi', {
-
-        method: 'POST',
-
-        headers: {
-          'Content-Type': 'application/json'
-        },
-
-        body:
-          JSON.stringify(payload)
-
-      });
+    fetch('/api/capi', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).catch(function(error) {
+      console.warn('Erro ao enviar Meta CAPI:', error);
+    });
+  });
+}
 
 
-    if (!response.ok) {
+/* =========================================================
+   INICIALIZA PIXEL
+========================================================= */
 
-      console.warn(
-        'Meta CAPI não enviada:',
-        response.status
-      );
+var globalExternalId = getExternalId();
 
-    }
-
-  } catch (error) {
-
-    console.warn(
-      'Erro ao enviar Meta CAPI:',
-      error
-    );
-
-  }
-
+if (globalExternalId) {
+  fbq('init', '1901694047194455', { external_id: globalExternalId });
+} else {
+  fbq('init', '1901694047194455');
 }
 
 
@@ -345,25 +304,16 @@ async function sendMetaCapi(
    Browser + Server
 ========================================================= */
 
-const pageViewEventId =
-  generateMetaEventId('PageView');
-
+var pageViewEventId = generateMetaEventId('PageView');
 
 fbq(
   'track',
   'PageView',
   {},
-  {
-    eventID:
-      pageViewEventId
-  }
+  { eventID: pageViewEventId }
 );
 
-
-sendMetaCapi(
-  'PageView',
-  pageViewEventId
-);
+sendMetaCapi('PageView', pageViewEventId);
 
 
 /* =========================================================
@@ -371,49 +321,25 @@ sendMetaCapi(
    Browser + Server
 ========================================================= */
 
-const viewContentEventId =
-  generateMetaEventId('ViewContent');
+var viewContentEventId = generateMetaEventId('ViewContent');
 
-
-const viewContentData = {
-
-  content_name:
-    '120 Riscos para Pintura em Pano de Prato',
-
-  content_category:
-    'Artesanato - Pintura em Tecido',
-
-  content_ids:
-    ['120-riscos-pano-de-prato'],
-
-  content_type:
-    'product',
-
-  value:
-    27.90,
-
-  currency:
-    'BRL'
-
+var viewContentData = {
+  content_name: '120 Riscos para Pintura em Pano de Prato',
+  content_category: 'Artesanato - Pintura em Tecido',
+  content_ids: ['120-riscos-pano-de-prato'],
+  content_type: 'product',
+  value: 27.90,
+  currency: 'BRL'
 };
-
 
 fbq(
   'track',
   'ViewContent',
   viewContentData,
-  {
-    eventID:
-      viewContentEventId
-  }
+  { eventID: viewContentEventId }
 );
 
-
-sendMetaCapi(
-  'ViewContent',
-  viewContentEventId,
-  viewContentData
-);
+sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
 </script>
 

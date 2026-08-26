@@ -1,11 +1,25 @@
 /* =========================================================
    TRACKING DE ORIGEM - GOOGLE/META -> HOTMART
    Preserva UTMs e parâmetros de anúncio
+
+   ESTRATÉGIA: Last Identifiable Click
+   Quando nova origem identificável chega, sessão anterior
+   é completamente substituída. Sem mistura de origens.
+
+   TTL: 30 minutos — evita atribuição incorreta após
+   expiração do interesse do visitante.
 ========================================================= */
 
 (function () {
 
-  const TRACKING_PARAMS = [
+  /* =========================================================
+     CONSTANTES
+  ========================================================= */
+
+  var STORAGE_KEY = 'traffic_tracking';
+  var TTL_MS = 30 * 60 * 1000; // 30 minutos
+
+  var TRACKING_PARAMS = [
     'utm_source',
     'utm_medium',
     'utm_campaign',
@@ -18,188 +32,198 @@
     'fbclid'
   ];
 
-
-  // Captura UTMs da URL e salva
-  function captureTrackingParams() {
-
-    const currentParams =
-      new URLSearchParams(window.location.search);
-
-    const savedTracking = JSON.parse(
-      localStorage.getItem('traffic_tracking') || '{}'
-    );
+  // Params que indicam uma fonte identificável (para coerência de sessão)
+  var SOURCE_IDENTIFIERS = [
+    'fbclid',
+    'gclid',
+    'gbraid',
+    'wbraid',
+    'utm_source'
+  ];
 
 
-    TRACKING_PARAMS.forEach(function(param) {
+  /* =========================================================
+     SESSÃO DE TRACKING COM TTL
+  ========================================================= */
 
-      const value = currentParams.get(param);
+  function loadTracking() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return {};
 
-      if (value) {
-        savedTracking[param] = value;
+      var data = JSON.parse(raw);
+
+      // Verificar TTL — descartar dados expirados
+      if (data._ts && (Date.now() - data._ts > TTL_MS)) {
+        localStorage.removeItem(STORAGE_KEY);
+        return {};
       }
 
+      return data;
+    } catch (e) {
+      return {};
+    }
+  }
+
+
+  function saveTracking(data) {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(data)
+      );
+    } catch (e) {
+      // Silently fail — não quebrar navegação
+    }
+  }
+
+
+  function captureTrackingParams() {
+
+    var currentParams =
+      new URLSearchParams(window.location.search);
+
+    // Verificar se a URL atual traz uma origem identificável
+    var hasNewSource = false;
+
+    SOURCE_IDENTIFIERS.forEach(function (param) {
+      if (currentParams.get(param)) {
+        hasNewSource = true;
+      }
     });
 
+    // Carregar dados salvos
+    var savedTracking = loadTracking();
 
-    localStorage.setItem(
-      'traffic_tracking',
-      JSON.stringify(savedTracking)
-    );
+    /*
+      LAST IDENTIFIABLE CLICK:
+      Se nova origem identificável chegou, limpar sessão anterior.
+      Evita mistura de fbclid Meta + gclid Google, por exemplo.
+    */
+    if (hasNewSource) {
+      savedTracking = {};
+    }
+
+    // Capturar todos os parâmetros de tracking da URL
+    var hasAnyParam = false;
+
+    TRACKING_PARAMS.forEach(function (param) {
+      var value = currentParams.get(param);
+      if (value) {
+        savedTracking[param] = value;
+        hasAnyParam = true;
+      }
+    });
+
+    // Registrar timestamp para TTL
+    if (hasAnyParam || hasNewSource) {
+      savedTracking._ts = Date.now();
+    }
+
+    saveTracking(savedTracking);
 
     return savedTracking;
   }
 
 
+  /* =========================================================
+     VERIFICAÇÃO HOTMART
+  ========================================================= */
 
-  // Recupera UTMs salvas
-  function getSavedTracking() {
-
-    try {
-
-      return JSON.parse(
-        localStorage.getItem('traffic_tracking') || '{}'
-      );
-
-    } catch (e) {
-
-      return {};
-
-    }
-
-  }
-
-
-
-  // Verifica se é link Hotmart
   function isHotmartLink(url) {
-
-    const hostname =
-      url.hostname.toLowerCase();
-
-
+    var hostname = url.hostname.toLowerCase();
     return (
       hostname === 'pay.hotmart.com' ||
       hostname.endsWith('.hotmart.com') ||
       hostname === 'go.hotmart.com'
     );
-
   }
 
 
+  /* =========================================================
+     SCK COMPOSTO PARA HOTMART
+     Formato: utm_source|utm_medium|utm_campaign
+     Dá mais contexto que apenas utm_source.
+     Limite: 255 caracteres (Hotmart).
+  ========================================================= */
 
-  // Adiciona UTMs no checkout
+  function buildSck(tracking) {
+    var parts = [];
+
+    if (tracking.utm_source) parts.push(tracking.utm_source);
+    if (tracking.utm_medium) parts.push(tracking.utm_medium);
+    if (tracking.utm_campaign) parts.push(tracking.utm_campaign);
+
+    if (parts.length === 0) return null;
+
+    return parts.join('|').substring(0, 255);
+  }
+
+
+  /* =========================================================
+     APLICAR TRACKING NOS LINKS HOTMART
+  ========================================================= */
+
   function applyTracking(link) {
-
     try {
+      var url = new URL(link.href, window.location.origin);
 
-      const url =
-        new URL(link.href, window.location.origin);
+      if (!isHotmartLink(url)) return;
 
+      var tracking = loadTracking();
 
-      if (!isHotmartLink(url)) {
-        return;
-      }
-
-
-      const tracking =
-        getSavedTracking();
-
-
-      TRACKING_PARAMS.forEach(function(param) {
-
+      // Adicionar parâmetros sem sobrescrever os já existentes da Hotmart
+      TRACKING_PARAMS.forEach(function (param) {
         if (tracking[param]) {
-
-          url.searchParams.set(
-            param,
-            tracking[param]
-          );
-
+          url.searchParams.set(param, tracking[param]);
         }
-
       });
 
-
-
-      // Adiciona SCK para identificação Hotmart
-      if (
-        tracking.utm_source &&
-        !url.searchParams.has('sck')
-      ) {
-
-        url.searchParams.set(
-          'sck',
-          tracking.utm_source
-        );
-
+      // SCK composto para identificação Hotmart
+      if (!url.searchParams.has('sck')) {
+        var sck = buildSck(tracking);
+        if (sck) {
+          url.searchParams.set('sck', sck);
+        }
       }
 
+      link.href = url.toString();
 
-
-      link.href =
-        url.toString();
-
-
-    } catch(e) {}
-
+    } catch (e) {
+      // Silently fail — não quebrar navegação
+    }
   }
 
 
+  function applyTrackingToAllLinks() {
+    document
+      .querySelectorAll('a[href]')
+      .forEach(applyTracking);
+  }
 
-  // Captura origem assim que entra na página
+
+  /* =========================================================
+     INICIALIZAÇÃO
+  ========================================================= */
+
+  // Capturar parâmetros de tracking da URL imediatamente
   captureTrackingParams();
 
 
-
-  // Atualiza links existentes
+  // Atualizar links existentes no DOMContentLoaded
   document.addEventListener(
     'DOMContentLoaded',
-    function() {
+    function () {
 
-      document
-        .querySelectorAll('a[href]')
-        .forEach(applyTracking);
+      applyTrackingToAllLinks();
 
-    }
-  );
+      // MutationObserver com debounce para links adicionados dinamicamente
+      var debounceTimer;
 
-
-
-  // Proteção extra no clique
-  document.addEventListener(
-    'click',
-    function(event) {
-
-      const link =
-        event.target.closest('a[href]');
-
-
-      if (link) {
-
-        applyTracking(link);
-
-      }
-
-    },
-    true
-  );
-
-
-
-  // Caso algum botão seja criado depois
-  const observer =
-    new MutationObserver(function() {
-
-      document
-        .querySelectorAll('a[href]')
-        .forEach(applyTracking);
-
-    });
-
-
-
-  document.addEventListener(
-    'DOMContentLoaded',
-    function() {
+      var observer = new MutationObserver(function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(applyTrackingToAllLinks, 300);
+      });
 
       observer.observe(
         document.body,
@@ -208,8 +232,20 @@
           subtree: true
         }
       );
-
     }
+  );
+
+
+  // Rede de segurança: aplicar tracking no clique (capture phase)
+  document.addEventListener(
+    'click',
+    function (event) {
+      var link = event.target.closest('a[href]');
+      if (link) {
+        applyTracking(link);
+      }
+    },
+    true
   );
 
 
