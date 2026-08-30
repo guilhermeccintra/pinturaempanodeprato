@@ -2275,12 +2275,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (textElement) {
 
                     textElement.textContent =
-                        "VER MEU DESCONTO DE 44%";
+                        "VER MEU DESCONTO";
 
                 } else {
 
                     trigger.textContent =
-                        "VER MEU DESCONTO DE 44%";
+                        "VER MEU DESCONTO";
                 }
             }
         );
