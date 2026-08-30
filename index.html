@@ -1,342 +1,616 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
 
 
-  <!-- =========================================================
-       CONFIGURAÇÕES BÁSICAS / SEO
+  <!--
+=========================================================
+
+       CONFIGURAÇÕES
+BÁSICAS / SEO
+
   ========================================================== -->
 
-  <meta charset="UTF-8">
+  <meta
+charset="UTF-8">
 
   <meta
+
     name="viewport"
+
     content="width=device-width, initial-scale=1.0"
+
   >
 
   <meta
+
     name="description"
-    content="120 Riscos Exclusivos para Pintura em Pano de Prato"
+
+    content="120
+Riscos Exclusivos para Pintura em Pano de Prato"
+
   >
 
-  <meta name="theme-color" content="#C4784A">
+  <meta
+name="theme-color" content="#C4784A">
 
-  <title>120 Riscos Exclusivos para Pintura em Pano de Prato</title>
+  <title>120
+Riscos Exclusivos para Pintura em Pano de Prato</title>
 
 
-  <!-- =========================================================
+  <!--
+=========================================================
+
        OPEN GRAPH
+
   ========================================================== -->
 
   <meta
+
     property="og:title"
-    content="120 Riscos Exclusivos para Pintura em Pano de Prato"
+
+    content="120
+Riscos Exclusivos para Pintura em Pano de Prato"
+
   >
 
   <meta
+
     property="og:description"
-    content="Modelos prontos para imprimir, transferir e pintar, mesmo que você esteja começando agora."
+
+    content="Modelos prontos para imprimir, transferir e pintar, mesmo
+que você esteja começando agora."
+
   >
 
-  <meta property="og:type" content="product">
-  <meta property="og:locale" content="pt_BR">
+  <meta
+property="og:type" content="product">
+
+  <meta
+property="og:locale" content="pt_BR">
 
 
-  <!-- =========================================================
+  <!--
+=========================================================
+
        FONTES
-  ========================================================== -->
 
-  
+  ==========================================================
+-->
+
+
 <link
+
     rel="preconnect"
+
     href="https://fonts.googleapis.com"
+
 >
 
 <link
+
     rel="preconnect"
+
     href="https://fonts.gstatic.com"
+
     crossorigin
+
 >
 
 <link
+
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+
     rel="stylesheet"
+
 >
 
-  
-  <!-- =========================================================
+
+  <!--
+=========================================================
+
        CSS
+
   ========================================================== -->
 
   <link
+
     rel="stylesheet"
+
     href="styles.css"
+
   >
 
 
-  <!-- TRACKING CARREGADO APÓS CSS PARA REDUZIR BLOQUEIO -->
-<!-- =========================================================
-       GOOGLE TAG - GOOGLE ADS + GOOGLE ANALYTICS 4
+  <!-- TRACKING
+CARREGADO APÓS CSS PARA REDUZIR BLOQUEIO -->
+
+<!--
+=========================================================
+
+       GOOGLE TAG - GOOGLE ADS + GOOGLE ANALYTICS
+4
+
   ========================================================== -->
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18379872794"></script>
+  <script async
+src="https://www.googletagmanager.com/gtag/js?id=AW-18379872794"></script>
 
   <script>
-    window.dataLayer = window.dataLayer || [];
+
+    window.dataLayer =
+window.dataLayer || [];
 
     function gtag() {
+
       dataLayer.push(arguments);
+
     }
 
-    gtag('js', new Date());
+    gtag('js', new
+Date());
 
     /* Google Ads */
-    gtag('config', 'AW-18379872794');
 
-    /* Google Analytics 4 */
-    gtag('config', 'G-04GHL0BCBB');
+    gtag('config',
+'AW-18379872794');
+
+    /* Google
+Analytics 4 */
+
+    gtag('config',
+'G-04GHL0BCBB');
+
   </script>
 
 
-  <!-- =========================================================
-       GOOGLE ADS - CONVERSÃO: VISUALIZAÇÃO DE PÁGINA
+  <!--
+=========================================================
+
+       GOOGLE ADS -
+CONVERSÃO: VISUALIZAÇÃO DE PÁGINA
+
   ========================================================== -->
 
   <script>
-    gtag('event', 'conversion', {
-      'send_to': 'AW-18379872794/tOsJCOvXo98cEJq0mrxE',
+
+    gtag('event',
+'conversion', {
+
+      'send_to':
+'AW-18379872794/tOsJCOvXo98cEJq0mrxE',
+
       'value': 1.0,
-      'currency': 'BRL'
+
+      'currency':
+'BRL'
+
     });
+
   </script>
 
-<!-- =========================================================
+<!--
+=========================================================
+
      META PIXEL + CAPI
-     PageView e ViewContent com deduplicação
-========================================================= -->
+
+     PageView e
+ViewContent com deduplicação
+
+=========================================================
+-->
 
 <script>
+
 !function(f,b,e,v,n,t,s)
+
 {
+
   if(f.fbq)return;
 
   n=f.fbq=function(){
+
     n.callMethod ?
+
     n.callMethod.apply(n,arguments) :
+
     n.queue.push(arguments);
+
   };
 
   if(!f._fbq)f._fbq=n;
 
   n.push=n;
+
   n.loaded=!0;
+
   n.version='2.0';
+
   n.queue=[];
 
   t=b.createElement(e);
+
   t.async=!0;
+
   t.src=v;
 
   s=b.getElementsByTagName(e)[0];
+
   s.parentNode.insertBefore(t,s);
 
 }(
+
   window,
+
   document,
+
   'script',
+
   'https://connect.facebook.net/en_US/fbevents.js'
+
 );
 
 
 /* =========================================================
+
    FUNÇÕES AUXILIARES
+
 ========================================================= */
 
 function generateMetaEventId(eventName) {
+
   return (
+
     eventName +
+
     '_' +
+
     Date.now() +
+
     '_' +
+
     Math.random().toString(36).substring(2, 12)
+
   );
+
 }
 
 function generateUuidV4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
+
+  return
+'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+
+    var r = Math.random()
+* 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+
+    return
+v.toString(16);
+
   });
+
 }
 
 function getCookie(name) {
-  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-  return match ? decodeURIComponent(match[2]) : null;
+
+  var match =
+document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+
+  return match ?
+decodeURIComponent(match[2]) : null;
+
 }
 
 function getExternalId() {
+
   try {
-    var extId = localStorage.getItem('meta_external_id');
+
+    var extId =
+localStorage.getItem('meta_external_id');
+
     if (!extId) {
-      extId = generateUuidV4();
+
+      extId =
+generateUuidV4();
+
       localStorage.setItem('meta_external_id', extId);
+
     }
+
     return extId;
+
   } catch(e) {
+
     return null;
+
   }
+
 }
 
 function getStoredFbclid() {
+
   try {
-    var savedTracking = JSON.parse(localStorage.getItem('traffic_tracking') || '{}');
-    return savedTracking.fbclid || null;
+
+    var savedTracking
+= JSON.parse(localStorage.getItem('traffic_tracking') || '{}');
+
+    return
+savedTracking.fbclid || null;
+
   } catch (error) {
+
     return null;
+
   }
+
 }
 
 function buildFbc() {
-  // 1. Tenta recuperar do sessionStorage (já calculado nesta sessão)
+
+  // 1. Tenta
+recuperar do sessionStorage (já calculado nesta sessão)
+
   try {
-    var sessionFbc = sessionStorage.getItem('meta_fbc');
-    if (sessionFbc) return sessionFbc;
+
+    var sessionFbc =
+sessionStorage.getItem('meta_fbc');
+
+    if (sessionFbc)
+return sessionFbc;
+
   } catch(e) {}
 
-  // 2. Prioridade para o cookie _fbc já criado pela Meta
-  var existingFbc = getCookie('_fbc');
+  // 2. Prioridade
+para o cookie _fbc já criado pela Meta
+
+  var existingFbc =
+getCookie('_fbc');
+
   if (existingFbc) {
-    try { sessionStorage.setItem('meta_fbc', existingFbc); } catch(e) {}
-    return existingFbc;
+
+    try {
+sessionStorage.setItem('meta_fbc', existingFbc); } catch(e) {}
+
+    return
+existingFbc;
+
   }
 
-  // 3. Tenta pegar fbclid da URL
-  var params = new URLSearchParams(window.location.search);
-  var urlFbclid = params.get('fbclid');
+  // 3. Tenta pegar
+fbclid da URL
 
-  // 4. Se a URL atual não tiver, tenta usar o fbclid salvo pelo tracking.js
-  var fbclid = urlFbclid || getStoredFbclid();
+  var params = new
+URLSearchParams(window.location.search);
+
+  var urlFbclid =
+params.get('fbclid');
+
+  // 4. Se a URL atual
+não tiver, tenta usar o fbclid salvo pelo tracking.js
+
+  var fbclid =
+urlFbclid || getStoredFbclid();
 
   if (!fbclid) {
+
     return null;
+
   }
 
-  var newFbc = 'fb.1.' + Date.now() + '.' + fbclid;
-  
-  try { sessionStorage.setItem('meta_fbc', newFbc); } catch(e) {}
+  var newFbc = 'fb.1.'
++ Date.now() + '.' + fbclid;
+
+  try {
+sessionStorage.setItem('meta_fbc', newFbc); } catch(e) {}
 
   return newFbc;
+
 }
 
 
 /* =========================================================
+
    WAIT FOR FBP
+
 ========================================================= */
 
-function waitForFbp(callback, maxWaitMs = 2000, intervalMs = 50) {
+function waitForFbp(callback, maxWaitMs = 2000, intervalMs =
+50) {
+
   var elapsed = 0;
-  
-  var check = function() {
-    var fbp = getCookie('_fbp');
+
+  var check =
+function() {
+
+    var fbp =
+getCookie('_fbp');
+
     if (fbp) {
+
       callback(fbp);
-    } else if (elapsed >= maxWaitMs) {
-      callback(null); // Timeout
+
+    } else if (elapsed
+>= maxWaitMs) {
+
+      callback(null);
+// Timeout
+
     } else {
-      elapsed += intervalMs;
+
+      elapsed +=
+intervalMs;
+
       setTimeout(check, intervalMs);
+
     }
+
   };
-  
+
   check();
+
 }
 
 
 /* =========================================================
-   ENVIA EVENTO PARA CAPI
+
+   ENVIA EVENTO PARA
+CAPI
+
 ========================================================= */
 
-function sendMetaCapi(eventName, eventId, eventCustomData = {}) {
-  // Ler valores consistentes
-  var currentFbc = buildFbc();
-  var currentExternalId = getExternalId();
-  
+function sendMetaCapi(eventName, eventId, eventCustomData =
+{}) {
+
+  // Ler valores
+consistentes
+
+  var currentFbc =
+buildFbc();
+
+  var
+currentExternalId = getExternalId();
+
   waitForFbp(function(currentFbp) {
+
     var payload = {
-      eventName: eventName,
-      eventId: eventId,
-      eventSourceUrl: window.location.href,
-      eventCustomData: eventCustomData,
-      fbp: currentFbp || undefined,
-      fbc: currentFbc || undefined,
-      externalId: currentExternalId || undefined
+
+      eventName:
+eventName,
+
+      eventId:
+eventId,
+
+      eventSourceUrl:
+window.location.href,
+
+      eventCustomData:
+eventCustomData,
+
+      fbp: currentFbp
+|| undefined,
+
+      fbc: currentFbc
+|| undefined,
+
+      externalId:
+currentExternalId || undefined
+
     };
 
-    fetch('/api/capi', {
+    fetch('/api/capi',
+{
+
       method: 'POST',
+
       headers: {
+
         'Content-Type': 'application/json'
+
       },
-      body: JSON.stringify(payload)
+
+      body:
+JSON.stringify(payload)
+
     }).catch(function(error) {
+
       console.warn('Erro ao enviar Meta CAPI:', error);
+
     });
+
   });
+
 }
 
 
 /* =========================================================
+
    INICIALIZA PIXEL
+
 ========================================================= */
 
 var globalExternalId = getExternalId();
 
 if (globalExternalId) {
-  fbq('init', '1901694047194455', { external_id: globalExternalId });
+
+  fbq('init',
+'1901694047194455', { external_id: globalExternalId });
+
 } else {
-  fbq('init', '1901694047194455');
+
+  fbq('init',
+'1901694047194455');
+
 }
 
 
 /* =========================================================
+
    PAGEVIEW
+
    Browser + Server
+
 ========================================================= */
 
 var pageViewEventId = generateMetaEventId('PageView');
 
 fbq(
+
   'track',
+
   'PageView',
+
   {},
-  { eventID: pageViewEventId }
+
+  { eventID: pageViewEventId
+}
+
 );
 
 sendMetaCapi('PageView', pageViewEventId);
 
 
 /* =========================================================
+
    VIEWCONTENT
+
    Browser + Server
+
 ========================================================= */
 
 var viewContentEventId = generateMetaEventId('ViewContent');
 
 var viewContentData = {
-  content_name: '120 Riscos para Pintura em Pano de Prato',
-  content_category: 'Artesanato - Pintura em Tecido',
-  content_ids: ['120-riscos-pano-de-prato'],
-  content_type: 'product',
+
+  content_name: '120
+Riscos para Pintura em Pano de Prato',
+
+  content_category:
+'Artesanato - Pintura em Tecido',
+
+  content_ids:
+['120-riscos-pano-de-prato'],
+
+  content_type:
+'product',
+
   value: 27.90,
+
   currency: 'BRL'
+
 };
 
 fbq(
+
   'track',
+
   'ViewContent',
+
   viewContentData,
-  { eventID: viewContentEventId }
+
+  { eventID:
+viewContentEventId }
+
 );
 
 sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
@@ -344,159 +618,272 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 </script>
 
 
-  <!-- =========================================================
-       SCHEMA.ORG PRODUCT
+  <!--
+=========================================================
+
+       SCHEMA.ORG
+PRODUCT
+
   ========================================================== -->
 
-  <script type="application/ld+json">
+  <script
+type="application/ld+json">
+
   {
+
     "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "120 Riscos Exclusivos para Pintura em Pano de Prato",
-    "description": "Modelos prontos para imprimir, transferir e pintar, mesmo que você esteja começando agora.",
+
+    "@type":
+"Product",
+
+    "name":
+"120 Riscos Exclusivos para Pintura em Pano de Prato",
+
+    "description": "Modelos prontos para imprimir, transferir
+e pintar, mesmo que você esteja começando agora.",
+
     "category": "Artesanato > Pintura em Tecido",
+
     "offers": {
+
       "@type": "Offer",
+
       "availability": "https://schema.org/InStock",
+
       "priceCurrency": "BRL"
+
     },
-    "brand": {
+
+    "brand":
+{
+
       "@type": "Brand",
-      "name": "Pintura em Pano de Prato"
+
+      "name":
+"Pintura em Pano de Prato"
+
     }
+
   }
+
   </script>
 
 
 
-  <script src="tracking.js" defer></script>
+  <script
+src="tracking.js" defer></script>
 
 </head>
 
+  <body>
 
-<body>
+  <!--
+=========================================================
 
-  <!-- =========================================================
-       META PIXEL - FALLBACK SEM JAVASCRIPT
+       META PIXEL -
+FALLBACK SEM JAVASCRIPT
+
   ========================================================== -->
 
   <noscript>
+
     <img
+
       height="1"
+
       width="1"
+
       style="display:none"
+
       src="https://www.facebook.com/tr?id=1901694047194455&ev=PageView&noscript=1"
+
       alt=""
+
     >
+
   </noscript>
 
-  <!-- RESTANTE DO SEU SITE CONTINUA AQUI -->
+  <!-- RESTANTE DO
+SEU SITE CONTINUA AQUI -->
 
 <div class="promo-bar">
-    <span><strong>🎁 OFERTA ESPECIAL DE HOJE</strong> <span class="promo-bar-separator">•</span> Revele seu desconto surpresa</span>
+
+    <span>OFERTA
+ESPECIAL • ÚLTIMAS HORAS</span>
+
 </div>
 
 <!-- HERO -->
-<section class="hero bg-default fade-in" id="inicio">
 
-    <div class="container">
+<section class="hero bg-default fade-in"
+id="inicio">
 
-        <div class="hero-content centered">
+    <div
+class="container">
+
+        <div
+class="hero-content centered">
 
 
-            <!-- AVALIAÇÕES -->
+            <!--
+AVALIAÇÕES -->
+
             <div
+
                 class="hero-rating"
+
                 aria-label="Avaliação de 4,91 de 5 com 10.943 avaliações"
+
             >
-                <div class="hero-rating__stars" aria-hidden="true">
+
+                <div class="hero-rating__stars"
+aria-hidden="true">
+
                     <span>★</span>
+
                     <span>★</span>
+
                     <span>★</span>
+
                     <span>★</span>
+
                     <span>★</span>
+
                 </div>
 
-                <p class="hero-rating__text">
-                    <strong>(4,91/5)</strong>
-                    <span>em 10.943 avaliações</span>
-                </p>
-            </div>
-          
+                <p
+class="hero-rating__text">
 
-            <!-- HEADLINE -->
-            <h1 class="hero-title">
+                    <strong>(4,91/5)</strong>
+
+                    <span>em 10.943 avaliações</span>
+
+                </p>
+
+            </div>
+
+
+            <!--
+HEADLINE -->
+
+            <h1
+class="hero-title">
 
                 <span class="hero-title-main">
+
                     120 Riscos Exclusivos
+
                 </span>
 
-                <span class="hero-title-sub">
+                <span
+class="hero-title-sub">
+
                     para pintura em
+
                 </span>
 
                 <span class="hero-title-script">
+
                     Pano de Prato
+
                 </span>
 
             </h1>
 
 
-          
 
-         <p class="hero-subtitle">
-    
-        Modelos prontos para imprimir, transferir e pintar, <strong>mesmo que você esteja começando agora</strong>.
-    
-</p>  
-          
 
-<!-- =====================================================
-     CARROSSEL NO LUGAR DO MOCKUP
+         <p
+class="hero-subtitle">
+
+        Modelos
+prontos para imprimir, transferir e pintar, <strong>mesmo que você esteja
+começando agora</strong>.
+
+</p>
+
+
+<!--
+=====================================================
+
+     CARROSSEL NO
+LUGAR DO MOCKUP
+
 ===================================================== -->
 
 <div
+
     class="comparison-carousel hero-comparison-carousel"
+
     data-comparison-carousel
-    aria-label="Exemplos de riscos e resultados de pinturas em pano de prato"
+
+    aria-label="Exemplos de riscos e resultados de pinturas em pano de
+prato"
+
 >
 
     <div
+
         class="comparison-viewport"
+
         data-comparison-viewport
+
     >
 
         <div
+
             class="comparison-track"
+
             data-comparison-track
+
         >
 
 <!-- =====================================================
+
      COMPARAÇÃO 1
+
 ===================================================== -->
+
 <article
+
     class="comparison-card hero-comparison-card"
+
     data-comparison-card
+
 >
 
-    <div class="comparison-pair">
+    <div
+class="comparison-pair">
 
-        <figure class="comparison-before">
+        <figure
+class="comparison-before">
 
-            <div class="comparison-before-media">
+            <div
+class="comparison-before-media">
 
                 <span class="comparison-label">
+
                     ANTES: RISCO
+
                 </span>
 
                 <img
+
                     src="images/risco-05.webp"
-                    alt="Risco pronto para imprimir e transferir para o pano de prato"
+
+                    alt="Risco pronto para imprimir e transferir para o pano de
+prato"
+
                     loading="eager"
+
                     fetchpriority="high"
+
                     decoding="async"
+
                     width="600"
+
                     height="848"
+
                 >
 
             </div>
@@ -504,29 +891,44 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
         </figure>
 
 
-        <figure class="comparison-image comparison-image-result">
+        <figure
+class="comparison-image comparison-image-result">
 
-            <div class="comparison-result-media">
+            <div
+class="comparison-result-media">
 
-                <span class="comparison-label comparison-label-result">
+                <span class="comparison-label
+comparison-label-result">
+
                     RESULTADO PINTADO
+
                 </span>
 
 
                 <picture>
 
                     <source
+
                         media="(max-width: 600px)"
+
                         srcset="images/resultado-05-mobile.webp"
+
                     >
 
                     <img
+
                         src="images/resultado-05.webp"
+
                         alt="Pano de prato pintado a partir do risco"
+
                         loading="lazy"
+
                         decoding="async"
+
                         width="600"
+
                         height="848"
+
                     >
 
                 </picture>
@@ -541,12 +943,19 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 </article>
 
 
-            <!-- =====================================================
+            <!--
+=====================================================
+
                  COMPARAÇÃO 2
+
             ===================================================== -->
+
             <article
+
                 class="comparison-card hero-comparison-card"
+
                 data-comparison-card
+
             >
 
                 <div class="comparison-pair">
@@ -556,16 +965,26 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                         <div class="comparison-before-media">
 
                             <span class="comparison-label">
+
                                 ANTES: RISCO
+
                             </span>
 
                             <img
+
                                 src="images/risco-02.webp"
-                                alt="Risco pronto para impressão e transferência"
+
+                                alt="Risco
+pronto para impressão e transferência"
+
                                 loading="lazy"
+
                                 decoding="async"
+
                                 width="600"
+
                                 height="848"
+
                             >
 
                         </div>
@@ -578,21 +997,32 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                         <div class="comparison-result-media">
 
                             <span class="comparison-label comparison-label-result">
-                                RESULTADO PINTADO
+
+                                RESULTADO
+PINTADO
+
                             </span>
 
                             <picture>
 
                                 <source
+
                                     media="(max-width: 600px)"
+
                                     srcset="images/resultado-02-mobile.webp"
+
                                 >
 
                                 <img
+
                                     src="images/resultado-02.webp"
+
                                     alt="Pano de prato pintado usando o mesmo risco"
+
                                     loading="lazy"
+
                                     decoding="async"
+
                                 >
 
                             </picture>
@@ -606,31 +1036,49 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
             </article>
 
 
-            <!-- =====================================================
+            <!--
+=====================================================
+
                  COMPARAÇÃO 3
+
             ===================================================== -->
+
             <article
+
                 class="comparison-card hero-comparison-card"
+
                 data-comparison-card
+
             >
 
                 <div class="comparison-pair">
 
-                    <figure class="comparison-before">
+                    <figure
+class="comparison-before">
 
                         <div class="comparison-before-media">
 
                             <span class="comparison-label">
+
                                 ANTES: RISCO
+
                             </span>
 
                             <img
+
                                 src="images/risco-03.webp"
-                                alt="Risco de pintura pronto para transferir ao tecido"
+
+                                alt="Risco
+de pintura pronto para transferir ao tecido"
+
                                 loading="lazy"
+
                                 decoding="async"
+
                                 width="600"
+
                                 height="848"
+
                             >
 
                         </div>
@@ -638,26 +1086,37 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                     </figure>
 
 
-                    <figure class="comparison-image comparison-image-result">
+                    <figure class="comparison-image
+comparison-image-result">
 
                         <div class="comparison-result-media">
 
                             <span class="comparison-label comparison-label-result">
+
                                 RESULTADO PINTADO
+
                             </span>
 
                             <picture>
 
                                 <source
+
                                     media="(max-width: 600px)"
+
                                     srcset="images/resultado-03-mobile.webp"
+
                                 >
 
                                 <img
+
                                     src="images/resultado-03.webp"
+
                                     alt="Pano de prato finalizado com pintura feita a partir do risco"
+
                                     loading="lazy"
+
                                     decoding="async"
+
                                 >
 
                             </picture>
@@ -671,12 +1130,20 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
             </article>
 
 
-            <!-- =====================================================
+            <!--
+=====================================================
+
                  COMPARAÇÃO 4
+
             ===================================================== -->
+
             <article
-                class="comparison-card hero-comparison-card"
+
+                class="comparison-card
+hero-comparison-card"
+
                 data-comparison-card
+
             >
 
                 <div class="comparison-pair">
@@ -686,16 +1153,26 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                         <div class="comparison-before-media">
 
                             <span class="comparison-label">
+
                                 ANTES: RISCO
+
                             </span>
 
                             <img
+
                                 src="images/risco-04.webp"
-                                alt="Risco pronto para ser transferido ao pano de prato"
+
+                                alt="Risco pronto para
+ser transferido ao pano de prato"
+
                                 loading="lazy"
+
                                 decoding="async"
+
                                 width="600"
+
                                 height="848"
+
                             >
 
                         </div>
@@ -708,21 +1185,32 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                         <div class="comparison-result-media">
 
                             <span class="comparison-label comparison-label-result">
-                                RESULTADO PINTADO
+
+                                RESULTADO
+PINTADO
+
                             </span>
 
                             <picture>
 
                                 <source
+
                                     media="(max-width: 600px)"
+
                                     srcset="images/resultado-04-mobile.webp"
+
                                 >
 
                                 <img
+
                                     src="images/resultado-04.webp"
+
                                     alt="Pano de prato pintado a partir de um risco pronto"
+
                                     loading="lazy"
+
                                     decoding="async"
+
                                 >
 
                             </picture>
@@ -736,12 +1224,19 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
             </article>
 
 
-            <!-- =====================================================
+            <!--
+=====================================================
+
                  COMPARAÇÃO 5
+
             ===================================================== -->
+
             <article
+
                 class="comparison-card hero-comparison-card"
+
                 data-comparison-card
+
             >
 
                 <div class="comparison-pair">
@@ -751,16 +1246,26 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                         <div class="comparison-before-media">
 
                             <span class="comparison-label">
+
                                 ANTES: RISCO
+
                             </span>
 
                             <img
+
                                 src="images/risco-01.webp"
-                                alt="Risco pronto para imprimir e pintar"
+
+                                alt="Risco
+pronto para imprimir e pintar"
+
                                 loading="lazy"
+
                                 decoding="async"
+
                                 width="600"
+
                                 height="848"
+
                             >
 
                         </div>
@@ -768,26 +1273,40 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                     </figure>
 
 
-                    <figure class="comparison-image comparison-image-result">
+                    <figure class="comparison-image
+comparison-image-result">
 
                         <div class="comparison-result-media">
 
-                            <span class="comparison-label comparison-label-result">
-                                RESULTADO PINTADO
+                            <span
+class="comparison-label comparison-label-result">
+
+                                RESULTADO
+PINTADO
+
                             </span>
 
                             <picture>
 
                                 <source
-                                    media="(max-width: 600px)"
+
+                                    media="(max-width:
+600px)"
+
                                     srcset="images/resultado-01-mobile.webp"
+
                                 >
 
                                 <img
+
                                     src="images/resultado-01.webp"
+
                                     alt="Pano de prato pintado e finalizado"
+
                                     loading="lazy"
+
                                     decoding="async"
+
                                 >
 
                             </picture>
@@ -805,34 +1324,60 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
     </div>
 
 
-    <!-- =====================================================
-         CONTROLES DO CARROSSEL
+    <!--
+=====================================================
+
+         CONTROLES DO
+CARROSSEL
+
     ===================================================== -->
 
-    <div class="comparison-controls">
+    <div
+class="comparison-controls">
 
         <button
+
             type="button"
+
             class="comparison-button comparison-button-prev"
+
             data-comparison-prev
+
             aria-label="Ver comparação anterior"
+
         >
-            <span aria-hidden="true">‹</span>
+
+            <span
+aria-hidden="true">‹</span>
+
         </button>
 
         <div
+
             class="comparison-dots"
+
             data-comparison-dots
+
             aria-label="Selecionar comparação"
+
         ></div>
 
         <button
+
             type="button"
+
             class="comparison-button comparison-button-next"
+
             data-comparison-next
-            aria-label="Ver próxima comparação"
+
+            aria-label="Ver
+próxima comparação"
+
         >
-            <span aria-hidden="true">›</span>
+
+            <span
+aria-hidden="true">›</span>
+
         </button>
 
     </div>
@@ -843,52 +1388,183 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 <ul class="hero-benefits">
 
     <li>
-        <span class="benefit-icon" aria-hidden="true">📄</span>
 
-        <span class="benefit-text">
-            <strong>120 riscos prontos para imprimir e transferir no tamanho ideal para seus panos de prato.</strong>
+        <span
+class="benefit-icon" aria-hidden="true">📄</span>
+
+        <span
+class="benefit-text">
+
+            <strong>120 riscos prontos para imprimir e transferir no tamanho
+ideal para seus panos de prato.</strong>
+
         </span>
+
     </li>
 
 
-    <!-- VIDEOAULA - DESTAQUE PRINCIPAL -->
-<li class="bonus-benefit bonus-benefit-highlight">
-    <span class="benefit-icon" aria-hidden="true">▶️</span>
+    <!-- VIDEOAULA
+- DESTAQUE PRINCIPAL -->
 
-    <span class="benefit-text">
+<li class="bonus-benefit
+bonus-benefit-highlight">
+
+    <span
+class="benefit-icon" aria-hidden="true">▶️</span>
+
+    <span
+class="benefit-text">
+
         <strong>+ Videoaula passo a passo para iniciantes:</strong>
-        aprenda na prática a pintar em tecido, do risco ao acabamento, mesmo que nunca tenha pintado antes.
+
+        aprenda na
+prática a pintar em tecido, do risco ao acabamento, mesmo que nunca tenha
+pintado antes.
+
     </span>
+
 </li>
 
-    <!-- DEMAIS BÔNUS -->
+    <!-- DEMAIS
+BÔNUS -->
+
     <li>
 
-        <span class="benefit-icon" aria-hidden="true">🎁</span>
+        <span
+class="benefit-icon" aria-hidden="true">🎁</span>
 
-        <span class="benefit-text">
-            <strong>+ 3 bônus grátis:</strong>
-            Guia de Transferência Perfeita, Guia de Combinação de Cores e Primeiros Passos para Vender suas Peças.
+        <span
+class="benefit-text">
+
+            <strong>+ 3 bônus
+grátis:</strong>
+
+            Guia de
+Transferência Perfeita, Guia de Combinação de Cores e Primeiros Passos para
+Vender suas Peças.
+
         </span>
 
     </li>
 
 </ul>
 
-<!-- OFERTA SURPRESA -->
-<div class="surprise-offer-intro surprise-offer-intro-hero">
-    <span class="surprise-offer-kicker">🎁 UMA SURPRESA PARA VOCÊ</span>
-    <strong>Hoje sua compra pode ter uma condição especial.</strong>
-    <span class="surprise-offer-copy">Escolha um dos 3 envelopes e revele seu desconto.</span>
+<!-- PREÇO -->
+
+<div
+
+    class="hero-price"
+
+    style="
+
+        text-align:
+center;
+
+        margin: 20px 0
+12px;
+
+    "
+
+>
+
+    <div
+
+        style="
+
+            font-size:
+14px;
+
+            margin-bottom: 4px;
+
+        "
+
+    >
+
+        Comece hoje
+por apenas
+
+    </div>
+
+    <!-- PREÇO
+ORIGINAL -->
+
+    <div
+
+        style="
+
+            font-size:
+18px;
+
+            font-weight:
+500;
+
+            line-height: 1.1;
+
+            text-decoration: line-through;
+
+            opacity:
+0.6;
+
+            margin-bottom: 4px;
+
+        "
+
+    >
+
+        R$ 47,90
+
+    </div>
+
+    <!-- PREÇO
+PROMOCIONAL -->
+
+    <div
+
+        style="
+
+            font-size:
+32px;
+
+            font-weight: 700;
+
+            line-height: 1.1;
+
+        "
+
+    >
+
+        R$ 27,90
+
+    </div>
+
 </div>
+
+<!-- BOTÃO -->
+
 <div class="hero-buttons">
-    <button type="button" class="btn-primary btn-large js-open-discount-game">REVELAR MEU DESCONTO</button>
+
+    <a
+
+        href="https://pay.hotmart.com/S106956139O?checkoutMode=10"
+
+        class="btn-primary btn-large"
+
+    >
+
+        QUERO COMEÇAR
+A PINTAR
+
+    </a>
+
 </div>
-<div class="hero-info surprise-offer-info">Leva apenas alguns segundos • Compra segura</div>
 
 <!-- INFORMAÇÕES ABAIXO DO BOTÃO -->
+
 <div class="hero-info">
-    Compra segura • Acesso imediato
+
+    Compra segura •
+Acesso imediato
+
 </div>
 
 </div>
@@ -897,62 +1573,99 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
 </section>
 
+    <!-- =========================================================
 
-<!-- =========================================================
-     GALERIA DE RISCOS POR TEMAS
-========================================================= -->
+     GALERIA DE RISCOS
+POR TEMAS
 
-<section class="risks-gallery bg-white fade-in" id="riscos">
+=========================================================
+-->
 
-    <div class="container">
+<section class="risks-gallery bg-white fade-in"
+id="riscos">
 
-        <div class="text-center risks-gallery-heading">
+    <div
+class="container">
 
-            <span class="section-tag">
-                Alguns dos modelos incluídos
+        <div
+class="text-center risks-gallery-heading">
+
+            <span
+class="section-tag">
+
+                Alguns
+dos modelos incluídos
+
             </span>
 
-            <h2 class="section-title">
+            <h2
+class="section-title">
+
                 Escolha entre diversos
+
                 <span>temas de riscos</span>
+
             </h2>
 
-            <p class="section-subtitle">
-                São 120 modelos prontos para imprimir,
+            <p
+class="section-subtitle">
+
+                São
+120 modelos prontos para imprimir,
+
                 transferir e pintar em seus panos de prato.
+
             </p>
 
         </div>
 
 
 
-        <!-- =========================
+        <!--
+=========================
+
              FRUTAS
+
         ========================== -->
 
-        <div class="risk-category">
+        <div
+class="risk-category">
 
-            <h3 class="risk-category-title">
+            <h3
+class="risk-category-title">
+
                 Frutas
+
             </h3>
 
 
-            <div class="risk-carousel-wrapper">
+            <div
+class="risk-carousel-wrapper">
 
                 <div class="risk-carousel">
 
-                    <img src="images/frutas-01.webp" alt="Risco de frutas para pintura em pano de prato" loading="lazy" decoding="async" width="600" height="848">
+                    <img src="images/frutas-01.webp" alt="Risco de frutas
+para pintura em pano de prato" loading="lazy"
+decoding="async" width="600" height="848">
 
-                    <img src="images/frutas-02.webp" alt="Risco de frutas para pintura em tecido" loading="lazy" decoding="async" width="600" height="848">
+                    <img src="images/frutas-02.webp" alt="Risco de frutas
+para pintura em tecido" loading="lazy"
+decoding="async" width="600" height="848">
 
-                    <img src="images/frutas-03.webp" alt="Modelo de risco de frutas" loading="lazy" decoding="async" width="600" height="848">
+                    <img src="images/frutas-03.webp" alt="Modelo de risco
+de frutas" loading="lazy" decoding="async"
+width="600" height="848">
 
-                    <img src="images/frutas-04.webp" alt="Risco pronto para pintar de frutas" loading="lazy" decoding="async" width="600" height="848">
+                    <img src="images/frutas-04.webp" alt="Risco pronto
+para pintar de frutas" loading="lazy" decoding="async"
+width="600" height="848">
 
                 </div>
 
                 <span class="risk-carousel-hint">
+
                     Deslize para ver mais modelos →
+
                 </span>
 
             </div>
@@ -963,33 +1676,54 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
 
 
-        <!-- =========================
-             CAFÉ E COZINHA
+        <!--
+=========================
+
+             CAFÉ E
+COZINHA
+
         ========================== -->
 
-        <div class="risk-category">
+        <div
+class="risk-category">
 
-            <h3 class="risk-category-title">
-                Café e Cozinha
+            <h3
+class="risk-category-title">
+
+                Café e
+Cozinha
+
             </h3>
 
 
-            <div class="risk-carousel-wrapper">
+            <div
+class="risk-carousel-wrapper">
 
                 <div class="risk-carousel">
 
-                    <img src="images/cafeecozinha-01.webp" alt="Risco de café e cozinha para pintura" loading="lazy" decoding="async" width="600" height="848">
+                    <img src="images/cafeecozinha-01.webp" alt="Risco de
+café e cozinha para pintura" loading="lazy"
+decoding="async" width="600" height="848">
 
-                    <img src="images/cafeecozinha-02.webp" alt="Risco de cozinha para pano de prato" loading="lazy" decoding="async" width="600" height="848">
+                    <img src="images/cafeecozinha-02.webp" alt="Risco de
+cozinha para pano de prato" loading="lazy"
+decoding="async" width="600" height="848">
 
-                    <img src="images/cafeecozinha-03.webp" alt="Modelo de risco café e cozinha" loading="lazy" decoding="async" width="600" height="848">
+                    <img
+src="images/cafeecozinha-03.webp" alt="Modelo de risco café e
+cozinha" loading="lazy" decoding="async"
+width="600" height="848">
 
-                    <img src="images/cafeecozinha-04.webp" alt="Risco pronto para transferir" loading="lazy" decoding="async" width="600" height="848">
+                    <img src="images/cafeecozinha-04.webp" alt="Risco
+pronto para transferir" loading="lazy"
+decoding="async" width="600" height="848">
 
                 </div>
 
                 <span class="risk-carousel-hint">
+
                     Deslize para ver mais modelos →
+
                 </span>
 
             </div>
@@ -1000,33 +1734,52 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
 
 
-        <!-- =========================
+        <!--
+=========================
+
              FLORES
+
         ========================== -->
 
-        <div class="risk-category">
+        <div
+class="risk-category">
 
-            <h3 class="risk-category-title">
+            <h3
+class="risk-category-title">
+
                 Flores
+
             </h3>
 
 
-            <div class="risk-carousel-wrapper">
+            <div
+class="risk-carousel-wrapper">
 
                 <div class="risk-carousel">
 
-                    <img src="images/flores-01.webp" alt="Risco de flores para pintura" loading="lazy" decoding="async" width="600" height="848">
+                    <img src="images/flores-01.webp" alt="Risco de flores
+para pintura" loading="lazy" decoding="async"
+width="600" height="848">
 
-                    <img src="images/flores-02.webp" alt="Modelo de flores para pano de prato" loading="lazy" decoding="async" width="600" height="848">
+                    <img src="images/flores-02.webp" alt="Modelo de flores
+para pano de prato" loading="lazy" decoding="async"
+width="600" height="848">
 
-                    <img src="images/flores-03.webp" alt="Risco floral para pintura em tecido" loading="lazy" decoding="async" width="600" height="848">
+                    <img src="images/flores-03.webp" alt="Risco floral
+para pintura em tecido" loading="lazy"
+decoding="async" width="600" height="848">
 
-                    <img src="images/flores-04.webp" alt="Risco de flores pronto para imprimir" loading="lazy" decoding="async" width="600" height="848">
+                    <img src="images/flores-04.webp" alt="Risco de flores
+pronto para imprimir" loading="lazy" decoding="async"
+width="600" height="848">
 
                 </div>
 
                 <span class="risk-carousel-hint">
-                    Deslize para ver mais modelos →
+
+                    Deslize
+para ver mais modelos →
+
                 </span>
 
             </div>
@@ -1036,38 +1789,61 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
 
 
-        <!-- =========================
+        <!--
+=========================
+
              FECHAMENTO
+
         ========================== -->
 
-        <div class="risks-gallery-footer">
+        <div
+class="risks-gallery-footer">
 
-    <div class="risks-gallery-footer-icon">
+    <div
+class="risks-gallery-footer-icon">
+
         ✓
+
     </div>
 
 
-    <div class="risks-gallery-footer-content">
+    <div
+class="risks-gallery-footer-content">
 
         <strong>
-            E estes são apenas alguns dos modelos que você vai receber.
+
+            E estes
+são apenas alguns dos modelos que você vai receber.
+
         </strong>
 
 
         <span>
-            Dentro da coleção você encontra riscos de:
+
+            Dentro da
+coleção você encontra riscos de:
+
         </span>
 
 
-        <div class="risks-theme-list">
+        <div
+class="risks-theme-list">
 
             <span>🌸 Flores</span>
+
             <span>🍓 Frutas</span>
-            <span>☕ Café e Cozinha</span>
+
+            <span>☕ Café e
+Cozinha</span>
+
             <span>🐔 Galinhas</span>
+
             <span>🐾 Animais</span>
+
             <span>🍰 Doces</span>
+
             <span>🎄 Natal</span>
+
             <span>🐰 Páscoa</span>
 
         </div>
@@ -1080,53 +1856,87 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
     </div>
 
 </section>
-  
-  <!-- =========================================================
+
+  <!--
+=========================================================
+
      BÔNUS EXCLUSIVOS
-     ========================================================= -->
-<section class="bonuses bonuses-dark fade-in" id="bonus">
 
-    <div class="container">
+    ========================================================= -->
 
-        <div class="text-center bonuses-heading">
+<section class="bonuses bonuses-dark fade-in"
+id="bonus">
 
-            <span class="section-tag">
+    <div
+class="container">
+
+        <div
+class="text-center bonuses-heading">
+
+            <span
+class="section-tag">
+
                 Material Extra
+
             </span>
 
-            <h2 class="section-title">
-                Você também recebe
-                <span>4 bônus exclusivos</span>
+            <h2
+class="section-title">
+
+                Você
+também recebe
+
+                <span>4 bônus
+exclusivos</span>
+
             </h2>
 
-            <p class="section-subtitle">
+            <p
+class="section-subtitle">
+
                 Materiais complementares para facilitar sua pintura,
+
                 melhorar seus resultados e ajudar você a começar
-                com mais segurança.
+
+                com
+mais segurança.
+
             </p>
 
         </div>
 
-        <div class="bonuses-grid">
+        <div
+class="bonuses-grid">
 
-            
 
-            <!-- BÔNUS 1 -->
+
+            <!--
+BÔNUS 1 -->
+
             <article class="bonus-card">
 
                 <div class="bonus-image">
 
                     <span class="bonus-badge">
+
                         BÔNUS 1
+
                     </span>
 
                     <img
+
                         src="images/bonus-pintura.webp"
+
                         alt="Capa do guia Segredos da Pintura Perfeita"
+
                         loading="lazy"
-                                         decoding="async"
+
+                        decoding="async"
+
                         width="1000"
+
                         height="1000"
+
                     >
 
                 </div>
@@ -1136,7 +1946,10 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                     <h3>Videoaula: Pintura em Tecido do Zero</h3>
 
                     <p>
-                        Acompanhe na prática o passo a passo da pintura em tecido, do preparo ao acabamento, com explicações simples para quem está começando.
+
+                        Acompanhe na prática o passo a passo da pintura em tecido, do preparo ao
+acabamento, com explicações simples para quem está começando.
+
                     </p>
 
                 </div>
@@ -1144,22 +1957,33 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
             </article>
 
 
-           <!-- BÔNUS 2 -->
+           <!--
+BÔNUS 2 -->
+
             <article class="bonus-card">
 
                 <div class="bonus-image">
 
                     <span class="bonus-badge">
+
                         BÔNUS 2
+
                     </span>
 
                     <img
+
                         src="images/bonus-transferencia.webp"
+
                         alt="Capa do Guia de Transferência Perfeita"
+
                         loading="lazy"
-                                         decoding="async"
+
+                        decoding="async"
+
                         width="1000"
+
                         height="1000"
+
                     >
 
                 </div>
@@ -1169,32 +1993,47 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                     <h3>Guia de Transferência Perfeita</h3>
 
                     <p>
+
                         Aprenda a transferir seus riscos para o pano de prato
+
                         com papel carbono para tecido, evitando desenhos tortos,
+
                         falhas e marcas fora do lugar.
+
                     </p>
 
                 </div>
 
             </article>
-          
 
-            <!-- BÔNUS 3 -->
+
+            <!--
+BÔNUS 3 -->
+
             <article class="bonus-card">
 
                 <div class="bonus-image">
 
                     <span class="bonus-badge">
+
                         BÔNUS 3
+
                     </span>
 
                     <img
+
                         src="images/bonus-cores.webp"
+
                         alt="Capa do Guia de Combinação de Cores"
+
                         loading="lazy"
-                                         decoding="async"
+
+                        decoding="async"
+
                         width="1000"
+
                         height="1000"
+
                     >
 
                 </div>
@@ -1204,31 +2043,46 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                     <h3>Guia de Combinação de Cores</h3>
 
                     <p>
+
                         Receba sugestões de paletas harmoniosas para escolher
+
                         suas tintas com mais facilidade e criar pinturas
+
                         ainda mais bonitas.
+
                     </p>
 
                 </div>
 
             </article>
 
-            <!-- BÔNUS 4 -->
+            <!--
+BÔNUS 4 -->
+
             <article class="bonus-card">
 
                 <div class="bonus-image">
 
                     <span class="bonus-badge">
+
                         BÔNUS 4
+
                     </span>
 
                     <img
+
                         src="images/bonus-vendas.webp"
+
                         alt="Capa do guia Primeiros Passos para Vender suas Peças"
+
                         loading="lazy"
-                                         decoding="async"
+
+                        decoding="async"
+
                         width="1000"
+
                         height="1000"
+
                     >
 
                 </div>
@@ -1238,8 +2092,11 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                     <h3>Primeiros Passos para Vender suas Peças</h3>
 
                     <p>
+
                         Aprenda como calcular preços, montar kits, divulgar
+
                         seus trabalhos e conquistar seus primeiros clientes.
+
                     </p>
 
                 </div>
@@ -1248,22 +2105,34 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
         </div>
 
-        <!-- Informação final -->
-        <div class="bonuses-summary">
+        <!--
+Informação final -->
 
-            <div class="bonuses-summary-icon" aria-hidden="true">
+        <div
+class="bonuses-summary">
+
+            <div
+class="bonuses-summary-icon" aria-hidden="true">
+
                 ✓
+
             </div>
 
-            <div class="bonuses-summary-text">
+            <div
+class="bonuses-summary-text">
 
                 <strong>
+
                     Todos os bônus estão incluídos na coleção.
+
                 </strong>
 
                 <span>
+
                     Você recebe os 120 riscos e os quatro materiais extras
+
                     sem pagar nada a mais.
+
                 </span>
 
             </div>
@@ -1273,52 +2142,86 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
     </div>
 
 </section>
-  
-  
-<!-- =========================================================
-     COMO TRANSFERIR O RISCO PARA O TECIDO
-     ========================================================= -->
-<section class="transfer-process bg-white fade-in" id="como-funciona">
 
-    <div class="container">
+    <!-- =========================================================
 
-        <div class="text-center transfer-process-heading">
+     COMO TRANSFERIR O
+RISCO PARA O TECIDO
 
-            <span class="section-tag">
+    ========================================================= -->
+
+<section class="transfer-process bg-white
+fade-in" id="como-funciona">
+
+    <div
+class="container">
+
+        <div
+class="text-center transfer-process-heading">
+
+            <span
+class="section-tag">
+
                 Simples e rápido
+
             </span>
 
-            <h2 class="section-title">
-                Agora veja como é simples passar qualquer risco para o
+            <h2
+class="section-title">
+
+                Agora
+veja como é simples passar qualquer risco para o
+
                 <span>pano de prato</span>
+
             </h2>
 
-            <p class="section-subtitle">
-                Você não precisa saber desenhar. Depois de imprimir o modelo,
-                basta usar <strong>papel carbono próprio para tecido</strong>
-                para passar as linhas ao pano antes de começar a pintura.
+            <p
+class="section-subtitle">
+
+                Você
+não precisa saber desenhar. Depois de imprimir o modelo,
+
+                basta usar <strong>papel
+carbono próprio para tecido</strong>
+
+                para
+passar as linhas ao pano antes de começar a pintura.
+
             </p>
 
         </div>
 
-        <div class="transfer-process-grid">
+        <div
+class="transfer-process-grid">
 
-            <!-- ETAPA 1 -->
+            <!--
+ETAPA 1 -->
+
             <article class="transfer-process-card">
 
                 <div class="transfer-process-image">
 
                     <span class="transfer-process-number">
+
                         01
+
                     </span>
 
                     <img
+
                         src="images/transferencia-01.webp"
+
                         alt="Risco impresso em uma folha A4"
+
                         loading="lazy"
-                                         decoding="async"
+
+                        decoding="async"
+
                         width="900"
+
                         height="900"
+
                     >
 
                 </div>
@@ -1328,34 +2231,52 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                     <h3>Imprima o risco</h3>
 
                     <p>
-                        Escolha um dos 120 modelos e imprima o desenho
+
+                        Escolha um dos 120 modelos e
+imprima o desenho
+
                         em uma folha A4.
+
                     </p>
 
                 </div>
 
             </article>
 
-            <!-- ETAPA 2 -->
+            <!--
+ETAPA 2 -->
+
             <article class="transfer-process-card transfer-process-card-highlight">
 
                 <div class="transfer-process-image">
 
                     <span class="transfer-process-number">
+
                         02
+
                     </span>
 
                     <span class="transfer-process-badge">
+
                         PAPEL CARBONO PARA TECIDO
+
                     </span>
 
                     <img
+
                         src="images/transferencia-02.webp"
-                        alt="Papel carbono próprio para tecido posicionado sobre o pano de prato"
+
+                        alt="Papel carbono próprio para tecido posicionado sobre o pano de
+prato"
+
                         loading="lazy"
-                                         decoding="async"
+
+                        decoding="async"
+
                         width="900"
+
                         height="900"
+
                     >
 
                 </div>
@@ -1365,31 +2286,47 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                     <h3>Posicione o papel carbono</h3>
 
                     <p>
+
                         Coloque o <strong>papel carbono próprio para tecido</strong>
+
                         sobre o pano, com o lado que transfere a marca voltado
+
                         para o tecido.
+
                     </p>
 
                 </div>
 
             </article>
 
-            <!-- ETAPA 3 -->
+            <!--
+ETAPA 3 -->
+
             <article class="transfer-process-card">
 
                 <div class="transfer-process-image">
 
                     <span class="transfer-process-number">
+
                         03
+
                     </span>
 
                     <img
+
                         src="images/transferencia-03.webp"
-                        alt="Risco impresso posicionado sobre o papel carbono e o pano de prato"
+
+                        alt="Risco impresso posicionado sobre o papel carbono e o pano de
+prato"
+
                         loading="lazy"
-                                         decoding="async"
+
+                        decoding="async"
+
                         width="900"
+
                         height="900"
+
                     >
 
                 </div>
@@ -1399,30 +2336,46 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                     <h3>Coloque o risco por cima</h3>
 
                     <p>
-                        Posicione a folha impressa sobre o carbono e prenda
+
+                        Posicione a folha impressa sobre o
+carbono e prenda
+
                         as extremidades para o desenho não sair do lugar.
+
                     </p>
 
                 </div>
 
             </article>
 
-            <!-- ETAPA 4 -->
+            <!--
+ETAPA 4 -->
+
             <article class="transfer-process-card">
 
                 <div class="transfer-process-image">
 
                     <span class="transfer-process-number">
+
                         04
+
                     </span>
 
                     <img
+
                         src="images/transferencia-04.webp"
-                        alt="Pessoa contornando o risco com lápis para transferir o desenho ao tecido"
+
+                        alt="Pessoa contornando o risco com lápis para transferir o desenho
+ao tecido"
+
                         loading="lazy"
-                                         decoding="async"
+
+                        decoding="async"
+
                         width="900"
+
                         height="900"
+
                     >
 
                 </div>
@@ -1432,30 +2385,45 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                     <h3>Contorne as linhas</h3>
 
                     <p>
+
                         Passe um lápis ou uma ponta firme sobre as linhas
+
                         do desenho para transferir o contorno ao pano.
+
                     </p>
 
                 </div>
 
             </article>
 
-            <!-- ETAPA 5 -->
+            <!--
+ETAPA 5 -->
+
             <article class="transfer-process-card">
 
                 <div class="transfer-process-image">
 
                     <span class="transfer-process-number">
+
                         05
+
                     </span>
 
                     <img
+
                         src="images/transferencia-05.webp"
-                        alt="Desenho transferido para o pano de prato pronto para começar a pintura"
+
+                        alt="Desenho transferido para o pano de prato pronto para começar a
+pintura"
+
                         loading="lazy"
-                                         decoding="async"
+
+                        decoding="async"
+
                         width="900"
+
                         height="900"
+
                     >
 
                 </div>
@@ -1465,8 +2433,11 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                     <h3>Retire os papéis e pinte</h3>
 
                     <p>
+
                         Retire a folha e o carbono. O desenho ficará marcado
+
                         no tecido, pronto para receber a pintura.
+
                     </p>
 
                 </div>
@@ -1475,22 +2446,36 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
         </div>
 
-        <div class="transfer-process-summary">
+        <div
+class="transfer-process-summary">
 
-            <div class="transfer-process-summary-icon" aria-hidden="true">
+            <div
+class="transfer-process-summary-icon"
+aria-hidden="true">
+
                 ✓
+
             </div>
 
-            <div class="transfer-process-summary-content">
+            <div
+class="transfer-process-summary-content">
 
                 <strong>
-                    O Guia de Transferência está incluído na sua compra.
+
+                    O
+Guia de Transferência está incluído na sua compra.
+
                 </strong>
 
                 <p>
+
                     Você receberá orientações para utilizar o papel carbono
-                    para tecido e transferir os riscos, mesmo que nunca tenha
+
+                    para tecido e transferir os riscos, mesmo
+que nunca tenha
+
                     feito esse processo antes.
+
                 </p>
 
             </div>
@@ -1503,88 +2488,159 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
 
 
-  <!-- =========================================================
-     GARANTIA DE 7 DIAS
-     ========================================================= -->
-<section class="guarantee-section fade-in" id="garantia">
+  <!--
+=========================================================
 
-    <div class="container">
+     GARANTIA DE 7
+DIAS
 
-        <div class="guarantee-wrapper">
+    ========================================================= -->
 
-            <!-- Selo principal -->
-            <div class="guarantee-seal" aria-hidden="true">
+<section class="guarantee-section fade-in"
+id="garantia">
+
+    <div
+class="container">
+
+        <div
+class="guarantee-wrapper">
+
+            <!--
+Selo principal -->
+
+            <div
+class="guarantee-seal" aria-hidden="true">
 
                 <div class="guarantee-seal-icon">
+
                     <svg
+
                         xmlns="http://www.w3.org/2000/svg"
+
                         width="54"
+
                         height="54"
+
                         viewBox="0 0 24 24"
+
                         fill="none"
+
                         stroke="currentColor"
+
                         stroke-width="1.7"
+
                         stroke-linecap="round"
+
                         stroke-linejoin="round"
+
                     >
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        <path d="m9 12 2 2 4-4"></path>
+
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8
+10z"></path>
+
+                        <path d="m9 12 2 2
+4-4"></path>
+
                     </svg>
+
                 </div>
 
                 <span class="guarantee-seal-label">
+
                     GARANTIA
+
                 </span>
 
                 <strong class="guarantee-seal-days">
-                    7 DIAS
+
+                    7
+DIAS
+
                 </strong>
 
                 <span class="guarantee-seal-bottom">
+
                     PARA AVALIAR
+
                 </span>
 
             </div>
 
-            <!-- Conteúdo principal -->
-            <div class="guarantee-content">
+            <!--
+Conteúdo principal -->
+
+            <div
+class="guarantee-content">
 
                 <span class="section-tag">
+
                     Compra protegida
+
                 </span>
 
-                <h2 class="section-title">
+                <h2
+class="section-title">
+
                     Você tem 7 dias para
+
                     <span>avaliar o material</span>
+
                 </h2>
 
-                <p class="guarantee-description">
+                <p
+class="guarantee-description">
+
                     Compre hoje, acesse os arquivos e conheça os riscos e bônus
+
                     incluídos na coleção. Caso o material não atenda às suas
+
                     expectativas, você poderá solicitar o reembolso dentro do
+
                     prazo e das condições da garantia.
+
                 </p>
 
-                <ul class="guarantee-checklist">
+                <ul
+class="guarantee-checklist">
 
                     <li>
-                        <span class="guarantee-check" aria-hidden="true">✓</span>
-                        <span>Acesse os 120 riscos após a confirmação do pagamento.</span>
+
+                        <span class="guarantee-check"
+aria-hidden="true">✓</span>
+
+                        <span>Acesse os 120 riscos após a confirmação do
+pagamento.</span>
+
                     </li>
 
                     <li>
-                        <span class="guarantee-check" aria-hidden="true">✓</span>
-                        <span>Confira os arquivos e os quatro bônus incluídos.</span>
+
+                        <span class="guarantee-check"
+aria-hidden="true">✓</span>
+
+                        <span>Confira os arquivos e os quatro bônus
+incluídos.</span>
+
                     </li>
 
                     <li>
-                        <span class="guarantee-check" aria-hidden="true">✓</span>
-                        <span>Avalie se o material atende ao que você procura.</span>
+
+                        <span class="guarantee-check"
+aria-hidden="true">✓</span>
+
+                        <span>Avalie se o material atende ao que você
+procura.</span>
+
                     </li>
 
                     <li>
-                        <span class="guarantee-check" aria-hidden="true">✓</span>
-                        <span>Solicite o reembolso dentro das condições da garantia.</span>
+
+                        <span class="guarantee-check"
+aria-hidden="true">✓</span>
+
+                        <span>Solicite o reembolso dentro das condições da
+garantia.</span>
+
                     </li>
 
                 </ul>
@@ -1594,31 +2650,54 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
         </div>
 
-        <!-- Informações secundárias -->
-        <div class="guarantee-features">
+        <!--
+Informações secundárias -->
+
+        <div
+class="guarantee-features">
 
             <article class="guarantee-feature">
 
                 <div class="guarantee-feature-icon">
+
                     <svg
+
                         xmlns="http://www.w3.org/2000/svg"
+
                         width="25"
+
                         height="25"
+
                         viewBox="0 0 24 24"
+
                         fill="none"
+
                         stroke="currentColor"
+
                         stroke-width="1.8"
+
                         stroke-linecap="round"
+
                         stroke-linejoin="round"
+
                     >
-                        <rect x="3" y="11" width="18" height="10" rx="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+
+                        <rect x="3" y="11" width="18"
+height="10" rx="2"></rect>
+
+                        <path d="M7 11V7a5 5 0 0 1 10
+0v4"></path>
+
                     </svg>
+
                 </div>
 
                 <div>
+
                     <h3>Pagamento seguro</h3>
+
                     <p>O pagamento é processado em ambiente protegido.</p>
+
                 </div>
 
             </article>
@@ -1626,26 +2705,45 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
             <article class="guarantee-feature">
 
                 <div class="guarantee-feature-icon">
+
                     <svg
+
                         xmlns="http://www.w3.org/2000/svg"
+
                         width="25"
+
                         height="25"
+
                         viewBox="0 0 24 24"
+
                         fill="none"
+
                         stroke="currentColor"
+
                         stroke-width="1.8"
+
                         stroke-linecap="round"
+
                         stroke-linejoin="round"
+
                     >
+
                         <path d="M12 3v12"></path>
+
                         <path d="m7 10 5 5 5-5"></path>
+
                         <path d="M5 21h14"></path>
+
                     </svg>
+
                 </div>
 
                 <div>
+
                     <h3>Acesso imediato</h3>
+
                     <p>Receba o acesso após a confirmação do pagamento.</p>
+
                 </div>
 
             </article>
@@ -1653,27 +2751,47 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
             <article class="guarantee-feature">
 
                 <div class="guarantee-feature-icon">
+
                     <svg
+
                         xmlns="http://www.w3.org/2000/svg"
+
                         width="25"
+
                         height="25"
+
                         viewBox="0 0 24 24"
+
                         fill="none"
+
                         stroke="currentColor"
+
                         stroke-width="1.8"
+
                         stroke-linecap="round"
+
                         stroke-linejoin="round"
+
                     >
+
                         <path d="M4 4h16v16H4z"></path>
+
                         <path d="M8 8h8"></path>
+
                         <path d="M8 12h5"></path>
+
                         <path d="M8 16h3"></path>
+
                     </svg>
+
                 </div>
 
                 <div>
+
                     <h3>Produto digital</h3>
+
                     <p>Os arquivos são entregues em formato PDF.</p>
+
                 </div>
 
             </article>
@@ -1681,26 +2799,48 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
             <article class="guarantee-feature">
 
                 <div class="guarantee-feature-icon">
+
                     <svg
+
                         xmlns="http://www.w3.org/2000/svg"
+
                         width="25"
+
                         height="25"
+
                         viewBox="0 0 24 24"
+
                         fill="none"
+
                         stroke="currentColor"
+
                         stroke-width="1.8"
+
                         stroke-linecap="round"
+
                         stroke-linejoin="round"
+
                     >
+
                         <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                        <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"></path>
-                        <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+
+                        <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1
+2-2h3z"></path>
+
+                        <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0
+0-2-2H3z"></path>
+
                     </svg>
+
                 </div>
 
                 <div>
+
                     <h3>Suporte ao cliente</h3>
-                    <p>Você poderá solicitar ajuda em caso de dúvidas de acesso.</p>
+
+                    <p>Você poderá solicitar ajuda em caso de dúvidas de
+acesso.</p>
+
                 </div>
 
             </article>
@@ -1711,400 +2851,797 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
 </section>
 
-  <!-- 9. FINAL CTA SECTION -->
-<section class="final-cta bg-default fade-in" id="oferta">
-    <div class="container">
-        <div class="offer-box">
+      <!-- 9. FINAL CTA
+SECTION -->
 
-            <h2 class="final-cta-title">
-                Comece a pintar hoje mesmo
+<section class="final-cta bg-default fade-in"
+id="oferta">
+
+    <div
+class="container">
+
+        <div
+class="offer-box">
+
+            <h2
+class="final-cta-title">
+
+                Comece
+a pintar hoje mesmo
+
             </h2>
 
-            <p class="section-subtitle">
+            <p
+class="section-subtitle">
+
                 <strong>
+
                     Comece mesmo sem experiência: receba os riscos prontos,
-                    a videoaula e os bônus para dar seus primeiros passos.
+
+                    a
+videoaula e os bônus para dar seus primeiros passos.
+
                 </strong>
+
             </p>
 
-            <ul class="hero-benefits">
+            <ul
+class="hero-benefits">
 
                 <li>
+
                     <span class="benefit-icon" aria-hidden="true">📄</span>
 
                     <span class="benefit-text">
+
                         <strong>120 riscos em tamanho real</strong>,
-                        prontos para imprimir em diversos temas.
+
+                        prontos para imprimir em
+diversos temas.
+
                     </span>
+
                 </li>
 
                 <li>
+
                     <span class="benefit-icon" aria-hidden="true">🎨</span>
 
                     <span class="benefit-text">
+
                         <strong>Não precisa saber desenhar:</strong>
+
                         imprima, transfira para o tecido e comece a pintar.
+
                     </span>
+
                 </li>
 
                 <li>
+
                     <span class="benefit-icon" aria-hidden="true">🖨️</span>
 
                     <span class="benefit-text">
+
                         <strong>Imprima em casa</strong>
+
                         usando uma impressora comum.
+
                     </span>
+
                 </li>
 
                 <li>
+
                     <span class="benefit-icon" aria-hidden="true">♾️</span>
 
                     <span class="benefit-text">
+
                         <strong>Use quantas vezes quiser</strong>,
+
                         sem limite de impressões.
+
                     </span>
+
                 </li>
 
                 <li>
+
                     <span class="benefit-icon" aria-hidden="true">❤️</span>
 
                     <span class="benefit-text">
+
                         <strong>Crie peças lindas</strong>
+
                         para decorar, presentear ou começar a vender.
+
                     </span>
+
                 </li>
 
                 <li>
+
                     <span class="benefit-icon" aria-hidden="true">⚡</span>
 
-                    <span class="benefit-text">
+                    <span
+class="benefit-text">
+
                         <strong>Acesso imediato</strong>
+
                         após a confirmação da compra.
+
                     </span>
+
                 </li>
 
                 <!-- VIDEOAULA - DESTAQUE PRINCIPAL -->
-                <li class="bonus-benefit bonus-benefit-highlight">
+
+                <li
+class="bonus-benefit bonus-benefit-highlight">
+
                     <span class="benefit-icon" aria-hidden="true">▶️</span>
 
                     <span class="benefit-text">
-                        <strong>+ Videoaula passo a passo para iniciantes:</strong>
+
+                        <strong>+ Videoaula passo
+a passo para iniciantes:</strong>
+
                         veja na prática como pintar em tecido, do início ao acabamento,
+
                         mesmo que nunca tenha pintado antes.
+
                     </span>
+
                 </li>
 
                 <!-- DEMAIS BÔNUS -->
+
                 <li>
+
                     <span class="benefit-icon" aria-hidden="true">🎁</span>
 
                     <span class="benefit-text">
+
                         <strong>+ 3 bônus grátis:</strong>
-                        Guia de Transferência Perfeita, Guia de Combinação de Cores e Primeiros Passos para Vender suas Peças.
+
+                        Guia de Transferência Perfeita, Guia de Combinação de Cores e Primeiros
+Passos para Vender suas Peças.
+
                     </span>
+
                 </li>
 
             </ul>
 
-            
-<!-- OFERTA SURPRESA -->
-<div class="surprise-offer-intro surprise-offer-intro-final">
-    <span class="surprise-offer-kicker">🎁 ANTES DE IR EMBORA...</span>
-    <strong>Sua oferta especial ainda está disponível.</strong>
-    <span class="surprise-offer-copy">Escolha um dos envelopes e descubra o desconto disponível para sua compra de hoje.</span>
-</div>
-<div class="hero-buttons">
-    <button type="button" class="btn-primary btn-large js-open-discount-game">DESCOBRIR MEU DESCONTO</button>
-</div>
-<div class="hero-info final-offer-info surprise-offer-info">Leva menos de 10 segundos • Compra segura</div>
 
-<!-- INFORMAÇÕES ABAIXO DO BOTÃO -->
-            <div class="hero-info final-offer-info">
-                Compra segura • Acesso imediato
+<!-- PREÇO -->
+
+<div
+
+    class="hero-price"
+
+    style="
+
+        text-align:
+center;
+
+        margin: 20px 0
+12px;
+
+    "
+
+>
+
+    <div
+
+        style="
+
+            font-size:
+14px;
+
+            margin-bottom: 4px;
+
+        "
+
+    >
+
+        Comece hoje
+por apenas
+
+    </div>
+
+    <!-- PREÇO
+ORIGINAL -->
+
+    <div
+
+        style="
+
+            font-size:
+18px;
+
+            font-weight: 500;
+
+            line-height: 1.1;
+
+            text-decoration: line-through;
+
+            opacity:
+0.6;
+
+            margin-bottom: 4px;
+
+        "
+
+    >
+
+        R$ 47,90
+
+    </div>
+
+    <!-- PREÇO
+PROMOCIONAL -->
+
+    <div
+
+        style="
+
+            font-size:
+32px;
+
+            font-weight: 700;
+
+            line-height: 1.1;
+
+        "
+
+    >
+
+        R$ 27,90
+
+    </div>
+
+</div>
+
+
+            <!--
+BOTÃO -->
+
+            <div
+class="hero-buttons">
+
+                <a
+
+                    href="https://pay.hotmart.com/S106956139O?checkoutMode=10"
+
+                    class="btn-primary btn-large"
+
+                >
+
+                    QUERO COMEÇAR A PINTAR
+
+                </a>
+
+            </div>
+
+            <!--
+INFORMAÇÕES ABAIXO DO BOTÃO -->
+
+            <div
+class="hero-info final-offer-info">
+
+                Compra
+segura • Acesso imediato
+
             </div>
 
         </div>
+
     </div>
+
 </section>
 
 
 
-  <!-- 11. FAQ SECTION -->
-  <section class="faq bg-white fade-in" id="duvidas">
-    <div class="container">
-      <div class="text-center">
-        <span class="section-tag">Tire suas Dúvidas</span>
-        <h2 class="section-title">Perguntas <span>Frequentes</span></h2>
-        <p class="section-subtitle">Respondemos as dúvidas mais comuns sobre o produto.</p>
+  <!-- 11. FAQ
+SECTION -->
+
+  <section
+class="faq bg-white fade-in" id="duvidas">
+
+    <div
+class="container">
+
+      <div
+class="text-center">
+
+        <span
+class="section-tag">Tire suas Dúvidas</span>
+
+        <h2
+class="section-title">Perguntas
+<span>Frequentes</span></h2>
+
+        <p
+class="section-subtitle">Respondemos as dúvidas mais comuns sobre
+o produto.</p>
+
       </div>
 
-      <div class="faq-list">
-        <!-- FAQ 1 -->
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
+      <div
+class="faq-list">
+
+        <!-- FAQ 1
+-->
+
+        <div
+class="faq-item">
+
+          <button
+class="faq-question" aria-expanded="false">
+
             <span>É um produto físico?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+
+            <svg
+xmlns="http://www.w3.org/2000/svg" width="20"
+height="20" viewBox="0 0 24 24" fill="none"
+stroke="currentColor" stroke-width="2"
+stroke-linecap="round" stroke-linejoin="round"><polyline
+points="6 9 12 15 18 9"></polyline></svg>
+
           </button>
-          <div class="faq-answer">
-            <p>Não. Este é um produto 100% digital. Você receberá os arquivos em PDF para download imediato após a confirmação do pagamento. Nada será enviado pelos correios.</p>
+
+          <div
+class="faq-answer">
+
+            <p>Não. Este é um produto 100% digital. Você receberá os arquivos
+em PDF para download imediato após a confirmação do pagamento. Nada será
+enviado pelos correios.</p>
+
           </div>
+
         </div>
-        <!-- FAQ 2 -->
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
+
+        <!-- FAQ 2
+-->
+
+        <div
+class="faq-item">
+
+          <button
+class="faq-question" aria-expanded="false">
+
             <span>Como recebo os arquivos?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+width="20" height="20" viewBox="0 0 24 24"
+fill="none" stroke="currentColor"
+stroke-width="2" stroke-linecap="round"
+stroke-linejoin="round"><polyline points="6 9 12 15 18
+9"></polyline></svg>
+
           </button>
-          <div class="faq-answer">
-            <p>Após a confirmação do pagamento, você receberá um e-mail com o link para download imediato de todos os 120 riscos em PDF.</p>
+
+          <div
+class="faq-answer">
+
+            <p>Após a confirmação do pagamento, você receberá um e-mail com o
+link para download imediato de todos os 120 riscos em PDF.</p>
+
           </div>
+
         </div>
-        <!-- FAQ 3 -->
+
+        <!-- FAQ 3
+-->
+
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
+
+          <button
+class="faq-question" aria-expanded="false">
+
             <span>Posso imprimir quantas vezes quiser?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+
+            <svg
+xmlns="http://www.w3.org/2000/svg" width="20"
+height="20" viewBox="0 0 24 24" fill="none"
+stroke="currentColor" stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"><polyline points="6 9 12 15 18
+9"></polyline></svg>
+
           </button>
-          <div class="faq-answer">
-            <p>Sim! Após o download, os arquivos são seus para sempre. Você pode imprimir quantas vezes precisar, sem nenhum custo adicional.</p>
+
+          <div
+class="faq-answer">
+
+            <p>Sim! Após o download, os arquivos são seus para sempre. Você
+pode imprimir quantas vezes precisar, sem nenhum custo adicional.</p>
+
           </div>
+
         </div>
-        <!-- FAQ 4 -->
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
+
+        <!-- FAQ 4
+-->
+
+        <div
+class="faq-item">
+
+          <button
+class="faq-question" aria-expanded="false">
+
             <span>Preciso de impressora especial?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+
+            <svg
+xmlns="http://www.w3.org/2000/svg" width="20"
+height="20" viewBox="0 0 24 24" fill="none"
+stroke="currentColor" stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"><polyline points="6 9 12 15 18
+9"></polyline></svg>
+
           </button>
-          <div class="faq-answer">
-            <p>Não. Os riscos podem ser impressos em qualquer impressora comum, seja jato de tinta ou laser, em papel A4 comum.</p>
+
+          <div
+class="faq-answer">
+
+            <p>Não. Os riscos podem ser impressos em qualquer impressora
+comum, seja jato de tinta ou laser, em papel A4 comum.</p>
+
           </div>
+
         </div>
-        <!-- FAQ 5 -->
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
+
+        <!-- FAQ 5
+-->
+
+        <div
+class="faq-item">
+
+          <button
+class="faq-question" aria-expanded="false">
+
             <span>Como faço a transferência do risco para o pano?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+
+            <svg
+xmlns="http://www.w3.org/2000/svg" width="20"
+height="20" viewBox="0 0 24 24" fill="none"
+stroke="currentColor" stroke-width="2" viewBox="0 0 24
+24" fill="none" stroke="currentColor"
+stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline
+points="6 9 12 15 18 9"></polyline></svg>
+
           </button>
-          <div class="faq-answer">
-            <p>Basta imprimir o risco, posicionar o papel carbono sobre o pano de prato, colocar o risco por cima e passar o lápis ou boleador sobre o desenho. É muito simples!</p>
+
+          <div
+class="faq-answer">
+
+            <p>Basta imprimir o risco, posicionar o papel carbono sobre o pano
+de prato, colocar o risco por cima e passar o lápis ou boleador sobre o
+desenho. É muito simples!</p>
+
           </div>
+
         </div>
-        <!-- FAQ 6 -->
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
+
+        <!-- FAQ 6
+-->
+
+        <div
+class="faq-item">
+
+          <button
+class="faq-question" aria-expanded="false">
+
             <span>Os arquivos ficam disponíveis imediatamente?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+
+            <svg
+xmlns="http://www.w3.org/2000/svg" width="20"
+height="20" viewBox="0 0 24 24" fill="none"
+stroke="currentColor" stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"><polyline points="6 9 12 15 18
+9"></polyline></svg>
+
           </button>
-          <div class="faq-answer">
-            <p>Sim! O acesso é imediato após a confirmação do pagamento. Você já pode baixar e começar a usar na hora.</p>
+
+          <div
+class="faq-answer">
+
+            <p>Sim! O acesso é imediato após a confirmação do pagamento. Você
+já pode baixar e começar a usar na hora.</p>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
+
   </section>
 
+    <!-- FOOTER -->
 
-<!-- FOOTER -->
 <footer class="footer">
 
-  <div class="footer-content">
+  <div
+class="footer-content">
 
-    <div class="footer-brand">
-      <h3 class="footer-brand-name">Pintura em Pano de Prato</h3>
+    <div
+class="footer-brand">
+
+      <h3
+class="footer-brand-name">Pintura em Pano de Prato</h3>
 
       <p>
-        120 riscos exclusivos para pintura em pano de prato.
-        Arquivos digitais em PDF prontos para imprimir e usar.
+
+        120 riscos
+exclusivos para pintura em pano de prato.
+
+        Arquivos
+digitais em PDF prontos para imprimir e usar.
+
       </p>
+
     </div>
 
-    <div class="footer-links">
+    <div
+class="footer-links">
 
-      <div class="footer-links-group">
+      <div
+class="footer-links-group">
+
         <h4>Links</h4>
 
         <ul>
+
           <li>
-            <a href="#inicio">Início</a>
+
+            <a
+href="#inicio">Início</a>
+
           </li>
 
           <li>
-            <a href="#duvidas">Dúvidas</a>
+
+            <a
+href="#duvidas">Dúvidas</a>
+
           </li>
+
         </ul>
+
       </div>
 
-      <div class="footer-links-group">
+      <div
+class="footer-links-group">
+
         <h4>Legal</h4>
 
         <ul>
+
           <li>
-            <a href="#" id="openPrivacy">
-              Política de Privacidade
+
+            <a
+href="#" id="openPrivacy">
+
+              Política
+de Privacidade
+
             </a>
+
           </li>
 
           <li>
-            <a href="#" id="openTerms">
-              Termos de Uso
+
+            <a
+href="#" id="openTerms">
+
+              Termos
+de Uso
+
             </a>
+
           </li>
 
           <li>
-            <a href="mailto:pinturaempanodeprato@outlook.com">
+
+            <a
+href="mailto:pinturaempanodeprato@outlook.com">
+
               Contato
+
             </a>
+
           </li>
+
         </ul>
+
       </div>
 
     </div>
 
   </div>
 
-  <div class="footer-bottom">
+  <div
+class="footer-bottom">
+
     <p>
-      &copy; 2026 Pintura em Pano de Prato. Todos os direitos reservados.
+
+      &copy; 2026
+Pintura em Pano de Prato. Todos os direitos reservados.
+
     </p>
+
   </div>
 
 </footer>
 
 
-<!-- MODAL - JOGO DOS ENVELOPES / OFERTA ESPECIAL -->
-<div id="discountGameModal" class="discount-game-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="discountGameTitle">
-    <div class="discount-game-card" role="document">
-        <button type="button" class="discount-game-close" aria-label="Fechar oferta">&times;</button>
+<!--
+=========================================================
 
-        <div class="discount-game-step discount-game-step-pick">
-            <span class="discount-game-eyebrow">OFERTA ESPECIAL DE HOJE</span>
-            <h2 id="discountGameTitle">Escolha seu envelope</h2>
-            <p>Escolha um dos 3 envelopes e revele a condição especial disponível para sua compra hoje.</p>
+     MODAL - TERMOS DE
+USO
 
-            <div class="discount-envelopes" aria-label="Escolha um envelope">
-                <button type="button" class="discount-envelope" data-envelope="1" aria-label="Escolher envelope 1">
-                    <span class="envelope-visual" aria-hidden="true"><span class="envelope-flap"></span><span class="envelope-seal">1</span></span>
-                    <span class="envelope-label">Envelope 1</span>
-                </button>
-                <button type="button" class="discount-envelope" data-envelope="2" aria-label="Escolher envelope 2">
-                    <span class="envelope-visual" aria-hidden="true"><span class="envelope-flap"></span><span class="envelope-seal">2</span></span>
-                    <span class="envelope-label">Envelope 2</span>
-                </button>
-                <button type="button" class="discount-envelope" data-envelope="3" aria-label="Escolher envelope 3">
-                    <span class="envelope-visual" aria-hidden="true"><span class="envelope-flap"></span><span class="envelope-seal">3</span></span>
-                    <span class="envelope-label">Envelope 3</span>
-                </button>
-            </div>
-
-            <small class="discount-game-note">Ao escolher um envelope, você desbloqueia a oferta promocional desta página.</small>
-        </div>
-
-        <div class="discount-game-step discount-game-step-result" hidden>
-            <span class="discount-game-eyebrow">🎉 VOCÊ ENCONTROU!</span>
-            <h2>44% DE DESCONTO</h2>
-            <p>Seu envelope revelou a melhor condição da oferta de hoje.</p>
-
-            <div class="discount-reveal-grid" data-winning-discount="44" data-secondary-discount="22" data-regular-price="49.90" data-offer-price="27.94">
-                <div class="discount-reveal-item" data-result="1"><span>Envelope 1</span><strong></strong></div>
-                <div class="discount-reveal-item" data-result="2"><span>Envelope 2</span><strong></strong></div>
-                <div class="discount-reveal-item" data-result="3"><span>Envelope 3</span><strong></strong></div>
-            </div>
-
-            <div class="discount-price-box">
-                <span>De <s>R$ 49,90</s> por apenas</span>
-                <strong>R$ 27,94</strong>
-            </div>
-
-            <a id="discountCheckoutLink" href="https://pay.hotmart.com/S106956139O?checkoutMode=10" class="btn-primary btn-large discount-checkout-btn">QUERO APROVEITAR MEU DESCONTO</a>
-            <div class="discount-secure">Compra segura • Acesso imediato • Garantia de 7 dias</div>
-        </div>
-    </div>
-</div></div>
-
-<!-- =========================================================
-     MODAL - TERMOS DE USO
-========================================================= -->
+=========================================================
+-->
 
 <div
+
   id="termsModal"
+
   class="legal-modal"
+
   aria-hidden="true"
+
   role="dialog"
+
   aria-modal="true"
+
   aria-labelledby="termsTitle"
+
 >
 
-  <div class="legal-modal-content">
+  <div
+class="legal-modal-content">
 
     <button
+
       class="legal-modal-close"
+
       id="closeTerms"
+
       type="button"
+
       aria-label="Fechar Termos de Uso"
+
     >
+
       &times;
+
     </button>
 
-    <h2 id="termsTitle">
+    <h2
+id="termsTitle">
+
       Termos de Uso
+
     </h2>
 
-    <div class="legal-modal-text">
+    <div
+class="legal-modal-text">
 
       <p>
-        Ao adquirir o produto digital
-        <strong>120 Riscos Exclusivos para Pintura em Pano de Prato</strong>,
-        você concorda com os termos apresentados abaixo.
+
+        Ao adquirir o
+produto digital
+
+        <strong>120 Riscos Exclusivos para Pintura em Pano de
+Prato</strong>,
+
+        você concorda
+com os termos apresentados abaixo.
+
       </p>
 
-      <h3>1. Produto Digital</h3>
+      <h3>1.
+Produto Digital</h3>
 
       <p>
-        Este produto consiste em arquivos digitais disponibilizados para
-        download após a confirmação do pagamento. Nenhum produto físico
+
+        Este produto
+consiste em arquivos digitais disponibilizados para
+
+        download após
+a confirmação do pagamento. Nenhum produto físico
+
         será enviado.
+
       </p>
 
-      <h3>2. Uso do Material</h3>
+      <h3>2. Uso
+do Material</h3>
 
       <p>
-        Os arquivos são destinados ao uso pessoal do comprador.
-        É permitido imprimir e utilizar os riscos para a criação
-        de peças artesanais.
+
+        Os arquivos
+são destinados ao uso pessoal do comprador.
+
+        É permitido
+imprimir e utilizar os riscos para a criação
+
+        de peças
+artesanais.
+
       </p>
 
-      <h3>3. Direitos Autorais</h3>
+      <h3>3.
+Direitos Autorais</h3>
 
       <p>
-        É proibido revender, compartilhar, distribuir, disponibilizar
-        ou reproduzir os arquivos digitais como produto digital,
-        seja de forma gratuita ou paga.
+
+        É proibido
+revender, compartilhar, distribuir, disponibilizar
+
+        ou reproduzir
+os arquivos digitais como produto digital,
+
+        seja de forma
+gratuita ou paga.
+
       </p>
 
-      <h3>4. Acesso ao Produto</h3>
+      <h3>4.
+Acesso ao Produto</h3>
 
       <p>
-        Após a confirmação do pagamento, o acesso ao produto será
+
+        Após a
+confirmação do pagamento, o acesso ao produto será
+
         disponibilizado conforme as instruções enviadas pela
-        plataforma de pagamento.
+
+        plataforma de
+pagamento.
+
       </p>
 
-      <h3>5. Resultados</h3>
+      <h3>5.
+Resultados</h3>
 
       <p>
-        Os resultados apresentados podem variar de acordo com
-        a experiência, os materiais e as técnicas utilizadas
-        por cada pessoa.
+
+        Os resultados
+apresentados podem variar de acordo com
+
+        a experiência,
+os materiais e as técnicas utilizadas
+
+        por cada
+pessoa.
+
       </p>
 
-      <h3>6. Suporte</h3>
+      <h3>6.
+Suporte</h3>
 
       <p>
-        Em caso de dúvidas sobre o acesso ao produto,
-        entre em contato pelo e-mail
+
+        Em caso de
+dúvidas sobre o acesso ao produto,
+
+        entre em
+contato pelo e-mail
+
         <a href="mailto:pinturaempanodeprato@outlook.com">
+
           pinturaempanodeprato@outlook.com
+
         </a>.
+
       </p>
 
     </div>
@@ -2114,91 +3651,175 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 </div>
 
 
-<!-- =========================================================
-     MODAL - POLÍTICA DE PRIVACIDADE
-========================================================= -->
+<!--
+=========================================================
+
+     MODAL - POLÍTICA
+DE PRIVACIDADE
+
+=========================================================
+-->
 
 <div
+
   id="privacyModal"
+
   class="legal-modal"
+
   aria-hidden="true"
+
   role="dialog"
+
   aria-modal="true"
+
   aria-labelledby="privacyTitle"
+
 >
 
-  <div class="legal-modal-content">
+  <div
+class="legal-modal-content">
 
     <button
+
       class="legal-modal-close"
+
       id="closePrivacy"
+
       type="button"
+
       aria-label="Fechar Política de Privacidade"
+
     >
+
       &times;
+
     </button>
 
-    <h2 id="privacyTitle">
-      Política de Privacidade
+    <h2
+id="privacyTitle">
+
+      Política de
+Privacidade
+
     </h2>
 
-    <div class="legal-modal-text">
+    <div
+class="legal-modal-text">
 
       <p>
-        Esta Política de Privacidade explica de forma geral como
-        as informações fornecidas pelos usuários podem ser utilizadas
-        durante a navegação e aquisição deste produto.
+
+        Esta Política
+de Privacidade explica de forma geral como
+
+        as informações
+fornecidas pelos usuários podem ser utilizadas
+
+        durante a
+navegação e aquisição deste produto.
+
       </p>
 
-      <h3>1. Informações Coletadas</h3>
+      <h3>1.
+Informações Coletadas</h3>
 
       <p>
-        Podemos receber informações fornecidas voluntariamente pelo
-        usuário durante o processo de compra, como nome, e-mail
-        e outras informações necessárias para processamento do pedido.
+
+        Podemos
+receber informações fornecidas voluntariamente pelo
+
+        usuário
+durante o processo de compra, como nome, e-mail
+
+        e outras
+informações necessárias para processamento do pedido.
+
       </p>
 
-      <h3>2. Uso das Informações</h3>
+      <h3>2. Uso
+das Informações</h3>
 
       <p>
-        As informações podem ser utilizadas para processar pedidos,
-        disponibilizar o acesso ao produto, prestar suporte e melhorar
-        a experiência do usuário.
+
+        As informações
+podem ser utilizadas para processar pedidos,
+
+        disponibilizar
+o acesso ao produto, prestar suporte e melhorar
+
+        a experiência
+do usuário.
+
       </p>
 
-      <h3>3. Pagamentos</h3>
+      <h3>3.
+Pagamentos</h3>
 
       <p>
-        Os pagamentos são processados pela plataforma responsável
-        pela transação. Não armazenamos diretamente os dados completos
-        do cartão de pagamento.
+
+        Os pagamentos
+são processados pela plataforma responsável
+
+        pela
+transação. Não armazenamos diretamente os dados completos
+
+        do cartão de
+pagamento.
+
       </p>
 
-      <h3>4. Compartilhamento</h3>
+      <h3>4.
+Compartilhamento</h3>
 
       <p>
-        As informações pessoais não são vendidas a terceiros.
-        Os dados podem ser compartilhados apenas quando necessário
-        para o funcionamento do serviço, processamento do pagamento
-        ou cumprimento de obrigações legais.
+
+        As informações
+pessoais não são vendidas a terceiros.
+
+        Os dados podem
+ser compartilhados apenas quando necessário
+
+        para o
+funcionamento do serviço, processamento do pagamento
+
+        ou cumprimento
+de obrigações legais.
+
       </p>
 
-      <h3>5. Cookies</h3>
+      <h3>5.
+Cookies</h3>
 
       <p>
-        Este site pode utilizar cookies e tecnologias semelhantes
-        para melhorar a navegação, analisar o desempenho e auxiliar
-        na personalização da experiência do usuário.
+
+        Este site pode
+utilizar cookies e tecnologias semelhantes
+
+        para melhorar
+a navegação, analisar o desempenho e auxiliar
+
+        na
+personalização da experiência do usuário.
+
       </p>
 
-      <h3>6. Contato</h3>
+      <h3>6.
+Contato</h3>
 
       <p>
-        Caso tenha dúvidas relacionadas à privacidade ou ao uso
-        de suas informações, entre em contato pelo e-mail
-        <a href="mailto:pinturaempanodeprato@outlook.com">
+
+        Caso tenha
+dúvidas relacionadas à privacidade ou ao uso
+
+        de suas
+informações, entre em contato pelo e-mail
+
+        <a
+href="mailto:pinturaempanodeprato@outlook.com">
+
           pinturaempanodeprato@outlook.com
+
         </a>.
+
       </p>
 
     </div>
@@ -2207,6 +3828,9 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
 </div>
 
-  <script src="script.js" defer></script>
+  <script
+src="script.js" defer></script>
+
 </body>
+
 </html>
