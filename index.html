@@ -393,7 +393,7 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
   <!-- RESTANTE DO SEU SITE CONTINUA AQUI -->
 
 <div class="promo-bar">
-    <span>OFERTA ESPECIAL • ÚLTIMAS HORAS</span>
+    <span><strong>🎁 OFERTA ESPECIAL DE HOJE</strong> <span class="promo-bar-separator">•</span> Revele seu desconto surpresa</span>
 </div>
 
 <!-- HERO -->
@@ -875,60 +875,16 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
 </ul>
 
-<!-- PREÇO -->
-<div
-    class="hero-price"
-    style="
-        text-align: center;
-        margin: 20px 0 12px;
-    "
->
-    <div
-        style="
-            font-size: 14px;
-            margin-bottom: 4px;
-        "
-    >
-        Comece hoje por apenas
-    </div>
-
-    <!-- PREÇO ORIGINAL -->
-    <div
-        style="
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 1.1;
-            text-decoration: line-through;
-            opacity: 0.6;
-            margin-bottom: 4px;
-        "
-    >
-        R$ 47,90
-    </div>
-
-    <!-- PREÇO PROMOCIONAL -->
-    <div
-        style="
-            font-size: 32px;
-            font-weight: 700;
-            line-height: 1.1;
-        "
-    >
-        R$ 27,90
-    </div>
+<!-- OFERTA SURPRESA -->
+<div class="surprise-offer-intro surprise-offer-intro-hero">
+    <span class="surprise-offer-kicker">🎁 UMA SURPRESA PARA VOCÊ</span>
+    <strong>Hoje sua compra pode ter uma condição especial.</strong>
+    <span class="surprise-offer-copy">Escolha um dos 3 envelopes e revele seu desconto.</span>
 </div>
-
-<!-- BOTÃO -->
 <div class="hero-buttons">
-
-    <a
-        href="https://pay.hotmart.com/S106956139O?checkoutMode=10"
-        class="btn-primary btn-large"
-    >
-        QUERO COMEÇAR A PINTAR
-    </a>
-
+    <button type="button" class="btn-primary btn-large js-open-discount-game">REVELAR MEU DESCONTO</button>
 </div>
+<div class="hero-info surprise-offer-info">Leva apenas alguns segundos • Compra segura</div>
 
 <!-- INFORMAÇÕES ABAIXO DO BOTÃO -->
 <div class="hero-info">
@@ -1851,61 +1807,18 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
             </ul>
 
             
-<!-- PREÇO -->
-<div
-    class="hero-price"
-    style="
-        text-align: center;
-        margin: 20px 0 12px;
-    "
->
-    <div
-        style="
-            font-size: 14px;
-            margin-bottom: 4px;
-        "
-    >
-        Comece hoje por apenas
-    </div>
-
-    <!-- PREÇO ORIGINAL -->
-    <div
-        style="
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 1.1;
-            text-decoration: line-through;
-            opacity: 0.6;
-            margin-bottom: 4px;
-        "
-    >
-        R$ 47,90
-    </div>
-
-    <!-- PREÇO PROMOCIONAL -->
-    <div
-        style="
-            font-size: 32px;
-            font-weight: 700;
-            line-height: 1.1;
-        "
-    >
-        R$ 27,90
-    </div>
+<!-- OFERTA SURPRESA -->
+<div class="surprise-offer-intro surprise-offer-intro-final">
+    <span class="surprise-offer-kicker">🎁 ANTES DE IR EMBORA...</span>
+    <strong>Sua oferta especial ainda está disponível.</strong>
+    <span class="surprise-offer-copy">Escolha um dos envelopes e descubra o desconto disponível para sua compra de hoje.</span>
 </div>
+<div class="hero-buttons">
+    <button type="button" class="btn-primary btn-large js-open-discount-game">DESCOBRIR MEU DESCONTO</button>
+</div>
+<div class="hero-info final-offer-info surprise-offer-info">Leva menos de 10 segundos • Compra segura</div>
 
-
-            <!-- BOTÃO -->
-            <div class="hero-buttons">
-                <a
-                    href="https://pay.hotmart.com/S106956139O?checkoutMode=10"
-                    class="btn-primary btn-large"
-                >
-                    QUERO COMEÇAR A PINTAR
-                </a>
-            </div>
-
-            <!-- INFORMAÇÕES ABAIXO DO BOTÃO -->
+<!-- INFORMAÇÕES ABAIXO DO BOTÃO -->
             <div class="hero-info final-offer-info">
                 Compra segura • Acesso imediato
             </div>
@@ -2057,6 +1970,56 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 
 </footer>
 
+
+<!-- MODAL - JOGO DOS ENVELOPES / OFERTA ESPECIAL -->
+<div id="discountGameModal" class="discount-game-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="discountGameTitle">
+    <div class="discount-game-card" role="document">
+        <button type="button" class="discount-game-close" aria-label="Fechar oferta">&times;</button>
+
+        <div class="discount-game-step discount-game-step-pick">
+            <span class="discount-game-eyebrow">OFERTA ESPECIAL DE HOJE</span>
+            <h2 id="discountGameTitle">Escolha seu envelope</h2>
+            <p>Escolha um dos 3 envelopes e revele a condição especial disponível para sua compra hoje.</p>
+
+            <div class="discount-envelopes" aria-label="Escolha um envelope">
+                <button type="button" class="discount-envelope" data-envelope="1" aria-label="Escolher envelope 1">
+                    <span class="envelope-visual" aria-hidden="true"><span class="envelope-flap"></span><span class="envelope-seal">1</span></span>
+                    <span class="envelope-label">Envelope 1</span>
+                </button>
+                <button type="button" class="discount-envelope" data-envelope="2" aria-label="Escolher envelope 2">
+                    <span class="envelope-visual" aria-hidden="true"><span class="envelope-flap"></span><span class="envelope-seal">2</span></span>
+                    <span class="envelope-label">Envelope 2</span>
+                </button>
+                <button type="button" class="discount-envelope" data-envelope="3" aria-label="Escolher envelope 3">
+                    <span class="envelope-visual" aria-hidden="true"><span class="envelope-flap"></span><span class="envelope-seal">3</span></span>
+                    <span class="envelope-label">Envelope 3</span>
+                </button>
+            </div>
+
+            <small class="discount-game-note">Ao escolher um envelope, você desbloqueia a oferta promocional desta página.</small>
+        </div>
+
+        <div class="discount-game-step discount-game-step-result" hidden>
+            <span class="discount-game-eyebrow">🎉 VOCÊ ENCONTROU!</span>
+            <h2>44% DE DESCONTO</h2>
+            <p>Seu envelope revelou a melhor condição da oferta de hoje.</p>
+
+            <div class="discount-reveal-grid" data-winning-discount="44" data-secondary-discount="22" data-regular-price="49.90" data-offer-price="27.94">
+                <div class="discount-reveal-item" data-result="1"><span>Envelope 1</span><strong></strong></div>
+                <div class="discount-reveal-item" data-result="2"><span>Envelope 2</span><strong></strong></div>
+                <div class="discount-reveal-item" data-result="3"><span>Envelope 3</span><strong></strong></div>
+            </div>
+
+            <div class="discount-price-box">
+                <span>De <s>R$ 49,90</s> por apenas</span>
+                <strong>R$ 27,94</strong>
+            </div>
+
+            <a id="discountCheckoutLink" href="https://pay.hotmart.com/S106956139O?checkoutMode=10" class="btn-primary btn-large discount-checkout-btn">QUERO APROVEITAR MEU DESCONTO</a>
+            <div class="discount-secure">Compra segura • Acesso imediato • Garantia de 7 dias</div>
+        </div>
+    </div>
+</div></div>
 
 <!-- =========================================================
      MODAL - TERMOS DE USO
