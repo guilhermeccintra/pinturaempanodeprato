@@ -1269,3 +1269,1045 @@ document.addEventListener(
 /* ==========================================================
    FIM DO SCRIPT.JS
 ========================================================== */
+
+
+
+/* ==========================================================
+   OFERTA SURPRESA — ENVELOPES
+   Cole este bloco NO FINAL do script.js atual
+
+   LÓGICA:
+   - Qualquer envelope escolhido = 44% OFF
+   - Um dos restantes = 22% OFF
+   - O outro = SEM DESCONTO
+   - Preço original = R$ 49,90
+   - Preço final = R$ 27,94
+   - Resultado permanece durante a sessão
+   ========================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ======================================================
+       CONFIGURAÇÃO
+       ====================================================== */
+
+    const OFFER_CONFIG = {
+        originalPrice: 49.90,
+        finalPrice: 27.94,
+        winnerDiscount: 44,
+        secondaryDiscount: 22,
+
+        /*
+         * Checkout atual da sua landing.
+         *
+         * IMPORTANTE:
+         * o preço efetivamente cobrado é definido na Hotmart.
+         * Este JS apenas encaminha o cliente.
+         */
+        checkoutUrl:
+            "https://pay.hotmart.com/S106956139O?checkoutMode=10",
+
+        storageKey:
+            "pano_prato_oferta_revelada_v1"
+    };
+
+
+    /* ======================================================
+       ELEMENTOS PRINCIPAIS
+       ====================================================== */
+
+    const modal =
+        document.querySelector(".discount-modal");
+
+    if (!modal) {
+        console.warn(
+            "Modal da oferta não encontrado. Verifique o index.html."
+        );
+        return;
+    }
+
+
+    const dialog =
+        modal.querySelector(".discount-modal__dialog");
+
+    const closeButton =
+        modal.querySelector(".discount-modal__close");
+
+    const envelopes =
+        Array.from(
+            modal.querySelectorAll(".discount-envelope")
+        );
+
+    const results =
+        modal.querySelector(".discount-results");
+
+    const resultCards =
+        Array.from(
+            modal.querySelectorAll(".discount-result-card")
+        );
+
+    const checkoutButton =
+        modal.querySelector(".discount-checkout");
+
+
+    /*
+     * Procura todos os botões/links criados no HTML
+     * para abrir a oferta.
+     */
+    const offerTriggers =
+        Array.from(
+            document.querySelectorAll(
+                ".discount-trigger, [data-discount-trigger]"
+            )
+        );
+
+
+    /* ======================================================
+       VALIDAÇÃO
+       ====================================================== */
+
+    if (!dialog) {
+        console.warn(
+            "Caixa interna do modal não encontrada."
+        );
+        return;
+    }
+
+    if (envelopes.length !== 3) {
+        console.warn(
+            "A oferta precisa possuir exatamente 3 envelopes."
+        );
+    }
+
+
+    /* ======================================================
+       ESTADO
+       ====================================================== */
+
+    let selectedIndex = null;
+    let previousActiveElement = null;
+
+
+    /* ======================================================
+       UTILITÁRIOS
+       ====================================================== */
+
+    function shuffle(array) {
+
+        const copy = array.slice();
+
+        for (
+            let i = copy.length - 1;
+            i > 0;
+            i--
+        ) {
+
+            const j =
+                Math.floor(
+                    Math.random() * (i + 1)
+                );
+
+            [
+                copy[i],
+                copy[j]
+            ] = [
+                copy[j],
+                copy[i]
+            ];
+        }
+
+        return copy;
+    }
+
+
+    function safeSessionGet() {
+
+        try {
+
+            return sessionStorage.getItem(
+                OFFER_CONFIG.storageKey
+            );
+
+        } catch (error) {
+
+            return null;
+        }
+    }
+
+
+    function safeSessionSet(value) {
+
+        try {
+
+            sessionStorage.setItem(
+                OFFER_CONFIG.storageKey,
+                value
+            );
+
+        } catch (error) {
+
+            /*
+             * Se sessionStorage estiver bloqueado,
+             * a oferta continua funcionando normalmente.
+             */
+        }
+    }
+
+
+    function safeParseJSON(value) {
+
+        if (!value) {
+            return null;
+        }
+
+        try {
+
+            return JSON.parse(value);
+
+        } catch (error) {
+
+            return null;
+        }
+    }
+
+
+    /* ======================================================
+       PRESERVAÇÃO DOS PARÂMETROS DA URL
+       ======================================================
+
+       Se o visitante chegou com UTM, fbclid, gclid etc.,
+       copiamos os parâmetros para o checkout.
+
+       Isso é complementar ao tracking.js e NÃO o modifica.
+       ====================================================== */
+
+    function buildCheckoutUrl() {
+
+        try {
+
+            const checkout =
+                new URL(
+                    OFFER_CONFIG.checkoutUrl,
+                    window.location.href
+                );
+
+            const currentParams =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            currentParams.forEach(
+                function (value, key) {
+
+                    /*
+                     * Não sobrescreve parâmetros que já
+                     * estejam definidos no checkout.
+                     */
+                    if (
+                        !checkout.searchParams.has(key)
+                    ) {
+
+                        checkout.searchParams.set(
+                            key,
+                            value
+                        );
+                    }
+                }
+            );
+
+
+            return checkout.toString();
+
+        } catch (error) {
+
+            return OFFER_CONFIG.checkoutUrl;
+        }
+    }
+
+
+    /* ======================================================
+       ATUALIZA O LINK DO CHECKOUT
+       ====================================================== */
+
+    function updateCheckoutLink() {
+
+        if (!checkoutButton) {
+            return;
+        }
+
+
+        checkoutButton.setAttribute(
+            "href",
+            buildCheckoutUrl()
+        );
+
+
+        /*
+         * Mantemos um <a href> real.
+         * Isso é importante para scripts externos que
+         * trabalham com links de checkout.
+         */
+        checkoutButton.setAttribute(
+            "rel",
+            "noopener"
+        );
+    }
+
+
+    updateCheckoutLink();
+
+
+    /* ======================================================
+       ABRIR MODAL
+       ====================================================== */
+
+    function openDiscountModal() {
+
+        previousActiveElement =
+            document.activeElement;
+
+
+        modal.classList.add("active");
+
+        modal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+        /*
+         * Evita que a landing role por trás do popup.
+         */
+        document.body.style.overflow =
+            "hidden";
+
+
+        /*
+         * Se a pessoa já ganhou durante esta sessão,
+         * mostramos diretamente o resultado.
+         */
+        const storedResult =
+            getStoredResult();
+
+
+        if (storedResult) {
+
+            restoreResult(
+                storedResult
+            );
+
+        } else {
+
+            resetOffer();
+        }
+
+
+        /*
+         * Foco inicial acessível.
+         */
+        window.setTimeout(
+            function () {
+
+                if (
+                    storedResult &&
+                    checkoutButton
+                ) {
+
+                    checkoutButton.focus();
+
+                } else if (
+                    envelopes[0]
+                ) {
+
+                    envelopes[0].focus();
+
+                } else if (
+                    closeButton
+                ) {
+
+                    closeButton.focus();
+                }
+
+            },
+            80
+        );
+    }
+
+
+    /* ======================================================
+       FECHAR MODAL
+       ====================================================== */
+
+    function closeDiscountModal() {
+
+        modal.classList.remove("active");
+
+        modal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        document.body.style.overflow =
+            "";
+
+
+        if (
+            previousActiveElement &&
+            typeof previousActiveElement.focus ===
+                "function"
+        ) {
+
+            previousActiveElement.focus();
+        }
+    }
+
+
+    /* ======================================================
+       RESET VISUAL
+       ====================================================== */
+
+    function resetOffer() {
+
+        selectedIndex = null;
+
+
+        envelopes.forEach(
+            function (envelope) {
+
+                envelope.classList.remove(
+                    "is-selected"
+                );
+
+                envelope.classList.remove(
+                    "is-open"
+                );
+
+                envelope.disabled = false;
+
+                envelope.removeAttribute(
+                    "aria-pressed"
+                );
+            }
+        );
+
+
+        resultCards.forEach(
+            function (card) {
+
+                card.classList.remove(
+                    "is-winner"
+                );
+
+                card.removeAttribute(
+                    "data-result"
+                );
+            }
+        );
+
+
+        if (results) {
+
+            results.classList.remove(
+                "active"
+            );
+
+            results.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+        }
+    }
+
+
+    /* ======================================================
+       SALVAR RESULTADO
+       ====================================================== */
+
+    function saveResult(
+        winnerIndex,
+        distribution
+    ) {
+
+        const data = {
+
+            winnerIndex:
+                winnerIndex,
+
+            distribution:
+                distribution,
+
+            winnerDiscount:
+                OFFER_CONFIG.winnerDiscount,
+
+            secondaryDiscount:
+                OFFER_CONFIG.secondaryDiscount,
+
+            originalPrice:
+                OFFER_CONFIG.originalPrice,
+
+            finalPrice:
+                OFFER_CONFIG.finalPrice
+        };
+
+
+        safeSessionSet(
+            JSON.stringify(data)
+        );
+    }
+
+
+    /* ======================================================
+       RECUPERAR RESULTADO
+       ====================================================== */
+
+    function getStoredResult() {
+
+        const data =
+            safeParseJSON(
+                safeSessionGet()
+            );
+
+
+        if (!data) {
+            return null;
+        }
+
+
+        /*
+         * Validação simples para impedir dados antigos
+         * ou inconsistentes.
+         */
+        if (
+            typeof data.winnerIndex !==
+                "number" ||
+            !Array.isArray(
+                data.distribution
+            ) ||
+            data.distribution.length !== 3
+        ) {
+
+            return null;
+        }
+
+
+        return data;
+    }
+
+
+    /* ======================================================
+       TEXTO DE CADA RESULTADO
+       ====================================================== */
+
+    function resultLabel(type) {
+
+        switch (type) {
+
+            case "winner":
+
+                return (
+                    OFFER_CONFIG.winnerDiscount +
+                    "% OFF"
+                );
+
+
+            case "secondary":
+
+                return (
+                    OFFER_CONFIG.secondaryDiscount +
+                    "% OFF"
+                );
+
+
+            default:
+
+                return "SEM DESCONTO";
+        }
+    }
+
+
+    /* ======================================================
+       MOSTRAR RESULTADOS NOS 3 CARDS
+       ====================================================== */
+
+    function renderResults(
+        winnerIndex,
+        distribution
+    ) {
+
+        selectedIndex =
+            winnerIndex;
+
+
+        envelopes.forEach(
+            function (envelope, index) {
+
+                const isWinner =
+                    index === winnerIndex;
+
+
+                envelope.classList.toggle(
+                    "is-selected",
+                    isWinner
+                );
+
+
+                envelope.classList.add(
+                    "is-open"
+                );
+
+
+                envelope.disabled =
+                    true;
+
+
+                envelope.setAttribute(
+                    "aria-pressed",
+                    isWinner
+                        ? "true"
+                        : "false"
+                );
+            }
+        );
+
+
+        resultCards.forEach(
+            function (card, index) {
+
+                const resultType =
+                    distribution[index];
+
+
+                card.textContent =
+                    resultLabel(
+                        resultType
+                    );
+
+
+                card.setAttribute(
+                    "data-result",
+                    resultType
+                );
+
+
+                card.classList.toggle(
+                    "is-winner",
+                    resultType ===
+                        "winner"
+                );
+            }
+        );
+
+
+        if (results) {
+
+            results.classList.add(
+                "active"
+            );
+
+            results.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+        }
+
+
+        updateCheckoutLink();
+    }
+
+
+    /* ======================================================
+       ESCOLHA DO ENVELOPE
+       ====================================================== */
+
+    function chooseEnvelope(index) {
+
+        /*
+         * Impede uma segunda escolha.
+         */
+        if (
+            selectedIndex !== null
+        ) {
+
+            return;
+        }
+
+
+        selectedIndex =
+            index;
+
+
+        /*
+         * O envelope clicado SEMPRE recebe 44%.
+         *
+         * Os outros dois recebem aleatoriamente:
+         * 22% e SEM DESCONTO.
+         */
+        const otherResults =
+            shuffle([
+                "secondary",
+                "none"
+            ]);
+
+
+        const distribution =
+            new Array(3);
+
+
+        distribution[index] =
+            "winner";
+
+
+        let otherResultIndex = 0;
+
+
+        for (
+            let i = 0;
+            i < 3;
+            i++
+        ) {
+
+            if (i === index) {
+                continue;
+            }
+
+
+            distribution[i] =
+                otherResults[
+                    otherResultIndex
+                ];
+
+
+            otherResultIndex++;
+        }
+
+
+        /*
+         * Primeiro destacamos o envelope escolhido.
+         */
+        envelopes.forEach(
+            function (
+                envelope,
+                envelopeIndex
+            ) {
+
+                envelope.disabled =
+                    true;
+
+
+                if (
+                    envelopeIndex ===
+                    index
+                ) {
+
+                    envelope.classList.add(
+                        "is-selected"
+                    );
+                }
+            }
+        );
+
+
+        /*
+         * Pequeno intervalo deixa a revelação
+         * mais natural visualmente.
+         */
+        window.setTimeout(
+            function () {
+
+                renderResults(
+                    index,
+                    distribution
+                );
+
+
+                saveResult(
+                    index,
+                    distribution
+                );
+
+
+                /*
+                 * No celular, garante que o resultado
+                 * fique visível sem jogar a pessoa
+                 * para fora do popup.
+                 */
+                if (results) {
+
+                    results.scrollIntoView({
+                        behavior:
+                            window.matchMedia(
+                                "(prefers-reduced-motion: reduce)"
+                            ).matches
+                                ? "auto"
+                                : "smooth",
+
+                        block:
+                            "nearest"
+                    });
+                }
+
+            },
+            420
+        );
+    }
+
+
+    /* ======================================================
+       RESTAURAR OFERTA JÁ GANHA
+       ====================================================== */
+
+    function restoreResult(data) {
+
+        renderResults(
+            data.winnerIndex,
+            data.distribution
+        );
+    }
+
+
+    /* ======================================================
+       BOTÕES QUE ABREM O POPUP
+       ====================================================== */
+
+    offerTriggers.forEach(
+        function (trigger) {
+
+            trigger.addEventListener(
+                "click",
+                function (event) {
+
+                    /*
+                     * O CTA da landing não navega direto
+                     * para a Hotmart.
+                     */
+                    event.preventDefault();
+
+
+                    openDiscountModal();
+                }
+            );
+        }
+    );
+
+
+    /* ======================================================
+       CLIQUE NOS ENVELOPES
+       ====================================================== */
+
+    envelopes.forEach(
+        function (envelope, index) {
+
+            envelope.addEventListener(
+                "click",
+                function () {
+
+                    chooseEnvelope(
+                        index
+                    );
+                }
+            );
+        }
+    );
+
+
+    /* ======================================================
+       FECHAR PELO X
+       ====================================================== */
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+            "click",
+            closeDiscountModal
+        );
+    }
+
+
+    /* ======================================================
+       FECHAR CLICANDO NO FUNDO
+       ====================================================== */
+
+    modal.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target === modal
+            ) {
+
+                closeDiscountModal();
+            }
+        }
+    );
+
+
+    /* ======================================================
+       TECLADO — ESC + TRAVA DE FOCO
+       ====================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                !modal.classList.contains(
+                    "active"
+                )
+            ) {
+
+                return;
+            }
+
+
+            /* ESC */
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeDiscountModal();
+
+                return;
+            }
+
+
+            /* TAB */
+
+            if (
+                event.key !== "Tab"
+            ) {
+
+                return;
+            }
+
+
+            const focusable =
+                Array.from(
+                    modal.querySelectorAll(
+                        [
+                            "button:not([disabled])",
+                            "a[href]",
+                            '[tabindex]:not([tabindex="-1"])'
+                        ].join(",")
+                    )
+                ).filter(
+                    function (element) {
+
+                        return (
+                            element.offsetParent !==
+                            null
+                        );
+                    }
+                );
+
+
+            if (
+                !focusable.length
+            ) {
+
+                return;
+            }
+
+
+            const first =
+                focusable[0];
+
+            const last =
+                focusable[
+                    focusable.length - 1
+                ];
+
+
+            if (
+                event.shiftKey &&
+                document.activeElement ===
+                    first
+            ) {
+
+                event.preventDefault();
+
+                last.focus();
+
+            } else if (
+                !event.shiftKey &&
+                document.activeElement ===
+                    last
+            ) {
+
+                event.preventDefault();
+
+                first.focus();
+            }
+        }
+    );
+
+
+    /* ======================================================
+       ATUALIZA O CTA DA LANDING APÓS A PESSOA GANHAR
+       ====================================================== */
+
+    function updateTriggersIfOfferAlreadyRevealed() {
+
+        const stored =
+            getStoredResult();
+
+
+        if (!stored) {
+            return;
+        }
+
+
+        offerTriggers.forEach(
+            function (trigger) {
+
+                /*
+                 * Só altera o texto do botão.
+                 * Não mexe nas classes nem no tracking.
+                 */
+                const textElement =
+                    trigger.querySelector(
+                        "[data-discount-trigger-text]"
+                    );
+
+
+                if (textElement) {
+
+                    textElement.textContent =
+                        "VER MEU DESCONTO DE 44%";
+
+                } else {
+
+                    trigger.textContent =
+                        "VER MEU DESCONTO DE 44%";
+                }
+            }
+        );
+    }
+
+
+    updateTriggersIfOfferAlreadyRevealed();
+
+
+    /*
+     * Quando a pessoa escolhe um envelope,
+     * atualizamos também os CTAs da página.
+     */
+    envelopes.forEach(
+        function (envelope) {
+
+            envelope.addEventListener(
+                "click",
+                function () {
+
+                    window.setTimeout(
+                        updateTriggersIfOfferAlreadyRevealed,
+                        500
+                    );
+                }
+            );
+        }
+    );
+
+});
