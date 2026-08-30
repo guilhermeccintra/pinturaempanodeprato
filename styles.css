@@ -5801,3 +5801,26 @@ body {
         font-size: 10px;
     }
 }
+
+
+.discount-win-product {
+    margin: 7px auto 11px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--color-text-light);
+    text-align: center;
+}
+
+.discount-win-product strong {
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+@media (max-width: 600px) {
+    .discount-win-product {
+        margin: 6px auto 9px;
+        font-size: 13px;
+    }
+}
