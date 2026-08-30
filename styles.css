@@ -4734,3 +4734,830 @@ body {
         font-size: 12px;
     }
 }
+
+
+
+/* ==========================================================================
+   CÓDIGO POP-UP DESCONTO
+   ========================================================================== */
+ 
+
+/* =========================================================
+   OFERTA SURPRESA — CTA + MODAL DOS ENVELOPES
+   Cole este bloco NO FINAL do styles.css atual
+   ========================================================= */
+
+
+/* =========================================================
+   BLOCO EXPLICATIVO ACIMA DO CTA
+   ========================================================= */
+
+.offer-surprise-intro {
+    width: min(100%, 560px);
+    margin: 8px auto 16px;
+    text-align: center;
+}
+
+.offer-surprise-kicker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    margin-bottom: 7px;
+
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    color: var(--color-primary);
+}
+
+.offer-surprise-copy {
+    max-width: 500px;
+    margin: 0 auto;
+
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    color: var(--color-text-light);
+}
+
+.offer-surprise-note {
+    margin: 9px auto 0;
+
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    color: var(--color-text-light);
+}
+
+
+/* =========================================================
+   BOTÃO QUE ABRE A OFERTA
+   ========================================================= */
+
+.discount-trigger {
+    border: 0;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+}
+
+
+/* =========================================================
+   BARRA SUPERIOR
+   ========================================================= */
+
+.promo-bar span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.promo-bar strong {
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FUNDO DO POPUP
+   ========================================================= */
+
+.discount-modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000000;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px;
+
+    background: rgba(49, 34, 25, .66);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.discount-modal.active {
+    display: flex;
+}
+
+
+/* =========================================================
+   CAIXA PRINCIPAL DO POPUP
+   ========================================================= */
+
+.discount-modal__dialog {
+    position: relative;
+
+    width: min(100%, 620px);
+
+    max-height: calc(100dvh - 32px);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+
+    padding: 34px 30px 28px;
+
+    border: 1px solid rgba(196, 120, 74, .28);
+    border-radius: 24px;
+
+    background: #fffaf5;
+
+    box-shadow:
+        0 24px 70px rgba(44, 29, 20, .28);
+
+    text-align: center;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BOTÃO FECHAR
+   ========================================================= */
+
+.discount-modal__close {
+    position: absolute;
+
+    top: 10px;
+    right: 12px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: var(--color-primary);
+
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 5;
+}
+
+.discount-modal__close:hover {
+    background: rgba(196, 120, 74, .08);
+}
+
+.discount-modal__close:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   CABEÇALHO DO POPUP
+   ========================================================= */
+
+.discount-modal__tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 7px;
+
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+
+    color: var(--color-primary);
+}
+
+.discount-modal__title {
+    margin: 0;
+
+    font-family: var(--font-display);
+    font-size: clamp(25px, 4vw, 34px);
+    font-weight: 700;
+    line-height: 1.15;
+
+    color: var(--color-text);
+}
+
+.discount-modal__subtitle {
+    width: 100%;
+    max-width: 480px;
+
+    margin: 10px auto 22px;
+
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.55;
+
+    color: var(--color-text-light);
+}
+
+
+/* =========================================================
+   ÁREA DOS 3 ENVELOPES
+   ========================================================= */
+
+.discount-envelopes {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+
+    width: 100%;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   CARD DE CADA ENVELOPE
+   ========================================================= */
+
+.discount-envelope {
+    position: relative;
+
+    min-width: 0;
+
+    padding: 12px 7px 10px;
+
+    border:
+        1px solid
+        rgba(196, 120, 74, .22);
+
+    border-radius: 17px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 7px 20px
+        rgba(75, 49, 31, .08);
+
+    cursor: pointer;
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease,
+        background-color .22s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.discount-envelope:hover,
+.discount-envelope:focus-visible {
+    transform: translateY(-4px);
+
+    border-color:
+        var(--color-primary);
+
+    box-shadow:
+        0 12px 28px
+        rgba(75, 49, 31, .13);
+
+    outline: none;
+}
+
+
+/* =========================================================
+   ENVELOPE DESENHADO EM CSS
+   ========================================================= */
+
+.discount-envelope__art {
+    position: relative;
+
+    width: min(100%, 125px);
+
+    aspect-ratio: 1.35 / 1;
+
+    margin: 0 auto 8px;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+
+    background: #efd2bb;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(166, 94, 53, .18);
+}
+
+
+/* Dobras laterais */
+
+.discount-envelope__art::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            transparent 49.2%,
+            #e5b996 50%
+        )
+        left / 50% 100%
+        no-repeat,
+
+        linear-gradient(
+            215deg,
+            transparent 49.2%,
+            #e5b996 50%
+        )
+        right / 50% 100%
+        no-repeat;
+}
+
+
+/* Selo do envelope */
+
+.discount-envelope__art::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 48%;
+
+    width: 28px;
+    height: 28px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        var(--color-primary);
+
+    box-shadow:
+        0 2px 7px
+        rgba(74, 55, 40, .18);
+}
+
+
+/* =========================================================
+   NÚMERO DO ENVELOPE
+   ========================================================= */
+
+.discount-envelope__number {
+    display: block;
+
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+
+    color: var(--color-text);
+}
+
+
+/* =========================================================
+   ENVELOPE ESCOLHIDO
+   ========================================================= */
+
+.discount-envelope.is-selected {
+    border-color:
+        var(--color-primary);
+
+    background: #fff8f1;
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* =========================================================
+   RESULTADOS
+   ========================================================= */
+
+.discount-results {
+    display: none;
+
+    margin-top: 22px;
+}
+
+.discount-results.active {
+    display: block;
+}
+
+
+/* =========================================================
+   3 RESULTADOS REVELADOS
+   ========================================================= */
+
+.discount-result-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 10px;
+
+    width: 100%;
+
+    margin-bottom: 20px;
+}
+
+.discount-result-card {
+    display: flex;
+
+    min-height: 72px;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 6px;
+
+    border:
+        1px solid
+        var(--color-border);
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.25;
+
+    color: var(--color-text-light);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESULTADO VENCEDOR — 44%
+   ========================================================= */
+
+.discount-result-card.is-winner {
+    border:
+        2px solid
+        var(--color-primary);
+
+    background: #fff1e5;
+
+    color:
+        var(--color-primary-dark);
+
+    box-shadow:
+        0 8px 20px
+        rgba(196, 120, 74, .14);
+}
+
+
+/* =========================================================
+   TEXTO "VOCÊ ENCONTROU"
+   ========================================================= */
+
+.discount-win-kicker {
+    margin: 0 0 4px;
+
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    color: var(--color-primary);
+}
+
+
+/* =========================================================
+   TÍTULO 44% DE DESCONTO
+   ========================================================= */
+
+.discount-win-title {
+    margin: 0;
+
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.1;
+
+    color: var(--color-text);
+}
+
+
+/* =========================================================
+   PREÇO REVELADO
+   ========================================================= */
+
+.discount-win-price {
+    margin: 12px auto 15px;
+}
+
+.discount-win-price__old {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    color: var(--color-text-light);
+}
+
+.discount-win-price__old s {
+    opacity: .72;
+}
+
+.discount-win-price__new {
+    display: block;
+
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1;
+
+    color:
+        var(--color-primary-dark);
+}
+
+
+/* =========================================================
+   BOTÃO PARA O CHECKOUT
+   ========================================================= */
+
+.discount-checkout {
+    width: 100%;
+    max-width: 410px;
+
+    min-height: 58px;
+
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   SEGURANÇA ABAIXO DO CHECKOUT
+   ========================================================= */
+
+.discount-security {
+    margin: 9px auto 0;
+
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    color: var(--color-text-light);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .offer-surprise-intro {
+        width: 100%;
+        max-width: 390px;
+
+        margin-top: 5px;
+    }
+
+    .offer-surprise-copy {
+        font-size: 14px;
+    }
+
+
+    /* Fundo */
+
+    .discount-modal {
+        align-items: center;
+
+        padding: 12px;
+    }
+
+
+    /* Caixa */
+
+    .discount-modal__dialog {
+        width: 100%;
+
+        max-height:
+            calc(100dvh - 24px);
+
+        padding:
+            30px
+            14px
+            20px;
+
+        border-radius: 20px;
+    }
+
+
+    /* Fechar */
+
+    .discount-modal__close {
+        top: 6px;
+        right: 6px;
+    }
+
+
+    /* Título */
+
+    .discount-modal__title {
+        font-size: 25px;
+    }
+
+    .discount-modal__subtitle {
+        margin:
+            8px
+            auto
+            17px;
+
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+
+    /* =====================================================
+       IMPORTANTE:
+       OS 3 ENVELOPES CONTINUAM LADO A LADO NO CELULAR
+       ===================================================== */
+
+    .discount-envelopes {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 7px;
+    }
+
+    .discount-envelope {
+        padding:
+            9px
+            4px
+            8px;
+
+        border-radius: 13px;
+    }
+
+    .discount-envelope__art {
+        width: 100%;
+        max-width: 92px;
+
+        margin-bottom: 6px;
+
+        border-radius: 6px;
+    }
+
+    .discount-envelope__art::after {
+        width: 22px;
+        height: 22px;
+    }
+
+    .discount-envelope__number {
+        font-size: 12px;
+    }
+
+
+    /* Resultados */
+
+    .discount-results {
+        margin-top: 16px;
+    }
+
+    .discount-result-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 6px;
+
+        margin-bottom: 16px;
+    }
+
+    .discount-result-card {
+        min-height: 58px;
+
+        padding:
+            7px
+            3px;
+
+        border-radius: 11px;
+
+        font-size: 10px;
+    }
+
+
+    /* Oferta ganha */
+
+    .discount-win-title {
+        font-size: 25px;
+    }
+
+    .discount-win-price {
+        margin:
+            9px
+            auto
+            12px;
+    }
+
+    .discount-win-price__new {
+        font-size: 34px;
+    }
+
+
+    /* Checkout */
+
+    .discount-checkout {
+        min-height: 56px;
+
+        padding:
+            14px
+            14px;
+
+        font-size: 15px;
+    }
+
+    .discount-security {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES MUITO PEQUENOS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .discount-modal {
+        padding: 8px;
+    }
+
+    .discount-modal__dialog {
+        max-height:
+            calc(100dvh - 16px);
+
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .discount-envelopes {
+        gap: 5px;
+    }
+
+    .discount-envelope__number {
+        font-size: 11px;
+    }
+
+    .discount-result-card {
+        font-size: 9px;
+    }
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE — REDUZIR MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .discount-envelope {
+        transition: none;
+    }
+
+    .discount-modal {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}
