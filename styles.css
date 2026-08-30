@@ -5561,3 +5561,243 @@ body {
         -webkit-backdrop-filter: none;
     }
 }
+
+
+/* =========================================================
+   CORREÇÃO VISUAL DOS ENVELOPES
+   Mantém selo e texto em áreas separadas
+   ========================================================= */
+
+/* Card */
+.discount-envelope {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 12px 8px 11px;
+
+    overflow: visible;
+}
+
+
+/* =========================================================
+   DESENHO DO ENVELOPE
+   ========================================================= */
+
+.discount-envelope__art {
+    position: relative;
+
+    display: block;
+
+    width: min(100%, 118px);
+    height: 76px;
+
+    flex: 0 0 76px;
+
+    margin: 0 auto 10px;
+
+    overflow: visible;
+
+    border: 1px solid rgba(196, 120, 74, .28);
+    border-radius: 9px;
+
+    background: #f5ddca;
+
+    box-shadow:
+        0 5px 12px rgba(74, 55, 40, .10);
+
+    box-sizing: border-box;
+}
+
+
+/* Dobras do envelope */
+
+.discount-envelope__art::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            32deg,
+            #e8c2a5 49%,
+            transparent 50%
+        )
+        left bottom / 51% 70%
+        no-repeat,
+
+        linear-gradient(
+            -32deg,
+            #e8c2a5 49%,
+            transparent 50%
+        )
+        right bottom / 51% 70%
+        no-repeat,
+
+        linear-gradient(
+            145deg,
+            transparent 49%,
+            rgba(196, 120, 74, .18) 50%,
+            transparent 51%
+        );
+}
+
+
+/* =========================================================
+   SELO COM EMOJI
+   ========================================================= */
+
+.discount-envelope__art::after {
+    content: "🎁";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    transform: translate(-50%, -50%);
+
+    border: 2px solid #fff7ef;
+    border-radius: 50%;
+
+    background: var(--color-primary);
+
+    box-shadow:
+        0 3px 8px rgba(74, 55, 40, .20);
+
+    font-family:
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Noto Color Emoji",
+        sans-serif;
+
+    font-size: 16px;
+    line-height: 1;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   TEXTO "ENVELOPE 1", "ENVELOPE 2", "ENVELOPE 3"
+   ========================================================= */
+
+.discount-envelope__number {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.25;
+
+    text-align: center;
+
+    color: var(--color-text);
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   ENVELOPE SELECIONADO
+   ========================================================= */
+
+.discount-envelope.is-selected {
+    border-color: var(--color-primary);
+
+    background: #fff8f1;
+
+    box-shadow:
+        0 9px 22px rgba(196, 120, 74, .15);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .discount-envelope {
+        padding: 8px 5px 9px;
+    }
+
+    .discount-envelope__art {
+        width: 100%;
+        max-width: 86px;
+        height: 57px;
+
+        flex-basis: 57px;
+
+        margin-bottom: 8px;
+
+        border-radius: 7px;
+    }
+
+    .discount-envelope__art::before {
+        border-radius: 6px;
+    }
+
+    .discount-envelope__art::after {
+        width: 27px;
+        height: 27px;
+
+        border-width: 1px;
+
+        font-size: 13px;
+    }
+
+    .discount-envelope__number {
+        font-size: 11px;
+        line-height: 1.2;
+    }
+}
+
+
+/* =========================================================
+   CELULARES MUITO PEQUENOS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .discount-envelope {
+        padding-right: 3px;
+        padding-left: 3px;
+    }
+
+    .discount-envelope__art {
+        max-width: 76px;
+        height: 51px;
+
+        flex-basis: 51px;
+    }
+
+    .discount-envelope__art::after {
+        width: 24px;
+        height: 24px;
+
+        font-size: 12px;
+    }
+
+    .discount-envelope__number {
+        font-size: 10px;
+    }
+}
