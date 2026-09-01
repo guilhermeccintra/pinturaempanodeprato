@@ -6247,54 +6247,82 @@ section {
    ========================================================================== */
 
 .offer-reference-price {
-  width: min(100%, 260px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  margin: 0 auto 16px;
+  gap: 5px;
 
-  padding: 10px 18px;
+  width: 100%;
 
-  border:
-    1px solid
-    rgba(196, 120, 74, 0.22);
+  margin: 0 auto 12px;
 
-  border-radius: 14px;
+  padding: 0;
 
-  background:
-    rgba(255, 255, 255, 0.58);
+  border: 0;
+  border-radius: 0;
+
+  background: transparent;
 
   text-align: center;
 }
 
 .offer-reference-price__label {
-  display: block;
+  display: inline;
 
-  margin-bottom: 2px;
+  margin: 0;
 
   font-family:
     var(--font-body);
 
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.35;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
 
   color:
     var(--color-text-light);
 }
 
 .offer-reference-price__value {
-  display: block;
+  display: inline;
 
   font-family:
-    var(--font-display);
+    var(--font-body);
 
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 1.15;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
 
   color:
-    var(--color-text);
+    var(--color-text-light);
+
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+
+  opacity: 0.78;
 }
 
+
+/* ==========================================================================
+   Preço de referência — Mobile
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+  .offer-reference-price {
+    margin-bottom: 10px;
+
+    gap: 4px;
+  }
+
+  .offer-reference-price__label {
+    font-size: 12px;
+  }
+
+  .offer-reference-price__value {
+    font-size: 14px;
+  }
+}
 
 /* ==========================================================================
    Popup da oferta — Mobile
