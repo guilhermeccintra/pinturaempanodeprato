@@ -5507,7 +5507,7 @@ section {
 .offer-surprise-intro {
   width: min(100%, 560px);
 
-  margin: 8px auto 16px;
+  margin: 0 auto 16px;
 
   text-align: center;
 }
@@ -6268,7 +6268,7 @@ section {
     width: 100%;
     max-width: 390px;
 
-    margin-top: 5px;
+
   }
 
   .offer-surprise-copy {
