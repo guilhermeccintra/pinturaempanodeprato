@@ -6583,46 +6583,52 @@ section {
      Oferta revelada
      ========================================================== */
 
-  .discount-win-kicker {
-    margin-bottom: 1px;
+.discount-win-kicker {
+  margin:
+    2px
+    0
+    3px;
 
-    font-size: 9px;
-  }
+  font-size: 9px;
+}
 
-  .discount-win-title {
-    font-size: 25px;
-    line-height: 1.02;
-  }
+.discount-win-title {
+  margin-bottom: 5px;
 
-  .discount-win-product {
-    max-width: 330px;
+  font-size: 25px;
+  line-height: 1.05;
+}
 
-    margin:
-      3px
-      auto
-      4px;
+.discount-win-product {
+  max-width: 330px;
 
-    font-size: 11px;
-    line-height: 1.35;
-  }
+  margin:
+    0
+    auto
+    7px;
 
-  .discount-win-price {
-    margin:
-      4px
-      auto
-      8px;
-  }
+  font-size: 11px;
+  line-height: 1.4;
+}
 
-  .discount-win-price__old {
-    margin-bottom: 0;
+.discount-win-price {
+  margin:
+    0
+    auto
+    11px;
+}
 
-    font-size: 11px;
-  }
+.discount-win-price__old {
+  margin-bottom: 2px;
 
-  .discount-win-price__new {
-    font-size: 37px;
-    line-height: 0.98;
-  }
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.discount-win-price__new {
+  font-size: 37px;
+  line-height: 1;
+}
 
 
   /* ==========================================================
