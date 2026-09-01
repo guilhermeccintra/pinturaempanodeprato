@@ -3672,31 +3672,10 @@ section {
     btnShadow 3.5s ease-in-out infinite;
 }
 
-.btn-primary::before {
-  content: "";
+.btn-primary > * {
+  position: relative;
 
-  position: absolute;
-
-  top: 0;
-  left: -140%;
-
-  width: 45%;
-  height: 100%;
-
-  background:
-    linear-gradient(
-      120deg,
-      transparent,
-      rgba(255, 255, 255, 0.45),
-      transparent
-    );
-
-  transform: skewX(-20deg);
-
-  animation:
-    btnShine 4.5s infinite;
-
-  pointer-events: none;
+  z-index: 2;
 }
 
 .btn-primary > * {
@@ -3732,17 +3711,21 @@ section {
 }
 
 @keyframes btnShine {
-  0%,
+
+  0% {
+    left: -60%;
+  }
+
   55% {
-    left: -140%;
+    left: -60%;
   }
 
   80% {
-    left: 160%;
+    left: 130%;
   }
 
   100% {
-    left: 160%;
+    left: 130%;
   }
 }
 
