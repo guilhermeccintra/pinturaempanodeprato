@@ -6253,7 +6253,7 @@ section {
 
   width: 100%;
 
-  margin: 0 auto 10px;
+  margin: 0 auto 12px;
 
   padding: 0;
 
@@ -6273,19 +6273,19 @@ section {
   font-family:
     var(--font-body);
 
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.3;
 
   color:
     var(--color-text-light);
 
-  text-decoration: line-through;
-  text-decoration-thickness: 1px;
+  text-decoration-line: line-through;
+  text-decoration-thickness: 1.5px;
   text-decoration-color:
     var(--color-text-light);
 
-  opacity: 0.85;
+  opacity: 0.80;
 }
 
 
@@ -6296,11 +6296,11 @@ section {
 @media (max-width: 600px) {
 
   .offer-reference-price {
-    margin-bottom: 9px;
+    margin-bottom: 10px;
   }
 
   .offer-reference-price__value {
-    font-size: 14px;
+    font-size: 17px;
   }
 }
 
