@@ -6251,11 +6251,9 @@ section {
   align-items: center;
   justify-content: center;
 
-  gap: 5px;
-
   width: 100%;
 
-  margin: 0 auto 12px;
+  margin: 0 auto 10px;
 
   padding: 0;
 
@@ -6267,24 +6265,10 @@ section {
   text-align: center;
 }
 
-.offer-reference-price__label {
-  display: inline;
+.offer-reference-price__value {
+  display: inline-block;
 
   margin: 0;
-
-  font-family:
-    var(--font-body);
-
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.4;
-
-  color:
-    var(--color-text-light);
-}
-
-.offer-reference-price__value {
-  display: inline;
 
   font-family:
     var(--font-body);
@@ -6298,8 +6282,26 @@ section {
 
   text-decoration: line-through;
   text-decoration-thickness: 1px;
+  text-decoration-color:
+    var(--color-text-light);
 
-  opacity: 0.78;
+  opacity: 0.85;
+}
+
+
+/* ==========================================================================
+   Preço de referência — Mobile
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+  .offer-reference-price {
+    margin-bottom: 9px;
+  }
+
+  .offer-reference-price__value {
+    font-size: 14px;
+  }
 }
 
 
