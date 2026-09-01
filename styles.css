@@ -6611,27 +6611,6 @@ section {
   }
 
 
-  /* ==========================================================
-     Preço de referência da landing
-     ========================================================== */
-
-  .offer-reference-price {
-    width: min(100%, 220px);
-
-    margin-bottom: 10px;
-
-    padding: 10px 14px;
-  }
-
-  .offer-reference-price__label {
-    font-size: 11px;
-  }
-
-  .offer-reference-price__value {
-    font-size: 23px;
-  }
-}
-
 
 /* ==========================================================================
    Popup — Celulares muito pequenos
