@@ -4978,19 +4978,20 @@ section {
 
   .offer-surprise-kicker {
     font-size: 16px;
+    line-height: 1.45;
   }
 
-   .offer-surprise-intro > strong {
-  font-size: 16px;
-  line-height: 1.5;
-}
+  .offer-surprise-intro > strong {
+    font-size: 16px;
+    line-height: 1.45;
+  }
 
   .offer-surprise-copy {
     width: 100%;
     max-width: 420px;
 
     font-size: 15px;
-    line-height: 1.5;
+    line-height: 1.45;
   }
 
   .offer-surprise-note {
