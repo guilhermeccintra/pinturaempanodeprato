@@ -3651,10 +3651,12 @@ section {
 
 
 /* ==========================================================================
-   Botão principal — animação elegante
+   Botões principais — animação + reflexo
    ========================================================================== */
 
-.btn-primary {
+.btn-primary,
+.discount-trigger,
+.discount-checkout {
   position: relative;
 
   overflow: hidden;
@@ -3673,28 +3675,34 @@ section {
 }
 
 
-/* Reflexo que atravessa o botão */
+/* ==========================================================================
+   Reflexo que atravessa os botões
+   ========================================================================== */
 
-.btn-primary::before {
+.btn-primary::before,
+.discount-trigger::before,
+.discount-checkout::before {
   content: "";
 
   position: absolute;
 
-  top: -20%;
-  left: -60%;
+  top: -30%;
+  left: -50%;
 
   z-index: 1;
 
-  width: 32%;
-  height: 140%;
+  display: block;
+
+  width: 28%;
+  height: 160%;
 
   background:
     linear-gradient(
       110deg,
       transparent 0%,
-      rgba(255, 255, 255, 0.08) 25%,
-      rgba(255, 255, 255, 0.65) 50%,
-      rgba(255, 255, 255, 0.08) 75%,
+      rgba(255, 255, 255, 0.05) 20%,
+      rgba(255, 255, 255, 0.72) 50%,
+      rgba(255, 255, 255, 0.05) 80%,
       transparent 100%
     );
 
@@ -3708,16 +3716,22 @@ section {
 }
 
 
-/* Mantém o conteúdo do botão acima do reflexo */
+/* ==========================================================================
+   Conteúdo dos botões acima do reflexo
+   ========================================================================== */
 
-.btn-primary > * {
+.btn-primary > *,
+.discount-trigger > *,
+.discount-checkout > * {
   position: relative;
 
   z-index: 2;
 }
 
 
-/* Pulsação suave */
+/* ==========================================================================
+   Pulsação suave
+   ========================================================================== */
 
 @keyframes btnPulse {
 
@@ -3732,7 +3746,9 @@ section {
 }
 
 
-/* Variação suave da sombra */
+/* ==========================================================================
+   Sombra pulsante
+   ========================================================================== */
 
 @keyframes btnShadow {
 
@@ -3751,29 +3767,34 @@ section {
 }
 
 
-/* Reflexo atravessando o botão */
+/* ==========================================================================
+   Movimento do reflexo
+   ========================================================================== */
 
 @keyframes btnShine {
 
-  0% {
-    left: -60%;
+  0%,
+  48% {
+    left: -50%;
   }
 
-  55% {
-    left: -60%;
-  }
-
-  80% {
-    left: 130%;
+  72% {
+    left: 125%;
   }
 
   100% {
-    left: 130%;
+    left: 125%;
   }
 }
 
 
-.btn-primary:hover {
+/* ==========================================================================
+   Hover
+   ========================================================================== */
+
+.btn-primary:hover,
+.discount-trigger:hover,
+.discount-checkout:hover {
   transform:
     translateY(-2px);
 
