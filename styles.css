@@ -6253,7 +6253,7 @@ section {
 
   width: 100%;
 
-  margin: 0 auto 12px;
+  margin: 0 auto 5px;
 
   padding: 0;
 
@@ -6296,7 +6296,7 @@ section {
 @media (max-width: 600px) {
 
   .offer-reference-price {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   .offer-reference-price__value {
