@@ -3686,34 +3686,36 @@ section {
 
   position: absolute;
 
-  top: 0;
-  left: 40%;
+  top: -30%;
+  left: -35%;
 
-  z-index: 10;
+  z-index: 1;
 
   display: block;
 
-  width: 60px;
-  height: 100%;
+  width: 28%;
+  height: 160%;
 
-  background: rgba(255, 255, 255, 0.7);
+  background:
+    linear-gradient(
+      110deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.05) 20%,
+      rgba(255, 255, 255, 0.70) 50%,
+      rgba(255, 255, 255, 0.05) 80%,
+      transparent 100%
+    );
 
-  transform: skewX(-20deg);
+  transform:
+    translateX(0)
+    skewX(-20deg);
+
+  animation:
+    btnShine 4s ease-in-out infinite;
 
   pointer-events: none;
-}
 
-
-/* ==========================================================================
-   Conteúdo dos botões acima do reflexo
-   ========================================================================== */
-
-.btn-primary > *,
-.discount-trigger > *,
-.discount-checkout > * {
-  position: relative;
-
-  z-index: 2;
+  will-change: transform;
 }
 
 
@@ -3762,16 +3764,22 @@ section {
 @keyframes btnShine {
 
   0%,
-  48% {
-    left: -50%;
+  50% {
+    transform:
+      translateX(0)
+      skewX(-20deg);
   }
 
-  72% {
-    left: 125%;
+  75% {
+    transform:
+      translateX(600%)
+      skewX(-20deg);
   }
 
   100% {
-    left: 125%;
+    transform:
+      translateX(600%)
+      skewX(-20deg);
   }
 }
 
