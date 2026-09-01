@@ -4951,6 +4951,403 @@ section {
 }
 
 /* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.faq-list {
+  width: 100%;
+  max-width: 800px;
+
+  margin: 48px auto 0;
+}
+
+.faq-item {
+  overflow: hidden;
+
+  border-bottom:
+    1px solid
+    var(--color-border);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  width: 100%;
+
+  padding: 24px 0;
+
+  background-color: transparent;
+
+  border: none;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+
+  text-align: left;
+
+  color:
+    var(--color-text);
+
+  cursor: pointer;
+}
+
+.faq-question svg {
+  flex-shrink: 0;
+
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+
+  color:
+    var(--color-primary);
+
+  transition:
+    transform 0.3s;
+}
+
+.faq-item.active .faq-question svg {
+  transform:
+    rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+
+  overflow: hidden;
+
+  transition:
+    max-height 0.4s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+}
+
+.faq-answer p {
+  margin: 0;
+
+  padding: 0 0 24px;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 0.95rem;
+  line-height: 1.8;
+
+  color:
+    var(--color-text-light);
+}
+
+
+/* ==========================================================================
+   FAQ — Mobile
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .faq-list {
+    width: 100%;
+
+    margin-top: 32px;
+  }
+
+  .faq-question {
+    gap: 12px;
+
+    padding:
+      20px
+      0;
+
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .faq-question svg {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+  }
+
+  .faq-answer p {
+    padding-bottom: 20px;
+
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}
+
+
+/* ==========================================================================
+   CTA Final — estrutura base
+   ========================================================================== */
+
+.final-cta {
+  padding: 48px 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-bg-alt),
+      var(--color-bg-warm)
+    );
+
+  text-align: center;
+}
+
+.final-cta-title {
+  margin-bottom: 16px;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 2.5rem;
+  font-weight: 700;
+
+  color:
+    var(--color-text);
+}
+
+.final-cta-title span {
+  font-family:
+    var(--font-script);
+
+  color:
+    var(--color-primary);
+}
+
+.final-cta-subtitle {
+  width: 100%;
+  max-width: 600px;
+
+  margin-right: auto;
+  margin-bottom: 40px;
+  margin-left: auto;
+
+  font-size: 1.1rem;
+
+  color:
+    var(--color-text-light);
+}
+
+
+/* ==========================================================================
+   Rodapé
+   ========================================================================== */
+
+.footer {
+  padding: 24px 0 0;
+
+  background-color:
+    var(--color-text);
+
+  color:
+    var(--color-bg-alt);
+}
+
+.footer-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 60px;
+
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  padding:
+    48px
+    24px
+    40px;
+
+  box-sizing: border-box;
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-brand-name {
+  margin-bottom: 8px;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 1.3rem;
+  font-weight: 700;
+
+  color:
+    var(--color-bg);
+}
+
+.footer-brand p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+
+  color:
+    rgba(255, 255, 255, 0.6);
+}
+
+.footer-links {
+  display: flex;
+
+  gap: 48px;
+}
+
+.footer-links-group h4 {
+  margin-bottom: 12px;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  color:
+    var(--color-bg);
+}
+
+.footer-links-group ul {
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.footer-links-group li {
+  margin-bottom: 8px;
+}
+
+.footer-links-group a {
+  font-size: 0.85rem;
+
+  color:
+    rgba(255, 255, 255, 0.6);
+
+  transition:
+    color 0.3s;
+}
+
+.footer-links-group a:hover {
+  color:
+    var(--color-white);
+}
+
+.footer-bottom {
+  padding: 20px 10px;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+
+  font-size: 0.8rem;
+  line-height: 1.5;
+
+  text-align: center;
+
+  color:
+    rgba(255, 255, 255, 0.4);
+}
+
+
+/* ==========================================================================
+   FAQ + Rodapé — Tablet / Mobile
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .final-cta {
+    padding: 32px 0;
+  }
+
+  .final-cta-title {
+    font-size: 1.75rem;
+  }
+
+  .final-cta-subtitle {
+    width: 100%;
+    max-width: 100%;
+
+    margin-bottom: 28px;
+  }
+
+  .footer {
+    padding-top: 18px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+
+    gap: 28px;
+
+    width: 100%;
+
+    /*
+     * Seguimos a nova lógica do site:
+     * apenas 10px de margem lateral no mobile.
+     */
+    padding:
+      36px
+      10px
+      30px;
+
+    text-align: center;
+  }
+
+  .footer-brand {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+
+    gap: 24px;
+
+    width: 100%;
+  }
+
+  .footer-links-group {
+    width: 100%;
+  }
+
+  .footer-links-group ul {
+    width: 100%;
+  }
+}
+
+
+/* ==========================================================================
+   Rodapé — Mobile pequeno
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+  .footer-content {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .footer-bottom {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+
+/* ==========================================================================
    Modal da oferta
    ========================================================================== */
 
