@@ -46,6 +46,7 @@
 /* ==========================================================================
    Classes Utilitárias de Fundo
    ========================================================================== */
+
 .bg-default { background-color: var(--color-bg); }
 .bg-white { background-color: var(--color-white); }
 .bg-alt { background-color: var(--color-bg-alt); }
@@ -55,6 +56,7 @@
 /* ==========================================================================
    Estilos Globais e Reset
    ========================================================================== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -71,6 +73,7 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   line-height: 1.7;
+
   /* Padrão decorativo sutil (Floral/Folha) para fundo premium */
   background-image: radial-gradient(var(--color-bg-alt) 1px, transparent 1px);
   background-size: 40px 40px;
@@ -89,6 +92,7 @@ a {
 /* ==========================================================================
    Layout Base
    ========================================================================== */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -103,6 +107,7 @@ section {
 /* ==========================================================================
    Tipografia
    ========================================================================== */
+
 .section-tag {
   font-size: 0.75rem;
   letter-spacing: 3px;
@@ -131,17 +136,17 @@ section {
 }
 
 .section-subtitle {
-    max-width: 620px;
-    font-family: var(--font-body);
-    font-size: 17px;
-    font-weight: 400;
-    line-height: 1.45;
-    color: var(--color-text-light);
+  max-width: 620px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--color-text-light);
 }
 
 .section-subtitle strong {
-    font-weight: 700;
-    color: var(--color-text-light);
+  font-weight: 700;
+  color: var(--color-text-light);
 }
 
 .text-center {
@@ -154,6 +159,7 @@ section {
 }
 
 /* Divisor decorativo para seções */
+
 .text-center .section-title::after {
   content: "❧";
   display: block;
@@ -167,6 +173,7 @@ section {
 /* ==========================================================================
    Botões
    ========================================================================== */
+
 .btn-primary {
   background-color: var(--color-primary);
   color: var(--color-white);
@@ -511,7 +518,7 @@ section {
     color: var(--color-text-light);
   }
 
-.hero-subtitle strong {
+  .hero-subtitle strong {
     color: var(--color-text-light);
     font-weight: 700;
   }
@@ -545,9 +552,11 @@ section {
     color: var(--color-text-light);
   }
 }
+
 /* ==========================================================================
    Seção de Benefícios (Benefits)
    ========================================================================== */
+
 .benefits {
 }
 
@@ -605,6 +614,7 @@ section {
 /* ==========================================================================
    Componente: Carousel
    ========================================================================== */
+
 .carousel {
   position: relative;
   overflow: hidden;
@@ -693,6 +703,7 @@ section {
 /* ==========================================================================
    Componente: Imagem de Placeholder (Para testes)
    ========================================================================== */
+
 .placeholder-image {
   background-color: var(--color-bg-alt);
   border: 2px dashed var(--color-border);
@@ -713,6 +724,7 @@ section {
 /* ==========================================================================
    Galeria de Riscos (Gallery)
    ========================================================================== */
+
 .gallery {
 }
 
@@ -723,6 +735,7 @@ section {
 /* ==========================================================================
    Categorias
    ========================================================================== */
+
 .categories {
 }
 
@@ -759,6 +772,7 @@ section {
 /* ==========================================================================
    Resultados (Resultados de pintura)
    ========================================================================== */
+
 .results {
 }
 
@@ -769,6 +783,7 @@ section {
 /* ==========================================================================
    Passo a Passo de Transferência (Transfer Steps)
    ========================================================================== */
+
 .transfer {
 }
 
@@ -836,6 +851,7 @@ section {
 /* ==========================================================================
    Linha do Tempo / Como Funciona (Timeline)
    ========================================================================== */
+
 .how-it-works {
 }
 
@@ -903,6 +919,7 @@ section {
 /* ==========================================================================
    Público-Alvo (Audience)
    ========================================================================== */
+
 .audience {
 }
 
@@ -943,6 +960,7 @@ section {
 /* ==========================================================================
    Vantagens (Advantages)
    ========================================================================== */
+
 .advantages {
 }
 
@@ -999,6 +1017,7 @@ section {
 /* ==========================================================================
    Perguntas Frequentes (FAQ)
    ========================================================================== */
+
 .faq {
 }
 
@@ -1061,6 +1080,7 @@ section {
 /* ==========================================================================
    Garantia (Guarantee)
    ========================================================================== */
+
 .guarantee {
 }
 
@@ -1111,6 +1131,7 @@ section {
 /* ==========================================================================
    CTA Final (Final CTA)
    ========================================================================== */
+
 .final-cta {
   background: linear-gradient(135deg, var(--color-bg-alt), var(--color-bg-warm));
   text-align: center;
@@ -1142,6 +1163,7 @@ section {
 /* ==========================================================================
    Rodapé (Footer)
    ========================================================================== */
+
 .footer {
   background-color: var(--color-text);
   color: var(--color-bg-alt);
@@ -1224,28 +1246,129 @@ section {
    Novos Componentes (Marquee, Bonus, Offer)
    ========================================================================== */
 
-.bonuses-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
-.bonus-card { padding: 32px 24px; background: var(--color-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-primary); }
-.bonus-icon { width: 48px; height: 48px; background: var(--color-cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary); margin-bottom: 16px; }
-.bonus-title { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 8px; font-weight: 600; }
-.bonus-text { font-size: 0.9rem; color: var(--color-text-light); }
-@media(max-width: 768px) { .bonuses-grid { grid-template-columns: 1fr; } }
+.bonuses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
 
-.offer-box { max-width: 600px; margin: 0 auto; background: var(--color-white); padding: 48px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 2px solid var(--color-primary-light); text-align: center; position: relative; }
-.offer-price { margin: 32px 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.offer-price-old { font-size: 1.2rem; color: var(--color-text-light); text-decoration: line-through; }
-.offer-price-new { font-size: 2.8rem; color: var(--color-primary-dark); font-weight: 700; font-family: var(--font-display); line-height: 1; }
-.offer-benefits { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 40px; text-align: left; padding: 0; }
-.offer-benefits li { display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 0.95rem; }
-.offer-benefits svg { color: var(--color-secondary-light); width: 20px; height: 20px; flex-shrink: 0; }
-@media(max-width: 768px) { 
-  .offer-box { padding: 32px 24px; }
-  .offer-benefits { grid-template-columns: 1fr; justify-items: center; text-align: left; width: fit-content; margin-left: auto; margin-right: auto; } 
+.bonus-card {
+  padding: 32px 24px;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border-top: 4px solid var(--color-primary);
+}
+
+.bonus-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--color-cream);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.bonus-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.bonus-text {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+@media(max-width: 768px) {
+  .bonuses-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.offer-box {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--color-white);
+  padding: 48px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--color-primary-light);
+  text-align: center;
+  position: relative;
+}
+
+.offer-price {
+  margin: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.offer-price-old {
+  font-size: 1.2rem;
+  color: var(--color-text-light);
+  text-decoration: line-through;
+}
+
+.offer-price-new {
+  font-size: 2.8rem;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  font-family: var(--font-display);
+  line-height: 1;
+}
+
+.offer-benefits {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+  text-align: left;
+  padding: 0;
+}
+
+.offer-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.offer-benefits svg {
+  color: var(--color-secondary-light);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+@media(max-width: 768px) {
+  .offer-box {
+    padding: 32px 24px;
+  }
+
+  .offer-benefits {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: left;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* ==========================================================================
    Animações
    ========================================================================== */
+
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -1258,6 +1381,7 @@ section {
 }
 
 /* Redução de Movimento para Acessibilidade */
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -1277,6 +1401,7 @@ section {
    ========================================================================== */
 
 /* Tablet (max-width: 1024px) */
+
 @media (max-width: 1024px) {
   .benefits-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1304,6 +1429,7 @@ section {
 }
 
 /* Mobile (max-width: 768px) */
+
 @media (max-width: 768px) {
   section {
     padding: 32px 0;
@@ -1363,6 +1489,7 @@ section {
 }
 
 /* Small Mobile (max-width: 480px) */
+
 @media (max-width: 480px) {
   .carousel-slide {
     flex: 0 0 85%;
@@ -1382,202 +1509,201 @@ section {
    ========================================================================== */
 
 .a4-carousel {
-    position: relative;
-    width: 100%;
-    max-width: 1120px;
-    margin: 45px auto 0;
-    padding: 0 54px;
+  position: relative;
+  width: 100%;
+  max-width: 1120px;
+  margin: 45px auto 0;
+  padding: 0 54px;
 }
 
 .a4-carousel-viewport {
-    width: 100%;
-    overflow: hidden;
-    border-radius: var(--radius-md);
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
 }
 
 .a4-carousel-track {
-    display: flex;
-    width: max-content;
-    gap: 22px;
+  display: flex;
+  width: max-content;
+  gap: 22px;
 
-    transition: none !important;
-    transform: translate3d(0, 0, 0);
-    will-change: transform;
-    backface-visibility: hidden;
+  transition: none !important;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* Proporção A4 vertical: 210 × 297 */
+
 .a4-carousel-slide {
-    flex: 0 0 calc((100% - 44px) / 3);
-    aspect-ratio: 210 / 297;
+  flex: 0 0 calc((100% - 44px) / 3);
+  aspect-ratio: 210 / 297;
 
-    overflow: hidden;
-    border-radius: 14px;
+  overflow: hidden;
+  border-radius: 14px;
 
-    background-color: var(--color-white);
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-sm);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
 }
 
 .a4-carousel-slide img {
-    width: 100%;
-    height: 100%;
-    display: block;
+  width: 100%;
+  height: 100%;
+  display: block;
 
-    object-fit: contain;
-    background-color: #ffffff;
+  object-fit: contain;
+  background-color: #ffffff;
 }
 
 /* Botões laterais */
 
 .a4-carousel-btn {
-    position: absolute;
-    top: 50%;
-    z-index: 3;
+  position: absolute;
+  top: 50%;
+  z-index: 3;
 
-    width: 42px;
-    height: 42px;
+  width: 42px;
+  height: 42px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    transform: translateY(-50%);
+  transform: translateY(-50%);
 
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
 
-    background-color: rgba(255, 255, 255, 0.94);
-    color: var(--color-primary-dark);
+  background-color: rgba(255, 255, 255, 0.94);
+  color: var(--color-primary-dark);
 
-    font-size: 1.25rem;
-    cursor: pointer;
+  font-size: 1.25rem;
+  cursor: pointer;
 
-    box-shadow: var(--shadow-sm);
-    transition:
-        transform 0.25s ease,
-        background-color 0.25s ease,
-        border-color 0.25s ease;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .a4-carousel-btn:hover {
-    background-color: var(--color-cream);
-    border-color: var(--color-primary);
+  background-color: var(--color-cream);
+  border-color: var(--color-primary);
 }
 
 .a4-carousel-prev {
-    left: 0;
+  left: 0;
 }
 
 .a4-carousel-next {
-    right: 0;
+  right: 0;
 }
 
 /* Indicadores */
 
 .a4-carousel-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 
-    margin-top: 22px;
+  margin-top: 22px;
 }
 
 .a4-carousel-dot {
-    width: 9px;
-    height: 9px;
+  width: 9px;
+  height: 9px;
 
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
 
-    background-color: var(--color-border);
-    cursor: pointer;
+  background-color: var(--color-border);
+  cursor: pointer;
 
-    transition:
-        transform 0.25s ease,
-        background-color 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease;
 }
 
 .a4-carousel-dot.active {
-    transform: scale(1.25);
-    background-color: var(--color-primary);
+  transform: scale(1.25);
+  background-color: var(--color-primary);
 }
 
 /* Tablet: duas imagens */
 
 @media (max-width: 900px) {
-    .a4-carousel {
-        max-width: 760px;
-        padding: 0 48px;
-    }
+  .a4-carousel {
+    max-width: 760px;
+    padding: 0 48px;
+  }
 
-    .a4-carousel-track {
-        gap: 18px;
-    }
+  .a4-carousel-track {
+    gap: 18px;
+  }
 
-    .a4-carousel-slide {
-        flex-basis: calc((100% - 18px) / 2);
-    }
+  .a4-carousel-slide {
+    flex-basis: calc((100% - 18px) / 2);
+  }
 }
-
-/* Mobile: uma imagem, sem ficar exagerada */
 
 /* ==========================================================================
    Carrossel contínuo
    ========================================================================== */
 
 .a4-carousel {
-    position: relative;
-    width: 100%;
-    max-width: 1280px;
-    margin: 45px auto 0;
-    padding: 0;
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  margin: 45px auto 0;
+  padding: 0;
 }
 
 .a4-carousel-viewport {
-    width: 100%;
-    overflow: hidden;
-    border-radius: var(--radius-md);
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
 }
 
 .a4-carousel-track {
-    display: flex;
-    width: max-content;
-    gap: 22px;
+  display: flex;
+  width: max-content;
+  gap: 22px;
 
-    transition: none !important;
-    transform: translate3d(0, 0, 0);
-    will-change: transform;
-    backface-visibility: hidden;
+  transition: none !important;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .a4-carousel-slide {
-    flex: 0 0 calc((min(100vw, 1280px) - 44px) / 3);
-    width: calc((min(100vw, 1280px) - 44px) / 3);
-    aspect-ratio: 210 / 297;
+  flex: 0 0 calc((min(100vw, 1280px) - 44px) / 3);
+  width: calc((min(100vw, 1280px) - 44px) / 3);
+  aspect-ratio: 210 / 297;
 
-    overflow: hidden;
-    border-radius: 14px;
+  overflow: hidden;
+  border-radius: 14px;
 
-    background-color: var(--color-white);
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-sm);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
 }
 
 .a4-carousel-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
+  display: block;
+  width: 100%;
+  height: 100%;
 
-    object-fit: contain;
-    background-color: #ffffff;
+  object-fit: contain;
+  background-color: #ffffff;
 
-    user-select: none;
-    -webkit-user-drag: none;
-    pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 /* Remove setas e indicadores antigos */
@@ -1586,10 +1712,10 @@ section {
 .a4-carousel-prev,
 .a4-carousel-next,
 .a4-carousel-dots {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 /* ==========================================================================
@@ -1597,19 +1723,19 @@ section {
    ========================================================================== */
 
 @media (max-width: 900px) {
-    .a4-carousel {
-        width: calc(100% - 40px);
-        max-width: 820px;
-    }
+  .a4-carousel {
+    width: calc(100% - 40px);
+    max-width: 820px;
+  }
 
-    .a4-carousel-track {
-        gap: 18px;
-    }
+  .a4-carousel-track {
+    gap: 18px;
+  }
 
-    .a4-carousel-slide {
-        flex: 0 0 calc((min(100vw - 40px, 820px) - 18px) / 2);
-        width: calc((min(100vw - 40px, 820px) - 18px) / 2);
-    }
+  .a4-carousel-slide {
+    flex: 0 0 calc((min(100vw - 40px, 820px) - 18px) / 2);
+    width: calc((min(100vw - 40px, 820px) - 18px) / 2);
+  }
 }
 
 /* ==========================================================================
@@ -1617,53 +1743,52 @@ section {
    ========================================================================== */
 
 @media (max-width: 600px) {
-    .a4-carousel {
-        width: calc(100% - 8px);
-        max-width: none;
-        margin: 32px auto 0;
-        padding: 0;
-    }
+  .a4-carousel {
+    width: calc(100% - 8px);
+    max-width: none;
+    margin: 32px auto 0;
+    padding: 0;
+  }
 
-    .a4-carousel-viewport {
-        width: 100%;
-        overflow: hidden;
-        border-radius: 12px;
-    }
+  .a4-carousel-viewport {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+  }
 
-    .a4-carousel-track {
-        gap: 10px;
-    }
+  .a4-carousel-track {
+    gap: 10px;
+  }
 
-    .a4-carousel-slide {
-        flex: 0 0 calc(100vw - 16px);
-        width: calc(100vw - 16px);
-        max-width: none;
-        max-height: none;
-    }
+  .a4-carousel-slide {
+    flex: 0 0 calc(100vw - 16px);
+    width: calc(100vw - 16px);
+    max-width: none;
+    max-height: none;
+  }
 }
-
 
 /* ==========================================================================
    Carrossel de resultados
    ========================================================================== */
 
 .results-carousel {
-    width: 100%;
-    max-width: 1280px;
+  width: 100%;
+  max-width: 1280px;
 }
 
 .results-carousel .a4-carousel-slide {
-    aspect-ratio: 4 / 5;
-    background-color: var(--color-white);
+  aspect-ratio: 4 / 5;
+  background-color: var(--color-white);
 }
 
 .results-carousel .a4-carousel-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
+  display: block;
+  width: 100%;
+  height: 100%;
 
-    object-fit: cover;
-    object-position: center;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* ==========================================================================
@@ -1671,10 +1796,10 @@ section {
    ========================================================================== */
 
 @media (max-width: 900px) {
-    .results-carousel {
-        width: calc(100% - 40px);
-        max-width: 820px;
-    }
+  .results-carousel {
+    width: calc(100% - 40px);
+    max-width: 820px;
+  }
 }
 
 /* ==========================================================================
@@ -1682,83 +1807,83 @@ section {
    ========================================================================== */
 
 @media (max-width: 600px) {
-    .results-carousel {
-        width: calc(100% - 8px);
-        max-width: none;
-        margin: 32px auto 0;
-        padding: 0;
-    }
+  .results-carousel {
+    width: calc(100% - 8px);
+    max-width: none;
+    margin: 32px auto 0;
+    padding: 0;
+  }
 
-    .results-carousel .a4-carousel-slide {
-        flex: 0 0 calc(100vw - 16px);
-        width: calc(100vw - 16px);
-        max-width: none;
-        max-height: none;
-        aspect-ratio: 4 / 5;
-    }
+  .results-carousel .a4-carousel-slide {
+    flex: 0 0 calc(100vw - 16px);
+    width: calc(100vw - 16px);
+    max-width: none;
+    max-height: none;
+    aspect-ratio: 4 / 5;
+  }
 }
-
 
 /* ========================================================================== */
 /* Bonuses Dark */
 /* ========================================================================== */
 
-.bonuses-dark{
-    background: var(--color-text);
+.bonuses-dark {
+  background: var(--color-text);
 }
 
 .bonuses-dark .section-tag,
 .bonuses-dark .section-title,
-.bonuses-dark .section-title span{
-    color: var(--color-bg);
+.bonuses-dark .section-title span {
+  color: var(--color-bg);
 }
 
-.bonuses-dark .bonus-card{
-    background: var(--color-white);
+.bonuses-dark .bonus-card {
+  background: var(--color-white);
 }
 
-.bonuses-dark .bonus-icon{
-    color: var(--color-primary);
+.bonuses-dark .bonus-icon {
+  color: var(--color-primary);
 }
 
+/* ==========================================================================
+   Tags de categorias
+   ========================================================================== */
 
-.categories-tags{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:12px;
-    margin-top:40px;
+.categories-tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 40px;
 }
 
-.categories-tags span{
-    padding:10px 18px;
-    border-radius:999px;
-    background:#fff;
-    border:1px solid rgba(196,120,74,.25);
-    color:#C4784A;
-    font-size:.95rem;
-    font-weight:600;
-    transition:.3s;
+.categories-tags span {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(196, 120, 74, .25);
+  color: #C4784A;
+  font-size: .95rem;
+  font-weight: 600;
+  transition: .3s;
 }
 
-.categories-tags span:hover{
-    background:#C4784A;
-    color:#fff;
+.categories-tags span:hover {
+  background: #C4784A;
+  color: #fff;
 }
 
-@media (max-width:768px){
+@media (max-width: 768px) {
+  .categories-tags {
+    gap: 10px;
+    margin-top: 28px;
+  }
 
-.categories-tags{
-    gap:10px;
-    margin-top:28px;
-}
-
-.categories-tags span{
-    font-size:.85rem;
-    padding:8px 14px;
-}
-
+  .categories-tags span {
+    font-size: .85rem;
+    padding: 8px 14px;
+  }
 }
 
 .hero-highlight {
@@ -1768,7 +1893,6 @@ section {
   color: var(--color-primary);
   text-align: center;
 }
-
 
 /* ==========================================================================
    COMPARAÇÃO: RISCO IMPRESSO X RESULTADO PINTADO
@@ -1922,7 +2046,6 @@ section {
     border-radius: inherit;
 }
 
-
 /* ==========================================================================
    RISCO — MINIATURA SOBREPOSTA
    O HTML corrigido usará .comparison-before e .comparison-before-media.
@@ -1951,6 +2074,7 @@ section {
 }
 
 /* Novo wrapper 4:5 do risco */
+
 .comparison-before-media {
     position: relative;
     width: 100%;
@@ -1973,6 +2097,7 @@ section {
 }
 
 /* Compatibilidade temporária com o HTML atual */
+
 .comparison-image:not(.comparison-image-result) > img {
     display: block !important;
     width: 100% !important;
@@ -1983,8 +2108,6 @@ section {
     object-position: center !important;
     background: #ffffff;
 }
-
-
 
 /* ==========================================================================
    ETIQUETAS
@@ -2289,7 +2412,6 @@ section {
         border-radius: 18px;
     }
 
-
     .comparison-before,
     .comparison-image:not(.comparison-image-result) {
         top: 10px;
@@ -2302,8 +2424,6 @@ section {
         max-height: none;
         border-radius: 11px;
     }
-
-
 
     .comparison-label {
         top: 5px;
@@ -2874,7 +2994,6 @@ section {
   }
 }
 
-
 /* ==========================================================================
    Garantia de 7 dias
    ========================================================================== */
@@ -3127,7 +3246,7 @@ section {
     height: 190px;
   }
 
-  .guarantee-seal-icon svg {
+    .guarantee-seal-icon svg {
     width: 43px;
     height: 43px;
   }
@@ -3182,7 +3301,6 @@ section {
     padding: 16px;
   }
 }
-
 
 /* ==========================================================================
    Seção de bônus com imagens quadradas
@@ -3502,102 +3620,103 @@ section {
   }
 }
 
+/* ==========================================================================
+   Benefícios do Hero
+   ========================================================================== */
+
 .hero-benefits {
-    width: fit-content;
-    max-width: 620px;
-    margin: 0px auto 32px;
-    padding: 0;
-    list-style: none;
+  width: fit-content;
+  max-width: 620px;
+  margin: 0px auto 32px;
+  padding: 0;
+  list-style: none;
 
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
-    text-align: left;
+  text-align: left;
 }
 
 .hero-benefits li {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 40px minmax(0, 1fr);
-    align-items: center;
-    column-gap: 12px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 12px;
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    color: var(--color-text-light);
-    font-family: var(--font-body);
-    font-size: 17px;
-    font-weight: 400;
-    line-height: 1.45;
+  color: var(--color-text-light);
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.45;
 }
 
 .hero-benefits .benefit-icon {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #f7e6d8;
-    border-radius: 50%;
+  background: #f7e6d8;
+  border-radius: 50%;
 
-    font-size: 17px;
-    line-height: 1;
+  font-size: 17px;
+  line-height: 1;
 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .hero-benefits .benefit-text {
-    display: block;
-    min-width: 0;
+  display: block;
+  min-width: 0;
 
-    color: var(--color-text-light);
-    text-align: left;
+  color: var(--color-text-light);
+  text-align: left;
 
-    overflow-wrap: break-word;
-    word-break: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .hero-benefits strong {
-    color: var(--color-text-light);
-    font-weight: 700;
+  color: var(--color-text-light);
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {
-    .hero-benefits {
-        width: 100%;
-        max-width: 420px;
-        margin: 0px auto 20px;
-        padding: 0 12px;
-        gap: 14px;
-        box-sizing: border-box;
-    }
+  .hero-benefits {
+    width: 100%;
+    max-width: 420px;
+    margin: 0px auto 20px;
+    padding: 0 12px;
+    gap: 14px;
+    box-sizing: border-box;
+  }
 
-    .hero-benefits li {
-        grid-template-columns: 36px minmax(0, 1fr);
-        column-gap: 10px;
+  .hero-benefits li {
+    grid-template-columns: 36px minmax(0, 1fr);
+    column-gap: 10px;
 
-        font-size: 16px;
-        line-height: 1.5;
-    }
+    font-size: 16px;
+    line-height: 1.5;
+  }
 
-    .hero-benefits .benefit-icon {
-        width: 36px;
-        height: 36px;
-        min-width: 36px;
+  .hero-benefits .benefit-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
 
-        font-size: 15px;
-    }
+    font-size: 15px;
+  }
 }
-
-
-
 
 /* ==========================================================================
    Botão principal do Hero — animação elegante
@@ -4107,6 +4226,7 @@ section {
 }
 
 /* Corrige distância entre benefícios e preço no HERO principal */
+
 .hero-content > .hero-price {
     margin-top: 0 !important;
 }
@@ -4168,6 +4288,7 @@ section {
 }
 
 /* Destaque "OFERTA ESPECIAL" */
+
 .promo-bar strong {
   font-weight: 800;
 }
@@ -4229,8 +4350,6 @@ body {
 }
 
 
-
-
 /* Mantém o risco sobreposto funcionando */
 
 .hero-comparison-card .comparison-before {
@@ -4241,7 +4360,6 @@ body {
 /* =========================================================
    GALERIA DE RISCOS POR TEMAS
 ========================================================= */
-
 
 .risks-gallery {
     padding:48px 20px;
@@ -4609,11 +4727,14 @@ body {
     }
 
 }
+
+
 /* ==========================================================================
    OFERTA FINAL — AJUSTES DE HIERARQUIA E CONVERSÃO
    ========================================================================== */
 
 /* Subtítulo da oferta final */
+
 .final-cta .section-subtitle {
     width: 100%;
     max-width: 620px;
@@ -4634,6 +4755,7 @@ body {
 }
 
 /* Videoaula em destaque */
+
 .bonus-benefit-highlight {
     background: #F0F7EC;
     border: 1px solid #C8DDBD;
@@ -4643,6 +4765,7 @@ body {
 }
 
 /* Preço da oferta final */
+
 .final-offer-price {
     width: 100%;
     margin: 16px auto 12px;
@@ -4685,6 +4808,7 @@ body {
 }
 
 /* Informações abaixo do botão */
+
 .final-offer-info {
     width: 100%;
     margin: 10px auto 0;
@@ -4699,6 +4823,7 @@ body {
 }
 
 /* Mobile */
+
 @media (max-width: 768px) {
     .final-cta .section-subtitle {
         max-width: 560px;
@@ -4976,7 +5101,6 @@ body {
 
     color: var(--color-text-light);
 }
-
 
 /* =========================================================
    ÁREA DOS 3 ENVELOPES
@@ -5562,13 +5686,13 @@ body {
     }
 }
 
-
 /* =========================================================
    CORREÇÃO VISUAL DOS ENVELOPES
    Mantém selo e texto em áreas separadas
    ========================================================= */
 
 /* Card */
+
 .discount-envelope {
     display: flex;
     flex-direction: column;
@@ -5803,6 +5927,10 @@ body {
 }
 
 
+/* =========================================================
+   TEXTO DO PRODUTO APÓS REVELAR O DESCONTO
+   ========================================================= */
+
 .discount-win-product {
     margin: 7px auto 11px;
     font-family: var(--font-body);
@@ -5822,5 +5950,73 @@ body {
     .discount-win-product {
         margin: 6px auto 9px;
         font-size: 13px;
+    }
+}
+
+
+/* ==========================================================================
+   PREÇO DE REFERÊNCIA ANTES DO ENVELOPE
+   Mostra apenas o valor normal; o preço final continua sendo revelado
+   somente depois da escolha do envelope.
+   ========================================================================== */
+
+.offer-reference-price {
+    width: min(100%, 430px);
+    margin: 4px auto 12px;
+    padding: 12px 18px;
+
+    border: 1px solid rgba(196, 120, 74, .22);
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, .58);
+
+    text-align: center;
+}
+
+.offer-reference-price__label {
+    display: block;
+
+    margin-bottom: 2px;
+
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.35;
+
+    color: var(--color-text-light);
+}
+
+.offer-reference-price__value {
+    display: block;
+
+    font-family: var(--font-display);
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.15;
+
+    color: var(--color-text);
+}
+
+
+/* =========================================================
+   PREÇO DE REFERÊNCIA — MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .offer-reference-price {
+        width: min(100%, 390px);
+
+        margin-bottom: 10px;
+
+        padding: 10px 14px;
+    }
+
+    .offer-reference-price__label {
+        font-size: 11px;
+    }
+
+    .offer-reference-price__value {
+        font-size: 23px;
     }
 }
