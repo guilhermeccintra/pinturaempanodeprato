@@ -5084,6 +5084,132 @@ section {
   }
 }
 
+/* ==========================================================================
+   Card da oferta final
+   ========================================================================== */
+
+.offer-box {
+  position: relative;
+
+  width: 100%;
+  max-width: 600px;
+
+  margin: 0 auto;
+
+  padding: 48px;
+
+  box-sizing: border-box;
+
+  background:
+    var(--color-white);
+
+  border:
+    2px solid
+    var(--color-primary-light);
+
+  border-radius:
+    var(--radius-lg);
+
+  box-shadow:
+    var(--shadow-lg);
+
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   Lista de benefícios da oferta final
+   ========================================================================== */
+
+.offer-benefits {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 16px;
+
+  margin-bottom: 40px;
+
+  padding: 0;
+
+  list-style: none;
+
+  text-align: left;
+}
+
+.offer-benefits li {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.offer-benefits svg {
+  flex-shrink: 0;
+
+  width: 20px;
+  height: 20px;
+
+  color:
+    var(--color-secondary-light);
+}
+
+
+/* ==========================================================================
+   Card da oferta final — Mobile
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .offer-box {
+    width: 100%;
+    max-width: 600px;
+
+    /*
+     * Mantemos espaço interno suficiente para o
+     * card continuar com aparência premium, mas
+     * aproveitamos melhor a largura do celular.
+     */
+    padding:
+      32px
+      16px;
+
+    border-radius:
+      var(--radius-lg);
+  }
+
+  .offer-benefits {
+    grid-template-columns: 1fr;
+
+    justify-items: stretch;
+
+    width: 100%;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    text-align: left;
+  }
+}
+
+
+/* ==========================================================================
+   Card da oferta final — Mobile pequeno
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+  .offer-box {
+    padding:
+      28px
+      14px;
+  }
+}
+
 
 /* ==========================================================================
    CTA Final — estrutura base
