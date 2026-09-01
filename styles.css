@@ -6409,7 +6409,7 @@ section {
    ========================================================================== */
 
 .offer-reference-price {
-  width: min(100%, 380px);
+  width: min(100%, 300px);
 
   margin: 0 auto 16px;
 
@@ -6758,7 +6758,7 @@ section {
      ========================================================== */
 
   .offer-reference-price {
-    width: min(100%, 380px);
+    width: min(100%, 300px);
 
     margin-bottom: 10px;
 
