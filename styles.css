@@ -5626,7 +5626,7 @@ section {
 
   overscroll-behavior: contain;
 
-  padding: 34px 30px 28px;
+  padding: 32px 30px 26px;
 
   box-sizing: border-box;
 
@@ -5707,7 +5707,7 @@ section {
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 
   font-family:
     var(--font-body);
@@ -5742,14 +5742,14 @@ section {
   width: 100%;
   max-width: 480px;
 
-  margin: 10px auto 22px;
+  margin: 8px auto 20px;
 
   font-family:
     var(--font-body);
 
   font-size: 14px;
   font-weight: 400;
-  line-height: 1.55;
+  line-height: 1.5;
 
   color:
     var(--color-text-light);
@@ -5776,9 +5776,6 @@ section {
 
 /* ==========================================================================
    Card do envelope
-
-   Este bloco já incorpora a correção visual que no CSS antigo aparecia
-   como um segundo override no final do arquivo.
    ========================================================================== */
 
 .discount-envelope {
@@ -5813,7 +5810,8 @@ section {
     transform 0.22s ease,
     box-shadow 0.22s ease,
     border-color 0.22s ease,
-    background-color 0.22s ease;
+    background-color 0.22s ease,
+    opacity 0.22s ease;
 
   -webkit-tap-highlight-color:
     transparent;
@@ -5836,8 +5834,6 @@ section {
 
 /* ==========================================================================
    Desenho do envelope
-
-   Configuração final consolidada.
    ========================================================================== */
 
 .discount-envelope__art {
@@ -5984,21 +5980,44 @@ section {
 
 
 /* ==========================================================================
-   Envelope selecionado
+   Estado após a revelação
+
+   Quando os resultados aparecem:
+   - envelopes não escolhidos recuam visualmente;
+   - envelope escolhido continua em primeiro plano.
    ========================================================================== */
 
+.discount-results.active ~ * {
+  /* intencionalmente vazio:
+     a estrutura atual não possui irmãos posteriores relevantes */
+}
+
 .discount-envelope.is-selected {
-  border-color:
+  z-index: 2;
+
+  border:
+    2px solid
     var(--color-primary);
 
-  background: #fff8f1;
+  background:
+    linear-gradient(
+      180deg,
+      #fff8f2 0%,
+      #fff0e3 100%
+    );
 
   transform:
-    translateY(-3px);
+    translateY(-4px)
+    scale(1.025);
 
   box-shadow:
-    0 9px 22px
-    rgba(196, 120, 74, 0.15);
+    0 12px 30px
+    rgba(196, 120, 74, 0.26);
+}
+
+.discount-envelope.is-selected .discount-envelope__number {
+  color:
+    var(--color-primary-dark);
 }
 
 
@@ -6009,7 +6028,7 @@ section {
 .discount-results {
   display: none;
 
-  margin-top: 22px;
+  margin-top: 18px;
 }
 
 .discount-results.active {
@@ -6026,66 +6045,143 @@ section {
 
   width: 100%;
 
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
+
+
+/* ==========================================================================
+   Resultados secundários
+   ========================================================================== */
 
 .discount-result-card {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  min-height: 72px;
+  min-height: 62px;
 
-  padding: 10px 6px;
+  padding: 9px 6px;
 
   border:
     1px solid
-    var(--color-border);
+    rgba(232, 213, 196, 0.9);
 
   border-radius: 14px;
 
-  background: #ffffff;
+  background:
+    rgba(255, 255, 255, 0.68);
 
   font-family:
     var(--font-body);
 
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
   line-height: 1.25;
 
   text-align: center;
 
   color:
     var(--color-text-light);
-}
 
-.discount-result-card.is-winner {
-  border:
-    2px solid
-    var(--color-primary);
+  opacity: 0.66;
 
-  background: #fff1e5;
-
-  box-shadow:
-    0 8px 20px
-    rgba(196, 120, 74, 0.14);
-
-  color:
-    var(--color-primary-dark);
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background-color 0.22s ease;
 }
 
 
 /* ==========================================================================
    Resultado vencedor
+
+   Este passa a ser o ponto visual principal da linha de resultados.
    ========================================================================== */
 
-.discount-win-kicker {
-  margin: 0 0 4px;
+.discount-result-card.is-winner {
+  position: relative;
+
+  min-height: 68px;
+
+  border:
+    2px solid
+    var(--color-primary);
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff7ef 0%,
+      #ffe5d1 100%
+    );
+
+  box-shadow:
+    0 9px 24px
+    rgba(196, 120, 74, 0.22);
+
+  color:
+    var(--color-primary-dark);
+
+  font-size: 16px;
+  font-weight: 800;
+
+  opacity: 1;
+
+  transform:
+    translateY(-3px);
+}
+
+/* ==========================================================================
+   Resultado vencedor — hierarquia de conversão
+   ========================================================================== */
+
+.discount-result-card.is-winner::before {
+  content: "✓ SEU DESCONTO";
+
+  position: absolute;
+
+  top: 6px;
+  left: 50%;
+
+  width: 100%;
+
+  transform:
+    translateX(-50%);
 
   font-family:
     var(--font-body);
 
-  font-size: 12px;
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 1;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  color:
+    var(--color-primary);
+
+  pointer-events: none;
+}
+
+.discount-result-card.is-winner {
+  padding-top: 20px;
+}
+
+
+/* ==========================================================================
+   Resultado principal da oferta
+   ========================================================================== */
+
+.discount-win-kicker {
+  margin: 1px 0 2px;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 11px;
   font-weight: 800;
   line-height: 1.3;
 
@@ -6093,7 +6189,8 @@ section {
 
   text-transform: uppercase;
 
-  color: var(--color-primary);
+  color:
+    var(--color-primary);
 }
 
 .discount-win-title {
@@ -6102,22 +6199,25 @@ section {
   font-family:
     var(--font-display);
 
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.05;
 
-  color: var(--color-text);
+  color:
+    var(--color-text);
 }
 
 .discount-win-product {
-  margin: 7px auto 11px;
+  max-width: 460px;
+
+  margin: 5px auto 6px;
 
   font-family:
     var(--font-body);
 
   font-size: 14px;
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.4;
 
   text-align: center;
 
@@ -6128,7 +6228,8 @@ section {
 .discount-win-product strong {
   font-weight: 700;
 
-  color: var(--color-text);
+  color:
+    var(--color-text);
 }
 
 
@@ -6137,27 +6238,27 @@ section {
    ========================================================================== */
 
 .discount-win-price {
-  margin: 12px auto 15px;
+  margin: 6px auto 13px;
 }
 
 .discount-win-price__old {
   display: block;
 
-  margin-bottom: 3px;
+  margin-bottom: 1px;
 
   font-family:
     var(--font-body);
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.35;
 
   color:
     var(--color-text-light);
 }
 
 .discount-win-price__old s {
-  opacity: 0.72;
+  opacity: 0.68;
 }
 
 .discount-win-price__new {
@@ -6166,9 +6267,11 @@ section {
   font-family:
     var(--font-display);
 
-  font-size: 38px;
+  font-size: 44px;
   font-weight: 700;
   line-height: 1;
+
+  letter-spacing: -0.02em;
 
   color:
     var(--color-primary-dark);
@@ -6191,18 +6294,19 @@ section {
 }
 
 .discount-security {
-  margin: 9px auto 0;
+  margin: 8px auto 0;
 
   font-family:
     var(--font-body);
 
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   line-height: 1.4;
 
   color:
     var(--color-text-light);
 }
+
 
 /* ==========================================================================
    Preço de referência antes do envelope
@@ -6260,6 +6364,13 @@ section {
 
 /* ==========================================================================
    Popup da oferta — Mobile
+
+   Objetivos:
+   - manter os 3 envelopes lado a lado;
+   - manter o envelope escolhido evidente;
+   - reduzir altura dos resultados;
+   - colocar desconto, preço e CTA mais cedo na tela;
+   - preservar legibilidade em telas pequenas.
    ========================================================================== */
 
 @media (max-width: 600px) {
@@ -6267,8 +6378,6 @@ section {
   .offer-surprise-intro {
     width: 100%;
     max-width: 390px;
-
-
   }
 
   .offer-surprise-copy {
@@ -6281,40 +6390,57 @@ section {
   .discount-modal {
     align-items: center;
 
-    padding: 12px;
+    padding: 10px;
   }
 
   .discount-modal__dialog {
     width: 100%;
 
     max-height:
-      calc(100dvh - 24px);
+      calc(100dvh - 20px);
 
     padding:
-      30px
-      14px
-      20px;
+      27px
+      12px
+      17px;
 
     border-radius: 20px;
   }
 
   .discount-modal__close {
-    top: 6px;
-    right: 6px;
+    top: 4px;
+    right: 4px;
+
+    width: 36px;
+    height: 36px;
+
+    font-size: 28px;
+  }
+
+
+  /* Cabeçalho */
+
+  .discount-modal__tag {
+    margin-bottom: 4px;
+
+    font-size: 9px;
   }
 
   .discount-modal__title {
-    font-size: 25px;
+    font-size: 24px;
+    line-height: 1.1;
   }
 
   .discount-modal__subtitle {
-    margin:
-      8px
-      auto
-      17px;
+    max-width: 350px;
 
-    font-size: 13px;
-    line-height: 1.45;
+    margin:
+      6px
+      auto
+      13px;
+
+    font-size: 12px;
+    line-height: 1.4;
   }
 
 
@@ -6326,24 +6452,46 @@ section {
     grid-template-columns:
       repeat(3, minmax(0, 1fr));
 
-    gap: 7px;
+    gap: 6px;
   }
 
   .discount-envelope {
-    padding: 8px 5px 9px;
+    padding:
+      7px
+      4px
+      7px;
 
-    border-radius: 13px;
+    border-radius: 12px;
+  }
+
+  .discount-envelope:hover,
+  .discount-envelope:focus-visible {
+    /*
+     * No celular não precisamos do deslocamento
+     * forte usado no desktop.
+     */
+    transform: none;
+  }
+
+  .discount-envelope.is-selected {
+    transform:
+      translateY(-2px)
+      scale(1.015);
+
+    box-shadow:
+      0 8px 20px
+      rgba(196, 120, 74, 0.22);
   }
 
   .discount-envelope__art {
     width: 100%;
-    max-width: 86px;
+    max-width: 82px;
 
-    height: 57px;
+    height: 54px;
 
-    flex-basis: 57px;
+    flex-basis: 54px;
 
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 
     border-radius: 7px;
   }
@@ -6353,86 +6501,159 @@ section {
   }
 
   .discount-envelope__art::after {
-    width: 27px;
-    height: 27px;
+    width: 25px;
+    height: 25px;
 
     border-width: 1px;
 
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .discount-envelope__number {
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.2;
   }
 
 
-  /* Resultados */
+  /* ==========================================================
+     Resultados
+     ========================================================== */
 
   .discount-results {
-    margin-top: 16px;
+    margin-top: 12px;
   }
 
   .discount-result-grid {
     grid-template-columns:
       repeat(3, minmax(0, 1fr));
 
-    gap: 6px;
+    gap: 5px;
 
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
 
   .discount-result-card {
-    min-height: 58px;
+    min-height: 48px;
 
-    padding: 7px 3px;
+    padding:
+      5px
+      3px;
 
-    border-radius: 11px;
+    border-radius: 10px;
 
-    font-size: 10px;
+    font-size: 8px;
+    font-weight: 600;
+
+    opacity: 0.60;
+  }
+
+  .discount-result-card.is-winner {
+    min-height: 53px;
+
+    padding:
+      17px
+      3px
+      5px;
+
+    border-width: 2px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    opacity: 1;
+
+    transform:
+      translateY(-2px);
+
+    box-shadow:
+      0 6px 17px
+      rgba(196, 120, 74, 0.19);
+  }
+
+  .discount-result-card.is-winner::before {
+    top: 5px;
+
+    font-size: 6px;
+
+    letter-spacing: 0.05em;
   }
 
 
-  /* Oferta revelada */
+  /* ==========================================================
+     Oferta revelada
+     ========================================================== */
+
+  .discount-win-kicker {
+    margin-bottom: 1px;
+
+    font-size: 9px;
+  }
 
   .discount-win-title {
     font-size: 25px;
+    line-height: 1.02;
   }
 
   .discount-win-product {
-    margin: 6px auto 9px;
+    max-width: 330px;
 
-    font-size: 13px;
+    margin:
+      3px
+      auto
+      4px;
+
+    font-size: 11px;
+    line-height: 1.35;
   }
 
   .discount-win-price {
     margin:
-      9px
+      4px
       auto
-      12px;
+      8px;
   }
 
-  .discount-win-price__new {
-    font-size: 34px;
-  }
+  .discount-win-price__old {
+    margin-bottom: 0;
 
-
-  /* Checkout */
-
-  .discount-checkout {
-    min-height: 56px;
-
-    padding: 14px;
-
-    font-size: 15px;
-  }
-
-  .discount-security {
     font-size: 11px;
   }
 
+  .discount-win-price__new {
+    font-size: 37px;
+    line-height: 0.98;
+  }
 
-  /* Preço de referência */
+
+  /* ==========================================================
+     Checkout
+     ========================================================== */
+
+  .discount-checkout {
+    width: 100%;
+    max-width: 360px;
+
+    min-height: 52px;
+
+    padding:
+      12px
+      12px;
+
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .discount-security {
+    margin-top: 6px;
+
+    font-size: 9px;
+    line-height: 1.3;
+  }
+
+
+  /* ==========================================================
+     Preço de referência da landing
+     ========================================================== */
 
   .offer-reference-price {
     width: min(100%, 390px);
@@ -6451,7 +6672,6 @@ section {
   }
 }
 
-
 /* ==========================================================================
    Popup — Celulares muito pequenos
    ========================================================================== */
@@ -6459,47 +6679,213 @@ section {
 @media (max-width: 360px) {
 
   .discount-modal {
-    padding: 8px;
+    padding: 6px;
   }
 
   .discount-modal__dialog {
     max-height:
-      calc(100dvh - 16px);
+      calc(100dvh - 12px);
 
-    padding-right: 10px;
-    padding-left: 10px;
+    padding:
+      25px
+      8px
+      14px;
+
+    border-radius: 17px;
   }
 
+
+  /* Cabeçalho */
+
+  .discount-modal__close {
+    top: 2px;
+    right: 2px;
+
+    width: 34px;
+    height: 34px;
+
+    font-size: 26px;
+  }
+
+  .discount-modal__tag {
+    font-size: 8px;
+
+    letter-spacing: 0.09em;
+  }
+
+  .discount-modal__title {
+    font-size: 22px;
+  }
+
+  .discount-modal__subtitle {
+    max-width: 300px;
+
+    margin:
+      5px
+      auto
+      11px;
+
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+
+  /* ==========================================================
+     Envelopes
+     Mantém obrigatoriamente os três lado a lado.
+     ========================================================== */
+
   .discount-envelopes {
-    gap: 5px;
+    gap: 4px;
   }
 
   .discount-envelope {
-    padding-right: 3px;
-    padding-left: 3px;
+    padding:
+      6px
+      3px
+      6px;
+
+    border-radius: 10px;
+  }
+
+  .discount-envelope.is-selected {
+    transform:
+      translateY(-1px)
+      scale(1.01);
   }
 
   .discount-envelope__art {
-    max-width: 76px;
+    max-width: 72px;
 
-    height: 51px;
+    height: 48px;
 
-    flex-basis: 51px;
+    flex-basis: 48px;
+
+    margin-bottom: 5px;
   }
 
   .discount-envelope__art::after {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
 
-    font-size: 12px;
-  }
-
-  .discount-envelope__number {
     font-size: 10px;
   }
 
-  .discount-result-card {
+  .discount-envelope__number {
     font-size: 9px;
+  }
+
+
+  /* ==========================================================
+     Resultados
+     ========================================================== */
+
+  .discount-results {
+    margin-top: 10px;
+  }
+
+  .discount-result-grid {
+    gap: 4px;
+
+    margin-bottom: 8px;
+  }
+
+  .discount-result-card {
+    min-height: 44px;
+
+    padding:
+      4px
+      2px;
+
+    border-radius: 9px;
+
+    font-size: 7px;
+  }
+
+  .discount-result-card.is-winner {
+    min-height: 49px;
+
+    padding:
+      16px
+      2px
+      4px;
+
+    font-size: 11px;
+
+    opacity: 1;
+
+    transform:
+      translateY(-1px);
+  }
+
+  .discount-result-card.is-winner::before {
+    top: 4px;
+
+    font-size: 5.5px;
+
+    letter-spacing: 0.03em;
+  }
+
+
+  /* ==========================================================
+     Oferta vencedora
+     ========================================================== */
+
+  .discount-win-kicker {
+    font-size: 8px;
+  }
+
+  .discount-win-title {
+    font-size: 23px;
+  }
+
+  .discount-win-product {
+    max-width: 300px;
+
+    margin:
+      2px
+      auto
+      3px;
+
+    font-size: 10px;
+    line-height: 1.3;
+  }
+
+  .discount-win-price {
+    margin:
+      3px
+      auto
+      7px;
+  }
+
+  .discount-win-price__old {
+    font-size: 10px;
+  }
+
+  .discount-win-price__new {
+    font-size: 35px;
+  }
+
+
+  /* ==========================================================
+     CTA
+     ========================================================== */
+
+  .discount-checkout {
+    min-height: 50px;
+
+    padding:
+      11px
+      9px;
+
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .discount-security {
+    margin-top: 5px;
+
+    font-size: 8px;
   }
 }
 
@@ -6511,9 +6897,9 @@ section {
 @media (prefers-reduced-motion: reduce) {
 
   /*
-   * Regra global.
-   * Substitui os vários blocos de redução de movimento
-   * espalhados pelo CSS antigo.
+   * Mantém toda a experiência funcional para usuários
+   * que preferem menos movimento, removendo somente
+   * animações e transições decorativas.
    */
 
   *,
@@ -6546,8 +6932,23 @@ section {
   .comparison-button,
   .transfer-process-card,
   .bonus-card,
-  .discount-envelope {
+  .discount-envelope,
+  .discount-result-card {
     transition: none;
+  }
+
+  /*
+   * Remove os pequenos deslocamentos visuais da
+   * revelação, mas mantém borda, cor e contraste
+   * para indicar claramente o resultado vencedor.
+   */
+
+  .discount-envelope.is-selected {
+    transform: none;
+  }
+
+  .discount-result-card.is-winner {
+    transform: none;
   }
 
   .discount-modal {
