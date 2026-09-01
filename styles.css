@@ -4922,6 +4922,18 @@ section {
   color: var(--color-primary);
 }
 
+.offer-surprise-intro > strong {
+  font-family:
+    var(--font-body);
+
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.45;
+
+  color:
+    var(--color-text);
+}
+
 .offer-surprise-copy {
   max-width: 500px;
 
@@ -4967,6 +4979,11 @@ section {
   .offer-surprise-kicker {
     font-size: 16px;
   }
+
+   .offer-surprise-intro > strong {
+  font-size: 16px;
+  line-height: 1.5;
+}
 
   .offer-surprise-copy {
     width: 100%;
