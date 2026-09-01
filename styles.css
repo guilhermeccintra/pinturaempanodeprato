@@ -4892,7 +4892,7 @@ section {
    ========================================================================== */
 
 .offer-surprise-intro {
-  width: min(100%, 560px);
+  width: min(100%, 760px);
 
   margin: 0 auto 16px;
 
@@ -4961,7 +4961,7 @@ section {
 
   .offer-surprise-intro {
     width: 100%;
-    max-width: 440px;
+    max-width: 100%;
   }
 
   .offer-surprise-kicker {
