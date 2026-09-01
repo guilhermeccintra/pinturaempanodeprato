@@ -3686,31 +3686,19 @@ section {
 
   position: absolute;
 
-  top: -30%;
-  left: -50%;
+  top: 0;
+  left: 40%;
 
-  z-index: 1;
+  z-index: 10;
 
   display: block;
 
-  width: 28%;
-  height: 160%;
+  width: 60px;
+  height: 100%;
 
-  background:
-    linear-gradient(
-      110deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.05) 20%,
-      rgba(255, 255, 255, 0.72) 50%,
-      rgba(255, 255, 255, 0.05) 80%,
-      transparent 100%
-    );
+  background: rgba(255, 255, 255, 0.7);
 
-  transform:
-    skewX(-20deg);
-
-  animation:
-    btnShine 4s ease-in-out infinite;
+  transform: skewX(-20deg);
 
   pointer-events: none;
 }
