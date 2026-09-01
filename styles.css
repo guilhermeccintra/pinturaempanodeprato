@@ -6211,7 +6211,7 @@ section {
 .offer-reference-price {
   width: min(100%, 430px);
 
-  margin: 4px auto 12px;
+  margin: 0 auto 0;
 
   padding: 12px 18px;
 
