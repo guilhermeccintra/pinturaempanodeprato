@@ -1274,6 +1274,1709 @@ document.addEventListener(
 
 /* ==========================================================
    OFERTA SURPRESA — ENVELOPES
+
+   LÓGICA:
+   - Qualquer envelope escolhido = 44% OFF
+   - Um dos restantes = 22% OFF
+   - O outro = SEM DESCONTO
+   - Preço original = R$ 49,90
+   - Preço final = R$ 27,94
+   - Resultado permanece durante a sessão
+   ========================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ======================================================
+       CONFIGURAÇÃO
+       ====================================================== */
+
+    const OFFER_CONFIG = {
+        originalPrice: 49.90,
+        finalPrice: 27.94,
+        winnerDiscount: 44,
+        secondaryDiscount: 22,
+
+        /*
+         * Checkout atual da sua landing.
+         *
+         * IMPORTANTE:
+         * o preço efetivamente cobrado é definido na Hotmart.
+         * Este JS apenas encaminha o cliente.
+         */
+        checkoutUrl:
+            "https://pay.hotmart.com/S106956139O?checkoutMode=10",
+
+        storageKey:
+            "pano_prato_oferta_revelada_v1"
+    };
+
+
+    /* ======================================================
+       TRACKING DO FUNIL DA OFERTA
+
+       Meta Browser + CAPI:
+       usa o MESMO eventID para permitir deduplicação.
+
+       GA4:
+       também recebe os eventos.
+
+       Cada microconversão é registrada uma única vez
+       por sessão para evitar inflação quando a pessoa
+       fecha e reabre o popup.
+       ====================================================== */
+
+    function trackOfferEventOnce(eventName, customData = {}) {
+
+        const eventStorageKey =
+            OFFER_CONFIG.storageKey +
+            "_event_" +
+            eventName;
+
+
+        /*
+         * Evita contar novamente o mesmo estágio
+         * durante a mesma sessão.
+         */
+        try {
+
+            if (
+                sessionStorage.getItem(
+                    eventStorageKey
+                ) === "1"
+            ) {
+
+                return;
+            }
+
+
+            sessionStorage.setItem(
+                eventStorageKey,
+                "1"
+            );
+
+        } catch (error) {
+
+            /*
+             * Se sessionStorage estiver bloqueado,
+             * não interrompemos o funcionamento.
+             */
+        }
+
+
+        /*
+         * O mesmo ID será usado no evento
+         * Browser e Server da Meta.
+         */
+        const eventId =
+            typeof generateMetaEventId === "function"
+                ? generateMetaEventId(eventName)
+                : (
+                    eventName +
+                    "_" +
+                    Date.now() +
+                    "_" +
+                    Math.random()
+                        .toString(36)
+                        .substring(2, 12)
+                );
+
+
+        /*
+         * Dados enviados para a Meta.
+         */
+        const metaData =
+            Object.assign(
+                {
+                    content_name:
+                        "120 Riscos para Pintura em Pano de Prato",
+
+                    content_ids:
+                        ["120-riscos-pano-de-prato"],
+
+                    content_type:
+                        "product",
+
+                    currency:
+                        "BRL",
+
+                    value:
+                        OFFER_CONFIG.finalPrice
+                },
+                customData
+            );
+
+
+        /* ==============================
+           META PIXEL — BROWSER
+           ============================== */
+
+        if (
+            typeof fbq === "function"
+        ) {
+
+            fbq(
+                "trackCustom",
+                eventName,
+                metaData,
+                {
+                    eventID:
+                        eventId
+                }
+            );
+        }
+
+
+        /* ==============================
+           META CAPI — SERVER
+           ============================== */
+
+        if (
+            typeof sendMetaCapi ===
+            "function"
+        ) {
+
+            sendMetaCapi(
+                eventName,
+                eventId,
+                metaData
+            );
+        }
+
+
+        /* ==============================
+           GOOGLE ANALYTICS 4
+           ============================== */
+
+        if (
+            typeof gtag === "function"
+        ) {
+
+            gtag(
+                "event",
+                eventName,
+                Object.assign(
+                    {
+                        currency:
+                            "BRL",
+
+                        value:
+                            OFFER_CONFIG.finalPrice
+                    },
+                    customData
+                )
+            );
+        }
+    }
+
+
+    /* ======================================================
+       ELEMENTOS PRINCIPAIS
+       ====================================================== */
+
+    const modal =
+        document.querySelector(
+            ".discount-modal"
+        );
+
+
+    if (!modal) {
+
+        console.warn(
+            "Modal da oferta não encontrado. Verifique o index.html."
+        );
+
+        return;
+    }
+
+
+    const dialog =
+        modal.querySelector(
+            ".discount-modal__dialog"
+        );
+
+
+    const closeButton =
+        modal.querySelector(
+            ".discount-modal__close"
+        );
+
+
+    const envelopes =
+        Array.from(
+            modal.querySelectorAll(
+                ".discount-envelope"
+            )
+        );
+
+
+    const results =
+        modal.querySelector(
+            ".discount-results"
+        );
+
+
+    const resultCards =
+        Array.from(
+            modal.querySelectorAll(
+                ".discount-result-card"
+            )
+        );
+
+
+    const checkoutButton =
+        modal.querySelector(
+            ".discount-checkout"
+        );
+
+
+    /*
+     * Procura todos os botões/links
+     * da landing que abrem a oferta.
+     */
+    const offerTriggers =
+        Array.from(
+            document.querySelectorAll(
+                ".discount-trigger, [data-discount-trigger]"
+            )
+        );
+
+
+    /* ======================================================
+       VALIDAÇÃO
+       ====================================================== */
+
+    if (!dialog) {
+
+        console.warn(
+            "Caixa interna do modal não encontrada."
+        );
+
+        return;
+    }
+
+
+    if (
+        envelopes.length !== 3
+    ) {
+
+        console.warn(
+            "A oferta precisa possuir exatamente 3 envelopes."
+        );
+    }
+
+
+    /* ======================================================
+       ESTADO
+       ====================================================== */
+
+    let selectedIndex =
+        null;
+
+    let previousActiveElement =
+        null;
+
+
+    /* ======================================================
+       UTILITÁRIOS
+       ====================================================== */
+
+    function shuffle(array) {
+
+        const copy =
+            array.slice();
+
+
+        for (
+            let i =
+                copy.length - 1;
+
+            i > 0;
+
+            i--
+        ) {
+
+            const j =
+                Math.floor(
+                    Math.random() *
+                    (i + 1)
+                );
+
+
+            [
+                copy[i],
+                copy[j]
+
+            ] = [
+
+                copy[j],
+                copy[i]
+
+            ];
+        }
+
+
+        return copy;
+    }
+
+
+    function safeSessionGet() {
+
+        try {
+
+            return sessionStorage.getItem(
+                OFFER_CONFIG.storageKey
+            );
+
+        } catch (error) {
+
+            return null;
+        }
+    }
+
+
+    function safeSessionSet(value) {
+
+        try {
+
+            sessionStorage.setItem(
+                OFFER_CONFIG.storageKey,
+                value
+            );
+
+        } catch (error) {
+
+            /*
+             * Se sessionStorage estiver bloqueado,
+             * a oferta continua funcionando.
+             */
+        }
+    }
+
+
+    function safeParseJSON(value) {
+
+        if (!value) {
+
+            return null;
+        }
+
+
+        try {
+
+            return JSON.parse(
+                value
+            );
+
+        } catch (error) {
+
+            return null;
+        }
+    }
+
+
+    /* ======================================================
+       PRESERVAÇÃO DOS PARÂMETROS DA URL
+
+       Se o visitante chegou com:
+       UTM, fbclid, gclid etc.
+
+       copiamos os parâmetros para o checkout.
+
+       Isso é complementar ao tracking.js
+       e NÃO modifica o tracking existente.
+       ====================================================== */
+
+    function buildCheckoutUrl() {
+
+        try {
+
+            const checkout =
+                new URL(
+                    OFFER_CONFIG.checkoutUrl,
+                    window.location.href
+                );
+
+
+            const currentParams =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            currentParams.forEach(
+                function (
+                    value,
+                    key
+                ) {
+
+                    /*
+                     * Não sobrescreve parâmetros
+                     * que já estejam presentes
+                     * no checkout.
+                     */
+                    if (
+                        !checkout
+                            .searchParams
+                            .has(key)
+                    ) {
+
+                        checkout
+                            .searchParams
+                            .set(
+                                key,
+                                value
+                            );
+                    }
+                }
+            );
+
+
+            return checkout.toString();
+
+        } catch (error) {
+
+            return OFFER_CONFIG.checkoutUrl;
+        }
+    }
+
+
+    /* ======================================================
+       ATUALIZA O LINK DO CHECKOUT
+       ====================================================== */
+
+    function updateCheckoutLink() {
+
+        if (!checkoutButton) {
+
+            return;
+        }
+
+
+        checkoutButton.setAttribute(
+            "href",
+            buildCheckoutUrl()
+        );
+
+
+        /*
+         * Mantemos um <a href> real.
+         * Isso também ajuda scripts externos
+         * que trabalham com links de checkout.
+         */
+        checkoutButton.setAttribute(
+            "rel",
+            "noopener"
+        );
+    }
+
+
+    updateCheckoutLink();
+
+
+    /* ======================================================
+       TRACKING — CLIQUE PARA O CHECKOUT
+       ====================================================== */
+
+    if (checkoutButton) {
+
+        checkoutButton.addEventListener(
+            "click",
+            function () {
+
+                trackOfferEventOnce(
+                    "CheckoutClick",
+                    {
+                        offer_stage:
+                            "checkout_click",
+
+                        discount_percent:
+                            OFFER_CONFIG
+                                .winnerDiscount,
+
+                        original_price:
+                            OFFER_CONFIG
+                                .originalPrice,
+
+                        final_price:
+                            OFFER_CONFIG
+                                .finalPrice
+                    }
+                );
+            }
+        );
+    }
+
+
+    /* ======================================================
+       ABRIR MODAL
+       ====================================================== */
+
+    function openDiscountModal() {
+
+        previousActiveElement =
+            document.activeElement;
+
+
+        /*
+         * NOVO EVENTO:
+         * visitante abriu a oferta.
+         */
+        trackOfferEventOnce(
+            "DiscountModalOpen",
+            {
+                offer_stage:
+                    "modal_open"
+            }
+        );
+
+
+        modal.classList.add(
+            "active"
+        );
+
+
+        modal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+        /*
+         * Evita que a landing role
+         * por trás do popup.
+         */
+        document.body.style.overflow =
+            "hidden";
+
+
+        /*
+         * Se a pessoa já ganhou durante
+         * esta sessão, mostramos diretamente
+         * o resultado.
+         */
+        const storedResult =
+            getStoredResult();
+
+
+        if (storedResult) {
+
+            restoreResult(
+                storedResult
+            );
+
+        } else {
+
+            resetOffer();
+        }
+
+
+        /*
+         * Foco inicial acessível.
+         */
+        window.setTimeout(
+            function () {
+
+                if (
+                    storedResult &&
+                    checkoutButton
+                ) {
+
+                    checkoutButton.focus();
+
+                } else if (
+                    envelopes[0]
+                ) {
+
+                    envelopes[0].focus();
+
+                } else if (
+                    closeButton
+                ) {
+
+                    closeButton.focus();
+                }
+
+            },
+            80
+        );
+    }
+
+
+    /* ======================================================
+       FECHAR MODAL
+       ====================================================== */
+
+    function closeDiscountModal() {
+
+        modal.classList.remove(
+            "active"
+        );
+
+
+        modal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        document.body.style.overflow =
+            "";
+
+
+        if (
+            previousActiveElement &&
+            typeof previousActiveElement.focus ===
+                "function"
+        ) {
+
+            previousActiveElement.focus();
+        }
+    }
+
+
+    /* ======================================================
+       RESET VISUAL
+       ====================================================== */
+
+    function resetOffer() {
+
+        selectedIndex =
+            null;
+
+
+        envelopes.forEach(
+            function (envelope) {
+
+                envelope.classList.remove(
+                    "is-selected"
+                );
+
+
+                envelope.classList.remove(
+                    "is-open"
+                );
+
+
+                envelope.disabled =
+                    false;
+
+
+                envelope.removeAttribute(
+                    "aria-pressed"
+                );
+            }
+        );
+
+
+        resultCards.forEach(
+            function (card) {
+
+                card.classList.remove(
+                    "is-winner"
+                );
+
+
+                card.removeAttribute(
+                    "data-result"
+                );
+            }
+        );
+
+
+        if (results) {
+
+            results.classList.remove(
+                "active"
+            );
+
+
+            results.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+        }
+    }
+
+
+    /* ======================================================
+       SALVAR RESULTADO
+       ====================================================== */
+
+    function saveResult(
+        winnerIndex,
+        distribution
+    ) {
+
+        const data = {
+
+            winnerIndex:
+                winnerIndex,
+
+            distribution:
+                distribution,
+
+            winnerDiscount:
+                OFFER_CONFIG
+                    .winnerDiscount,
+
+            secondaryDiscount:
+                OFFER_CONFIG
+                    .secondaryDiscount,
+
+            originalPrice:
+                OFFER_CONFIG
+                    .originalPrice,
+
+            finalPrice:
+                OFFER_CONFIG
+                    .finalPrice
+        };
+
+
+        safeSessionSet(
+            JSON.stringify(
+                data
+            )
+        );
+    }
+
+
+    /* ======================================================
+       RECUPERAR RESULTADO
+       ====================================================== */
+
+    function getStoredResult() {
+
+        const data =
+            safeParseJSON(
+                safeSessionGet()
+            );
+
+
+        if (!data) {
+
+            return null;
+        }
+
+
+        /*
+         * Validação para impedir
+         * dados antigos ou inconsistentes.
+         */
+        if (
+            typeof data.winnerIndex !==
+                "number" ||
+
+            !Array.isArray(
+                data.distribution
+            ) ||
+
+            data.distribution.length !==
+                3
+        ) {
+
+            return null;
+        }
+
+
+        return data;
+    }
+
+
+    /* ======================================================
+       TEXTO DE CADA RESULTADO
+       ====================================================== */
+
+    function resultLabel(type) {
+
+        switch (type) {
+
+            case "winner":
+
+                return (
+                    OFFER_CONFIG
+                        .winnerDiscount +
+                    "% OFF"
+                );
+
+
+            case "secondary":
+
+                return (
+                    OFFER_CONFIG
+                        .secondaryDiscount +
+                    "% OFF"
+                );
+
+
+            default:
+
+                return "SEM DESCONTO";
+        }
+    }
+
+
+    /* ======================================================
+       MOSTRAR RESULTADOS NOS 3 CARDS
+       ====================================================== */
+
+    function renderResults(
+        winnerIndex,
+        distribution
+    ) {
+
+        selectedIndex =
+            winnerIndex;
+
+
+        envelopes.forEach(
+            function (
+                envelope,
+                index
+            ) {
+
+                const isWinner =
+                    index ===
+                    winnerIndex;
+
+
+                envelope.classList.toggle(
+                    "is-selected",
+                    isWinner
+                );
+
+
+                envelope.classList.add(
+                    "is-open"
+                );
+
+
+                envelope.disabled =
+                    true;
+
+
+                envelope.setAttribute(
+                    "aria-pressed",
+                    isWinner
+                        ? "true"
+                        : "false"
+                );
+            }
+        );
+
+
+        resultCards.forEach(
+            function (
+                card,
+                index
+            ) {
+
+                const resultType =
+                    distribution[index];
+
+
+                card.textContent =
+                    resultLabel(
+                        resultType
+                    );
+
+
+                card.setAttribute(
+                    "data-result",
+                    resultType
+                );
+
+
+                card.classList.toggle(
+                    "is-winner",
+                    resultType ===
+                        "winner"
+                );
+            }
+        );
+
+
+        if (results) {
+
+            results.classList.add(
+                "active"
+            );
+
+
+            results.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+        }
+
+
+        updateCheckoutLink();
+    }
+
+
+    /* ======================================================
+       ESCOLHA DO ENVELOPE
+       ====================================================== */
+
+    function chooseEnvelope(index) {
+
+        /*
+         * Impede uma segunda escolha.
+         */
+        if (
+            selectedIndex !== null
+        ) {
+
+            return;
+        }
+
+
+        selectedIndex =
+            index;
+
+
+        /*
+         * NOVO EVENTO:
+         * visitante realmente escolheu
+         * um dos envelopes.
+         */
+        trackOfferEventOnce(
+            "DiscountEnvelopeSelected",
+            {
+                offer_stage:
+                    "envelope_selected",
+
+                envelope_number:
+                    index + 1
+            }
+        );
+
+
+        /*
+         * O envelope clicado
+         * SEMPRE recebe 44%.
+         *
+         * Os outros dois recebem:
+         * 22% e SEM DESCONTO
+         * em ordem aleatória.
+         */
+        const otherResults =
+            shuffle([
+                "secondary",
+                "none"
+            ]);
+
+
+        const distribution =
+            new Array(3);
+
+
+        distribution[index] =
+            "winner";
+
+
+        let otherResultIndex =
+            0;
+
+
+        for (
+            let i = 0;
+            i < 3;
+            i++
+        ) {
+
+            if (
+                i === index
+            ) {
+
+                continue;
+            }
+
+
+            distribution[i] =
+                otherResults[
+                    otherResultIndex
+                ];
+
+
+            otherResultIndex++;
+        }
+
+
+        /*
+         * Primeiro destacamos
+         * o envelope escolhido.
+         */
+        envelopes.forEach(
+            function (
+                envelope,
+                envelopeIndex
+            ) {
+
+                envelope.disabled =
+                    true;
+
+
+                if (
+                    envelopeIndex ===
+                    index
+                ) {
+
+                    envelope.classList.add(
+                        "is-selected"
+                    );
+                }
+            }
+        );
+
+
+        /*
+         * Pequeno intervalo deixa
+         * a revelação mais natural.
+         */
+        window.setTimeout(
+            function () {
+
+                renderResults(
+                    index,
+                    distribution
+                );
+
+
+                saveResult(
+                    index,
+                    distribution
+                );
+
+
+                /*
+                 * NOVO EVENTO:
+                 * desconto e preço final
+                 * foram efetivamente revelados.
+                 */
+                trackOfferEventOnce(
+                    "DiscountRevealed",
+                    {
+                        offer_stage:
+                            "discount_revealed",
+
+                        discount_percent:
+                            OFFER_CONFIG
+                                .winnerDiscount,
+
+                        original_price:
+                            OFFER_CONFIG
+                                .originalPrice,
+
+                        final_price:
+                            OFFER_CONFIG
+                                .finalPrice
+                    }
+                );
+
+
+                /*
+                 * No celular, garante que
+                 * o resultado fique visível
+                 * sem jogar a pessoa para
+                 * fora do popup.
+                 */
+                if (results) {
+
+                    results.scrollIntoView({
+                        behavior:
+                            window.matchMedia(
+                                "(prefers-reduced-motion: reduce)"
+                            ).matches
+                                ? "auto"
+                                : "smooth",
+
+                        block:
+                            "nearest"
+                    });
+                }
+
+            },
+            420
+        );
+    }
+
+                                          );
+
+
+            }
+        );
+
+
+
+    }
+);
+
+
+
+
+
+
+
+
+/* ==========================================================
+   SMOOTH SCROLL
+========================================================== */
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+
+
+        const links =
+            document.querySelectorAll(
+                'a[href^="#"]'
+            );
+
+
+
+
+
+        links.forEach(
+            function(link){
+
+
+
+                link.addEventListener(
+                    "click",
+                    function(event){
+
+
+
+                        const id =
+                            this.getAttribute(
+                                "href"
+                            );
+
+
+
+                        if(
+                            id === "#" ||
+                            id === ""
+                        ){
+
+                            return;
+
+                        }
+
+
+
+
+
+                        const destino =
+                            document.querySelector(
+                                id
+                            );
+
+
+
+                        if(destino){
+
+
+
+                            event.preventDefault();
+
+
+
+                            destino.scrollIntoView(
+                                {
+                                    behavior:
+                                    "smooth"
+                                }
+                            );
+
+
+                        }
+
+
+
+
+                    }
+                );
+
+
+
+            }
+        );
+
+
+
+    }
+);
+
+/* ==========================================================
+   MODAIS
+   TERMOS DE USO + POLÍTICA DE PRIVACIDADE
+========================================================== */
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+
+
+        const openTerms =
+            document.getElementById(
+                "openTerms"
+            );
+
+
+
+        const openPrivacy =
+            document.getElementById(
+                "openPrivacy"
+            );
+
+
+
+        const termsModal =
+            document.getElementById(
+                "termsModal"
+            );
+
+
+
+        const privacyModal =
+            document.getElementById(
+                "privacyModal"
+            );
+
+
+
+        const closeTerms =
+            document.getElementById(
+                "closeTerms"
+            );
+
+
+
+        const closePrivacy =
+            document.getElementById(
+                "closePrivacy"
+            );
+
+
+
+
+
+
+        function openModal(modal){
+
+
+
+            if(!modal){
+
+                return;
+
+            }
+
+
+
+
+            modal.classList.add(
+                "active"
+            );
+
+
+
+            modal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+
+
+            document.body.style.overflow =
+                "hidden";
+
+
+
+        }
+
+
+
+
+
+        function closeModal(modal){
+
+
+
+            if(!modal){
+
+                return;
+
+            }
+
+
+
+
+
+            modal.classList.remove(
+                "active"
+            );
+
+
+
+            modal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+
+
+
+            const outroModalAberto =
+                document.querySelector(
+                    ".legal-modal.active"
+                );
+
+
+
+            if(!outroModalAberto){
+
+
+
+                document.body.style.overflow =
+                    "";
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+        /* ==============================
+           ABRIR TERMOS
+        ============================== */
+
+
+        if(
+            openTerms &&
+            termsModal
+        ){
+
+
+
+            openTerms.addEventListener(
+                "click",
+                function(event){
+
+
+
+                    event.preventDefault();
+
+
+
+                    openModal(
+                        termsModal
+                    );
+
+
+
+                }
+            );
+
+
+
+        }
+
+
+
+
+
+
+
+
+        /* ==============================
+           ABRIR PRIVACIDADE
+        ============================== */
+
+
+        if(
+            openPrivacy &&
+            privacyModal
+        ){
+
+
+
+            openPrivacy.addEventListener(
+                "click",
+                function(event){
+
+
+
+                    event.preventDefault();
+
+
+
+                    openModal(
+                        privacyModal
+                    );
+
+
+
+                }
+            );
+
+
+
+        }
+
+
+
+
+
+
+
+
+        /* ==============================
+           FECHAR PELO X
+        ============================== */
+
+
+        if(
+            closeTerms &&
+            termsModal
+        ){
+
+
+
+            closeTerms.addEventListener(
+                "click",
+                function(){
+
+
+
+                    closeModal(
+                        termsModal
+                    );
+
+
+
+                }
+            );
+
+
+
+        }
+
+
+
+
+
+        if(
+            closePrivacy &&
+            privacyModal
+        ){
+
+
+
+            closePrivacy.addEventListener(
+                "click",
+                function(){
+
+
+
+                    closeModal(
+                        privacyModal
+                    );
+
+
+
+                }
+            );
+
+
+
+        }
+
+
+
+
+
+
+
+
+        /* ==============================
+           FECHAR CLICANDO FORA
+        ============================== */
+
+
+        if(termsModal){
+
+
+
+            termsModal.addEventListener(
+                "click",
+                function(event){
+
+
+
+                    if(
+                        event.target === termsModal
+                    ){
+
+
+
+                        closeModal(
+                            termsModal
+                        );
+
+
+
+                    }
+
+
+
+                }
+            );
+
+
+
+        }
+
+
+
+
+
+
+        if(privacyModal){
+
+
+
+            privacyModal.addEventListener(
+                "click",
+                function(event){
+
+
+
+                    if(
+                        event.target === privacyModal
+                    ){
+
+
+
+                        closeModal(
+                            privacyModal
+                        );
+
+
+
+                    }
+
+
+
+                }
+            );
+
+
+
+        }
+
+
+
+
+
+
+
+
+        /* ==============================
+           FECHAR COM ESC
+        ============================== */
+
+
+        document.addEventListener(
+            "keydown",
+            function(event){
+
+
+
+                if(
+                    event.key !== "Escape"
+                ){
+
+                    return;
+
+                }
+
+
+
+
+
+                if(
+                    termsModal &&
+                    termsModal.classList.contains(
+                        "active"
+                    )
+                ){
+
+
+
+                    closeModal(
+                        termsModal
+                    );
+
+
+
+                }
+
+
+
+
+
+                if(
+                    privacyModal &&
+                    privacyModal.classList.contains(
+                        "active"
+                    )
+                ){
+
+
+
+                    closeModal(
+                        privacyModal
+                    );
+
+
+
+                }
+
+
+
+            }
+        );
+
+
+
+    }
+);
+
+
+/* ==========================================================
+   FIM DO SCRIPT.JS
+========================================================== */
+
+
+
+/* ==========================================================
+   OFERTA SURPRESA — ENVELOPES
    Cole este bloco NO FINAL do script.js atual
 
    LÓGICA:
@@ -1313,6 +3016,82 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ======================================================
+       TRACKING DO FUNIL DA OFERTA
+       Meta Browser + CAPI com o mesmo eventID
+       + GA4. Cada microconversão é registrada uma vez
+       por sessão para evitar inflação por reabertura do modal.
+       ====================================================== */
+
+    function trackOfferEventOnce(eventName, customData = {}) {
+
+        const eventStorageKey =
+            OFFER_CONFIG.storageKey + "_event_" + eventName;
+
+        try {
+            if (sessionStorage.getItem(eventStorageKey) === "1") {
+                return;
+            }
+            sessionStorage.setItem(eventStorageKey, "1");
+        } catch (error) {
+            /* Se o storage estiver indisponível, o tracking continua. */
+        }
+
+        const eventId =
+            typeof generateMetaEventId === "function"
+                ? generateMetaEventId(eventName)
+                : (
+                    eventName +
+                    "_" +
+                    Date.now() +
+                    "_" +
+                    Math.random().toString(36).substring(2, 12)
+                );
+
+        const metaData = Object.assign(
+            {
+                content_name: "120 Riscos para Pintura em Pano de Prato",
+                content_ids: ["120-riscos-pano-de-prato"],
+                content_type: "product",
+                currency: "BRL",
+                value: OFFER_CONFIG.finalPrice
+            },
+            customData
+        );
+
+        if (typeof fbq === "function") {
+            fbq(
+                "trackCustom",
+                eventName,
+                metaData,
+                { eventID: eventId }
+            );
+        }
+
+        if (typeof sendMetaCapi === "function") {
+            sendMetaCapi(
+                eventName,
+                eventId,
+                metaData
+            );
+        }
+
+        if (typeof gtag === "function") {
+            gtag(
+                "event",
+                eventName,
+                Object.assign(
+                    {
+                        currency: "BRL",
+                        value: OFFER_CONFIG.finalPrice
+                    },
+                    customData
+                )
+            );
+        }
+    }
+
+
+    /* ======================================================
        ELEMENTOS PRINCIPAIS
        ====================================================== */
 
@@ -1326,8 +3105,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-
-    const dialog =
+                              const dialog =
         modal.querySelector(".discount-modal__dialog");
 
     const closeButton =
@@ -1557,6 +3335,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateCheckoutLink();
 
+    /*
+     * MICROCONVERSÃO:
+     * clique no botão que efetivamente leva ao checkout.
+     *
+     * Não usamos preventDefault aqui.
+     * Portanto o comportamento normal do link da Hotmart
+     * continua preservado.
+     */
+    if (checkoutButton) {
+        checkoutButton.addEventListener(
+            "click",
+            function () {
+
+                trackOfferEventOnce(
+                    "CheckoutClick",
+                    {
+                        offer_stage: "checkout_click",
+                        discount_percent: OFFER_CONFIG.winnerDiscount,
+                        original_price: OFFER_CONFIG.originalPrice,
+                        final_price: OFFER_CONFIG.finalPrice
+                    }
+                );
+            }
+        );
+    }
+
 
     /* ======================================================
        ABRIR MODAL
@@ -1566,6 +3370,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
         previousActiveElement =
             document.activeElement;
+
+        /*
+         * MICROCONVERSÃO:
+         * visitante abriu a oferta dos envelopes.
+         *
+         * A função trackOfferEventOnce garante que reabrir
+         * o popup na mesma sessão não infle o evento.
+         */
+        trackOfferEventOnce(
+            "DiscountModalOpen",
+            {
+                offer_stage: "modal_open"
+            }
+        );
 
 
         modal.classList.add("active");
@@ -1939,6 +3757,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         /*
+         * MICROCONVERSÃO:
+         * visitante efetivamente escolheu um envelope.
+         */
+        trackOfferEventOnce(
+            "DiscountEnvelopeSelected",
+            {
+                offer_stage: "envelope_selected",
+                envelope_number: index + 1
+            }
+        );
+
+
+        /*
          * O envelope clicado SEMPRE recebe 44%.
          *
          * Os outros dois recebem aleatoriamente:
@@ -1998,7 +3829,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (
                     envelopeIndex ===
-                    index
+                        index
                 ) {
 
                     envelope.classList.add(
@@ -2029,6 +3860,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 /*
+                 * MICROCONVERSÃO:
+                 * desconto e preço final foram efetivamente
+                 * revelados para a visitante.
+                 */
+                trackOfferEventOnce(
+                    "DiscountRevealed",
+                    {
+                        offer_stage: "discount_revealed",
+                        discount_percent: OFFER_CONFIG.winnerDiscount,
+                        original_price: OFFER_CONFIG.originalPrice,
+                        final_price: OFFER_CONFIG.finalPrice
+                    }
+                );
+
+
+                /*
                  * No celular, garante que o resultado
                  * fique visível sem jogar a pessoa
                  * para fora do popup.
@@ -2053,8 +3900,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
-
-    /* ======================================================
+                              /* ======================================================
        RESTAURAR OFERTA JÁ GANHA
        ====================================================== */
 
@@ -2197,7 +4043,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         return (
                             element.offsetParent !==
-                            null
+                                null
                         );
                     }
                 );
