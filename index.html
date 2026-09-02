@@ -1832,21 +1832,58 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
             </ul>
 
             
-<!-- OFERTA SURPRESA -->
+<!-- PREÇO -->
 <div
-  class="offer-reference-price"
-  aria-label="Preço normal: 49 reais e 90 centavos"
+    class="hero-price"
+    style="
+        text-align: center;
+        margin: 20px 0 12px;
+    "
 >
-  <s class="offer-reference-price__value">R$ 49,90</s>
+    <div
+        style="
+            font-size: 14px;
+            margin-bottom: 4px;
+        "
+    >
+        Comece hoje por apenas
+    </div>
+
+    <!-- PREÇO ORIGINAL -->
+    <div
+        style="
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1.1;
+            text-decoration: line-through;
+            opacity: 0.6;
+            margin-bottom: 4px;
+        "
+    >
+        R$ 47,90
+    </div>
+
+    <!-- PREÇO PROMOCIONAL -->
+    <div
+        style="
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.1;
+        "
+    >
+        R$ 27,90
+    </div>
 </div>
-<div class="offer-surprise-intro surprise-offer-intro-final">
-    <span class="offer-surprise-kicker">🎁 ANTES DE IR EMBORA...</span>
-    <strong>Sua oferta especial para os 120 riscos ainda está disponível.</strong>
-    <span class="offer-surprise-copy">Escolha um envelope e revele seu desconto.</span>
-</div>
+
 <div class="hero-buttons">
-    <button type="button" class="btn-primary btn-large discount-trigger" data-discount-trigger>ESCOLHER ENVELOPE</button>
+  <a href="https://pay.hotmart.com/S106956139O?checkoutMode=10" class="btn-primary btn-large">
+    QUERO COMEÇAR A PINTAR
+  </a>
 </div>
+
+<p class="hero-info">
+  Compra segura • Acesso imediato
+</p>
 
 
         </div>
@@ -1995,68 +2032,6 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
   </div>
 
 </footer>
-
-
-<!-- MODAL - OFERTA ESPECIAL / ENVELOPES -->
-<div class="discount-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="discountModalTitle">
-    <div class="discount-modal__dialog" role="document">
-        <button type="button" class="discount-modal__close" aria-label="Fechar oferta">&times;</button>
-
-        <span class="discount-modal__tag">OFERTA ESPECIAL DE HOJE</span>
-        <h2 class="discount-modal__title" id="discountModalTitle">Escolha seu envelope</h2>
-        <p class="discount-modal__subtitle">Escolha um dos 3 envelopes e revele sua oferta especial para os</strong> 120 riscos exclusivos.</p>
-
-        <div class="discount-envelopes" aria-label="Escolha um envelope">
-            <button type="button" class="discount-envelope" aria-label="Escolher envelope 1">
-                <span class="discount-envelope__art" aria-hidden="true"></span>
-                <span class="discount-envelope__number">Envelope 1</span>
-            </button>
-
-            <button type="button" class="discount-envelope" aria-label="Escolher envelope 2">
-                <span class="discount-envelope__art" aria-hidden="true"></span>
-                <span class="discount-envelope__number">Envelope 2</span>
-            </button>
-
-            <button type="button" class="discount-envelope" aria-label="Escolher envelope 3">
-                <span class="discount-envelope__art" aria-hidden="true"></span>
-                <span class="discount-envelope__number">Envelope 3</span>
-            </button>
-        </div>
-
-        <div class="discount-results" aria-hidden="true">
-            <div class="discount-result-grid" aria-label="Resultado dos envelopes">
-                <div class="discount-result-card"></div>
-                <div class="discount-result-card"></div>
-                <div class="discount-result-card"></div>
-            </div>
-
-            <p class="discount-win-kicker">🎉 VOCÊ ENCONTROU!</p>
-            <h3 class="discount-win-title">44% DE DESCONTO</h3>
-
-            <p class="discount-win-product">
-    Leve os <strong>120 riscos + videoaula + bônus</strong>
-</p>
-
-            <div class="discount-win-price">
-                <span class="discount-win-price__old">
-                    De <s>R$ 49,90</s> por apenas
-                </span>
-                <strong class="discount-win-price__new">R$ 27,94</strong>
-            </div>
-
-            <a
-                href="https://pay.hotmart.com/S106956139O?checkoutMode=10"
-                class="btn-primary btn-large discount-checkout"
-            >
-                QUERO OS 120 RISCOS COM DESCONTO
-            </a>
-
-            <p class="discount-security">
-                Compra segura • Acesso imediato • Garantia de 7 dias
-            </p>
-        </div>
-    </div>
-</div>
 
   
 <!-- =========================================================
