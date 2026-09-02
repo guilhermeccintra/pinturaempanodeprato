@@ -1254,138 +1254,14 @@ document.addEventListener(
                     function(){
 
 
-
                         /*
-                         * Mantém o mesmo eventID
-                         * entre Pixel + CAPI
-                         */
-
-                        const eventId =
-                            typeof generateMetaEventId === "function"
-
-                            ?
-
-                            generateMetaEventId(
-                                "CheckoutClick"
-                            )
-
-                            :
-
-                            (
-                                "CheckoutClick_" +
-                                Date.now()
-                            );
-
-
-
-
-
-                        const checkoutData =
-                        {
-
-
-                            content_name:
-
-                                "120 Riscos para Pintura em Pano de Prato",
-
-
-
-                            content_ids:
-
-                                [
-                                    "120-riscos-pano-de-prato"
-                                ],
-
-
-
-                            content_type:
-
-                                "product",
-
-
-
-                            currency:
-
-                                "BRL",
-
-
-
-                            value:
-
-                                27.90
-
-
-                        };
-
-
-
-
-
-
-                        /*
-                         * META PIXEL
-                         */
-
-                        if(
-                            typeof fbq === "function"
-                        ){
-
-
-                            fbq(
-                                "trackCustom",
-
-                                "CheckoutClick",
-
-                                checkoutData,
-
-                                {
-
-                                    eventID:
-                                        eventId
-
-                                }
-                            );
-
-
-                        }
-
-
-
-
-
-
-
-                        /*
-                         * META CAPI
-                         */
-
-                        if(
-                            typeof sendMetaCapi === "function"
-                        ){
-
-
-                            sendMetaCapi(
-
-                                "CheckoutClick",
-
-                                eventId,
-
-                                checkoutData
-
-                            );
-
-
-                        }
-
-
-
-
-
-
-
-
-                        /*
-                         * GOOGLE ANALYTICS 4
+                         * GOOGLE ADS — CONVERSÃO
+                         * Dispara no clique do CTA.
+                         *
+                         * InitiateCheckout (Meta) e
+                         * begin_checkout (GA4) são
+                         * enviados pela Hotmart ao
+                         * chegar no checkout.
                          */
 
                         if(
@@ -1397,16 +1273,25 @@ document.addEventListener(
 
                                 "event",
 
-                                "CheckoutClick",
+                                "conversion",
 
-                                checkoutData
+                                {
+
+                                    'send_to':
+                                        'AW-18379872794/tOsJCOvXo98cEJq0mrxE',
+
+                                    'value':
+                                        27.90,
+
+                                    'currency':
+                                        'BRL'
+
+                                }
 
                             );
 
 
                         }
-
-
 
 
                     }
