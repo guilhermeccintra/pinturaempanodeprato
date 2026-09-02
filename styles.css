@@ -3,7 +3,6 @@
    ========================================================================== */
 
 :root {
-  --promo-bar-height: 44px;
 
   /* Cores de Fundo */
   --color-bg: #FFF8F0;
@@ -103,11 +102,6 @@ body {
 
   background-size: 40px 40px;
 
-  /*
-   * Reserva espaço para a barra fixa
-   * de oferta no topo.
-   */
-  padding-top: var(--promo-bar-height);
 }
 
 img {
@@ -4257,86 +4251,6 @@ section {
 
 .hero-content > .hero-price {
   margin-top: 0 !important;
-}
-
-
-/* ==========================================================================
-   Barra fixa de oferta especial
-   ========================================================================== */
-
-.promo-bar {
-  position: fixed;
-
-  top: 0;
-  left: 0;
-
-  z-index: 999998;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height:
-    var(--promo-bar-height);
-
-  box-sizing: border-box;
-
-  padding: 8px 16px;
-
-  background-color: #F3D9A6;
-
-  box-shadow:
-    0 2px 8px
-    rgba(74, 55, 40, 0.08);
-
-  font-family:
-    var(--font-body);
-
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.2;
-
-  text-align: center;
-
-  color: #8A5A2B;
-}
-
-.promo-bar span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 5px;
-}
-
-.promo-bar strong {
-  font-weight: 800;
-}
-
-
-/* ==========================================================================
-   Barra fixa — Mobile
-   ========================================================================== */
-
-@media (max-width: 600px) {
-
-  :root {
-    --promo-bar-height: 46px;
-  }
-
-  .promo-bar {
-    height:
-      var(--promo-bar-height);
-
-    /*
-     * Um pouco mais de largura para a mensagem
-     * da barra superior.
-     */
-    padding: 8px 8px;
-
-    font-size: 12px;
-  }
 }
 
 
