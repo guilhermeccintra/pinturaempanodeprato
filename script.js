@@ -949,6 +949,43 @@ document.addEventListener(
         }
 
 
+       
+         /*
+         * BARRA TOPO
+         */
+
+       function atualizarDataPromocao() {
+    const elemento = document.getElementById("promo-text");
+
+    if (!elemento) return;
+
+    const hoje = new Date();
+
+    const dia = String(hoje.getDate()).padStart(2, "0");
+
+    const meses = [
+        "JANEIRO",
+        "FEVEREIRO",
+        "MARÇO",
+        "ABRIL",
+        "MAIO",
+        "JUNHO",
+        "JULHO",
+        "AGOSTO",
+        "SETEMBRO",
+        "OUTUBRO",
+        "NOVEMBRO",
+        "DEZEMBRO"
+    ];
+
+    const mes = meses[hoje.getMonth()];
+    const ano = hoje.getFullYear();
+
+    elemento.textContent =
+        `OFERTA ESPECIAL: VÁLIDO APENAS PARA HOJE, ${dia} DE ${mes} DE ${ano}!`;
+}
+
+atualizarDataPromocao();
 
 
 
