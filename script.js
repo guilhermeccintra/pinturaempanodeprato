@@ -955,7 +955,7 @@ document.addEventListener(
          */
 
        function atualizarDataPromocao() {
-    const elemento = document.getElementById("promo-text");
+    const elemento = document.getElementById("promo-date");
 
     if (!elemento) return;
 
@@ -981,8 +981,7 @@ document.addEventListener(
     const mes = meses[hoje.getMonth()];
     const ano = hoje.getFullYear();
 
-    elemento.textContent =
-        `OFERTA ESPECIAL: VÁLIDO APENAS PARA HOJE, ${dia} DE ${mes} DE ${ano}!`;
+    elemento.textContent = `${dia} DE ${mes} DE ${ano}!`;
 }
 
 atualizarDataPromocao();
