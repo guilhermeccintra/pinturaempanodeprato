@@ -5578,6 +5578,60 @@ body {
 }
 
 
+/* ==========================================================
+   avaliações topo do site
+========================================================== */
+.top-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+
+    width: 100%;
+    padding: 0.65rem 1rem;
+
+    background: var(--bg-light);
+    color: var(--text-light);
+
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+.top-rating-stars {
+    color: #f5b301;
+    font-size: 1.15rem;
+    line-height: 1;
+    letter-spacing: 0.08rem;
+    white-space: nowrap;
+}
+
+.top-rating-score {
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.top-rating-count {
+    color: var(--text-light);
+}
+
+@media (max-width: 576px) {
+    .top-rating {
+        gap: 0.3rem;
+        padding: 0.55rem 0.5rem;
+        font-size: 0.82rem;
+    }
+
+    .top-rating-stars {
+        font-size: 1rem;
+        letter-spacing: 0.03rem;
+    }
+}
+
+
+
 /* ==========================================================================
    FIM DO STYLES.CSS LIMPO
    ========================================================================== */
