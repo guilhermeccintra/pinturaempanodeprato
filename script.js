@@ -425,11 +425,28 @@ document.addEventListener(
 
 
 
-        createDots();
+createDots();
 
-        updateCarousel();
+updateCarousel();
 
-        startAutoPlay();
+/*
+ * O autoplay não é necessário para a renderização inicial.
+ * Espera o carregamento completo da página para evitar
+ * competir com imagens, fontes e recursos críticos.
+ */
+if (document.readyState === "complete") {
+
+    startAutoPlay();
+
+} else {
+
+    window.addEventListener(
+        "load",
+        startAutoPlay,
+        { once: true }
+    );
+
+}
 
 
 
