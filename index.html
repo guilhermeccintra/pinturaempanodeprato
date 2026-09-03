@@ -521,18 +521,21 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                 <picture>
 
                     <source
-                        media="(max-width: 600px)"
-                        srcset="images/resultado-05-mobile.webp"
-                    >
+    media="(max-width: 600px)"
+    srcset="images/resultado-05-mobile.webp"
+    width="600"
+    height="848"
+>
 
                     <img
-                        src="images/resultado-05.webp"
-                        alt="Pano de prato pintado a partir do risco"
-                        loading="lazy"
-                        decoding="async"
-                        width="600"
-                        height="848"
-                    >
+    src="images/resultado-05.webp"
+    alt="Pano de prato pintado a partir do risco"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+    width="600"
+    height="848"
+>
 
                 </picture>
 
