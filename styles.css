@@ -5577,6 +5577,28 @@ body {
 
 
 
+/* ==========================================================
+   PERFORMANCE — MOBILE (BOTÃO)
+   Reduz trabalho contínuo de composição no celular
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .btn-primary,
+    .discount-trigger,
+    .discount-checkout {
+        animation: none;
+    }
+
+    .btn-primary::before,
+    .discount-trigger::before,
+    .discount-checkout::before {
+        animation: none;
+        will-change: auto;
+    }
+
+}
+
 
 /* ==========================================================================
    FIM DO STYLES.CSS LIMPO
