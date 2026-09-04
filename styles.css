@@ -3344,7 +3344,7 @@ section {
    Botões principais — animação + reflexo
    ========================================================================== */
 
-.btn-primary, {
+.btn-primary {
   position: relative;
 
   overflow: hidden;
@@ -3364,7 +3364,7 @@ section {
 
 
 /* ==========================================================================
-   Reflexo que atravessa os botões
+   Reflexo que atravessa somente o botão
    ========================================================================== */
 
 .btn-primary::before {
@@ -3402,6 +3402,16 @@ section {
   pointer-events: none;
 
   will-change: transform;
+}
+
+
+/* ==========================================================================
+   Conteúdo do botão acima do reflexo
+   ========================================================================== */
+
+.btn-primary > * {
+  position: relative;
+  z-index: 2;
 }
 
 
@@ -3475,12 +3485,32 @@ section {
    ========================================================================== */
 
 .btn-primary:hover {
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 
-  filter:
-    brightness(1.03);
+  filter: brightness(1.03);
 }
+
+
+/* ==========================================================
+   PERFORMANCE — MOBILE
+   Remove pulsação contínua, mas mantém o reflexo do CTA
+========================================================== */
+
+@media (max-width: 768px) {
+
+  .btn-primary {
+    animation: none;
+  }
+
+  .btn-primary::before {
+    animation:
+      btnShine 4.5s ease-in-out infinite;
+
+    will-change: transform;
+  }
+
+}
+
 
 /* ==========================================================================
    Avaliação do Hero
@@ -5131,26 +5161,6 @@ body {
     body {
         padding-top: 48px;
     }
-}
-
-
-
-/* ==========================================================
-   PERFORMANCE — MOBILE (BOTÃO)
-   Reduz trabalho contínuo de composição no celular
-========================================================== */
-
-@media (max-width: 768px) {
-
-    .btn-primary {
-        animation: none;
-    }
-
-    .btn-primary::before {
-        animation: none;
-        will-change: auto;
-    }
-
 }
 
 
