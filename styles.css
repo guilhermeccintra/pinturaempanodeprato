@@ -488,29 +488,6 @@ section {
   vertical-align: baseline;
 }
 
-.hero-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-
-  margin: 24px auto;
-}
-
-.hero-mockup {
-  display: block;
-
-  width: min(100%, 480px);
-  height: auto;
-
-  margin: 0 auto;
-
-  overflow: hidden;
-
-  border-radius: 24px;
-}
-
 .hero-subtitle {
   width: 100%;
   max-width: 760px;
@@ -540,62 +517,6 @@ section {
   align-items: center;
 
   gap: 6px;
-}
-
-.old-price {
-  margin-bottom: 2px;
-
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.2;
-
-  color: #8d7c70;
-
-  text-decoration: line-through;
-}
-
-.current-price {
-  margin: 0;
-
-  font-family: var(--font-display);
-
-  font-size: clamp(3.2rem, 5vw, 4.8rem);
-  font-weight: 800;
-  line-height: 1;
-
-  letter-spacing: -0.03em;
-
-  color: var(--color-primary);
-}
-
-.installment-price {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-
-  gap: 5px;
-}
-
-.small-text,
-.times {
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.installment-value {
-  font-size: 52px;
-  font-weight: 800;
-  line-height: 0.9;
-}
-
-.cash-price {
-  margin-top: 6px;
-
-  font-size: 18px;
-  font-weight: 500;
-
-  color: #8d7c70;
 }
 
 .hero-buttons {
@@ -727,23 +648,6 @@ section {
     line-height: 1;
   }
 
-  .hero-visual {
-    width: 100%;
-
-    margin: 20px auto;
-  }
-
-  /*
-   * Antes: máximo de 320px.
-   * Agora a imagem pode crescer até 360px,
-   * respeitando automaticamente a largura do celular.
-   */
-  .hero-mockup {
-    width: min(100%, 360px);
-
-    border-radius: 18px;
-  }
-
   .hero-subtitle {
     width: 100%;
     max-width: 100%;
@@ -761,19 +665,6 @@ section {
     align-items: center;
 
     gap: 5px;
-  }
-
-  .old-price {
-    font-size: 18px;
-  }
-
-  .current-price {
-    font-size:
-      clamp(
-        3rem,
-        15vw,
-        4rem
-      );
   }
 
   .hero-buttons {
@@ -1080,74 +971,6 @@ section {
 
 
 /* ==========================================================================
-   Tags de categorias
-   ========================================================================== */
-
-.categories-tags {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-
-  margin-top: 40px;
-}
-
-.categories-tags span {
-  padding: 10px 18px;
-
-  background: #ffffff;
-
-  border: 1px solid rgba(196, 120, 74, 0.25);
-  border-radius: 999px;
-
-  font-size: 0.95rem;
-  font-weight: 600;
-
-  color: var(--color-primary);
-
-  transition: 0.3s;
-}
-
-.categories-tags span:hover {
-  background: var(--color-primary);
-
-  color: #ffffff;
-}
-
-@media (max-width: 768px) {
-
-  .categories-tags {
-    gap: 8px;
-
-    margin-top: 28px;
-  }
-
-  .categories-tags span {
-    padding: 8px 12px;
-
-    font-size: 0.85rem;
-  }
-}
-
-
-/* ==========================================================================
-   Destaque do Hero
-   ========================================================================== */
-
-.hero-highlight {
-  margin: 0 auto 20px;
-
-  font-size: 18px;
-  font-weight: 700;
-
-  text-align: center;
-
-  color: var(--color-primary);
-}
-
-
-/* ==========================================================================
    COMPARAÇÃO: RISCO IMPRESSO X RESULTADO PINTADO
    ========================================================================== */
 
@@ -1354,8 +1177,7 @@ section {
    Risco — miniatura sobreposta
    ========================================================================== */
 
-.comparison-before,
-.comparison-image:not(.comparison-image-result) {
+.comparison-before {
   position: absolute;
 
   top: 18px;
@@ -1400,8 +1222,7 @@ section {
   background: #ffffff;
 }
 
-.comparison-before-media img,
-.comparison-before-img {
+.comparison-before-media img {
   display: block !important;
 
   width: 100% !important;
@@ -1417,29 +1238,6 @@ section {
 
   background: #ffffff;
 }
-
-
-/*
- * Compatibilidade com a estrutura alternativa
- * de imagem existente no HTML.
- */
-
-.comparison-image:not(.comparison-image-result) > img {
-  display: block !important;
-
-  width: 100% !important;
-  height: auto !important;
-
-  max-width: 100% !important;
-
-  aspect-ratio: 4 / 5;
-
-  object-fit: contain !important;
-  object-position: center !important;
-
-  background: #ffffff;
-}
-
 
 /* ==========================================================================
    Etiquetas
@@ -1493,15 +1291,6 @@ section {
   padding-left: 12px;
 
   color: var(--color-primary);
-}
-
-
-/* ==========================================================================
-   Seta antiga interna
-   ========================================================================== */
-
-.comparison-arrow {
-  display: none;
 }
 
 
@@ -1784,8 +1573,7 @@ section {
     max-width: 100%;
   }
 
-  .comparison-before,
-  .comparison-image:not(.comparison-image-result) {
+  .comparison-before {
     width: 30%;
     max-width: 200px;
   }
@@ -1797,12 +1585,6 @@ section {
    ========================================================================== */
 
 @media (max-width: 768px) {
-
-  /*
-   * Esta seção já estava bastante próxima das bordas.
-   * Mantemos 10px para preservar o acabamento visual
-   * sem desperdiçar largura útil.
-   */
 
   .comparison-section {
     padding: 32px 10px;
@@ -1827,27 +1609,13 @@ section {
     border-radius: 18px;
   }
 
-  .comparison-card-header {
-    margin-bottom: 12px;
-  }
-
-  .comparison-number {
-    font-size: 10px;
-  }
-
-  .comparison-card-header h3 {
-    font-size: 18px;
-  }
-
   .comparison-image-result {
     border-radius: 18px;
   }
 
-  .comparison-before,
-  .comparison-image:not(.comparison-image-result) {
+  .comparison-before {
     top: 10px;
     left: 10px;
-    bottom: auto;
 
     width: 31%;
     max-width: 145px;
@@ -1895,73 +1663,6 @@ section {
   .comparison-button span {
     font-size: 22px;
   }
-
-  .comparison-benefit {
-    width: 100%;
-
-    margin-top: 24px;
-
-    padding: 14px 12px;
-
-    align-items: flex-start;
-
-    gap: 10px;
-  }
-
-  .comparison-benefit-icon {
-    flex-basis: 34px;
-
-    width: 34px;
-    height: 34px;
-
-    font-size: 17px;
-  }
-
-  .comparison-benefit-text strong {
-    font-size: 15px;
-  }
-
-  .comparison-benefit-text span {
-    font-size: 13px;
-  }
-
-  .comparison-tags {
-    width: 100%;
-
-    margin-top: 18px;
-
-    gap: 7px;
-  }
-
-  .comparison-tags span {
-    min-height: 31px;
-
-    padding: 7px 9px;
-
-    font-size: 12px;
-  }
-
-  .comparison-cta {
-    margin-top: 26px;
-  }
-
-  .comparison-cta-highlight {
-    width: 100%;
-    max-width: 100%;
-
-    font-size: 16px;
-  }
-
-  .comparison-cta .btn-primary {
-    width: 100%;
-    max-width: 350px;
-  }
-
-  .comparison-payment-info {
-    max-width: 330px;
-
-    font-size: 13px;
-  }
 }
 
 
@@ -1980,8 +1681,7 @@ section {
     padding: 7px;
   }
 
-  .comparison-before,
-  .comparison-image:not(.comparison-image-result) {
+  .comparison-before {
     top: 8px;
     left: 8px;
 
@@ -1996,9 +1696,6 @@ section {
 
 /* ==========================================================================
    Hero — Card de comparação sem bloco externo
-
-   Este override é utilizado pelo card de comparação que aparece no Hero.
-   Mantido para preservar exatamente o visual atual.
    ========================================================================== */
 
 .hero-comparison-card {
@@ -3647,9 +3344,7 @@ section {
    Botões principais — animação + reflexo
    ========================================================================== */
 
-.btn-primary,
-.discount-trigger,
-.discount-checkout {
+.btn-primary, {
   position: relative;
 
   overflow: hidden;
@@ -3672,9 +3367,7 @@ section {
    Reflexo que atravessa os botões
    ========================================================================== */
 
-.btn-primary::before,
-.discount-trigger::before,
-.discount-checkout::before {
+.btn-primary::before {
   content: "";
 
   position: absolute;
@@ -3781,9 +3474,7 @@ section {
    Hover
    ========================================================================== */
 
-.btn-primary:hover,
-.discount-trigger:hover,
-.discount-checkout:hover {
+.btn-primary:hover {
   transform:
     translateY(-2px);
 
@@ -4801,139 +4492,6 @@ section {
 
 
 /* ==========================================================================
-   Oferta surpresa — introdução acima do CTA
-   ========================================================================== */
-
-.offer-surprise-intro {
-  width: min(100%, 760px);
-
-  margin: 0 auto 16px;
-
-  font-family:
-    var(--font-body);
-
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 1.45;
-
-  text-align: center;
-
-  color:
-    var(--color-text);
-}
-
-.offer-surprise-kicker {
-  display: inline;
-
-  margin: 0;
-
-  font-family: inherit;
-
-  font-size: inherit;
-  font-weight: 800;
-  line-height: inherit;
-
-  letter-spacing: 0.07em;
-
-  text-transform: uppercase;
-
-  color:
-    var(--color-primary);
-}
-
-.offer-surprise-intro > strong {
-  font-family: inherit;
-
-  font-size: inherit;
-  font-weight: 700;
-  line-height: inherit;
-
-  color:
-    var(--color-text);
-}
-
-.offer-surprise-copy {
-  max-width: 500px;
-
-  margin: 0 auto;
-
-  font-family:
-    var(--font-body);
-
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
-
-  color:
-    var(--color-text-light);
-}
-
-.offer-surprise-note {
-  margin: 9px auto 0;
-
-  font-family:
-    var(--font-body);
-
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.45;
-
-  color:
-    var(--color-text-light);
-}
-
-
-/* ==========================================================================
-   Oferta surpresa — Mobile
-   ========================================================================== */
-
-@media (max-width: 768px) {
-
-  .offer-surprise-intro {
-    width: 100%;
-    max-width: 100%;
-
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  .offer-surprise-kicker {
-    font-size: inherit;
-    line-height: inherit;
-  }
-
-  .offer-surprise-intro > strong {
-    font-size: inherit;
-    line-height: inherit;
-  }
-
-  .offer-surprise-copy {
-    width: 100%;
-    max-width: 420px;
-
-    font-size: 15px;
-    line-height: 1.5;
-  }
-
-  .offer-surprise-note {
-    font-size: 12px;
-    line-height: 1.45;
-  }
-}
-
-/* ==========================================================================
-   Botão que abre a oferta
-   ========================================================================== */
-
-.discount-trigger {
-  border: 0;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.02em;
-}
-
-/* ==========================================================================
    FAQ
    ========================================================================== */
 
@@ -5584,15 +5142,11 @@ body {
 
 @media (max-width: 768px) {
 
-    .btn-primary,
-    .discount-trigger,
-    .discount-checkout {
+    .btn-primary {
         animation: none;
     }
 
-    .btn-primary::before,
-    .discount-trigger::before,
-    .discount-checkout::before {
+    .btn-primary::before {
         animation: none;
         will-change: auto;
     }
