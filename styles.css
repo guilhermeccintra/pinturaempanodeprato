@@ -3210,7 +3210,7 @@ section {
   width: fit-content;
   max-width: 620px;
 
-  margin: 0 auto 32px;
+  margin: 0 auto 0;
 
   padding: 0;
 
