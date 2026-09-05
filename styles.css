@@ -3244,7 +3244,7 @@ section {
   font-family:
     var(--font-body);
 
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.45;
 
@@ -3271,7 +3271,7 @@ section {
 
   border-radius: 50%;
 
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1;
 }
 
@@ -3291,9 +3291,7 @@ section {
 
 .hero-benefits strong {
   font-weight: 700;
-
-  color:
-    var(--color-text-light);
+  color: var(--color-text);
 }
 
 
@@ -3338,8 +3336,7 @@ section {
     width: 36px;
     height: 36px;
     min-width: 36px;
-
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
