@@ -490,14 +490,14 @@ section {
 
 .hero-subtitle {
   width: 100%;
-  max-width: 760px;
+  max-width: 780px;
 
-  margin: 0 auto;
+  margin: 4px auto 0;
 
   font-family: var(--font-body);
 
-  font-size: 17px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 500;
   line-height: 1.45;
 
   text-align: center;
@@ -508,7 +508,7 @@ section {
 .hero-subtitle strong {
   font-weight: 700;
 
-  color: var(--color-text-light);
+  color: var(--color-text);
 }
 
 .hero-price {
@@ -648,17 +648,25 @@ section {
     line-height: 1;
   }
 
-  .hero-subtitle {
+    .hero-subtitle {
     width: 100%;
     max-width: 100%;
 
-    margin: 0 auto;
+    margin: 3px auto 0;
 
     font-size: 16px;
-    line-height: 1.5;
+    font-weight: 500;
+    line-height: 1.45;
 
     text-align: center;
   }
+
+  .hero-subtitle strong {
+    font-weight: 700;
+
+    color: var(--color-text);
+  }
+
 
   .hero-price {
     flex-direction: column;
