@@ -1731,7 +1731,7 @@ section {
 .transfer-process {
   position: relative;
   overflow: hidden;
-
+  background: var(--color-bg);
   padding: 48px 20px;
 }
 
