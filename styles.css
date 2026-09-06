@@ -1972,7 +1972,7 @@ section {
   display: flex;
   align-items: flex-start;
   gap: 15px;
-
+  background-color: var(--color-white);
   width: min(100%, 780px);
 
   margin: 38px auto 0;
