@@ -1756,6 +1756,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 });
 
+});
 
 
 /* ==========================================================
