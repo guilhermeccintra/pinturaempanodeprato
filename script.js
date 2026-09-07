@@ -1364,5 +1364,388 @@ document.addEventListener(
 
 
 /* ==========================================================
+   CARROSSEL CONTÍNUO — DEPOIMENTOS
+========================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const marquee =
+            document.querySelector(
+                "[data-testimonials-marquee]"
+            );
+
+
+        if (!marquee) {
+            return;
+        }
+
+
+        const viewport =
+            marquee.querySelector(
+                ".testimonials-viewport"
+            );
+
+
+        const track =
+            marquee.querySelector(
+                "[data-testimonials-track]"
+            );
+
+
+        if (!viewport || !track) {
+            return;
+        }
+
+
+        const reduceMotion =
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            );
+
+
+        /*
+         * Quem prefere movimento reduzido
+         * recebe apenas rolagem manual.
+         */
+
+        if (reduceMotion.matches) {
+            return;
+        }
+
+
+        const originalSlides =
+            Array.from(
+                track.children
+            );
+
+
+        if (!originalSlides.length) {
+            return;
+        }
+
+
+        /*
+         * Duplica os slides somente no DOM.
+         *
+         * Não precisamos repetir as imagens no HTML.
+         * O navegador reutiliza os mesmos arquivos.
+         */
+
+        originalSlides.forEach(
+            function (slide) {
+
+                const clone =
+                    slide.cloneNode(true);
+
+                clone.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+                track.appendChild(clone);
+
+            }
+        );
+
+
+        let position = 0;
+
+        let previousTime = 0;
+
+        let animationFrameId = null;
+
+        let paused = false;
+
+        let singleSetWidth = 0;
+
+
+        /*
+         * Velocidade em pixels por segundo.
+         *
+         * 22 = movimento propositalmente lento.
+         */
+
+        const speed = 22;
+
+
+        function calculateWidth() {
+
+            if (!originalSlides.length) {
+                return;
+            }
+
+
+            const firstSlide =
+                originalSlides[0];
+
+
+            const firstClone =
+                track.children[
+                    originalSlides.length
+                ];
+
+
+            if (!firstClone) {
+                return;
+            }
+
+
+            singleSetWidth =
+                firstClone.offsetLeft -
+                firstSlide.offsetLeft;
+
+        }
+
+
+        function animate(currentTime) {
+
+            if (!previousTime) {
+                previousTime = currentTime;
+            }
+
+
+            const delta =
+                currentTime - previousTime;
+
+
+            previousTime = currentTime;
+
+
+            if (
+                !paused &&
+                singleSetWidth > 0
+            ) {
+
+                position +=
+                    speed *
+                    (delta / 1000);
+
+
+                if (
+                    position >=
+                    singleSetWidth
+                ) {
+
+                    position -=
+                        singleSetWidth;
+
+                }
+
+
+                track.style.transform =
+                    "translate3d(-" +
+                    position +
+                    "px, 0, 0)";
+
+            }
+
+
+            animationFrameId =
+                requestAnimationFrame(
+                    animate
+                );
+
+        }
+
+
+        /*
+         * Pausa no desktop ao colocar
+         * o mouse sobre os depoimentos.
+         */
+
+        marquee.addEventListener(
+            "mouseenter",
+            function () {
+
+                paused = true;
+
+            }
+        );
+
+
+        marquee.addEventListener(
+            "mouseleave",
+            function () {
+
+                paused = false;
+
+            }
+        );
+
+
+        /*
+         * Pausa quando a aba deixa
+         * de estar visível.
+         */
+
+        document.addEventListener(
+            "visibilitychange",
+            function () {
+
+                paused =
+                    document.hidden;
+
+                previousTime = 0;
+
+            }
+        );
+
+
+        /*
+         * Recalcula quando a viewport muda.
+         */
+
+        let resizeTimer;
+
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+                clearTimeout(
+                    resizeTimer
+                );
+
+
+                resizeTimer =
+                    setTimeout(
+                        function () {
+
+                            calculateWidth();
+
+                            position = 0;
+
+                            track.style.transform =
+                                "translate3d(0, 0, 0)";
+
+                        },
+                        150
+                    );
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /*
+         * Só começa depois do carregamento.
+         *
+         * Evita competir com recursos críticos
+         * da primeira dobra.
+         */
+
+        function startMarquee() {
+
+            calculateWidth();
+
+            previousTime = 0;
+
+
+            if (
+                animationFrameId === null
+            ) {
+
+                animationFrameId =
+                    requestAnimationFrame(
+                        animate
+                    );
+
+            }
+
+        }
+
+
+        /*
+ * Inicia a animação somente quando
+ * a seção estiver próxima da viewport.
+ *
+ * Isso evita processamento desnecessário
+ * enquanto o visitante está no topo da página.
+ */
+
+if (
+    "IntersectionObserver" in window
+) {
+
+    const marqueeObserver =
+        new IntersectionObserver(
+            function (entries) {
+
+                entries.forEach(
+                    function (entry) {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            paused = false;
+
+                            if (
+                                animationFrameId === null
+                            ) {
+
+                                startMarquee();
+
+                            }
+
+                        } else {
+
+                            paused = true;
+
+                            previousTime = 0;
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                rootMargin:
+                    "250px 0px 250px 0px",
+
+                threshold: 0
+            }
+        );
+
+
+    marqueeObserver.observe(
+        marquee
+    );
+
+} else {
+
+    /*
+     * Fallback para navegadores antigos.
+     */
+
+    if (
+        document.readyState ===
+        "complete"
+    ) {
+
+        startMarquee();
+
+    } else {
+
+        window.addEventListener(
+            "load",
+            startMarquee,
+            {
+                once: true
+            }
+        );
+
+    }
+
+}
+
+
+
+/* ==========================================================
    FIM DO SCRIPT.JS
 ========================================================== */
