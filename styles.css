@@ -5156,6 +5156,332 @@ body {
 }
 
 
+
+/* ==========================================================================
+   DEPOIMENTOS — PINTURAS DE CLIENTES
+   ========================================================================== */
+
+.customer-results {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    padding: 48px 0;
+
+    background-color: var(--color-white);
+}
+
+
+/* ==========================================================================
+   Cabeçalho
+   ========================================================================== */
+
+.customer-results-heading {
+    width: 100%;
+    max-width: 800px;
+
+    margin: 0 auto 38px;
+}
+
+.customer-results-heading .section-subtitle {
+    max-width: 650px;
+
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* ==========================================================================
+   Área externa do carrossel
+   ========================================================================== */
+
+.testimonials-marquee {
+    position: relative;
+
+    width: 100%;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+}
+
+
+/*
+ * Fade sutil nas laterais.
+ * Ajuda o carrossel a "entrar e sair" visualmente da seção.
+ */
+
+.testimonials-marquee::before,
+.testimonials-marquee::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    z-index: 5;
+
+    width: 70px;
+
+    pointer-events: none;
+}
+
+.testimonials-marquee::before {
+    left: 0;
+
+    background:
+        linear-gradient(
+            to right,
+            #ffffff 0%,
+            rgba(255, 255, 255, 0) 100%
+        );
+}
+
+.testimonials-marquee::after {
+    right: 0;
+
+    background:
+        linear-gradient(
+            to left,
+            #ffffff 0%,
+            rgba(255, 255, 255, 0) 100%
+        );
+}
+
+
+/* ==========================================================================
+   Viewport
+   ========================================================================== */
+
+.testimonials-viewport {
+    width: 100%;
+
+    overflow: hidden;
+
+    touch-action: pan-y;
+}
+
+
+/* ==========================================================================
+   Track
+   ========================================================================== */
+
+.testimonials-track {
+    display: flex;
+
+    align-items: flex-start;
+
+    width: max-content;
+
+    gap: 18px;
+
+    transform: translate3d(0, 0, 0);
+
+    will-change: transform;
+
+    backface-visibility: hidden;
+}
+
+
+/* ==========================================================================
+   Slides
+   ========================================================================== */
+
+.testimonial-slide {
+    flex: 0 0 260px;
+
+    width: 260px;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        rgba(196, 120, 74, 0.20);
+
+    border-radius: 18px;
+
+    background-color: #ffffff;
+
+    box-shadow:
+        0 10px 28px
+        rgba(70, 47, 31, 0.10);
+}
+
+
+/* ==========================================================================
+   Imagens
+   ========================================================================== */
+
+.testimonial-slide img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    margin: 0;
+
+    background-color: #ffffff;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+}
+
+
+/* ==========================================================================
+   Observação inferior
+   ========================================================================== */
+
+.testimonials-note {
+    width: calc(100% - 40px);
+    max-width: 650px;
+
+    margin: 25px auto 0;
+
+    font-family: var(--font-body);
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    text-align: center;
+
+    color: var(--color-text-light);
+
+    opacity: 0.78;
+}
+
+
+/* ==========================================================================
+   Tablet
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+    .testimonial-slide {
+        flex-basis: 245px;
+
+        width: 245px;
+    }
+
+}
+
+
+/* ==========================================================================
+   Mobile
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+    .customer-results {
+        padding: 32px 0;
+    }
+
+
+    .customer-results-heading {
+        width: 100%;
+
+        margin-bottom: 27px;
+
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+
+    .customer-results-heading .section-subtitle {
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+    .testimonials-track {
+        gap: 12px;
+    }
+
+
+    .testimonial-slide {
+        /*
+         * Aproximadamente 76% da viewport.
+         * Assim parte do próximo depoimento permanece visível.
+         */
+
+        flex: 0 0 76vw;
+
+        width: 76vw;
+
+        max-width: 300px;
+
+        border-radius: 15px;
+    }
+
+
+    .testimonials-marquee::before,
+    .testimonials-marquee::after {
+        width: 18px;
+    }
+
+
+    .testimonials-note {
+        width: calc(100% - 24px);
+
+        margin-top: 20px;
+
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+}
+
+
+/* ==========================================================================
+   Celulares pequenos
+   ========================================================================== */
+
+@media (max-width: 380px) {
+
+    .testimonial-slide {
+        flex-basis: 78vw;
+
+        width: 78vw;
+    }
+
+}
+
+
+/* ==========================================================================
+   Acessibilidade — reduzir movimento
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .testimonials-viewport {
+        overflow-x: auto;
+
+        scrollbar-width: none;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    .testimonials-viewport::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .testimonials-track {
+        transform: none !important;
+
+        will-change: auto;
+    }
+
+}
+
+
 /* ==========================================================================
    FIM DO STYLES.CSS LIMPO
    ========================================================================== */
