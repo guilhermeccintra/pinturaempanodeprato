@@ -1522,7 +1522,12 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
 <!-- =========================================================
      PINTURAS DE QUEM JÁ COMEÇOU
 ========================================================= -->
+
 <section class="customer-results fade-in" id="depoimentos">
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
 
     <div class="customer-results-heading container text-center">
 
@@ -1543,33 +1548,45 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
     </div>
 
 
-    <!-- CARROSSEL CONTÍNUO -->
+    <!-- =====================================================
+         CARROSSEL CONTÍNUO
+    ====================================================== -->
+
     <div
         class="testimonials-marquee"
-        data-testimonials-marquee
         aria-label="Pinturas compartilhadas por clientes"
     >
 
-        <div class="testimonials-viewport">
+        <div class="testimonials-track">
 
-            <div
-                class="testimonials-track"
-                data-testimonials-track
-            >
+
+            <!-- =================================================
+                 GRUPO ORIGINAL
+            ================================================== -->
+
+            <div class="testimonials-group">
+
+
+                <!-- DEPOIMENTO 1 -->
 
                 <figure class="testimonial-slide">
+
                     <img
                         src="images/depoimento-01.webp"
                         alt="Depoimento de cliente mostrando uma pintura de rosa em pano de prato"
                         width="391"
-                        height="719"
+                        height="709"
                         loading="lazy"
                         decoding="async"
                     >
+
                 </figure>
 
 
+                <!-- DEPOIMENTO 2 -->
+
                 <figure class="testimonial-slide">
+
                     <img
                         src="images/depoimento-02.webp"
                         alt="Cliente mostrando uma pintura de limões em pano de prato"
@@ -1578,10 +1595,14 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                         loading="lazy"
                         decoding="async"
                     >
+
                 </figure>
 
 
+                <!-- DEPOIMENTO 3 -->
+
                 <figure class="testimonial-slide">
+
                     <img
                         src="images/depoimento-03.webp"
                         alt="Cliente mostrando uma pintura de xícara em pano de prato"
@@ -1590,10 +1611,14 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                         loading="lazy"
                         decoding="async"
                     >
+
                 </figure>
 
 
+                <!-- DEPOIMENTO 4 -->
+
                 <figure class="testimonial-slide">
+
                     <img
                         src="images/depoimento-04.webp"
                         alt="Depoimento de cliente mostrando uma pintura de bolo em pano de prato"
@@ -1602,10 +1627,14 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                         loading="lazy"
                         decoding="async"
                     >
+
                 </figure>
 
 
+                <!-- DEPOIMENTO 5 -->
+
                 <figure class="testimonial-slide">
+
                     <img
                         src="images/depoimento-05.webp"
                         alt="Cliente mostrando uma pintura de cachorro em pano de prato"
@@ -1614,10 +1643,14 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                         loading="lazy"
                         decoding="async"
                     >
+
                 </figure>
 
 
+                <!-- DEPOIMENTO 6 -->
+
                 <figure class="testimonial-slide">
+
                     <img
                         src="images/depoimento-06.webp"
                         alt="Depoimento de cliente iniciante mostrando uma pintura de bananas em pano de prato"
@@ -1626,7 +1659,120 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
                         loading="lazy"
                         decoding="async"
                     >
+
                 </figure>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 SEGUNDO GRUPO
+                 Cópia necessária para o loop contínuo.
+                 aria-hidden evita duplicação para leitores de tela.
+            ================================================== -->
+
+            <div
+                class="testimonials-group"
+                aria-hidden="true"
+            >
+
+
+                <!-- DEPOIMENTO 1 -->
+
+                <figure class="testimonial-slide">
+
+                    <img
+                        src="images/depoimento-01.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </figure>
+
+
+                <!-- DEPOIMENTO 2 -->
+
+                <figure class="testimonial-slide">
+
+                    <img
+                        src="images/depoimento-02.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </figure>
+
+
+                <!-- DEPOIMENTO 3 -->
+
+                <figure class="testimonial-slide">
+
+                    <img
+                        src="images/depoimento-03.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </figure>
+
+
+                <!-- DEPOIMENTO 4 -->
+
+                <figure class="testimonial-slide">
+
+                    <img
+                        src="images/depoimento-04.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </figure>
+
+
+                <!-- DEPOIMENTO 5 -->
+
+                <figure class="testimonial-slide">
+
+                    <img
+                        src="images/depoimento-05.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </figure>
+
+
+                <!-- DEPOIMENTO 6 -->
+
+                <figure class="testimonial-slide">
+
+                    <img
+                        src="images/depoimento-06.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </figure>
+
 
             </div>
 
@@ -1635,13 +1781,16 @@ sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
     </div>
 
 
+    <!-- =====================================================
+         OBSERVAÇÃO
+    ====================================================== -->
+
     <p class="testimonials-note">
         Resultados compartilhados por clientes. A experiência e o acabamento
         podem variar de acordo com a prática e os materiais utilizados.
     </p>
 
 </section>
-
 
 
   
