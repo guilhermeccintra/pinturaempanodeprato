@@ -1754,9 +1754,7 @@ document.addEventListener("DOMContentLoaded", function () {
     requestAnimationFrame(init);
 
 });
-});
 
-});
 
 
 /* ==========================================================
