@@ -5165,12 +5165,11 @@ body {
     position: relative;
 
     width: 100%;
+    padding: 48px 0;
 
     overflow: hidden;
 
-    padding: 48px 0;
-
-    background-color: var(--color-white);
+    background: var(--color-white, #ffffff);
 }
 
 
@@ -5179,7 +5178,7 @@ body {
    ========================================================================== */
 
 .customer-results-heading {
-    width: 100%;
+    width: calc(100% - 40px);
     max-width: 800px;
 
     margin: 0 auto 38px;
@@ -5194,22 +5193,32 @@ body {
 
 
 /* ==========================================================================
-   CARROSSEL
+   ÁREA VISÍVEL DO CARROSSEL
    ========================================================================== */
 
 .testimonials-marquee {
+    --testimonial-gap: 18px;
+    --testimonial-width: 260px;
+    --marquee-duration: 42s;
+
     position: relative;
 
     width: 100%;
 
-    margin: 0 auto;
-
     overflow: hidden;
+
+    /*
+     * Evita alguns artefatos de renderização
+     * durante animações com transform.
+     */
+    transform: translateZ(0);
+
+    isolation: isolate;
 }
 
 
 /* ==========================================================================
-   FADE NAS LATERAIS
+   FADE LATERAL
    ========================================================================== */
 
 .testimonials-marquee::before,
@@ -5221,9 +5230,9 @@ body {
     top: 0;
     bottom: 0;
 
-    z-index: 5;
+    z-index: 10;
 
-    width: 70px;
+    width: clamp(20px, 5vw, 80px);
 
     pointer-events: none;
 }
@@ -5231,28 +5240,28 @@ body {
 .testimonials-marquee::before {
     left: 0;
 
-    background:
-        linear-gradient(
-            to right,
-            #ffffff 0%,
-            rgba(255, 255, 255, 0) 100%
-        );
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.85) 25%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 
 .testimonials-marquee::after {
     right: 0;
 
-    background:
-        linear-gradient(
-            to left,
-            #ffffff 0%,
-            rgba(255, 255, 255, 0) 100%
-        );
+    background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.85) 25%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 
 
 /* ==========================================================================
-   TRACK PRINCIPAL
+   TRACK
    ========================================================================== */
 
 .testimonials-track {
@@ -5262,64 +5271,77 @@ body {
 
     width: max-content;
 
+    /*
+     * O transform é controlado SOMENTE pelo CSS.
+     */
+    animation-name: testimonials-scroll;
+    animation-duration: var(--marquee-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
     will-change: transform;
 
     backface-visibility: hidden;
-
-    animation:
-        testimonials-scroll
-        45s
-        linear
-        infinite;
+    -webkit-backface-visibility: hidden;
 }
 
 
 /* ==========================================================================
-   CADA CONJUNTO DE 6 IMAGENS
+   GRUPOS
+
+   IMPORTANTE:
+   Os dois grupos precisam ter exatamente a mesma estrutura/largura.
    ========================================================================== */
 
 .testimonials-group {
     display: flex;
 
-    flex-shrink: 0;
+    flex: none;
 
     align-items: flex-start;
 
-    gap: 18px;
+    gap: var(--testimonial-gap);
 
-    padding-right: 18px;
+    /*
+     * Este padding representa o espaço entre
+     * o último card de um grupo e o primeiro
+     * card do grupo seguinte.
+     */
+    padding-right: var(--testimonial-gap);
 }
 
 
 /* ==========================================================================
-   SLIDES
+   SLIDE
    ========================================================================== */
 
 .testimonial-slide {
-    flex: 0 0 260px;
+    flex: 0 0 var(--testimonial-width);
 
-    width: 260px;
+    width: var(--testimonial-width);
 
     margin: 0;
 
     overflow: hidden;
 
-    border:
-        1px solid
-        rgba(196, 120, 74, 0.20);
-
+    border: 1px solid rgba(196, 120, 74, 0.20);
     border-radius: 18px;
 
-    background-color: #ffffff;
+    background: #ffffff;
 
     box-shadow:
-        0 10px 28px
-        rgba(70, 47, 31, 0.10);
+        0 10px 28px rgba(70, 47, 31, 0.10);
+
+    /*
+     * Ajuda o navegador a isolar a renderização
+     * de cada card.
+     */
+    contain: layout paint;
 }
 
 
 /* ==========================================================================
-   IMAGENS
+   IMAGEM
    ========================================================================== */
 
 .testimonial-slide img {
@@ -5330,9 +5352,10 @@ body {
 
     margin: 0;
 
-    background-color: #ffffff;
+    background: #ffffff;
 
     user-select: none;
+    -webkit-user-select: none;
 
     -webkit-user-drag: none;
 
@@ -5341,11 +5364,13 @@ body {
 
 
 /* ==========================================================================
-   MOVIMENTO CONTÍNUO
+   ANIMAÇÃO INFINITA
 
-   Cada grupo possui exatamente metade da largura total do track.
-   Ao chegar em -50%, o segundo grupo ocupa exatamente a posição
-   do primeiro. O reinício fica visualmente imperceptível.
+   Como existem dois grupos idênticos, -50% da largura total
+   corresponde exatamente ao início do segundo grupo.
+
+   Quando a animação reinicia em 0, visualmente estamos
+   exatamente na mesma composição.
    ========================================================================== */
 
 @keyframes testimonials-scroll {
@@ -5362,7 +5387,7 @@ body {
 
 
 /* ==========================================================================
-   PAUSA NO DESKTOP AO PASSAR O MOUSE
+   PAUSA NO DESKTOP
    ========================================================================== */
 
 @media (hover: hover) and (pointer: fine) {
@@ -5375,7 +5400,7 @@ body {
 
 
 /* ==========================================================================
-   OBSERVAÇÃO INFERIOR
+   OBSERVAÇÃO
    ========================================================================== */
 
 .testimonials-note {
@@ -5404,10 +5429,10 @@ body {
 
 @media (max-width: 900px) {
 
-    .testimonial-slide {
-        flex-basis: 245px;
-
-        width: 245px;
+    .testimonials-marquee {
+        --testimonial-width: 245px;
+        --testimonial-gap: 16px;
+        --marquee-duration: 46s;
     }
 
 }
@@ -5429,8 +5454,8 @@ body {
 
         margin-bottom: 27px;
 
-        padding-right: 10px;
-        padding-left: 10px;
+        padding-right: 16px;
+        padding-left: 16px;
     }
 
 
@@ -5440,41 +5465,37 @@ body {
     }
 
 
-    .testimonials-group {
-        gap: 12px;
+    .testimonials-marquee {
+        /*
+         * Card grande o suficiente para leitura,
+         * mas deixando parte do próximo visível.
+         */
+        --testimonial-width: min(76vw, 300px);
+        --testimonial-gap: 12px;
 
-        padding-right: 12px;
+        /*
+         * Movimento ligeiramente mais lento no celular.
+         */
+        --marquee-duration: 50s;
     }
 
 
     .testimonial-slide {
-        flex: 0 0 76vw;
-
-        width: 76vw;
-        max-width: 300px;
-
         border-radius: 15px;
+
+        box-shadow:
+            0 8px 22px rgba(70, 47, 31, 0.09);
     }
 
 
     .testimonials-marquee::before,
     .testimonials-marquee::after {
-        width: 18px;
-    }
-
-
-    .testimonials-track {
-        /*
-         * Um pouco mais lento no celular
-         * para facilitar a leitura dos depoimentos.
-         */
-
-        animation-duration: 52s;
+        width: 20px;
     }
 
 
     .testimonials-note {
-        width: calc(100% - 24px);
+        width: calc(100% - 28px);
 
         margin-top: 20px;
 
@@ -5491,10 +5512,10 @@ body {
 
 @media (max-width: 380px) {
 
-    .testimonial-slide {
-        flex-basis: 78vw;
-
-        width: 78vw;
+    .testimonials-marquee {
+        --testimonial-width: 78vw;
+        --testimonial-gap: 10px;
+        --marquee-duration: 52s;
     }
 
 }
@@ -5526,6 +5547,15 @@ body {
         transform: none;
 
         will-change: auto;
+    }
+
+
+    /*
+     * Com animação desativada não precisamos
+     * mostrar a cópia dos cards.
+     */
+    .testimonials-group[aria-hidden="true"] {
+        display: none;
     }
 
 }
