@@ -1367,374 +1367,311 @@ document.addEventListener(
    CARROSSEL CONTÍNUO — DEPOIMENTOS
 ========================================================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-        const marquee =
-            document.querySelector(
-                "[data-testimonials-marquee]"
-            );
+    const marquee = document.querySelector(
+        "[data-testimonials-marquee]"
+    );
 
-
-        if (!marquee) {
-            return;
-        }
+    if (!marquee) return;
 
 
-        const viewport =
-            marquee.querySelector(
-                ".testimonials-viewport"
-            );
+    const track = marquee.querySelector(
+        "[data-testimonials-track]"
+    );
+
+    if (!track) return;
 
 
-        const track =
-            marquee.querySelector(
-                "[data-testimonials-track]"
-            );
+    const originalSlides = Array.from(track.children);
+
+    if (!originalSlides.length) return;
 
 
-        if (!viewport || !track) {
-            return;
-        }
+    /* ======================================================
+       ACESSIBILIDADE
+    ====================================================== */
+
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    );
+
+    if (reduceMotion.matches) return;
 
 
-        const reduceMotion =
-            window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            );
+    /* ======================================================
+       DUPLICA OS SLIDES PARA CRIAR O LOOP
+    ====================================================== */
 
+    originalSlides.forEach(function (slide) {
 
-        /*
-         * Quem prefere movimento reduzido
-         * recebe apenas rolagem manual.
-         */
+        const clone = slide.cloneNode(true);
 
-        if (reduceMotion.matches) {
-            return;
-        }
-
-
-        const originalSlides =
-            Array.from(
-                track.children
-            );
-
-
-        if (!originalSlides.length) {
-            return;
-        }
-
-
-        /*
-         * Duplica os slides somente no DOM.
-         *
-         * Não precisamos repetir as imagens no HTML.
-         * O navegador reutiliza os mesmos arquivos.
-         */
-
-        originalSlides.forEach(
-            function (slide) {
-
-                const clone =
-                    slide.cloneNode(true);
-
-                clone.setAttribute(
-                    "aria-hidden",
-                    "true"
-                );
-
-                track.appendChild(clone);
-
-            }
+        clone.setAttribute(
+            "aria-hidden",
+            "true"
         );
 
+        track.appendChild(clone);
 
-        let position = 0;
+    });
 
-        let previousTime = 0;
 
-        let animationFrameId = null;
+    /* ======================================================
+       VARIÁVEIS
+    ====================================================== */
 
-        let paused = false;
+    let position = 0;
 
-        let singleSetWidth = 0;
+    let lastTime = null;
+
+    let setWidth = 0;
+
+    let isVisible = false;
+
+    let isHovering = false;
+
+    let animationId = null;
+
+
+    /*
+     * Velocidade do movimento.
+     * Aumente para ficar mais rápido.
+     */
+
+    const speed = 25;
+
+
+    /* ======================================================
+       CALCULA O TAMANHO DO PRIMEIRO CONJUNTO
+    ====================================================== */
+
+    function calculateSetWidth() {
+
+        const firstSlide = originalSlides[0];
+
+        const firstClone =
+            track.children[originalSlides.length];
+
+        if (!firstSlide || !firstClone) return;
+
+
+        setWidth =
+            firstClone.getBoundingClientRect().left -
+            firstSlide.getBoundingClientRect().left;
+
+    }
+
+
+    /* ======================================================
+       ANIMAÇÃO
+    ====================================================== */
+
+    function animate(time) {
+
+        if (lastTime === null) {
+            lastTime = time;
+        }
+
+
+        const delta = time - lastTime;
+
+        lastTime = time;
 
 
         /*
-         * Velocidade em pixels por segundo.
-         *
-         * 22 = movimento propositalmente lento.
+         * Evita saltos caso a aba fique
+         * inativa por algum tempo.
          */
 
-        const speed = 22;
+        const safeDelta =
+            Math.min(delta, 50);
 
 
-        function calculateWidth() {
+        if (
+            isVisible &&
+            !isHovering &&
+            setWidth > 0
+        ) {
 
-            if (!originalSlides.length) {
-                return;
+            position +=
+                speed *
+                (safeDelta / 1000);
+
+
+            /*
+             * Quando chega ao segundo conjunto,
+             * volta exatamente para a mesma posição
+             * visual do primeiro.
+             */
+
+            if (position >= setWidth) {
+
+                position -= setWidth;
+
             }
 
 
-            const firstSlide =
-                originalSlides[0];
-
-
-            const firstClone =
-                track.children[
-                    originalSlides.length
-                ];
-
-
-            if (!firstClone) {
-                return;
-            }
-
-
-            singleSetWidth =
-                firstClone.offsetLeft -
-                firstSlide.offsetLeft;
+            track.style.transform =
+                `translate3d(${-position}px, 0, 0)`;
 
         }
 
 
-        function animate(currentTime) {
+        animationId =
+            requestAnimationFrame(
+                animate
+            );
 
-            if (!previousTime) {
-                previousTime = currentTime;
-            }
-
-
-            const delta =
-                currentTime - previousTime;
+    }
 
 
-            previousTime = currentTime;
+    /* ======================================================
+       PAUSA AO PASSAR O MOUSE
+    ====================================================== */
+
+    marquee.addEventListener(
+        "mouseenter",
+        function () {
+
+            isHovering = true;
+
+        }
+    );
 
 
-            if (
-                !paused &&
-                singleSetWidth > 0
-            ) {
+    marquee.addEventListener(
+        "mouseleave",
+        function () {
 
-                position +=
-                    speed *
-                    (delta / 1000);
+            isHovering = false;
+
+            lastTime = null;
+
+        }
+    );
 
 
-                if (
-                    position >=
-                    singleSetWidth
-                ) {
+    /* ======================================================
+       RECALCULA AO REDIMENSIONAR
+    ====================================================== */
 
-                    position -=
-                        singleSetWidth;
+    let resizeTimer;
 
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            clearTimeout(resizeTimer);
+
+
+            resizeTimer =
+                setTimeout(
+                    function () {
+
+                        calculateSetWidth();
+
+                        position = 0;
+
+                        lastTime = null;
+
+                        track.style.transform =
+                            "translate3d(0, 0, 0)";
+
+                    },
+                    150
+                );
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /* ======================================================
+       OBSERVA QUANDO O CARROSSEL ESTÁ PERTO DA TELA
+    ====================================================== */
+
+    if ("IntersectionObserver" in window) {
+
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(
+                        function (entry) {
+
+                            isVisible =
+                                entry.isIntersecting;
+
+                            lastTime = null;
+
+                        }
+                    );
+
+                },
+                {
+                    rootMargin:
+                        "200px 0px 200px 0px",
+
+                    threshold: 0
                 }
+            );
 
 
-                track.style.transform =
-                    "translate3d(-" +
-                    position +
-                    "px, 0, 0)";
+        observer.observe(marquee);
 
-            }
+    } else {
+
+        /*
+         * Navegadores antigos:
+         * mantém a animação ativa.
+         */
+
+        isVisible = true;
+
+    }
 
 
-            animationFrameId =
+    /* ======================================================
+       INICIALIZA
+    ====================================================== */
+
+    function init() {
+
+        calculateSetWidth();
+
+        lastTime = null;
+
+
+        if (animationId === null) {
+
+            animationId =
                 requestAnimationFrame(
                     animate
                 );
 
         }
 
+    }
 
-        /*
-         * Pausa no desktop ao colocar
-         * o mouse sobre os depoimentos.
-         */
-
-        marquee.addEventListener(
-            "mouseenter",
-            function () {
-
-                paused = true;
-
-            }
-        );
-
-
-        marquee.addEventListener(
-            "mouseleave",
-            function () {
-
-                paused = false;
-
-            }
-        );
-
-
-        /*
-         * Pausa quando a aba deixa
-         * de estar visível.
-         */
-
-        document.addEventListener(
-            "visibilitychange",
-            function () {
-
-                paused =
-                    document.hidden;
-
-                previousTime = 0;
-
-            }
-        );
-
-
-        /*
-         * Recalcula quando a viewport muda.
-         */
-
-        let resizeTimer;
-
-
-        window.addEventListener(
-            "resize",
-            function () {
-
-                clearTimeout(
-                    resizeTimer
-                );
-
-
-                resizeTimer =
-                    setTimeout(
-                        function () {
-
-                            calculateWidth();
-
-                            position = 0;
-
-                            track.style.transform =
-                                "translate3d(0, 0, 0)";
-
-                        },
-                        150
-                    );
-
-            },
-            {
-                passive: true
-            }
-        );
-
-
-        /*
-         * Só começa depois do carregamento.
-         *
-         * Evita competir com recursos críticos
-         * da primeira dobra.
-         */
-
-        function startMarquee() {
-
-            calculateWidth();
-
-            previousTime = 0;
-
-
-            if (
-                animationFrameId === null
-            ) {
-
-                animationFrameId =
-                    requestAnimationFrame(
-                        animate
-                    );
-
-            }
-
-        }
-
-
-        /*
- * Inicia a animação somente quando
- * a seção estiver próxima da viewport.
- *
- * Isso evita processamento desnecessário
- * enquanto o visitante está no topo da página.
- */
-
-if (
-    "IntersectionObserver" in window
-) {
-
-    const marqueeObserver =
-        new IntersectionObserver(
-            function (entries) {
-
-                entries.forEach(
-                    function (entry) {
-
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            paused = false;
-
-                            if (
-                                animationFrameId === null
-                            ) {
-
-                                startMarquee();
-
-                            }
-
-                        } else {
-
-                            paused = true;
-
-                            previousTime = 0;
-
-                        }
-
-                    }
-                );
-
-            },
-            {
-                rootMargin:
-                    "250px 0px 250px 0px",
-
-                threshold: 0
-            }
-        );
-
-
-    marqueeObserver.observe(
-        marquee
-    );
-
-} else {
 
     /*
-     * Fallback para navegadores antigos.
+     * Esperamos o carregamento para garantir
+     * que as dimensões das imagens estejam corretas.
      */
 
-    if (
-        document.readyState ===
-        "complete"
-    ) {
+    if (document.readyState === "complete") {
 
-        startMarquee();
+        init();
 
     } else {
 
         window.addEventListener(
             "load",
-            startMarquee,
+            init,
             {
                 once: true
             }
@@ -1742,7 +1679,7 @@ if (
 
     }
 
-}
+});
 
 
 
