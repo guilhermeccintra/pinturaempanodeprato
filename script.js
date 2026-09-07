@@ -1364,320 +1364,108 @@ document.addEventListener(
 
 
 /* ==========================================================
-   CARROSSEL CONTÍNUO — DEPOIMENTOS
+   CARROSSEL DE DEPOIMENTOS
+   Melhorias de interação e performance.
+
+   IMPORTANTE:
+   O movimento infinito é controlado pelo CSS.
 ========================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const marquee = document.querySelector(
+    const marquees = document.querySelectorAll(
         "[data-testimonials-marquee]"
     );
 
-    if (!marquee) return;
+    if (!marquees.length) return;
 
 
-    const track = marquee.querySelector(
-        "[data-testimonials-track]"
-    );
+    marquees.forEach(function (marquee) {
 
-    if (!track) return;
-
-
-    const originalSlides = Array.from(track.children);
-
-    if (!originalSlides.length) return;
-
-
-    /* ======================================================
-       ACESSIBILIDADE
-    ====================================================== */
-
-    const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    );
-
-    if (reduceMotion.matches) return;
-
-
-    /* ======================================================
-       DUPLICA OS SLIDES PARA CRIAR O LOOP
-    ====================================================== */
-
-    originalSlides.forEach(function (slide) {
-
-        const clone = slide.cloneNode(true);
-
-        clone.setAttribute(
-            "aria-hidden",
-            "true"
+        const track = marquee.querySelector(
+            "[data-testimonials-track]"
         );
 
-        track.appendChild(clone);
-
-    });
+        if (!track) return;
 
 
-    /* ======================================================
-       VARIÁVEIS
-    ====================================================== */
+        /* ======================================================
+           PAUSA QUANDO A ABA NÃO ESTÁ VISÍVEL
+        ====================================================== */
 
-    let position = 0;
+        function handleVisibilityChange() {
 
-    let lastTime = null;
+            if (document.hidden) {
 
-    let setWidth = 0;
+                track.style.animationPlayState = "paused";
 
-    let isVisible = false;
+            } else {
 
-    let isHovering = false;
-
-    let animationId = null;
-
-
-    /*
-     * Velocidade do movimento.
-     * Aumente para ficar mais rápido.
-     */
-
-    const speed = 25;
-
-
-    /* ======================================================
-       CALCULA O TAMANHO DO PRIMEIRO CONJUNTO
-    ====================================================== */
-
-    function calculateSetWidth() {
-
-        const firstSlide = originalSlides[0];
-
-        const firstClone =
-            track.children[originalSlides.length];
-
-        if (!firstSlide || !firstClone) return;
-
-
-        setWidth =
-            firstClone.getBoundingClientRect().left -
-            firstSlide.getBoundingClientRect().left;
-
-    }
-
-
-    /* ======================================================
-       ANIMAÇÃO
-    ====================================================== */
-
-    function animate(time) {
-
-        if (lastTime === null) {
-            lastTime = time;
-        }
-
-
-        const delta = time - lastTime;
-
-        lastTime = time;
-
-
-        /*
-         * Evita saltos caso a aba fique
-         * inativa por algum tempo.
-         */
-
-        const safeDelta =
-            Math.min(delta, 50);
-
-
-        if (
-            isVisible &&
-            !isHovering &&
-            setWidth > 0
-        ) {
-
-            position +=
-                speed *
-                (safeDelta / 1000);
-
-
-            /*
-             * Quando chega ao segundo conjunto,
-             * volta exatamente para a mesma posição
-             * visual do primeiro.
-             */
-
-            if (position >= setWidth) {
-
-                position -= setWidth;
+                track.style.animationPlayState = "running";
 
             }
 
-
-            track.style.transform =
-                `translate3d(${-position}px, 0, 0)`;
-
         }
 
 
-        animationId =
-            requestAnimationFrame(
-                animate
-            );
-
-    }
+        document.addEventListener(
+            "visibilitychange",
+            handleVisibilityChange
+        );
 
 
-    /* ======================================================
-       PAUSA AO PASSAR O MOUSE
-    ====================================================== */
+        /* ======================================================
+           PAUSA QUANDO O CARROSSEL ESTÁ FORA DA TELA
 
-    marquee.addEventListener(
-        "mouseenter",
-        function () {
+           Evita manter animações desnecessárias sendo
+           processadas quando o usuário está em outra
+           parte da página.
+        ====================================================== */
 
-            isHovering = true;
+        if ("IntersectionObserver" in window) {
 
-        }
-    );
+            const observer = new IntersectionObserver(
 
-
-    marquee.addEventListener(
-        "mouseleave",
-        function () {
-
-            isHovering = false;
-
-            lastTime = null;
-
-        }
-    );
-
-
-    /* ======================================================
-       RECALCULA AO REDIMENSIONAR
-    ====================================================== */
-
-    let resizeTimer;
-
-
-    window.addEventListener(
-        "resize",
-        function () {
-
-            clearTimeout(resizeTimer);
-
-
-            resizeTimer =
-                setTimeout(
-                    function () {
-
-                        calculateSetWidth();
-
-                        position = 0;
-
-                        lastTime = null;
-
-                        track.style.transform =
-                            "translate3d(0, 0, 0)";
-
-                    },
-                    150
-                );
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    /* ======================================================
-       OBSERVA QUANDO O CARROSSEL ESTÁ PERTO DA TELA
-    ====================================================== */
-
-    if ("IntersectionObserver" in window) {
-
-        const observer =
-            new IntersectionObserver(
                 function (entries) {
 
-                    entries.forEach(
-                        function (entry) {
+                    entries.forEach(function (entry) {
 
-                            isVisible =
-                                entry.isIntersecting;
+                        /*
+                         * Se a aba estiver escondida,
+                         * visibilitychange tem prioridade.
+                         */
+                        if (document.hidden) return;
 
-                            lastTime = null;
 
-                        }
-                    );
+                        track.style.animationPlayState =
+                            entry.isIntersecting
+                                ? "running"
+                                : "paused";
+
+                    });
 
                 },
+
                 {
-                    rootMargin:
-                        "200px 0px 200px 0px",
+                    root: null,
+
+                    /*
+                     * Começa a animação um pouco antes
+                     * do carrossel entrar na tela.
+                     */
+                    rootMargin: "200px 0px",
 
                     threshold: 0
                 }
+
             );
 
 
-        observer.observe(marquee);
-
-    } else {
-
-        /*
-         * Navegadores antigos:
-         * mantém a animação ativa.
-         */
-
-        isVisible = true;
-
-    }
-
-
-    /* ======================================================
-       INICIALIZA
-    ====================================================== */
-
-    function init() {
-
-        calculateSetWidth();
-
-        lastTime = null;
-
-
-        if (animationId === null) {
-
-            animationId =
-                requestAnimationFrame(
-                    animate
-                );
+            observer.observe(marquee);
 
         }
 
-    }
-
-
-    /*
-     * Esperamos o carregamento para garantir
-     * que as dimensões das imagens estejam corretas.
-     */
-
-    if (document.readyState === "complete") {
-
-        init();
-
-    } else {
-
-        window.addEventListener(
-            "load",
-            init,
-            {
-                once: true
-            }
-        );
-
-    }
+    });
 
 });
 
