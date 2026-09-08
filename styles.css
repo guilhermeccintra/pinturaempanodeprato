@@ -4519,7 +4519,7 @@ section {
 .faq-list {
   width: 100%;
   max-width: 800px;
-  background-color: var(--color-bg);
+  
   margin: 48px auto 0;
 }
 
