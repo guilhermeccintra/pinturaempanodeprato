@@ -5449,13 +5449,8 @@ body {
 .creator-section {
 
     padding:40px 0;
+    background-color: var(--color-white);
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--color-bg),
-            var(--color-bg-warm)
-        );
 
 }
 
