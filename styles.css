@@ -5441,6 +5441,332 @@ body {
 }
 
 
+/* ==========================================================
+   CRIADORA DA COLEÇÃO
+========================================================== */
+
+
+.creator-section {
+
+    padding: 70px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--color-bg),
+            var(--color-bg-warm)
+        );
+
+}
+
+
+
+.creator-wrapper {
+
+    display:grid;
+
+    grid-template-columns:
+
+        minmax(350px, 0.9fr)
+
+        minmax(450px,1.1fr);
+
+
+    align-items:center;
+
+    gap:70px;
+
+    max-width:1150px;
+
+    margin:auto;
+
+}
+
+
+
+.creator-image img {
+
+
+    width:100%;
+
+    max-width:600px;
+
+    border-radius:32px;
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+
+
+.creator-content {
+
+
+    color:var(--color-text);
+
+}
+
+
+
+.creator-content p {
+
+
+    font-family:var(--font-body);
+
+    font-size:17px;
+
+    line-height:1.7;
+
+    color:var(--color-text-light);
+
+    margin-bottom:18px;
+
+}
+
+
+
+.creator-title {
+
+
+    font-family:var(--font-display);
+
+    font-size:42px;
+
+    line-height:1.25;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.creator-title span {
+
+
+    display:block;
+
+    font-family:var(--font-script);
+
+    color:var(--color-primary);
+
+    font-size:115%;
+
+}
+
+
+
+.creator-features {
+
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:16px;
+
+    margin-top:35px;
+
+}
+
+
+
+.creator-feature {
+
+
+    padding:22px 15px;
+
+    text-align:center;
+
+    background:#fff8f1;
+
+    border-radius:20px;
+
+    border:1px solid rgba(196,120,74,.15);
+
+}
+
+
+
+.creator-icon {
+
+
+    width:45px;
+
+    height:45px;
+
+    margin:0 auto 12px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    border-radius:50%;
+
+
+    background:#f7dfcb;
+
+
+    color:var(--color-primary);
+
+    font-size:24px;
+
+}
+
+
+
+.creator-feature strong {
+
+
+    display:block;
+
+    font-family:var(--font-display);
+
+    font-size:17px;
+
+    margin-bottom:8px;
+
+}
+
+
+
+.creator-feature span {
+
+
+    display:block;
+
+    font-size:13px;
+
+    color:var(--color-text-light);
+
+}
+
+
+
+.creator-signature {
+
+
+    margin-top:40px;
+
+
+    font-family:var(--font-script);
+
+    font-size:54px;
+
+    color:var(--color-primary);
+
+}
+
+
+
+.creator-signature small {
+
+
+    display:block;
+
+    margin-top:8px;
+
+
+    font-family:var(--font-body);
+
+    font-size:12px;
+
+    letter-spacing:4px;
+
+    line-height:1.8;
+
+    color:var(--color-text);
+
+}
+
+
+
+.creator-footer {
+
+
+    margin:45px auto 0;
+
+    width:max-content;
+
+    max-width:100%;
+
+
+    padding:15px 35px;
+
+
+    border-radius:999px;
+
+
+    background:#fff1e5;
+
+
+    color:var(--color-text);
+
+
+    font-family:var(--font-body);
+
+    text-align:center;
+
+}
+
+
+
+@media(max-width:900px){
+
+
+.creator-wrapper{
+
+
+    grid-template-columns:1fr;
+
+    gap:35px;
+
+}
+
+
+
+.creator-image{
+
+    max-width:500px;
+
+    margin:auto;
+
+}
+
+
+
+.creator-title{
+
+    font-size:32px;
+
+}
+
+
+
+.creator-features{
+
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+.creator-signature{
+
+
+    text-align:center;
+
+}
+
+
+}
+
+
+
 /* ==========================================================================
    FIM DO STYLES.CSS LIMPO
    ========================================================================== */
