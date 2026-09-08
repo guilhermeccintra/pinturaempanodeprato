@@ -5448,7 +5448,7 @@ body {
 
 .creator-section {
 
-    padding: 70px 0;
+    padding:40px 0;
 
     background:
         linear-gradient(
@@ -5461,37 +5461,47 @@ body {
 
 
 
+/* CONTAINER PRINCIPAL */
+
 .creator-wrapper {
 
     display:grid;
 
     grid-template-columns:
 
-        minmax(350px, 0.9fr)
+        minmax(320px, 0.85fr)
 
-        minmax(450px,1.1fr);
+        minmax(420px, 1.15fr);
 
 
     align-items:center;
 
-    gap:70px;
+    gap:45px;
 
-    max-width:1150px;
+    max-width:1100px;
 
-    margin:auto;
+    margin:0 auto;
 
 }
 
 
 
-.creator-image img {
+/* ==========================================================
+   IMAGEM
+========================================================== */
 
+
+.creator-image {
 
     width:100%;
 
-    max-width:600px;
+    max-width:420px;
 
-    border-radius:32px;
+    aspect-ratio:4 / 5;
+
+    overflow:hidden;
+
+    border-radius:28px;
 
     box-shadow:var(--shadow-lg);
 
@@ -5499,8 +5509,28 @@ body {
 
 
 
-.creator-content {
+.creator-image img {
 
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center;
+
+    display:block;
+
+}
+
+
+
+/* ==========================================================
+   CONTEÚDO
+========================================================== */
+
+
+.creator-content {
 
     color:var(--color-text);
 
@@ -5510,31 +5540,34 @@ body {
 
 .creator-content p {
 
-
     font-family:var(--font-body);
 
-    font-size:17px;
+    font-size:15px;
 
-    line-height:1.7;
+    line-height:1.55;
 
     color:var(--color-text-light);
 
-    margin-bottom:18px;
+    margin-bottom:12px;
 
 }
 
 
 
-.creator-title {
+/* TÍTULO */
 
+
+.creator-title {
 
     font-family:var(--font-display);
 
-    font-size:42px;
+    font-size:36px;
 
-    line-height:1.25;
+    line-height:1.2;
 
-    margin-bottom:25px;
+    margin-bottom:18px;
+
+    color:var(--color-text);
 
 }
 
@@ -5542,29 +5575,34 @@ body {
 
 .creator-title span {
 
-
     display:block;
 
     font-family:var(--font-script);
 
     color:var(--color-primary);
 
-    font-size:115%;
+    font-size:110%;
+
+    margin-top:3px;
 
 }
 
 
 
-.creator-features {
+/* ==========================================================
+   CARDS DE BENEFÍCIOS
+========================================================== */
 
+
+.creator-features {
 
     display:grid;
 
     grid-template-columns:repeat(3,1fr);
 
-    gap:16px;
+    gap:12px;
 
-    margin-top:35px;
+    margin-top:25px;
 
 }
 
@@ -5572,29 +5610,34 @@ body {
 
 .creator-feature {
 
-
-    padding:22px 15px;
+    padding:14px 10px;
 
     text-align:center;
 
     background:#fff8f1;
 
-    border-radius:20px;
+    border-radius:16px;
 
-    border:1px solid rgba(196,120,74,.15);
+    border:
+
+        1px solid
+
+        rgba(196,120,74,.15);
 
 }
 
 
 
+/* ÍCONES */
+
+
 .creator-icon {
 
+    width:38px;
 
-    width:45px;
+    height:38px;
 
-    height:45px;
-
-    margin:0 auto 12px;
+    margin:0 auto 9px;
 
 
     display:flex;
@@ -5612,33 +5655,43 @@ body {
 
     color:var(--color-primary);
 
-    font-size:24px;
+    font-size:20px;
 
 }
 
 
 
-.creator-feature strong {
+/* TÍTULO DOS CARDS */
 
+
+.creator-feature strong {
 
     display:block;
 
     font-family:var(--font-display);
 
-    font-size:17px;
+    font-size:15px;
 
-    margin-bottom:8px;
+    line-height:1.3;
+
+    margin-bottom:5px;
 
 }
 
 
 
-.creator-feature span {
+/* TEXTO DOS CARDS */
 
+
+.creator-feature span {
 
     display:block;
 
-    font-size:13px;
+    font-family:var(--font-body);
+
+    font-size:12px;
+
+    line-height:1.4;
 
     color:var(--color-text-light);
 
@@ -5646,15 +5699,20 @@ body {
 
 
 
+/* ==========================================================
+   ASSINATURA
+========================================================== */
+
+
 .creator-signature {
 
-
-    margin-top:40px;
-
+    margin-top:25px;
 
     font-family:var(--font-script);
 
-    font-size:54px;
+    font-size:42px;
+
+    line-height:1;
 
     color:var(--color-primary);
 
@@ -5664,19 +5722,18 @@ body {
 
 .creator-signature small {
 
-
     display:block;
 
-    margin-top:8px;
+    margin-top:6px;
 
 
     font-family:var(--font-body);
 
-    font-size:12px;
+    font-size:10px;
 
-    letter-spacing:4px;
+    letter-spacing:3px;
 
-    line-height:1.8;
+    line-height:1.6;
 
     color:var(--color-text);
 
@@ -5684,17 +5741,21 @@ body {
 
 
 
+/* ==========================================================
+   FRASE FINAL
+========================================================== */
+
+
 .creator-footer {
 
-
-    margin:45px auto 0;
+    margin:30px auto 0;
 
     width:max-content;
 
-    max-width:100%;
+    max-width:90%;
 
 
-    padding:15px 35px;
+    padding:12px 28px;
 
 
     border-radius:999px;
@@ -5708,59 +5769,106 @@ body {
 
     font-family:var(--font-body);
 
+    font-size:14px;
+
     text-align:center;
 
 }
 
+
+
+
+
+/* ==========================================================
+   TABLET / MOBILE
+========================================================== */
 
 
 @media(max-width:900px){
 
 
-.creator-wrapper{
+    .creator-section {
 
+        padding:32px 0;
 
-    grid-template-columns:1fr;
-
-    gap:35px;
-
-}
+    }
 
 
 
-.creator-image{
-
-    max-width:500px;
-
-    margin:auto;
-
-}
+    .creator-wrapper {
 
 
+        grid-template-columns:1fr;
 
-.creator-title{
+        gap:30px;
 
-    font-size:32px;
+        max-width:500px;
 
-}
+    }
 
 
 
-.creator-features{
+    .creator-image {
+
+        max-width:380px;
+
+        margin:0 auto;
+
+    }
 
 
-    grid-template-columns:1fr;
 
-}
+    .creator-content {
+
+        text-align:center;
+
+    }
 
 
 
-.creator-signature{
+    .creator-title {
+
+        font-size:30px;
+
+    }
 
 
-    text-align:center;
 
-}
+    .creator-content p {
+
+        font-size:15px;
+
+        text-align:left;
+
+    }
+
+
+
+    .creator-features {
+
+        grid-template-columns:1fr;
+
+        gap:12px;
+
+    }
+
+
+
+    .creator-signature {
+
+        text-align:center;
+
+    }
+
+
+
+    .creator-footer {
+
+        font-size:13px;
+
+        padding:12px 18px;
+
+    }
 
 
 }
