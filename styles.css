@@ -994,6 +994,92 @@ section {
 }
 
 
+
+/* ==========================================================
+   CTA INTERMEDIÁRIO — APÓS OS BÔNUS
+========================================================== */
+
+.bonuses-cta {
+    width: min(100%, 620px);
+    margin: 32px auto 0;
+    padding: 24px 20px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 14px 34px
+        rgba(28, 17, 10, 0.18);
+}
+
+
+.bonuses-cta-text {
+    max-width: 520px;
+
+    margin: 0 auto;
+
+    font-family: var(--font-body);
+
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    color: var(--color-text);
+}
+
+
+.bonuses-cta-text strong {
+    font-weight: 700;
+}
+
+
+.bonuses-cta .hero-price {
+    margin: 18px auto 12px;
+}
+
+
+.bonuses-cta .hero-buttons {
+    width: 100%;
+}
+
+
+.bonuses-cta .hero-info {
+    margin-top: 10px;
+}
+
+
+@media (max-width: 600px) {
+
+    .bonuses-cta {
+        width: 100%;
+
+        margin-top: 26px;
+
+        padding:
+            20px
+            14px;
+
+        border-radius: 16px;
+    }
+
+
+    .bonuses-cta-text {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+
+    .bonuses-cta .hero-price {
+        margin-top: 16px;
+    }
+
+}
+
+
+
 /* ==========================================================================
    COMPARAÇÃO: RISCO IMPRESSO X RESULTADO PINTADO
    ========================================================================== */
