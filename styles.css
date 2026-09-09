@@ -4604,6 +4604,53 @@ section {
 }
 
 
+
+/* ==========================================================
+   MELHORIA DA COMUNICAÇÃO DE PREÇO
+========================================================== */
+
+.price-old-inline {
+
+    text-decoration: line-through;
+
+    opacity: .65;
+
+}
+
+
+.hero-price-label {
+
+    font-size: 15px;
+
+    line-height: 1.4;
+
+}
+
+
+.hero-price-current {
+
+    margin-top: 4px;
+
+}
+
+
+.hero-price-installment {
+
+    margin-top: 6px;
+
+    font-family: var(--font-body);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    color: var(--color-text-light);
+
+}
+
+
+
+
 /* ==========================================================================
    FAQ
    ========================================================================== */
