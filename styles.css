@@ -1037,7 +1037,7 @@ section {
 
 
 .bonuses-cta .hero-price {
-    margin: 0 auto 12px;
+    margin: 0 auto 25px;
 }
 
 
@@ -1073,7 +1073,7 @@ section {
 
 
     .bonuses-cta .hero-price {
-        margin-top: 16px;
+        margin-top: 25px;
     }
 
 }
@@ -5188,7 +5188,7 @@ section {
 .hero-price {
 
     text-align: center;
-    margin: 0 0 12px;
+    margin: 0 0 25px;
 
 }
 
