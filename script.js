@@ -1225,97 +1225,105 @@ atualizarDataPromocao();
 );
 
 /* ==========================================================
-   TRACKING — CHECKOUT DIRETO
+   TRACKING — CLIQUES PARA CHECKOUT
 
-   Substitui:
-   - OFERTA SURPRESA — ENVELOPES
-   - POPUP DE DESCONTO
-   - REVELAÇÃO DE OFERTA
-
-   Agora:
-   CTA → Checkout direto Hotmart
-   Tracking → clique real no botão
+   Cada CTA de checkout deve possuir:
+   data-checkout-button
+   data-checkout-position="..."
 ========================================================== */
-
 
 document.addEventListener(
     "DOMContentLoaded",
-    function(){
-
+    function () {
 
         const checkoutButtons =
             document.querySelectorAll(
-                ".btn-primary"
+                "[data-checkout-button]"
             );
 
 
-
-        if(!checkoutButtons.length){
-
+        if (!checkoutButtons.length) {
             return;
-
         }
 
 
-
-
         checkoutButtons.forEach(
-            function(button){
-
+            function (button) {
 
                 button.addEventListener(
                     "click",
-                    function(){
+                    function () {
+
+                        const position =
+                            button.getAttribute(
+                                "data-checkout-position"
+                            ) || "unknown";
 
 
                         /*
-                         * GOOGLE ADS — CONVERSÃO
-                         * Dispara no clique do CTA.
+                         * MICROSOFT CLARITY
                          *
-                         * InitiateCheckout (Meta) e
-                         * begin_checkout (GA4) são
-                         * enviados pela Hotmart ao
-                         * chegar no checkout.
+                         * Evento personalizado para localizar
+                         * sessões em que houve clique no checkout.
                          */
 
-                        if(
-                            typeof gtag === "function"
-                        ){
+                        if (
+                            typeof clarity === "function"
+                        ) {
 
-
-                            gtag(
-
+                            clarity(
                                 "event",
-
-                                "conversion",
-
-                                {
-
-                                    'send_to':
-                                        'AW-18379872794/tOsJCOvXo98cEJq0mrxE',
-
-                                    'value':
-                                        27.90,
-
-                                    'currency':
-                                        'BRL'
-
-                                }
-
+                                "checkout_click_" + position
                             );
-
 
                         }
 
 
+                        /*
+                         * GOOGLE ANALYTICS 4
+                         *
+                         * Evento próprio para medir intenção
+                         * real de ida ao checkout.
+                         */
+
+                        if (
+                            typeof gtag === "function"
+                        ) {
+
+                            gtag(
+                                "event",
+                                "checkout_click",
+                                {
+                                    checkout_position: position,
+                                    value: 37.90,
+                                    currency: "BRL"
+                                }
+                            );
+
+
+                            /*
+                             * GOOGLE ADS — CONVERSÃO
+                             */
+
+                            gtag(
+                                "event",
+                                "conversion",
+                                {
+                                    send_to:
+                                        "AW-18379872794/tOsJCOvXo98cEJq0mrxE",
+
+                                    value: 37.90,
+                                    currency: "BRL"
+                                }
+                            );
+
+                        }
+
                     }
                 );
 
-
             }
         );
-
-
 
     }
 );
