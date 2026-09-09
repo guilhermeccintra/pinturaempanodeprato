@@ -450,8 +450,8 @@ section {
   font-size:
     clamp(
       2rem,
-      4.2vw,
-      3.8rem
+      3.8vw,
+      3.5rem
     );
 
   font-weight: 700;
