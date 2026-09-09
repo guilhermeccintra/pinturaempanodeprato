@@ -467,25 +467,35 @@ section {
 }
 
 .hero-title-accent {
-  color: #C4784A;
+
+    font-family: var(--font-script);
+
+    font-size: 1.25em;
+
+    color: var(--color-primary);
+
 }
 
 .hero-title-sub {
+
   display: block;
 
   width: 100%;
 
-  margin-top: 0;
+  margin-top: 6px;
 
   font-family: var(--font-display);
 
-  font-size: clamp(1.25rem, 2.4vw, 1.9rem);
-  font-weight: 500;
-  line-height: 1.2;
+  font-size: clamp(1.8rem, 3.8vw, 2.8rem);
 
-  letter-spacing: 0.01em;
+  font-weight: 600;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.02em;
 
   color: var(--color-text);
+
 }
 
 .hero-title-script {
@@ -636,20 +646,31 @@ section {
     letter-spacing: -0.02em;
   }
 
-  .hero-title-sub {
-    width: 100%;
+.hero-title-sub {
 
-    margin-top: 0;
+    width:100%;
+
+    margin-top:6px;
 
     font-size:
-      clamp(
-        1.05rem,
-        4.8vw,
-        1.4rem
-      );
+    clamp(
+        1.4rem,
+        6vw,
+        2rem
+    );
 
-    line-height: 1.2;
-  }
+    line-height:1.2;
+
+}
+
+
+   .hero-title-accent {
+
+    font-size:1.15em;
+
+}
+
+   
 
   .hero-title-script {
     width: 100%;
