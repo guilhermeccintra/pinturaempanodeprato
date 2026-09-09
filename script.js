@@ -575,151 +575,112 @@ document.addEventListener(
 
 /* ==========================================================
    ANIMAÇÕES DE ENTRADA
+   Com fallback de segurança
 ========================================================== */
 
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
+    const elementos = document.querySelectorAll(".fade-in");
 
-
-        const elementos =
-            document.querySelectorAll(
-                ".fade-in"
-            );
-
-
-        if(!elementos.length){
-
-            return;
-
-        }
-
-
-
-        const reduzirMovimento =
-            window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            )
-            .matches;
-
-
-
-        if(reduzirMovimento){
-
-
-            elementos.forEach(
-                function(element){
-
-
-                    element.classList.add(
-                        "visible"
-                    );
-
-
-                }
-            );
-
-
-            return;
-
-
-        }
-
-
-
-
-        /*
-         * Fallback para navegadores antigos.
-         */
-
-        if(
-            !("IntersectionObserver" in window)
-        ){
-
-
-            elementos.forEach(
-                function(element){
-
-
-                    element.classList.add(
-                        "visible"
-                    );
-
-
-                }
-            );
-
-
-            return;
-
-        }
-
-
-
-
-
-        const observer =
-            new IntersectionObserver(
-                function(entries, observer){
-
-
-                    entries.forEach(
-                        function(entry){
-
-
-                            if(
-                                entry.isIntersecting
-                            ){
-
-
-                                entry.target.classList.add(
-                                    "visible"
-                                );
-
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-
-
-                            }
-
-
-                        }
-                    );
-
-
-                },
-                {
-                    threshold:0.1,
-
-                    rootMargin:
-                        "0px 0px -50px 0px"
-                }
-            );
-
-
-
-
-
-        elementos.forEach(
-            function(element){
-
-
-                observer.observe(
-                    element
-                );
-
-
-            }
-        );
-
-
-
+    if (!elementos.length) {
+        return;
     }
-);
 
+    const reduzirMovimento = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+
+    /*
+     * Sem animação quando o usuário prefere
+     * movimento reduzido.
+     */
+    if (reduzirMovimento) {
+
+        elementos.forEach(function (elemento) {
+            elemento.classList.add("visible");
+        });
+
+        return;
+    }
+
+
+    /*
+     * Fallback para navegadores sem
+     * IntersectionObserver.
+     */
+    if (!("IntersectionObserver" in window)) {
+
+        elementos.forEach(function (elemento) {
+            elemento.classList.add("visible");
+        });
+
+        return;
+    }
+
+
+    const observer = new IntersectionObserver(
+        function (entries, observerInstance) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    observerInstance.unobserve(
+                        entry.target
+                    );
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.05,
+            rootMargin: "0px 0px -20px 0px"
+        }
+    );
+
+
+    elementos.forEach(function (elemento) {
+        observer.observe(elemento);
+    });
+
+
+    /*
+     * FALLBACK DE SEGURANÇA
+     *
+     * Se por qualquer motivo o observer não atualizar
+     * corretamente durante o carregamento, garantimos
+     * que nenhuma seção permaneça invisível.
+     */
+    window.addEventListener(
+        "load",
+        function () {
+
+            setTimeout(function () {
+
+                elementos.forEach(function (elemento) {
+
+                    const rect =
+                        elemento.getBoundingClientRect();
+
+                    if (
+                        rect.top < window.innerHeight * 1.25
+                    ) {
+                        elemento.classList.add("visible");
+                    }
+
+                });
+
+            }, 300);
+
+        },
+        { once: true }
+    );
+
+});
 
 
 
