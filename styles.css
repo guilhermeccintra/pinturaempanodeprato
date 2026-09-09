@@ -3415,13 +3415,8 @@ section {
   .hero-benefits {
     width: 100%;
     max-width: 440px;
-
-    margin: 0 auto 20px;
-
     padding: 0;
-
     gap: 14px;
-
     box-sizing: border-box;
   }
 
