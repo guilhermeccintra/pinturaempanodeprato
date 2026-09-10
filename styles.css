@@ -3709,17 +3709,12 @@ section {
    Avaliação do Hero — Mobile
    ========================================================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
   .hero-rating {
     flex-wrap: wrap;
-
     gap: 7px;
-
-    /*
-     * O rating não precisa de 16px extras
-     * de cada lado no mobile.
-     */
+    margin: 0 auto 15px;
     padding-right: 4px;
     padding-left: 4px;
   }
