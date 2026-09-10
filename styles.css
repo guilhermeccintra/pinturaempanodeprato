@@ -643,7 +643,7 @@ section {
 
   .hero-title {
     width: 100%;
-    margin: 0 auto 5px;
+    margin: 0 auto 6px;
   }
 
   .hero-title-main {
@@ -1149,11 +1149,9 @@ section {
 
 .comparison-carousel {
   position: relative;
-
   width: 100%;
   max-width: 100%;
-
-  margin: 20px auto;
+  margin: 12px auto;
 }
 
 .comparison-viewport {
@@ -1712,6 +1710,7 @@ section {
 
   .comparison-carousel {
     max-width: 100%;
+    margin: 6px auto;
   }
 
   .comparison-before {
