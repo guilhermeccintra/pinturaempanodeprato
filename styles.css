@@ -516,22 +516,15 @@ section {
 
 .hero-title-script {
   display: block;
-
   width: 100%;
-
   margin-top: 0;
   margin-left: 0;
-
   font-family: var(--font-script);
-
   font-size: clamp(2.35rem, 5vw, 4.3rem);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1;
-
   color: var(--color-primary);
-
   text-transform: none;
-
   vertical-align: baseline;
 }
 
@@ -688,17 +681,14 @@ section {
 
   .hero-title-script {
     width: 100%;
-
     margin-top: 0;
     margin-left: 0;
-
     font-size:
       clamp(
         2.25rem,
         10vw,
         3rem
       );
-
     line-height: 1;
   }
 
