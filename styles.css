@@ -3612,7 +3612,7 @@ section {
 
 
 /* ==========================================================================
-   HERO RATING - Barra de prova social
+   HERO RATING - Prova social
 ========================================================================== */
 
 
@@ -3624,31 +3624,23 @@ section {
 
     justify-content:center;
 
-    gap:18px;
+
+    gap:14px;
 
 
     width:100%;
 
-    max-width:720px;
+
+    margin:0 auto 20px;
 
 
-    margin:0 auto 22px;
-
-
-    padding:10px 18px;
-
-
-    background:#fffaf3;
-
-
-    border-radius:50px;
+    padding:10px 16px;
 
 
     box-sizing:border-box;
 
 
 }
-
 
 
 /* AVATARES */
@@ -3665,15 +3657,15 @@ section {
 .hero-rating__avatars img {
 
 
-    width:42px;
+    width:40px;
 
-    height:42px;
-
-
-    object-fit:cover;
+    height:40px;
 
 
     border-radius:50%;
+
+
+    object-fit:cover;
 
 
     border:2px solid #fff;
@@ -3685,6 +3677,7 @@ section {
 }
 
 
+
 .hero-rating__avatars img:first-child {
 
     margin-left:0;
@@ -3693,15 +3686,19 @@ section {
 
 
 
-/* CENTRO */
+/* CONTEÚDO */
 
 .hero-rating__content {
 
+
     display:flex;
+
 
     align-items:center;
 
+
     gap:10px;
+
 
 }
 
@@ -3712,6 +3709,10 @@ section {
 
     display:flex;
 
+
+    align-items:center;
+
+
     gap:2px;
 
 
@@ -3721,7 +3722,7 @@ section {
     line-height:1;
 
 
-    color:#f5b800;
+    color:#F5B800;
 
 
 }
@@ -3754,10 +3755,8 @@ section {
     font-size:15px;
 
 
-    line-height:1.2;
-
-
 }
+
 
 
 .hero-rating__text strong {
@@ -3767,79 +3766,12 @@ section {
 
     font-weight:700;
 
-}
-
-
-
-/* SELO */
-
-.hero-rating__secure {
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    gap:8px;
-
-
-    padding-left:18px;
-
-
-    border-left:1px solid #e5d3bd;
-
-
-    font-family:Arial,sans-serif;
-
-
-    font-size:12px;
-
-
-    font-weight:600;
-
-
-    line-height:1.1;
-
-
-    color:#604532;
-
 
 }
 
 
 
-.hero-rating__secure-icon {
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    justify-content:center;
-
-
-    width:28px;
-
-    height:28px;
-
-
-    border-radius:50%;
-
-
-    background:#b96a3d;
-
-
-    color:white;
-
-
-    font-size:15px;
-
-
-}
+/* MOBILE */
 
 @media(max-width:600px){
 
@@ -3847,16 +3779,13 @@ section {
 .hero-rating {
 
 
-    gap:10px;
+    gap:8px;
 
 
     padding:8px 12px;
 
 
-    border-radius:30px;
-
-
-    margin-bottom:16px;
+    margin-bottom:14px;
 
 
 }
@@ -3866,9 +3795,9 @@ section {
 .hero-rating__avatars img {
 
 
-    width:28px;
+    width:30px;
 
-    height:28px;
+    height:30px;
 
 
     margin-left:-8px;
@@ -3878,61 +3807,46 @@ section {
 
 
 
-.hero-rating__content {
-
-
-    gap:5px;
-
-}
-
-
-
 .hero-rating__stars {
 
 
-    font-size:15px;
+    font-size:16px;
 
 
 }
+
+
+
+.hero-rating__content {
+
+
+    gap:6px;
+
+
+}
+
 
 
 .hero-rating__text {
 
 
-    flex-direction:column;
-
-
-    align-items:flex-start;
-
-
-    gap:0;
-
-
-    font-size:10px;
+    font-size:11px;
 
 
 }
+
 
 
 .hero-rating__text strong {
 
 
-    font-size:13px;
+    font-size:14px;
 
 
 }
 
 
-.hero-rating__secure {
-
-
-    display:none;
-
 }
-
-
-}
-
 
 /* ==========================================================================
    Benefício dos bônus
