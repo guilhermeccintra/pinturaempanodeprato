@@ -4918,36 +4918,16 @@ section {
 
 
 .professional-offer-tag {
-
-
-    display:inline-block;
-
-
-    margin-bottom:12px;
-
-
-    padding:5px 15px;
-
-
-    border-radius:999px;
-
-
-    background:#F5E6D3;
-
-
-    font-family:var(--font-body);
-
-
-    font-size:11px;
-
-
-    font-weight:700;
-
-
-    letter-spacing:.08em;
-
-
-    color:var(--color-primary);
+  display:inline-block;
+  margin-bottom:12px;
+  padding:5px 15px;
+  border-radius:999px;
+  background:#F5E6D3;
+  font-family:var(--font-body);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  color:var(--color-primary);
 
 }
 
@@ -4966,6 +4946,7 @@ section {
 
 
     color:var(--color-text);
+    line-height: 1.3;
 
 }
 
@@ -5501,16 +5482,11 @@ section {
 
 .final-cta-title {
   margin-bottom: 16px;
-
-  font-family:
-    var(--font-display);
-
+  font-family: var(--font-display);
   font-size: 2.5rem;
   font-weight: 700;
-   line-height: 1.3;
-
-  color:
-    var(--color-text);
+  line-height: 1.3;
+  color: var(--color-text);
 }
 
 .final-cta-title span {
