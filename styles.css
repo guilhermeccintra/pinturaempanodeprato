@@ -4985,7 +4985,21 @@ section {
 
 }
 
+.professional-offer .hero-info {
 
+    margin-top:10px;
+
+    font-family:var(--font-body);
+
+    font-size:12px;
+
+    font-weight:500;
+
+    line-height:1.4;
+
+    color:var(--color-text-light);
+
+}
 
 /* BENEFÍCIOS */
 
