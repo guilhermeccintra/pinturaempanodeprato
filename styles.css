@@ -5217,27 +5217,29 @@ section {
 
 
 /* ==========================================================
-   Barra de oferta no topo
+   Barra fixa de oferta premium
 ========================================================== */
 
 .promo-bar {
 
-    position: fixed;
+    position:fixed;
 
     top:0;
     left:0;
 
     width:100%;
 
-    height:34px;
+    height:38px;
 
-    background-color:#EFD39A;
+    background:#B95A32;
 
     display:flex;
 
     align-items:center;
 
     justify-content:center;
+
+    gap:10px;
 
     z-index:9999;
 
@@ -5248,24 +5250,59 @@ section {
 }
 
 
+.promo-icon {
+
+    font-size:14px;
+
+}
+
+
 .promo-message {
 
     font-family:var(--font-body);
 
     font-size:12px;
 
-    font-weight:600;
+    font-weight:700;
 
-    color:#80603A;
+    letter-spacing:.3px;
 
-    text-align:center;
+    color:#fff8ec;
 
 }
 
 
+.promo-divider {
+
+    width:1px;
+
+    height:14px;
+
+    background:rgba(255,255,255,.4);
+
+}
+
+
+.promo-time {
+
+    font-family:var(--font-body);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:#fff8ec;
+
+    text-transform:uppercase;
+
+}
+
+
+/* compensação do conteúdo */
+
 body {
 
-    padding-top:34px;
+    padding-top:38px;
 
 }
 
@@ -5274,7 +5311,9 @@ body {
 
     .promo-bar {
 
-        height:34px;
+        height:36px;
+
+        gap:7px;
 
     }
 
@@ -5283,14 +5322,19 @@ body {
 
         font-size:11px;
 
-        letter-spacing:.2px;
+    }
+
+
+    .promo-time {
+
+        display:none;
 
     }
 
 
     body {
 
-        padding-top:34px;
+        padding-top:36px;
 
     }
 
