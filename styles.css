@@ -4905,12 +4905,11 @@ section {
 
 
     border:
-        1px solid
-        var(--color-border);
+    1px solid
+    var(--color-border);
 
 
     text-align:center;
-
 
 }
 
@@ -4922,10 +4921,10 @@ section {
     display:inline-block;
 
 
-    padding:5px 15px;
-
-
     margin-bottom:12px;
+
+
+    padding:5px 15px;
 
 
     border-radius:999px;
@@ -4948,7 +4947,6 @@ section {
 
     color:var(--color-primary);
 
-
 }
 
 
@@ -4967,7 +4965,6 @@ section {
 
     color:var(--color-text);
 
-
 }
 
 
@@ -4975,7 +4972,7 @@ section {
 .professional-offer p {
 
 
-    margin-bottom:25px;
+    margin-bottom:22px;
 
 
     font-family:var(--font-body);
@@ -4986,12 +4983,11 @@ section {
 
     color:var(--color-text-light);
 
-
 }
 
 
 
-/* área dividida */
+/* ÁREA INTERNA */
 
 .professional-offer-content {
 
@@ -5005,7 +5001,7 @@ section {
     justify-content:space-between;
 
 
-    gap:30px;
+    gap:20px;
 
 
     text-align:left;
@@ -5020,21 +5016,19 @@ section {
 
     display:flex;
 
-
     flex-direction:column;
 
 
     gap:10px;
 
 
-    padding:0;
-
-
     margin:0;
 
 
-    list-style:none;
+    padding:0;
 
+
+    list-style:none;
 
 }
 
@@ -5051,13 +5045,12 @@ section {
 
     color:var(--color-text);
 
-
 }
 
 
 
+/* PREÇO IGUAL AO PRINCIPAL */
 
-/* PREÇO */
 
 .professional-price-box {
 
@@ -5071,8 +5064,10 @@ section {
     align-items:center;
 
 
-    min-width:150px;
+    justify-content:center;
 
+
+    min-width:130px;
 
 }
 
@@ -5094,7 +5089,7 @@ section {
 
 
 
-.professional-price-box strong {
+.professional-price-current {
 
 
     font-family:var(--font-display);
@@ -5106,13 +5101,13 @@ section {
     font-weight:700;
 
 
-    line-height:1;
+    line-height:1.1;
 
 
     color:var(--color-text);
 
-
 }
+
 
 
 
@@ -5127,79 +5122,84 @@ section {
 
     margin-top:25px;
 
-
 }
 
 
 
-/* MOBILE */
+/* MOBILE - mantém formato horizontal */
 
 @media(max-width:600px){
 
 
-.professional-offer {
+    .professional-offer {
 
 
-    padding:22px 16px;
+        padding:22px 16px;
 
-
-}
-
-
-
-.professional-offer h3 {
-
-
-    font-size:21px;
-
-
-}
+    }
 
 
 
-.professional-offer-content {
+    .professional-offer-content {
 
 
-    flex-direction:column;
+        flex-direction:row;
 
 
-    gap:20px;
+        align-items:center;
 
 
-    align-items:stretch;
+        justify-content:space-between;
 
 
-}
+        gap:10px;
 
-
-
-.professional-price-box {
-
-
-    order:-1;
-
-
-}
+    }
 
 
 
-.professional-price-box strong {
+    .professional-offer ul {
 
 
-    font-size:28px;
+        flex:1;
+
+    }
 
 
-}
+
+    .professional-offer li {
+
+
+        font-size:14px;
+
+    }
 
 
 
-.professional-offer ul {
+    .professional-price-box {
 
 
-    text-align:left;
+        min-width:95px;
+
+    }
 
 
-}
+
+    .professional-price-current {
+
+
+        font-size:25px;
+
+    }
+
+
+
+    .professional-offer h3 {
+
+
+        font-size:20px;
+
+    }
 
 
 
