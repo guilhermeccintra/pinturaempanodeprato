@@ -569,6 +569,7 @@ section {
   letter-spacing: -0.025em;
   color: var(--color-text);
   text-transform: none;
+  margin-bottom:7px;
 }
 
 .hero-title-accent {
@@ -597,6 +598,7 @@ section {
   width: 100%;
   margin-top: 0;
   margin-left: 0;
+  margin-bottom:7px;
   font-family: var(--font-script);
   font-size: clamp(2.35rem, 5vw, 4.3rem);
   font-weight: 800;
@@ -728,6 +730,7 @@ section {
     );
     line-height: 1.2;
     letter-spacing: -0.02em;
+     margin-bottom:5px;
   }
 
 .hero-title-sub {
@@ -757,6 +760,7 @@ section {
     width: 100%;
     margin-top: 0;
     margin-left: 0;
+   margin-bottom:5px;
     font-size:
       clamp(
         2.25rem,
