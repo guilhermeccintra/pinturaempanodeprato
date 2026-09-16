@@ -4901,12 +4901,12 @@ section {
     background:#FFF7ED;
 
 
-    border-radius:20px;
-
-
     border:
     1px solid
     var(--color-border);
+
+
+    border-radius:20px;
 
 
     text-align:center;
@@ -4987,54 +4987,51 @@ section {
 
 
 
-/* ÁREA INTERNA */
+/* BENEFÍCIOS */
 
-.professional-offer-content {
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    justify-content:space-between;
-
-
-    gap:20px;
-
-
-    text-align:left;
-
-
-}
-
-
-
-.professional-offer ul {
+.professional-benefits {
 
 
     display:flex;
+
 
     flex-direction:column;
 
 
-    gap:10px;
+    gap:12px;
 
 
-    margin:0;
+    margin:0 auto 25px;
 
 
     padding:0;
 
 
+    max-width:430px;
+
+
     list-style:none;
+
+
+    text-align:left;
 
 }
 
 
 
-.professional-offer li {
+.professional-benefits li {
+
+
+    display:grid;
+
+
+    grid-template-columns:34px 1fr;
+
+
+    align-items:center;
+
+
+    gap:10px;
 
 
     font-family:var(--font-body);
@@ -5043,65 +5040,16 @@ section {
     font-size:15px;
 
 
-    color:var(--color-text);
-
-}
-
-
-
-/* PREÇO IGUAL AO PRINCIPAL */
-
-
-.professional-price-box {
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    align-items:center;
-
-
-    justify-content:center;
-
-
-    min-width:130px;
-
-}
-
-
-
-.professional-price-box span {
-
-
-    font-family:var(--font-body);
-
-
-    font-size:13px;
+    line-height:1.45;
 
 
     color:var(--color-text-light);
 
-
 }
 
 
 
-.professional-price-current {
-
-
-    font-family:var(--font-display);
-
-
-    font-size:32px;
-
-
-    font-weight:700;
-
-
-    line-height:1.1;
+.professional-benefits strong {
 
 
     color:var(--color-text);
@@ -5110,6 +5058,28 @@ section {
 
 
 
+/* mesmo estilo do preço principal, menor */
+
+.professional-price .hero-price-label {
+
+
+    font-size:13px;
+
+}
+
+
+
+.professional-price .hero-price-current {
+
+
+    font-size:28px;
+
+
+}
+
+
+
+/* BOTÃO */
 
 .professional-button {
 
@@ -5120,13 +5090,13 @@ section {
     max-width:360px;
 
 
-    margin-top:25px;
+    margin-top:15px;
 
 }
 
 
 
-/* MOBILE - mantém formato horizontal */
+/* MOBILE */
 
 @media(max-width:600px){
 
@@ -5140,34 +5110,16 @@ section {
 
 
 
-    .professional-offer-content {
+    .professional-offer h3 {
 
 
-        flex-direction:row;
-
-
-        align-items:center;
-
-
-        justify-content:space-between;
-
-
-        gap:10px;
+        font-size:21px;
 
     }
 
 
 
-    .professional-offer ul {
-
-
-        flex:1;
-
-    }
-
-
-
-    .professional-offer li {
+    .professional-benefits li {
 
 
         font-size:14px;
@@ -5176,31 +5128,21 @@ section {
 
 
 
-    .professional-price-box {
+    .professional-benefits .benefit-icon {
 
 
-        min-width:95px;
-
-    }
-
-
-
-    .professional-price-current {
-
-
-        font-size:25px;
+        font-size:16px;
 
     }
 
 
 
-    .professional-offer h3 {
+    .professional-price .hero-price-current {
 
 
-        font-size:20px;
+        font-size:26px;
 
     }
-
 
 
 }
