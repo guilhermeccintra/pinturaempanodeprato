@@ -3408,6 +3408,8 @@ section {
 
   font-size: 18px;
   line-height: 1;
+  box-shadow: 0 3px 10px rgba(28, 17, 10, 0.10);
+
 }
 
 .hero-benefits .benefit-text {
@@ -5180,8 +5182,7 @@ section {
 
     color: var(--color-primary);
 
-    box-shadow:
-        0 3px 10px rgba(28, 17, 10, 0.10);
+    box-shadow: 0 3px 10px rgba(28, 17, 10, 0.10);
 
 }
 
