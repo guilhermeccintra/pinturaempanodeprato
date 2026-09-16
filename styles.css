@@ -5217,7 +5217,7 @@ section {
 
 
 /* ==========================================================
-   Barra fixa de oferta premium
+   Barra fixa de oferta
 ========================================================== */
 
 .promo-bar {
@@ -5229,7 +5229,7 @@ section {
 
     width:100%;
 
-    height:38px;
+    height:36px;
 
     background:#B95A32;
 
@@ -5239,11 +5239,11 @@ section {
 
     justify-content:center;
 
-    gap:10px;
+    gap:7px;
 
     z-index:9999;
 
-    padding:0 15px;
+    padding:0 10px;
 
     box-sizing:border-box;
 
@@ -5252,7 +5252,9 @@ section {
 
 .promo-icon {
 
-    font-size:14px;
+    font-size:13px;
+
+    flex-shrink:0;
 
 }
 
@@ -5265,78 +5267,51 @@ section {
 
     font-weight:700;
 
-    letter-spacing:.3px;
-
     color:#fff8ec;
 
-}
+    text-align:center;
 
-
-.promo-divider {
-
-    width:1px;
-
-    height:14px;
-
-    background:rgba(255,255,255,.4);
+    letter-spacing:.2px;
 
 }
 
 
-.promo-time {
 
-    font-family:var(--font-body);
-
-    font-size:11px;
-
-    font-weight:700;
-
-    color:#fff8ec;
-
-    text-transform:uppercase;
-
-}
-
-
-/* compensação do conteúdo */
-
-body {
-
-    padding-top:38px;
-
-}
-
+/* MOBILE */
 
 @media(max-width:600px){
 
     .promo-bar {
 
-        height:36px;
+        height:34px;
 
-        gap:7px;
+        padding:0 8px;
+
+    }
+
+
+    .promo-icon {
+
+        font-size:12px;
 
     }
 
 
     .promo-message {
 
-        font-size:11px;
+        font-size:10.5px;
+
+        white-space:nowrap;
 
     }
 
 
-    .promo-time {
-
-        display:none;
-
-    }
+}
 
 
-    body {
+body {
 
-        padding-top:36px;
-
-    }
+    padding-top:36px;
 
 }
 
