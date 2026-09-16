@@ -3612,9 +3612,8 @@ section {
 
 
 /* ==========================================================================
-   HERO RATING - Prova social
+   HERO RATING - Barra de prova social
 ========================================================================== */
-
 
 .hero-rating {
 
@@ -3628,13 +3627,21 @@ section {
     gap:14px;
 
 
-    width:100%;
+    width:max-content;
+
+    max-width:calc(100% - 32px);
 
 
     margin:0 auto 20px;
 
 
-    padding:10px 16px;
+    padding:10px 22px;
+
+
+    background:#fff7ed;
+
+
+    border-radius:50px;
 
 
     box-sizing:border-box;
@@ -3651,31 +3658,35 @@ section {
 
     align-items:center;
 
+    flex-shrink:0;
+
 }
 
 
 .hero-rating__avatars img {
 
 
-    width:40px;
+    width:42px;
 
-    height:40px;
-
-
-    border-radius:50%;
+    height:42px;
 
 
     object-fit:cover;
 
 
+    border-radius:50%;
+
+
     border:2px solid #fff;
 
 
-    margin-left:-10px;
+    margin-left:-11px;
+
+
+    box-shadow:0 1px 4px rgba(0,0,0,.12);
 
 
 }
-
 
 
 .hero-rating__avatars img:first-child {
@@ -3690,9 +3701,7 @@ section {
 
 .hero-rating__content {
 
-
     display:flex;
-
 
     align-items:center;
 
@@ -3703,6 +3712,8 @@ section {
 }
 
 
+
+/* ESTRELAS */
 
 .hero-rating__stars {
 
@@ -3728,6 +3739,7 @@ section {
 }
 
 
+/* TEXTO */
 
 .hero-rating__text {
 
@@ -3755,6 +3767,9 @@ section {
     font-size:15px;
 
 
+    line-height:1.2;
+
+
 }
 
 
@@ -3762,7 +3777,8 @@ section {
 .hero-rating__text strong {
 
 
-    font-size:17px;
+    font-size:18px;
+
 
     font-weight:700;
 
@@ -3771,7 +3787,10 @@ section {
 
 
 
-/* MOBILE */
+/* ==========================================================================
+   MOBILE
+========================================================================== */
+
 
 @media(max-width:600px){
 
@@ -3779,17 +3798,22 @@ section {
 .hero-rating {
 
 
+    width:auto;
+
+
+    max-width:calc(100% - 24px);
+
+
     gap:8px;
 
 
-    padding:8px 12px;
+    padding:8px 14px;
 
 
-    margin-bottom:14px;
+    margin-bottom:16px;
 
 
 }
-
 
 
 .hero-rating__avatars img {
@@ -3804,7 +3828,6 @@ section {
 
 
 }
-
 
 
 .hero-rating__stars {
@@ -3830,7 +3853,16 @@ section {
 .hero-rating__text {
 
 
-    font-size:11px;
+    flex-direction:column;
+
+
+    align-items:flex-start;
+
+
+    gap:0;
+
+
+    font-size:10px;
 
 
 }
