@@ -6464,7 +6464,19 @@ body {
 
 }
 
+/* ==========================================================
+   ROLAGEM SUAVE PARA BOTÕES DE OFERTA
+========================================================== */
 
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Ajuste da posição final para não colar o bloco no topo */
+#oferta {
+    scroll-margin-top: 30px;
+}
 
 /* ==========================================================================
    FIM DO STYLES.CSS LIMPO
