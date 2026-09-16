@@ -471,27 +471,23 @@ section {
    Hero Eyebrow
 ========================================================================== */
 
-
 .hero-title-eyebrow {
-
 
     display:block;
 
+    width:100%;
 
     margin-bottom:18px;
 
 
     font-family:var(--font-body);
 
-
     font-size:12px;
-
 
     font-weight:600;
 
 
     letter-spacing:5px;
-
 
     text-transform:uppercase;
 
@@ -500,6 +496,62 @@ section {
 
 
     line-height:1;
+
+
+    text-align:center;
+
+
+}
+
+
+/* ==========================================================================
+   Hero Eyebrow — Mobile
+========================================================================== */
+
+@media(max-width:768px){
+
+
+    .hero-title-eyebrow {
+
+
+        margin-bottom:10px;
+
+
+        font-size:9px;
+
+
+        letter-spacing:2.5px;
+
+
+        line-height:1.2;
+
+
+        white-space:nowrap;
+
+
+    }
+
+
+}
+
+
+/* ==========================================================================
+   Hero Eyebrow — Mobile pequeno
+========================================================================== */
+
+@media(max-width:380px){
+
+
+    .hero-title-eyebrow {
+
+
+        font-size:8px;
+
+
+        letter-spacing:2px;
+
+
+    }
 
 
 }
