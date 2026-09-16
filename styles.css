@@ -5159,6 +5159,34 @@ section {
 
 
 /* ==========================================================
+   ÍCONES — OFERTA PROFISSIONAL
+========================================================== */
+
+.professional-benefits .benefit-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 34px;
+
+    height: 34px;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+
+    color: var(--color-primary);
+
+    box-shadow:
+        0 3px 10px rgba(28, 17, 10, 0.10);
+
+}
+
+
+/* ==========================================================
    MELHORIA DA COMUNICAÇÃO DE PREÇO
 ========================================================== */
 
