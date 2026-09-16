@@ -4968,8 +4968,8 @@ section {
 }
 
 
-
-.professional-offer p {
+/* DESCRIÇÃO DA OFERTA */
+.professional-offer > p:not(.hero-info) {
 
 
     margin-bottom:22px;
@@ -4985,21 +4985,34 @@ section {
 
 }
 
+
+
+/* TEXTO ABAIXO DO BOTÃO */
 .professional-offer .hero-info {
 
-    margin-top:10px;
+
+    margin:8px 0 0;
+
+
+    padding:0;
+
 
     font-family:var(--font-body);
 
+
     font-size:12px;
+
 
     font-weight:500;
 
+
     line-height:1.4;
+
 
     color:var(--color-text-light);
 
 }
+
 
 /* BENEFÍCIOS */
 
