@@ -1118,15 +1118,20 @@ section {
 }
 
 
+/* TEXTO DE VALOR NO LUGAR DO PREÇO */
+
 .bonuses-cta-text {
+
     max-width: 520px;
 
-    margin: 0 auto;
+    margin: 0 auto 25px;
 
     font-family: var(--font-body);
 
     font-size: 17px;
+
     font-weight: 400;
+
     line-height: 1.5;
 
     color: var(--color-text);
@@ -1134,28 +1139,46 @@ section {
 
 
 .bonuses-cta-text strong {
+
     font-weight: 700;
+
 }
 
 
+/* Remove espaçamento herdado do bloco de preço */
 .bonuses-cta .hero-price {
-    margin: 0 auto 25px;
+
+    display: none;
+
 }
 
 
+/* Mantém o botão centralizado */
 .bonuses-cta .hero-buttons {
+
     width: 100%;
+
 }
 
 
+/* Texto inferior */
 .bonuses-cta .hero-info {
+
     margin-top: 10px;
+
 }
 
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
 
 @media (max-width: 600px) {
 
+
     .bonuses-cta {
+
         width: 100%;
 
         margin-top: 26px;
@@ -1165,13 +1188,20 @@ section {
             14px;
 
         border-radius: 16px;
+
     }
 
 
     .bonuses-cta-text {
+
         font-size: 15px;
+
         line-height: 1.5;
+
+        margin-bottom: 22px;
+
     }
+
 
 }
 
