@@ -325,25 +325,16 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   gap: 8px;
-
   padding: 16px 36px;
-
   border: 2px solid var(--color-primary);
   border-radius: var(--radius-lg);
-
   background-color: transparent;
-
   color: var(--color-primary);
-
   font-family: var(--font-body);
-
   font-size: 1rem;
   font-weight: 600;
-
   cursor: pointer;
-
   transition: all 0.3s ease;
 }
 
