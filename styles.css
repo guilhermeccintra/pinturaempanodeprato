@@ -218,19 +218,15 @@ section {
 
 .section-subtitle {
   max-width: 620px;
-
   font-family: var(--font-body);
-
   font-size: 18px;
   font-weight: 400;
   line-height: 1.45;
-
   color: var(--color-text-light);
 }
 
 .section-subtitle strong {
   font-weight: 700;
-
   color: var(--color-text);
 }
 
@@ -4751,25 +4747,16 @@ section {
 .final-cta .section-subtitle {
   width: 100%;
   max-width: 620px;
-
   margin: 0 auto 24px;
-
-  font-family:
-    var(--font-body);
-
+  font-family: var(--font-body);
   font-size: 17px;
   font-weight: 400;
   line-height: 1.45;
-
   text-align: center;
-
-  color: var(--color-primary);
+  color: var(--color-text-light);
 }
-
 .final-cta .section-subtitle strong {
   font-weight: 700;
-
-  color: var(--color-primary);
 }
 
 
@@ -4872,9 +4859,7 @@ section {
   .final-cta .section-subtitle {
     width: 100%;
     max-width: 100%;
-
     margin-bottom: 20px;
-
     font-size: 16px;
     line-height: 1.5;
   }
