@@ -466,6 +466,47 @@ section {
 
 }
 
+
+/* ==========================================================================
+   Hero Eyebrow
+========================================================================== */
+
+
+.hero-title-eyebrow {
+
+
+    display:block;
+
+
+    margin-bottom:18px;
+
+
+    font-family:var(--font-body);
+
+
+    font-size:12px;
+
+
+    font-weight:600;
+
+
+    letter-spacing:5px;
+
+
+    text-transform:uppercase;
+
+
+    color:#8B7564;
+
+
+    line-height:1;
+
+
+}
+
+
+
+
 .hero-title-main {
   display: block;
   width: 100%;
