@@ -231,7 +231,7 @@ section {
 .section-subtitle strong {
   font-weight: 700;
 
-  color: var(--color-text-light);
+  color: var(--color-text);
 }
 
 .text-center {
