@@ -706,19 +706,29 @@ section {
     margin: 0 auto 6px;
   }
 
+ 
   .hero-title-main {
-    width: 100%;
-    max-width: 100%;
+
+    width: calc(100% + 16px);
+
+    max-width: none;
+
+    margin-left: -8px;
+
     font-size:
     clamp(
-        1.4rem,
-        6vw,
+        1.35rem,
+        5.5vw,
         2rem
     );
+
     line-height: 1.2;
+
     letter-spacing: -0.02em;
-     margin-bottom:5px;
-  }
+
+    margin-bottom:5px;
+
+}
 
 .hero-title-sub {
 
