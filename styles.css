@@ -716,11 +716,11 @@ section {
     margin-left: -8px;
 
     font-size:
-    clamp(
-        1.35rem,
-        5.5vw,
-        2rem
-    );
+clamp(
+    1.3rem,
+    5.2vw,
+    2rem
+);
 
     line-height: 1.2;
 
