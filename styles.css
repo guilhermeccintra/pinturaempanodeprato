@@ -1,0 +1,5756 @@
+/*
+   CSS LIMPO - Pintura em Pano de Prato
+   Revisado: limpeza de classes sem uso confirmado.
+   Mantidos: tracking, classes de carrossel, estados JS e responsividade.
+*/
+
+/* ==========================================================================
+   Variáveis e Tokens de Design (Design Tokens)
+   ========================================================================== */
+
+:root {
+
+  /* Cores de Fundo */
+  --color-bg: #FFF8F0;
+  --color-bg-alt: #F5E6D3;
+  --color-bg-warm: #FFF0E0;
+
+  /* Cores Primárias (Terracota) */
+  --color-primary: #C4784A;
+  --color-primary-dark: #A65E35;
+  --color-primary-light: #E8A878;
+
+  /* Cores Secundárias (Verde Floresta) */
+  --color-secondary: #3D6B2E;
+  --color-secondary-light: #5A8F45;
+
+  /* Cores de Texto */
+  --color-text: #4A3728;
+  --color-text-light: #7A6555;
+
+  /* Cores Neutras / Extras */
+  --color-white: #FFFFFF;
+  --color-cream: #FEF7ED;
+  --color-border: #E8D5C4;
+
+  /* Tipografia */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Lora', serif;
+  --font-script: 'Dancing Script', cursive;
+
+  /* Bordas Arredondadas */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(139, 111, 71, 0.08);
+  --shadow-md: 0 4px 16px rgba(139, 111, 71, 0.12);
+  --shadow-lg: 0 8px 32px rgba(139, 111, 71, 0.15);
+}
+
+
+/* ==========================================================================
+   Classes Utilitárias de Fundo
+   ========================================================================== */
+
+.bg-default {
+  background-color: var(--color-bg);
+}
+
+.bg-white {
+  background-color: var(--color-white);
+}
+
+.bg-alt {
+  background-color: var(--color-bg-alt);
+}
+
+.bg-warm {
+  background-color: var(--color-bg-warm);
+}
+
+.bg-cream {
+  background-color: var(--color-cream);
+}
+
+
+/* ==========================================================================
+   Estilos Globais e Reset
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+
+  color: var(--color-text);
+
+  background-color: var(--color-bg);
+
+  line-height: 1.7;
+
+  background-image:
+    radial-gradient(
+      var(--color-bg-alt) 1px,
+      transparent 1px
+    );
+
+  background-size: 40px 40px;
+
+}
+
+
+/* ==========================================================
+   PROTEÇÃO GLOBAL CONTRA OVERFLOW HORIZONTAL
+========================================================== */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+
+img {
+  display: block;
+
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+
+  text-decoration: none;
+}
+
+
+/* ==========================================================================
+   Layout Base
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 0 24px;
+}
+
+section {
+  position: relative;
+
+  padding: 48px 0;
+}
+
+
+/* ==========================================================================
+   Layout Base — Mobile
+
+   ALTERAÇÃO:
+   reduz a margem lateral global de 24px para 10px.
+   Isso dá mais largura para textos, imagens, cards e CTAs.
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .container {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+
+/* ==========================================================================
+   Tipografia
+   ========================================================================== */
+
+.section-tag {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-family: var(--font-body);
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  color: var(--color-primary);
+}
+
+.section-title {
+  margin-bottom: 16px;
+
+  font-family: var(--font-display);
+
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+
+  color: var(--color-text);
+}
+
+.section-title span {
+  font-family: var(--font-script);
+
+  font-size: 110%;
+  font-weight: 700;
+
+  color: var(--color-primary);
+}
+
+.section-subtitle {
+  max-width: 620px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--color-text-light);
+}
+
+.section-subtitle strong {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-center .section-subtitle {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+/* Divisor decorativo */
+
+.text-center .section-title::after {
+  content: "❧";
+
+  display: block;
+
+  margin-top: 16px;
+
+  font-family: var(--font-display);
+
+  font-size: 1.5rem;
+
+  color: var(--color-border);
+
+  opacity: 0.6;
+}
+
+
+/* ==========================================================================
+   Tipografia — Mobile
+
+   ALTERAÇÃO:
+   títulos e subtítulos passam a poder usar praticamente toda a largura
+   disponível da tela. Não reduzimos a fonte para "resolver" quebras.
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .section-title {
+    width: 100%;
+
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+/* ==========================================================================
+   Botões
+   ========================================================================== */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 16px 36px;
+
+  border: none;
+  border-radius: var(--radius-lg);
+
+  background-color: var(--color-primary);
+
+  color: var(--color-white);
+
+  font-family: var(--font-body);
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-md);
+}
+
+.btn-large {
+  padding: 20px 48px;
+
+  font-size: 1.2rem;
+}
+
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 10px 20px 48px;
+
+  background: var(--color-bg);
+}
+
+.hero::before,
+.hero::after {
+  position: absolute;
+
+  z-index: 1;
+
+  font-size: 120px;
+  line-height: 1;
+
+  color: rgba(196, 120, 74, 0.045);
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+.hero::before {
+  content: "༺❀༻";
+
+  top: -18px;
+  left: -18px;
+
+  transform: rotate(-12deg);
+}
+
+.hero::after {
+  content: "༺❀༻";
+
+  right: -18px;
+  bottom: -18px;
+
+  transform: rotate(168deg);
+}
+
+.hero .container {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.hero-title {
+
+  display: block;
+
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 0 auto 12px;
+
+  font-family: var(--font-display);
+
+  font-size:
+    clamp(
+      2rem,
+      3.8vw,
+      3.5rem
+    );
+
+  font-weight: 700;
+
+  line-height: 1.12;
+
+  letter-spacing: -0.025em;
+
+  text-align: center;
+
+  color: var(--color-text);
+
+}
+
+
+/* ==========================================================================
+   Hero Eyebrow
+========================================================================== */
+
+.hero-title-eyebrow {
+
+    display:block;
+
+    width:100%;
+
+    margin-bottom:7px;
+
+
+    font-family:var(--font-body);
+
+    font-size:12px;
+
+    font-weight:600;
+
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+
+
+    color:#8B7564;
+
+
+    line-height:1;
+
+
+    text-align:center;
+
+
+}
+
+
+/* ==========================================================================
+   Hero Eyebrow — Mobile
+========================================================================== */
+
+@media(max-width:768px){
+
+
+    .hero-title-eyebrow {
+
+
+        margin-bottom: 5px;
+
+
+        font-size:9px;
+
+
+        letter-spacing:2.5px;
+
+
+        line-height:1.2;
+
+
+        white-space:nowrap;
+
+
+    }
+
+
+}
+
+
+/* ==========================================================================
+   Hero Eyebrow — Mobile pequeno
+========================================================================== */
+
+@media(max-width:380px){
+
+
+    .hero-title-eyebrow {
+
+
+        font-size:8px;
+
+
+        letter-spacing:2px;
+
+
+    }
+
+
+}
+
+
+.hero-title-main {
+  display: block;
+
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto 7px;
+
+  font-family: var(--font-display);
+
+  font-size:
+    clamp(
+      2.2rem,
+      4.5vw,
+      3.4rem
+    );
+
+  font-weight: 700;
+
+  line-height: 1.12;
+
+  letter-spacing: -0.035em;
+
+  color: var(--color-text);
+
+  text-transform: none;
+}
+
+.hero-title-script {
+  display: block;
+  width: 100%;
+  margin-top: 0;
+  margin-left: 0;
+  margin-bottom:7px;
+  font-family: var(--font-script);
+  font-size:
+clamp(
+2.8rem,
+6vw,
+4.8rem
+);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-primary);
+  text-transform: none;
+  vertical-align: baseline;
+}
+
+.hero-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  margin: 0 auto;
+}
+
+.hero-buttons .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 430px;
+  min-height: 80px;
+
+  padding: 16px 28px;
+
+  text-align: center;
+}
+
+.hero-info {
+  width: 100%;
+  max-width: 430px;
+
+  margin: 10px auto 0;
+
+  font-family: var(--font-body);
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  text-align: center;
+
+  color: var(--color-text-light);
+}
+
+
+/* ==========================================================================
+   Hero — Mobile
+
+   ALTERAÇÕES:
+   - margem lateral do Hero: 16px -> 10px;
+   - mockup: 320px -> até 360px;
+   - subtítulo usa toda a largura disponível;
+   - CTA pode usar toda a largura útil;
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .hero {
+    padding:
+      10px
+      10px
+      32px;
+  }
+
+  /*
+   * O .container global já possui 10px.
+   * Como o próprio Hero também possui padding lateral,
+   * zeramos apenas o padding interno do container do Hero
+   * para não somar 10px + 10px.
+   */
+  .hero .container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-title {
+    width: 100%;
+    margin: 0 auto 6px;
+  }
+
+ 
+  .hero-title-main {
+
+    width: calc(100% + 16px);
+
+    max-width: none;
+
+    margin-left: -8px;
+
+    font-size:
+clamp(
+    1.3rem,
+    5.2vw,
+    2rem
+);
+
+    line-height: 1.2;
+
+    letter-spacing: -0.02em;
+
+    margin-bottom:5px;
+
+}
+
+.hero-title-sub {
+
+    width:100%;
+    font-size:
+    clamp(
+        1.4rem,
+        6vw,
+        2rem
+    );
+
+    line-height:1.2;
+
+}
+
+
+   .hero-title-accent {
+
+    font-size:1.15em;
+
+}
+
+   
+
+  .hero-title-script {
+    width: 100%;
+    margin-top: 0;
+    margin-left: 0;
+   margin-bottom:5px;
+    font-size:
+      clamp(
+        2.25rem,
+        10vw,
+        3rem
+      );
+    line-height: 1;
+  }
+
+    .hero-subtitle {
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.45;
+
+    text-align: center;
+  }
+
+  .hero-subtitle strong {
+    font-weight: 700;
+
+    color: var(--color-text);
+  }
+
+
+  .hero-price {
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .hero-buttons {
+    width: 100%;
+  }
+
+  .hero-buttons .btn-primary {
+    width: 100%;
+    max-width: 400px;
+    min-height: 75px;
+
+    padding:
+      15px
+      18px;
+  }
+
+  .hero-info {
+    width: 100%;
+    max-width: 400px;
+
+    margin-top: 8px;
+
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+
+/* ==========================================================================
+   Carrossel contínuo A4
+
+   BLOCO LIMPO:
+   O CSS antigo tinha uma primeira configuração de .a4-carousel e,
+   logo depois, uma segunda configuração que sobrescrevia a primeira.
+   Aqui mantemos somente a configuração final efetivamente utilizada.
+   ========================================================================== */
+
+.a4-carousel {
+  position: relative;
+
+  width: 100%;
+  max-width: 1280px;
+
+  margin: 45px auto 0;
+
+  padding: 0;
+}
+
+.a4-carousel-viewport {
+  width: 100%;
+
+  overflow: hidden;
+
+  border-radius: var(--radius-md);
+}
+
+.a4-carousel-track {
+  display: flex;
+
+  width: max-content;
+
+  gap: 22px;
+
+  transform: translate3d(0, 0, 0);
+
+  transition: none !important;
+
+  will-change: transform;
+
+  backface-visibility: hidden;
+}
+
+.a4-carousel-slide {
+  flex:
+    0
+    0
+    calc(
+      (min(100vw, 1280px) - 44px) / 3
+    );
+
+  width:
+    calc(
+      (min(100vw, 1280px) - 44px) / 3
+    );
+
+  aspect-ratio: 210 / 297;
+
+  overflow: hidden;
+
+  background-color: var(--color-white);
+
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.a4-carousel-slide img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  background-color: #ffffff;
+
+  user-select: none;
+  -webkit-user-drag: none;
+
+  pointer-events: none;
+}
+
+
+/*
+ * O carrossel A4 atual é contínuo.
+ * As setas e dots antigos desse componente
+ * permanecem ocultos intencionalmente.
+ *
+ * Isto NÃO afeta o carrossel de comparação,
+ * que usa .comparison-button e .comparison-dot.
+ */
+
+.a4-carousel-btn,
+.a4-carousel-prev,
+.a4-carousel-next,
+.a4-carousel-dots {
+  display: none !important;
+
+  visibility: hidden !important;
+
+  opacity: 0 !important;
+
+  pointer-events: none !important;
+}
+
+
+/* ==========================================================================
+   A4 — Tablet
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  .a4-carousel {
+    width: calc(100% - 40px);
+    max-width: 820px;
+  }
+
+  .a4-carousel-track {
+    gap: 18px;
+  }
+
+  .a4-carousel-slide {
+    flex:
+      0
+      0
+      calc(
+        (min(100vw - 40px, 820px) - 18px) / 2
+      );
+
+    width:
+      calc(
+        (min(100vw - 40px, 820px) - 18px) / 2
+      );
+  }
+}
+
+
+/* ==========================================================================
+   A4 — Mobile
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+  .a4-carousel {
+    width: calc(100% - 8px);
+    max-width: none;
+
+    margin: 32px auto 0;
+
+    padding: 0;
+  }
+
+  .a4-carousel-viewport {
+    width: 100%;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+  }
+
+  .a4-carousel-track {
+    gap: 10px;
+  }
+
+  .a4-carousel-slide {
+    flex: 0 0 calc(100vw - 16px);
+
+    width: calc(100vw - 16px);
+
+    max-width: none;
+    max-height: none;
+  }
+}
+
+
+/* ==========================================================================
+   Carrossel de resultados
+   ========================================================================== */
+
+.results-carousel {
+  width: 100%;
+  max-width: 1280px;
+}
+
+.results-carousel .a4-carousel-slide {
+  aspect-ratio: 4 / 5;
+
+  background-color: var(--color-white);
+}
+
+.results-carousel .a4-carousel-slide img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* ==========================================================================
+   Carrossel de resultados — Tablet
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  .results-carousel {
+    width: calc(100% - 40px);
+    max-width: 820px;
+  }
+}
+
+
+/* ==========================================================================
+   Carrossel de resultados — Mobile
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+  .results-carousel {
+    width: calc(100% - 8px);
+    max-width: none;
+
+    margin: 32px auto 0;
+
+    padding: 0;
+  }
+
+  .results-carousel .a4-carousel-slide {
+    flex: 0 0 calc(100vw - 16px);
+
+    width: calc(100vw - 16px);
+
+    max-width: none;
+    max-height: none;
+
+    aspect-ratio: 4 / 5;
+  }
+}
+
+
+/* ==========================================================================
+   Bônus — tema escuro
+   ========================================================================== */
+
+.bonuses-dark {
+  background: #4e3524;
+}
+
+.bonuses-dark .section-tag {
+  color: #efb58f;
+}
+
+.bonuses-dark .section-title {
+  color: #ffffff;
+}
+
+.bonuses-dark .section-title span {
+  color: #f2a87a;
+}
+
+.bonuses-dark .section-subtitle {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.bonuses-dark .bonus-card {
+  background: var(--color-white);
+}
+
+
+/* ==========================================================
+   CTA INTERMEDIÁRIO — APÓS OS BÔNUS
+========================================================== */
+
+.bonuses-cta {
+    width: min(100%, 620px);
+    margin: 32px auto 0;
+    padding: 24px 20px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 14px 34px
+        rgba(28, 17, 10, 0.18);
+}
+
+
+/* TEXTO DE VALOR NO LUGAR DO PREÇO */
+
+.bonuses-cta-text {
+
+    max-width: 520px;
+    margin: 0 auto 25px;
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+
+.bonuses-cta-text strong {
+
+    font-weight: 700;
+
+}
+
+
+/* Mantém o botão centralizado */
+.bonuses-cta .hero-buttons {
+
+    width: 100%;
+
+}
+
+
+/* Texto inferior */
+.bonuses-cta .hero-info {
+
+    margin-top: 10px;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 600px) {
+
+
+    .bonuses-cta {
+
+        width: 100%;
+
+        margin-top: 26px;
+
+        padding:
+            20px
+            14px;
+
+        border-radius: 16px;
+
+    }
+
+
+    .bonuses-cta-text {
+
+        font-size: 15px;
+
+        line-height: 1.5;
+
+        margin-bottom: 22px;
+
+    }
+
+
+}
+
+
+/* ==========================================================================
+   COMPARAÇÃO: RISCO IMPRESSO X RESULTADO PINTADO
+   ========================================================================== */
+
+.comparison-section {
+  position: relative;
+  overflow: hidden;
+
+  padding: 48px 20px;
+}
+
+
+/* ==========================================================================
+   Cabeçalho da comparação
+   ========================================================================== */
+
+.comparison-heading {
+  width: 100%;
+  max-width: 760px;
+
+  margin: 0 auto 42px;
+
+  text-align: center;
+}
+
+.comparison-heading .section-subtitle {
+  max-width: 650px;
+
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+/* ==========================================================================
+   Carrossel de comparação
+   ========================================================================== */
+
+.comparison-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.comparison-viewport {
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.comparison-track {
+    display: flex;
+
+    width: 100%;
+
+    transition: transform 0.55s ease;
+}
+
+
+/* ==========================================================================
+   Card
+   ========================================================================== */
+
+.comparison-card {
+  flex: 0 0 100%;
+
+  width: 100%;
+  min-width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 24px;
+
+  border: 1px solid rgba(196, 120, 74, 0.24);
+  border-radius: 18px;
+
+  background-color: var(--color-white);
+
+  box-shadow:
+    0 14px 38px
+    rgba(70, 47, 31, 0.09);
+}
+
+
+/* ==========================================================================
+   Cabeçalho do Card
+   ========================================================================== */
+
+.comparison-card-header {
+  margin-bottom: 16px;
+
+  text-align: center;
+}
+
+.comparison-number {
+  display: inline-block;
+
+  margin-bottom: 5px;
+
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: var(--color-primary);
+}
+
+.comparison-card-header h3 {
+  margin: 0;
+
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+
+  color: var(--color-text);
+}
+
+
+/* ==========================================================================
+   Área principal
+   ========================================================================== */
+
+.comparison-pair {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   Resultado pintado
+   ========================================================================== */
+
+.comparison-image-result {
+  position: relative;
+
+  z-index: 1;
+
+  display: block;
+
+  width: 100%;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(196, 120, 74, 0.22);
+  border-radius: 18px;
+
+  background: transparent;
+
+  box-shadow: none;
+}
+
+.comparison-result-media {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+
+  background: transparent;
+}
+
+.comparison-result-media picture {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+.comparison-result-media img {
+  display: block !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  aspect-ratio: auto !important;
+
+  object-fit: cover !important;
+  object-position: center !important;
+
+  border-radius: inherit;
+}
+
+
+/* ==========================================================================
+   Risco — miniatura sobreposta
+   ========================================================================== */
+
+.comparison-before {
+  position: absolute;
+
+  top: 18px;
+  left: 18px;
+  bottom: auto;
+
+  z-index: 10;
+
+  display: block;
+
+  width: 29%;
+  max-width: 220px;
+
+  height: auto;
+  min-height: 0;
+  max-height: none;
+
+  margin: 0;
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(196, 120, 74, 0.24);
+  border-radius: 15px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 10px 28px
+    rgba(54, 35, 23, 0.16);
+}
+
+.comparison-before-media {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 4 / 5;
+
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+.comparison-before-media img {
+  display: block !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  aspect-ratio: auto !important;
+
+  object-fit: contain !important;
+  object-position: center !important;
+
+  background: #ffffff;
+}
+
+/* ==========================================================================
+   Etiquetas
+   ========================================================================== */
+
+.comparison-label {
+  position: absolute;
+
+  top: 8px;
+  left: 8px;
+
+  z-index: 20;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 26px;
+
+  box-sizing: border-box;
+
+  padding: 5px 8px;
+
+  border: 1px solid rgba(196, 120, 74, 0.22);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  box-shadow:
+    0 4px 12px
+    rgba(45, 30, 20, 0.08);
+
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 1;
+
+  letter-spacing: 0.04em;
+
+  color: var(--color-text);
+
+  white-space: nowrap;
+}
+
+.comparison-label-result {
+  top: 14px;
+  right: 14px;
+  left: auto;
+
+  padding-right: 12px;
+  padding-left: 12px;
+
+  color: var(--color-primary);
+}
+
+
+/* ==========================================================================
+   Controles do carrossel
+   ========================================================================== */
+
+.comparison-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  margin-top: 18px;
+}
+
+.comparison-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  box-sizing: border-box;
+
+  padding: 0;
+
+  border: 1px solid rgba(196, 120, 74, 0.30);
+  border-radius: 50%;
+
+  background-color: #ffffff;
+
+  box-shadow:
+    0 5px 16px
+    rgba(68, 45, 29, 0.08);
+
+  color: var(--color-primary);
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.comparison-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.comparison-button span {
+  display: block;
+
+  font-family: Arial, sans-serif;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.comparison-button:disabled {
+  opacity: 0.35;
+
+  cursor: default;
+}
+
+
+/* ==========================================================================
+   Dots do carrossel de comparação
+   ========================================================================== */
+
+.comparison-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.comparison-dot {
+  width: 10px;
+  height: 10px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--color-border);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.comparison-dot.active {
+  background-color: var(--color-primary);
+
+  transform: scale(1.25);
+}
+
+
+/* ==========================================================================
+   Comparação — Tablet
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+  .comparison-section {
+    padding: 48px 20px;
+  }
+
+  .comparison-heading {
+    margin-bottom: 34px;
+  }
+
+  .comparison-carousel {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .comparison-before {
+    width: 30%;
+    max-width: 200px;
+  }
+}
+
+
+/* ==========================================================================
+   Comparação — Mobile
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .comparison-section {
+    padding: 32px 10px;
+  }
+
+  .comparison-heading {
+    margin-bottom: 24px;
+  }
+
+  .comparison-heading .section-subtitle {
+    max-width: 100%;
+  }
+
+  .comparison-carousel {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .comparison-card {
+    padding: 10px;
+
+    border-radius: 18px;
+  }
+
+  .comparison-image-result {
+    border-radius: 18px;
+  }
+
+  .comparison-before {
+    top: 10px;
+    left: 10px;
+
+    width: 31%;
+    max-width: 145px;
+
+    height: auto;
+    min-height: 0;
+    max-height: none;
+
+    border-radius: 11px;
+  }
+
+  .comparison-label {
+    top: 5px;
+    left: 5px;
+
+    min-height: 21px;
+
+    padding: 4px 5px;
+
+    font-size: 6px;
+  }
+
+  .comparison-label-result {
+    top: 8px;
+    right: 8px;
+    left: auto;
+
+    padding-right: 7px;
+    padding-left: 7px;
+
+    font-size: 7px;
+  }
+
+  .comparison-controls {
+    gap: 12px;
+
+    margin-top: 14px;
+  }
+
+  .comparison-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .comparison-button span {
+    font-size: 22px;
+  }
+}
+
+
+/* ==========================================================================
+   Comparação — Celulares pequenos
+   ========================================================================== */
+
+@media (max-width: 400px) {
+
+  .comparison-section {
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+
+  .comparison-card {
+    padding: 7px;
+  }
+
+  .comparison-before {
+    top: 8px;
+    left: 8px;
+
+    width: 32%;
+  }
+
+  .comparison-label-result {
+    font-size: 6px;
+  }
+}
+
+
+/* ==========================================================================
+   Hero — Card de comparação sem bloco externo
+   ========================================================================== */
+
+.hero-comparison-card {
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background: transparent !important;
+
+  box-shadow: none !important;
+}
+
+.hero-comparison-card .comparison-pair {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-comparison-card .comparison-before {
+  top: 18px;
+  left: 18px;
+}
+
+/* ==========================================================================
+   Processo de transferência para o tecido
+   ========================================================================== */
+
+.transfer-process {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+  padding: 48px 20px;
+}
+
+.transfer-process-heading {
+  width: 100%;
+  max-width: 780px;
+
+  margin: 0 auto 46px;
+}
+
+.transfer-process-heading .section-subtitle {
+  max-width: 690px;
+
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+/* ==========================================================================
+   Grade das etapas
+   ========================================================================== */
+
+.transfer-process-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  width: 100%;
+  max-width: 1320px;
+
+  margin: 0 auto;
+
+  gap: 18px;
+}
+
+
+/* ==========================================================================
+   Cards do processo
+   ========================================================================== */
+
+.transfer-process-card {
+  min-width: 0;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(196, 120, 74, 0.22);
+
+  border-radius: 20px;
+
+  background-color: #ffffff;
+
+  box-shadow:
+    0 13px 34px
+    rgba(71, 47, 31, 0.08);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.transfer-process-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 18px 42px
+    rgba(71, 47, 31, 0.13);
+}
+
+.transfer-process-card-highlight {
+  border:
+    2px solid
+    var(--color-primary);
+
+  box-shadow:
+    0 16px 40px
+    rgba(196, 120, 74, 0.15);
+}
+
+
+/* ==========================================================================
+   Imagens
+   ========================================================================== */
+
+.transfer-process-image {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  aspect-ratio: 1 / 1;
+
+  background-color: #f8f1e9;
+}
+
+.transfer-process-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* ==========================================================================
+   Número das etapas
+   ========================================================================== */
+
+.transfer-process-number {
+  position: absolute;
+
+  top: 12px;
+  left: 12px;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  border:
+    2px solid
+    rgba(255, 255, 255, 0.85);
+
+  border-radius: 50%;
+
+  background-color:
+    var(--color-primary);
+
+  box-shadow:
+    0 5px 15px
+    rgba(53, 34, 22, 0.18);
+
+  font-family:
+    var(--font-display);
+
+  font-size: 13px;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+
+/* ==========================================================================
+   Selo carbono para tecido
+   ========================================================================== */
+
+.transfer-process-badge {
+  position: absolute;
+
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+
+  z-index: 2;
+
+  display: block;
+
+  padding: 8px 10px;
+
+  border-radius: 10px;
+
+  background-color:
+    rgba(196, 120, 74, 0.94);
+
+  box-shadow:
+    0 6px 16px
+    rgba(56, 35, 23, 0.18);
+
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1.2;
+
+  letter-spacing: 0.05em;
+
+  text-align: center;
+
+  color: #ffffff;
+}
+
+
+/* ==========================================================================
+   Conteúdo dos cards
+   ========================================================================== */
+
+.transfer-process-content {
+  padding: 20px 17px 22px;
+
+  text-align: center;
+}
+
+.transfer-process-content h3 {
+  margin: 0 0 9px;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+
+  color: var(--color-text);
+}
+
+.transfer-process-content p {
+  margin: 0;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 15px;
+  line-height: 1.55;
+
+  color: #75665c;
+}
+
+.transfer-process-content strong {
+  font-weight: 700;
+
+  color: var(--color-text);
+}
+
+
+/* ==========================================================================
+   Resumo do guia incluído
+   ========================================================================== */
+
+.transfer-process-summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background-color: var(--color-white);
+  width: min(100%, 780px);
+
+  margin: 38px auto 0;
+
+  padding: 20px 22px;
+
+  border:
+    1px solid
+    rgba(196, 120, 74, 0.27);
+  border-radius: 18px;
+  box-shadow:
+    0 11px 30px
+    rgba(71, 47, 31, 0.07);
+}
+
+.transfer-process-summary-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 42px;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  background-color:
+    var(--color-primary);
+
+  font-size: 20px;
+  font-weight: 800;
+
+  color: #ffffff;
+}
+
+.transfer-process-summary-content strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 17px;
+  line-height: 1.35;
+
+  color: var(--color-text);
+}
+
+.transfer-process-summary-content p {
+  margin: 0;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 14px;
+  line-height: 1.55;
+
+  color: #75665c;
+}
+
+
+/* ==========================================================================
+   Processo — Tablet
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+
+  .transfer-process-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    max-width: 900px;
+  }
+
+  .transfer-process-card:nth-child(4),
+  .transfer-process-card:nth-child(5) {
+    width: 100%;
+  }
+
+  .transfer-process-card:nth-child(4) {
+    grid-column: 1 / 2;
+  }
+
+  .transfer-process-card:nth-child(5) {
+    grid-column: 2 / 3;
+  }
+}
+
+
+/* ==========================================================================
+   Processo — Tablet menor
+   ========================================================================== */
+
+@media (max-width: 850px) {
+
+  .transfer-process {
+    padding: 48px 14px;
+  }
+
+  .transfer-process-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    max-width: 680px;
+  }
+
+  .transfer-process-card:nth-child(4),
+  .transfer-process-card:nth-child(5) {
+    grid-column: auto;
+  }
+
+  .transfer-process-card:last-child {
+    grid-column: 1 / -1;
+
+    width: calc(50% - 9px);
+
+    margin: 0 auto;
+  }
+}
+
+
+/* ==========================================================================
+   Processo — Mobile
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+  /*
+   * Reduzimos a margem lateral de 14px para 10px.
+   * Isso aumenta a largura útil dos cards sem
+   * aproximá-los excessivamente da borda.
+   */
+
+  .transfer-process {
+    padding: 32px 10px;
+  }
+
+  .transfer-process-heading {
+    width: 100%;
+
+    margin-bottom: 28px;
+  }
+
+  .transfer-process-heading .section-subtitle {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .transfer-process-grid {
+    grid-template-columns: 1fr;
+
+    width: 100%;
+    max-width: 440px;
+
+    gap: 16px;
+  }
+
+  .transfer-process-card,
+  .transfer-process-card:last-child {
+    display: grid;
+
+    grid-template-columns:
+      132px minmax(0, 1fr);
+
+    width: 100%;
+
+    margin: 0;
+
+    align-items: stretch;
+  }
+
+  .transfer-process-image {
+    width: 132px;
+    height: 100%;
+
+    min-height: 170px;
+
+    aspect-ratio: auto;
+  }
+
+  .transfer-process-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+
+  .transfer-process-number {
+    top: 9px;
+    left: 9px;
+
+    width: 32px;
+    height: 32px;
+
+    font-size: 11px;
+  }
+
+  .transfer-process-badge {
+    right: 6px;
+    bottom: 7px;
+    left: 6px;
+
+    padding: 6px 5px;
+
+    font-size: 7px;
+  }
+
+  .transfer-process-content {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+    justify-content: center;
+
+    padding: 16px 12px;
+
+    text-align: left;
+  }
+
+  .transfer-process-content h3 {
+    font-size: 17px;
+  }
+
+  .transfer-process-content p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .transfer-process-summary {
+    width: 100%;
+
+    padding: 16px 14px;
+
+    gap: 12px;
+  }
+
+  .transfer-process-summary-icon {
+    flex-basis: 36px;
+
+    width: 36px;
+    height: 36px;
+
+    font-size: 17px;
+  }
+
+  .transfer-process-summary-content strong {
+    font-size: 15px;
+  }
+
+  .transfer-process-summary-content p {
+    font-size: 13px;
+  }
+
+  .transfer-process-highlight {
+    width: 100%;
+    max-width: 100%;
+
+    font-size: 16px;
+  }
+
+  .transfer-process-cta .btn-primary {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .transfer-process-payment {
+    max-width: 330px;
+
+    font-size: 13px;
+  }
+}
+
+
+/* ==========================================================================
+   Processo — Mobile pequeno
+   ========================================================================== */
+
+@media (max-width: 380px) {
+
+  .transfer-process {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .transfer-process-card,
+  .transfer-process-card:last-child {
+    grid-template-columns:
+      112px minmax(0, 1fr);
+  }
+
+  .transfer-process-image {
+    width: 112px;
+
+    min-height: 165px;
+  }
+
+  .transfer-process-content {
+    padding: 14px 10px;
+  }
+
+  .transfer-process-content h3 {
+    font-size: 16px;
+  }
+
+  .transfer-process-content p {
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+}
+
+
+/* ==========================================================================
+   Garantia de 7 dias
+   ========================================================================== */
+
+.guarantee-section {
+  position: relative;
+  overflow: hidden;
+
+  padding: 48px 20px;
+
+  background-color: #fff8f0;
+}
+
+.guarantee-wrapper {
+  display: grid;
+
+  grid-template-columns:
+    270px minmax(0, 1fr);
+
+  width: min(100%, 1050px);
+
+  margin: 0 auto;
+
+  align-items: center;
+
+  gap: 60px;
+
+  padding: 46px;
+
+  border:
+    1px solid
+    rgba(196, 120, 74, 0.26);
+
+  border-radius: 28px;
+
+  background-color: #ffffff;
+
+  box-shadow:
+    0 18px 50px
+    rgba(73, 47, 30, 0.1);
+}
+
+
+/* ==========================================================================
+   Selo da garantia
+   ========================================================================== */
+
+.guarantee-seal {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 250px;
+  height: 250px;
+
+  margin: 0 auto;
+
+  border:
+    3px solid
+    var(--color-primary);
+
+  border-radius: 50%;
+
+  background-color: #fff8f0;
+
+  box-shadow:
+    inset 0 0 0 9px #ffffff,
+    0 18px 38px
+    rgba(196, 120, 74, 0.18);
+
+  text-align: center;
+
+  color: var(--color-primary);
+}
+
+.guarantee-seal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 7px;
+}
+
+.guarantee-seal-label {
+  font-family:
+    var(--font-body);
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+}
+
+.guarantee-seal-days {
+  margin: 3px 0;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+
+  color: var(--color-text);
+}
+
+.guarantee-seal-bottom {
+  font-family:
+    var(--font-body);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+
+/* ==========================================================================
+   Conteúdo da garantia
+   ========================================================================== */
+
+.guarantee-content .section-tag {
+  margin-bottom: 8px;
+}
+
+.guarantee-content .section-title {
+  margin: 0 0 18px;
+
+  text-align: left;
+}
+
+.guarantee-description {
+  max-width: 680px;
+
+  margin: 0 0 23px;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 16px;
+  line-height: 1.65;
+
+  color: #6f6056;
+}
+
+.guarantee-checklist {
+  display: grid;
+
+  gap: 13px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.guarantee-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 15px;
+  line-height: 1.45;
+
+  color: var(--color-text);
+}
+
+.guarantee-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 25px;
+
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+
+  background-color:
+    var(--color-primary);
+
+  font-size: 14px;
+  font-weight: 800;
+
+  color: #ffffff;
+}
+
+
+/* ==========================================================================
+   Garantia — Tablet
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  .guarantee-wrapper {
+    grid-template-columns:
+      220px minmax(0, 1fr);
+
+    gap: 36px;
+        padding: 36px;
+  }
+
+  .guarantee-seal {
+    width: 210px;
+    height: 210px;
+  }
+
+  .guarantee-seal-days {
+    font-size: 41px;
+  }
+
+  .guarantee-features {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* ==========================================================================
+   Garantia — Mobile
+   ========================================================================== */
+
+@media (max-width: 650px) {
+
+  /*
+   * Margem externa reduzida de 14px para 10px
+   * para aproveitar melhor a largura do celular.
+   */
+
+  .guarantee-section {
+    padding: 32px 10px;
+  }
+
+  .guarantee-wrapper {
+    grid-template-columns: 1fr;
+
+    gap: 27px;
+
+    /*
+     * Mantemos um pouco mais de espaço dentro
+     * do card do que nas bordas externas.
+     */
+    padding: 27px 14px;
+
+    border-radius: 22px;
+  }
+
+  .guarantee-seal {
+    width: 190px;
+    height: 190px;
+  }
+
+  .guarantee-seal-icon svg {
+    width: 43px;
+    height: 43px;
+  }
+
+  .guarantee-seal-label {
+    font-size: 11px;
+  }
+
+  .guarantee-seal-days {
+    font-size: 38px;
+  }
+
+  .guarantee-seal-bottom {
+    font-size: 10px;
+  }
+
+  .guarantee-content {
+    width: 100%;
+
+    text-align: center;
+  }
+
+  .guarantee-content .section-title {
+    width: 100%;
+
+    text-align: center;
+  }
+
+  .guarantee-description {
+    width: 100%;
+    max-width: 100%;
+
+    font-size: 15px;
+  }
+
+  .guarantee-checklist {
+    width: 100%;
+
+    text-align: left;
+  }
+
+  .guarantee-checklist li {
+    font-size: 14px;
+  }
+
+  .guarantee-cta {
+    width: 100%;
+  }
+
+  .guarantee-cta .btn-primary {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .guarantee-payment-info {
+    max-width: 330px;
+
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .guarantee-features {
+    grid-template-columns: 1fr;
+
+    width: 100%;
+
+    gap: 12px;
+  }
+
+  .guarantee-feature {
+    padding: 15px 14px;
+  }
+}
+
+
+/* ==========================================================================
+   Seção de bônus
+   ========================================================================== */
+
+.bonuses {
+  position: relative;
+  overflow: hidden;
+
+  padding: 48px 20px;
+}
+
+.bonuses-heading {
+  width: 100%;
+  max-width: 760px;
+
+  margin: 0 auto 44px;
+}
+
+.bonuses-dark .section-subtitle {
+  max-width: 660px;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  color: rgba(255, 255, 255, 0.76);
+}
+
+
+/* ==========================================================================
+   Grade dos bônus
+   ========================================================================== */
+
+.bonuses-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  width: 100%;
+  max-width: 1240px;
+
+  margin: 0 auto;
+
+  gap: 20px;
+}
+
+
+/* ==========================================================================
+   Cards dos bônus
+   ========================================================================== */
+
+.bonus-card {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  background-color: #ffffff;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 16px 38px
+    rgba(28, 17, 10, 0.22);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.bonus-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 22px 46px
+    rgba(28, 17, 10, 0.3);
+}
+
+
+/* ==========================================================================
+   Imagem do bônus
+   ========================================================================== */
+
+.bonus-image {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  aspect-ratio: 1 / 1;
+
+  background-color: #f8eee5;
+}
+
+.bonus-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.bonus-badge {
+  position: absolute;
+
+  top: 12px;
+  left: 12px;
+
+  z-index: 2;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 32px;
+
+  padding: 7px 11px;
+
+  border-radius: 999px;
+
+  background-color:
+    var(--color-primary);
+
+  box-shadow:
+    0 5px 15px
+    rgba(44, 26, 15, 0.18);
+
+  font-family:
+    var(--font-body);
+
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+
+  letter-spacing: 0.07em;
+
+  color: #ffffff;
+}
+
+
+/* ==========================================================================
+   Conteúdo do bônus
+   ========================================================================== */
+
+.bonus-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  padding: 21px 18px 23px;
+
+  text-align: left;
+}
+
+.bonus-content h3 {
+  margin: 0 0 10px;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.3;
+
+  color: var(--color-text);
+}
+
+.bonus-content p {
+  margin: 0;
+
+  font-family:
+    var(--font-body);
+
+  /*
+   * Aumentado de 13px para 15px.
+   * Isso deixa os cards compatíveis com a
+   * escala tipográfica do restante da página.
+   */
+  font-size: 15px;
+  line-height: 1.55;
+
+  color: #75665c;
+}
+
+
+/* ==========================================================================
+   Resumo inferior dos bônus
+   ========================================================================== */
+
+.bonuses-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: min(100%, 760px);
+
+  margin: 34px auto 0;
+
+  padding: 18px 21px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.14);
+
+  border-radius: 16px;
+
+  background-color:
+    rgba(255, 255, 255, 0.09);
+}
+
+.bonuses-summary-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 40px;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  background-color:
+    var(--color-primary);
+
+  font-size: 19px;
+  font-weight: 800;
+
+  color: #ffffff;
+}
+
+.bonuses-summary-text {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.bonuses-summary-text strong {
+  font-family:
+    var(--font-display);
+
+  font-size: 16px;
+  line-height: 1.35;
+
+  color: #ffffff;
+}
+
+.bonuses-summary-text span {
+  font-family:
+    var(--font-body);
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  color:
+    rgba(255, 255, 255, 0.75);
+}
+
+
+/* ==========================================================================
+   Bônus — Tablet
+   ========================================================================== */
+
+@media (max-width: 1000px) {
+
+  .bonuses-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    max-width: 760px;
+  }
+}
+
+
+/* ==========================================================================
+   Bônus — Mobile
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+  /*
+   * Antes eram 14px de cada lado.
+   * Agora usamos 10px para aumentar os cards
+   * e aproveitar melhor a largura do celular.
+   */
+
+  .bonuses {
+    padding: 32px 10px;
+  }
+
+  .bonuses-heading {
+    width: 100%;
+
+    margin-bottom: 30px;
+  }
+
+  .bonuses-dark .section-subtitle {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .bonuses-grid {
+    grid-template-columns: 1fr;
+
+    width: 100%;
+    max-width: 420px;
+
+    gap: 16px;
+  }
+
+  .bonus-card {
+    display: block;
+
+    width: 100%;
+  }
+
+  .bonus-image {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+  }
+
+  .bonus-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+
+  .bonus-badge {
+    top: 10px;
+    left: 10px;
+
+    min-height: 29px;
+
+    padding: 6px 9px;
+
+    font-size: 9px;
+  }
+
+  .bonus-content {
+    display: block;
+
+    padding: 18px 14px 21px;
+  }
+
+  .bonus-content h3 {
+    font-size: 18px;
+  }
+
+  .bonus-content p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .bonuses-summary {
+    align-items: flex-start;
+
+    width: 100%;
+
+    padding: 15px 14px;
+  }
+
+  .bonuses-summary-icon {
+    flex-basis: 35px;
+
+    width: 35px;
+    height: 35px;
+
+    font-size: 16px;
+  }
+
+  .bonuses-summary-text strong {
+    font-size: 16px;
+  }
+
+  .bonuses-summary-text span {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+
+/* ==========================================================================
+   Bônus — Mobile pequeno
+   ========================================================================== */
+
+@media (max-width: 380px) {
+
+  /*
+   * Em celulares muito estreitos reduzimos
+   * apenas mais 2px de margem externa.
+   */
+
+  .bonuses {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .bonus-content {
+    padding: 16px 12px 19px;
+  }
+
+  .bonus-content h3 {
+    font-size: 17px;
+  }
+
+  .bonus-content p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+/* ==========================================================================
+   Benefícios do Hero
+   ========================================================================== */
+
+.hero-benefits {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  max-width: 620px;
+  margin: 25px auto 25px;
+  padding: 0;
+  gap: 16px;
+  list-style: none;
+  text-align: left;
+}
+
+.hero-benefits li {
+  display: grid;
+
+  grid-template-columns:
+    40px minmax(0, 1fr);
+
+  align-items: center;
+
+  column-gap: 12px;
+
+  width: 100%;
+
+  margin: 0;
+
+  padding: 0;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+
+  color:
+    var(--color-text-light);
+}
+
+.hero-benefits .benefit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  background: #f7e6d8;
+
+  border-radius: 50%;
+
+  font-size: 18px;
+  line-height: 1;
+  box-shadow: 0 3px 10px rgba(28, 17, 10, 0.10);
+
+}
+
+.hero-benefits .benefit-text {
+  display: block;
+
+  min-width: 0;
+
+  color:
+    var(--color-text-light);
+
+  text-align: left;
+
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.hero-benefits strong {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+
+/* ==========================================================================
+   Benefícios do Hero — Mobile
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  /*
+   * Removemos os 12px de padding interno que existiam
+   * aqui. O Hero já possui sua própria margem lateral.
+   *
+   * Isso aumenta a largura útil do texto e reduz
+   * quebras de linha nos benefícios.
+   */
+
+  .hero-benefits {
+    width: 100%;
+    max-width: 440px;
+    padding: 0;
+   margin: 15px auto 25px;
+    gap: 14px;
+    box-sizing: border-box;
+  }
+
+  .hero-benefits li {
+    grid-template-columns:
+      36px minmax(0, 1fr);
+
+    column-gap: 10px;
+
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .hero-benefits .benefit-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 16px;
+  }
+}
+
+
+/* ==========================================================================
+   Botões principais — animação + reflexo
+   ========================================================================== */
+
+.btn-primary {
+  position: relative;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease,
+    background-color 0.3s ease;
+
+  animation:
+    btnPulse 3.5s ease-in-out infinite,
+    btnShadow 3.5s ease-in-out infinite;
+}
+
+
+/* ==========================================================================
+   Reflexo que atravessa somente o botão
+   ========================================================================== */
+
+.btn-primary::before {
+  content: "";
+
+  position: absolute;
+
+  top: -30%;
+  left: -35%;
+
+  z-index: 1;
+
+  display: block;
+
+  width: 28%;
+  height: 160%;
+
+  background:
+    linear-gradient(
+      110deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.05) 20%,
+      rgba(255, 255, 255, 0.70) 50%,
+      rgba(255, 255, 255, 0.05) 80%,
+      transparent 100%
+    );
+
+  transform:
+    translateX(0)
+    skewX(-20deg);
+
+  animation:
+    btnShine 4s ease-in-out infinite;
+
+  pointer-events: none;
+
+  will-change: transform;
+}
+
+
+/* ==========================================================================
+   Conteúdo do botão acima do reflexo
+   ========================================================================== */
+
+.btn-primary > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ==========================================================================
+   Pulsação suave
+   ========================================================================== */
+
+@keyframes btnPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.018);
+  }
+}
+
+
+/* ==========================================================================
+   Sombra pulsante
+   ========================================================================== */
+
+@keyframes btnShadow {
+
+  0%,
+  100% {
+    box-shadow:
+      0 8px 18px
+      rgba(0, 0, 0, 0.16);
+  }
+
+  50% {
+    box-shadow:
+      0 12px 28px
+      rgba(0, 0, 0, 0.22);
+  }
+}
+
+
+/* ==========================================================================
+   Movimento do reflexo
+   ========================================================================== */
+
+@keyframes btnShine {
+
+  0%,
+  50% {
+    transform:
+      translateX(0)
+      skewX(-20deg);
+  }
+
+  75% {
+    transform:
+      translateX(600%)
+      skewX(-20deg);
+  }
+
+  100% {
+    transform:
+      translateX(600%)
+      skewX(-20deg);
+  }
+}
+
+
+/* ==========================================================================
+   Hover
+   ========================================================================== */
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+
+  filter: brightness(1.03);
+}
+
+
+/* ==========================================================
+   PERFORMANCE — MOBILE
+   Remove pulsação contínua, mas mantém o reflexo do CTA
+========================================================== */
+
+@media (max-width: 768px) {
+
+  .btn-primary {
+    animation: none;
+  }
+
+  .btn-primary::before {
+    animation:
+      btnShine 4.5s ease-in-out infinite;
+
+    will-change: transform;
+  }
+
+}
+
+
+/* ==========================================================================
+   HERO RATING - Barra de prova social
+========================================================================== */
+
+.hero-rating {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    gap:12px;
+
+
+    width:max-content;
+
+    max-width:calc(100% - 32px);
+
+
+    margin:0 auto 16px;
+
+
+    padding:8px 18px;
+
+
+    background:#ffffff;
+
+
+    border-radius:50px;
+
+
+    box-sizing:border-box;
+
+
+    box-shadow:
+        0 2px 10px rgba(96,69,50,0.06);
+
+
+}
+
+
+/* ==========================================================================
+   AVATARES
+========================================================================== */
+
+
+.hero-rating__avatars {
+
+    display:flex;
+
+    align-items:center;
+
+    flex-shrink:0;
+
+}
+
+
+.hero-rating__avatars img {
+
+
+    width:34px;
+
+    height:34px;
+
+
+    object-fit:cover;
+
+
+    border-radius:50%;
+
+
+    border:2px solid #fff;
+
+
+    margin-left:-9px;
+
+
+    box-shadow:
+        0 1px 4px rgba(0,0,0,.12);
+
+
+}
+
+
+.hero-rating__avatars img:first-child {
+
+    margin-left:0;
+
+}
+
+
+/* ==========================================================================
+   CONTEÚDO
+========================================================================== */
+
+
+.hero-rating__content {
+
+    display:flex;
+
+    align-items:center;
+
+
+    gap:8px;
+
+
+}
+
+
+/* ==========================================================================
+   ESTRELAS
+========================================================================== */
+
+
+.hero-rating__stars {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:1px;
+
+
+    font-size:17px;
+
+
+    line-height:1;
+
+
+    color:#F5B800;
+
+
+}
+
+
+/* ==========================================================================
+   TEXTO
+========================================================================== */
+
+
+.hero-rating__text {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:5px;
+
+
+    margin:0;
+
+
+    font-family:Georgia,
+    "Times New Roman",
+    serif;
+
+
+    color:#604532;
+
+
+    font-size:13px;
+
+
+    line-height:1.2;
+
+
+}
+
+
+.hero-rating__text strong {
+
+
+    font-size:15px;
+
+
+    font-weight:700;
+
+
+}
+
+
+/* ==========================================================================
+   MOBILE
+========================================================================== */
+
+
+@media(max-width:600px){
+
+
+.hero-rating {
+
+
+    width:auto;
+
+
+    max-width:calc(100% - 32px);
+
+
+    gap:7px;
+
+
+    padding:6px 12px;
+
+
+    margin-bottom:12px;
+
+
+}
+
+
+.hero-rating__avatars img {
+
+
+    width:24px;
+
+    height:24px;
+
+
+    margin-left:-7px;
+
+
+}
+
+
+.hero-rating__stars {
+
+
+    font-size:13px;
+
+
+}
+
+
+.hero-rating__content {
+
+
+    gap:5px;
+
+
+}
+
+
+.hero-rating__text {
+
+
+    flex-direction:row;
+
+
+    align-items:center;
+
+
+    gap:4px;
+
+
+    font-size:9px;
+
+
+    white-space:nowrap;
+
+
+}
+
+
+.hero-rating__text strong {
+
+
+    font-size:12px;
+
+
+}
+
+
+}
+
+
+/* ==========================================================================
+   MOBILE PEQUENO
+========================================================================== */
+
+
+@media(max-width:380px){
+
+
+.hero-rating {
+
+
+    padding:6px 10px;
+
+}
+
+
+.hero-rating__avatars img {
+
+
+    width:22px;
+
+    height:22px;
+
+
+}
+
+
+.hero-rating__stars {
+
+
+    font-size:12px;
+
+
+}
+
+
+.hero-rating__text {
+
+
+    font-size:8px;
+
+
+}
+
+
+.hero-rating__text strong {
+
+
+    font-size:11px;
+
+
+}
+
+
+}
+
+/* ==========================================================================
+   Benefício dos bônus
+   ========================================================================== */
+
+.bonus-benefit {
+  display: grid;
+
+  grid-template-columns:
+    40px minmax(0, 1fr);
+
+  align-items: center;
+
+  column-gap: 12px;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  padding: 8px 10px;
+
+  background: #F0F7EC;
+
+  border: 1px solid #C8DDBD;
+  border-radius: 10px;
+}
+
+.bonus-benefit .benefit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  background: #f7e6d8;
+
+  border-radius: 50%;
+
+  font-size: 0;
+  line-height: 1;
+}
+
+.bonus-benefit .benefit-icon::before {
+  content: "▶️";
+
+  display: block;
+
+  font-size: 17px;
+  line-height: 1;
+}
+
+.bonus-benefit .benefit-text {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: var(--font-body);
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+
+  color: var(--color-text-light);
+
+  text-align: left;
+
+  white-space: normal;
+
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.bonus-benefit .benefit-text strong {
+  font-weight: 700;
+
+  color: var(--color-text);
+}
+
+
+/* ==========================================================================
+   Benefício dos bônus — Mobile
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .bonus-benefit {
+    grid-template-columns:
+      36px minmax(0, 1fr);
+
+    column-gap: 9px;
+
+    /*
+     * Redução sutil do padding horizontal.
+     * Dá mais largura para o texto sem remover
+     * o acabamento do box verde.
+     */
+    padding: 8px 8px;
+  }
+
+  .bonus-benefit .benefit-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+  }
+
+  .bonus-benefit .benefit-icon::before {
+    font-size: 15px;
+  }
+
+  .bonus-benefit .benefit-text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+
+/* ==========================================================================
+   Modais — Termos de Uso e Política de Privacidade
+   ========================================================================== */
+
+.legal-modal {
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  background:
+    rgba(0, 0, 0, 0.65);
+
+  z-index: 999999;
+}
+
+.legal-modal.active {
+  display: flex;
+}
+
+.legal-modal-content {
+  position: relative;
+
+  width: 100%;
+  max-width: 700px;
+
+  max-height: 85vh;
+
+  overflow-y: auto;
+
+  overscroll-behavior: contain;
+
+  padding: 40px;
+
+  box-sizing: border-box;
+
+  background:
+    var(--color-bg, #f8f3eb);
+
+  color:
+    var(--color-text, #4a3728);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 60px
+    rgba(0, 0, 0, 0.35);
+}
+
+
+/* Scrollbar */
+
+.legal-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.legal-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.legal-modal-content::-webkit-scrollbar-thumb {
+  background:
+    rgba(196, 120, 74, 0.5);
+
+  border-radius: 20px;
+}
+
+
+/* Botão fechar */
+
+.legal-modal-close {
+  position: absolute;
+
+  top: 12px;
+  right: 16px;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 34px;
+  line-height: 1;
+
+  color: #c4784a;
+
+  cursor: pointer;
+}
+
+.legal-modal-close:hover {
+  opacity: 0.7;
+}
+
+.legal-modal-close:focus-visible {
+  outline:
+    2px solid
+    #c4784a;
+
+  outline-offset: 2px;
+}
+
+
+/* Conteúdo */
+
+.legal-modal-content h2 {
+  margin:
+    0
+    45px
+    24px
+    0;
+
+  line-height: 1.2;
+
+  color: #c4784a;
+}
+
+.legal-modal-content h3 {
+  margin:
+    24px
+    0
+    8px;
+
+  line-height: 1.35;
+
+  color: #c4784a;
+}
+
+.legal-modal-content p {
+  margin:
+    0
+    0
+    14px;
+
+  line-height: 1.7;
+}
+
+.legal-modal-content a {
+  color: #c4784a;
+
+  text-decoration: underline;
+}
+
+.legal-modal-content a:hover {
+  opacity: 0.75;
+}
+
+
+/* ==========================================================================
+   Modais legais — Mobile
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+  /*
+   * Modal legal continua com margem própria.
+   * Não aplicamos os 10px globais diretamente
+   * ao conteúdo interno para preservar leitura.
+   */
+
+  .legal-modal {
+    padding: 10px;
+  }
+
+  .legal-modal-content {
+    max-height: 90vh;
+
+    padding:
+      30px
+      16px
+      26px;
+
+    border-radius: 12px;
+  }
+
+  .legal-modal-content h2 {
+    margin-right: 38px;
+
+    font-size: 24px;
+  }
+
+  .legal-modal-content h3 {
+    font-size: 18px;
+  }
+
+  .legal-modal-content p {
+    font-size: 15px;
+  }
+
+  .legal-modal-close {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+
+/* ==========================================================================
+   Galeria de riscos por temas
+   ========================================================================== */
+
+.risks-gallery {
+  padding: 48px 20px;
+}
+
+.risks-gallery-heading {
+  max-width: 760px;
+
+  margin: 0 auto 44px;
+}
+
+.risk-category {
+  margin-bottom: 55px;
+}
+
+.risk-category-title {
+  margin-bottom: 22px;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.3;
+
+  text-align: center;
+
+  color: var(--color-text);
+}
+
+.risk-carousel-wrapper {
+  width: 100%;
+}
+
+.risk-carousel {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+.risk-carousel img {
+  width: 100%;
+  height: 360px;
+
+  object-fit: contain;
+
+  background: #ffffff;
+
+  border:
+    1px solid
+    rgba(196, 120, 74, 0.22);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 22px
+    rgba(70, 47, 31, 0.08);
+}
+
+.risk-carousel-hint {
+  display: none;
+}
+
+
+/* ==========================================================================
+   Galeria de riscos — Tablet
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  .risk-category-title {
+    font-size: 24px;
+  }
+
+  .risk-carousel {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+}
+
+
+/* ==========================================================================
+   Galeria de riscos — Mobile
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+  /*
+   * A galeria tinha 20px de margem lateral definidos
+   * no bloco principal. No mobile passamos para 10px.
+   */
+
+  .risks-gallery {
+    padding: 32px 10px;
+  }
+
+  .risks-gallery-heading {
+    width: 100%;
+    max-width: 100%;
+
+    margin-bottom: 30px;
+  }
+
+  .risk-category {
+    margin-bottom: 46px;
+  }
+
+  .risk-category-title {
+    margin-bottom: 18px;
+
+    font-size: 21px;
+    line-height: 1.3;
+  }
+
+  .risk-carousel {
+    display: flex;
+
+    gap: 12px;
+
+    overflow-x: auto;
+
+    /*
+     * Mantemos espaço à direita para deixar parte
+     * do próximo risco visível e comunicar que
+     * existe rolagem horizontal.
+     */
+    padding-right: 28px;
+
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .risk-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .risk-carousel img {
+    /*
+     * Aumentado de 78% para 82%.
+     * Com a redução da margem externa, o risco
+     * ganha tamanho perceptível no celular.
+     */
+    flex: 0 0 82%;
+
+    width: 82%;
+    height: auto;
+
+    aspect-ratio: 210 / 297;
+
+    border-radius: 14px;
+
+    scroll-snap-align: start;
+  }
+
+  .risk-carousel-hint {
+    display: block;
+
+    margin-top: 14px;
+
+    font-family:
+      var(--font-body);
+
+    font-size: 14px;
+    font-weight: 500;
+         line-height: 1.45;
+
+    text-align: center;
+
+    color: var(--color-primary);
+  }
+}
+
+
+/* ==========================================================================
+   Fechamento da galeria
+   ========================================================================== */
+
+.risks-gallery-footer {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 16px;
+
+  width: min(100%, 760px);
+
+  margin: 45px auto 0;
+
+  padding: 26px 30px;
+
+  background: #fff8f1;
+
+  border:
+    1px solid
+    rgba(196, 120, 74, 0.22);
+
+  border-radius: 18px;
+}
+
+.risks-gallery-footer-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 40px;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  background:
+    var(--color-primary);
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+.risks-gallery-footer-content {
+  min-width: 0;
+}
+
+.risks-gallery-footer-content strong {
+  display: block;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
+
+  color: var(--color-text);
+}
+
+.risks-gallery-footer-content span {
+  display: block;
+
+  margin-top: 8px;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  color:
+    var(--color-text-light);
+}
+
+.risks-theme-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 14px;
+}
+
+.risks-theme-list span {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 7px 12px;
+
+  background: #ffffff;
+
+  border:
+    1px solid
+    rgba(196, 120, 74, 0.22);
+
+  border-radius: 999px;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+
+  color: var(--color-primary);
+}
+
+.risks-gallery-footer-content p {
+  margin-top: 14px;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+
+  color:
+    var(--color-text-light);
+}
+
+
+/* ==========================================================================
+   Fechamento da galeria — Mobile
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+  /*
+   * Como a seção agora possui somente 10px de margem
+   * externa, reduzimos também o padding interno do
+   * fechamento sem deixar o conteúdo apertado.
+   */
+
+  .risks-gallery-footer {
+    gap: 10px;
+
+    width: 100%;
+
+    margin-top: 34px;
+
+    padding: 17px 14px;
+
+    border-radius: 16px;
+  }
+
+  .risks-gallery-footer-icon {
+    flex-basis: 34px;
+
+    width: 34px;
+    height: 34px;
+
+    font-size: 16px;
+  }
+
+  .risks-gallery-footer-content strong {
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  .risks-gallery-footer-content span {
+    margin-top: 6px;
+
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .risks-theme-list {
+    gap: 6px;
+
+    margin-top: 12px;
+  }
+
+  .risks-theme-list span {
+    padding: 6px 9px;
+
+    font-size: 13px;
+  }
+
+  .risks-gallery-footer-content p {
+    margin-top: 12px;
+
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+
+/* ==========================================================================
+   Oferta final — ajustes de hierarquia e conversão
+   ========================================================================== */
+
+.final-cta .section-subtitle {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto 24px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--color-text-light);
+}
+.final-cta .section-subtitle strong {
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   Videoaula em destaque
+   ========================================================================== */
+
+.bonus-benefit-highlight {
+  padding: 8px 10px !important;
+  box-sizing: border-box;
+  background: #F0F7EC;
+  border: 1px solid #C8DDBD;
+  border-radius: 10px;
+}
+
+
+/* ==========================================================================
+   Preço da oferta final
+   ========================================================================== */
+
+.final-offer-price {
+  width: 100%;
+
+  margin: 16px auto 12px;
+
+  text-align: center;
+}
+
+.final-offer-label {
+  margin-bottom: 4px;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.45;
+
+  color:
+    var(--color-text-light);
+}
+
+.final-offer-old-price {
+  margin-bottom: 4px;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.25;
+
+  color:
+    var(--color-text-light);
+
+  text-decoration: line-through;
+
+  opacity: 0.68;
+}
+
+.final-offer-current-price {
+  margin: 0;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.05;
+
+  color: var(--color-text);
+}
+
+.final-offer-info {
+  width: 100%;
+  max-width: 500px;
+
+  margin: 10px auto 0;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+
+  text-align: center;
+
+  color:
+    var(--color-text-light);
+}
+
+
+/* ==========================================================================
+   Oferta final — Mobile
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .final-cta .section-subtitle {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .bonus-benefit-highlight {
+    padding: 8px !important;
+  }
+
+  .final-offer-price {
+    margin: 14px auto 10px;
+  }
+
+  .final-offer-label {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .final-offer-old-price {
+    font-size: 16px;
+  }
+
+  .final-offer-current-price {
+    font-size: 36px;
+  }
+
+  .final-offer-info {
+    width: 100%;
+    max-width: 400px;
+
+    margin-top: 8px;
+
+    font-size: 13px;
+    line-height: 1.45;
+  }
+}
+
+
+/* ==========================================================
+   MELHORIA DA COMUNICAÇÃO DE PREÇO
+========================================================== */
+
+.price-old-inline {
+
+    text-decoration: line-through;
+
+    opacity: .65;
+
+}
+
+
+.hero-price-label {
+
+    font-size: 15px;
+
+    line-height: 1.4;
+
+}
+
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.faq-list {
+  width: 100%;
+  max-width: 800px;
+  
+  margin: 48px auto 0;
+}
+
+.faq-item {
+  overflow: hidden;
+
+  border-bottom:
+    1px solid
+    var(--color-border);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  width: 100%;
+
+  padding: 24px 0;
+
+  background-color: transparent;
+
+  border: none;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+
+  text-align: left;
+
+  color:
+    var(--color-text);
+
+  cursor: pointer;
+}
+
+.faq-question svg {
+  flex-shrink: 0;
+
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+
+  color:
+    var(--color-primary);
+
+  transition:
+    transform 0.3s;
+}
+
+.faq-item.active .faq-question svg {
+  transform:
+    rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+
+  overflow: hidden;
+
+  transition:
+    max-height 0.4s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+}
+
+.faq-answer p {
+  margin: 0;
+
+  padding: 0 0 24px;
+
+  font-family:
+    var(--font-body);
+
+  font-size: 0.95rem;
+  line-height: 1.8;
+
+  color:
+    var(--color-text-light);
+}
+
+
+/* ==========================================================================
+   FAQ — Mobile
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .faq-list {
+    width: 100%;
+
+    margin-top: 32px;
+  }
+
+  .faq-question {
+    gap: 12px;
+
+    padding:
+      20px
+      0;
+
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .faq-question svg {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+  }
+
+  .faq-answer p {
+    padding-bottom: 20px;
+
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}
+
+/* FAQ - Fundo padrão */
+#duvidas {
+  background-color: var(--color-bg);
+}
+
+/* ==========================================================================
+   Card da oferta final
+   ========================================================================== */
+
+.offer-box {
+  position: relative;
+
+  width: 100%;
+  max-width: 600px;
+
+  margin: 0 auto;
+
+  padding: 48px;
+
+  box-sizing: border-box;
+
+  background:
+    var(--color-white);
+
+  border:
+    2px solid
+    var(--color-primary-light);
+
+  border-radius:
+    var(--radius-lg);
+
+  box-shadow:
+    var(--shadow-lg);
+
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   Card da oferta final — Mobile
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .offer-box {
+    width: 100%;
+    max-width: 600px;
+
+    /*
+     * Mantemos espaço interno suficiente para o
+     * card continuar com aparência premium, mas
+     * aproveitamos melhor a largura do celular.
+     */
+    padding:
+      32px
+      16px;
+
+    border-radius:
+      var(--radius-lg);
+  }
+
+  .offer-benefits {
+    grid-template-columns: 1fr;
+
+    justify-items: stretch;
+
+    width: 100%;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    text-align: left;
+  }
+}
+
+
+/* ==========================================================================
+   Card da oferta final — Mobile pequeno
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+  .offer-box {
+    padding:
+      28px
+      14px;
+  }
+}
+
+
+/* ==========================================================================
+   CTA Final — estrutura base
+   ========================================================================== */
+
+.final-cta {
+  padding: 48px 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-bg-alt),
+      var(--color-bg-warm)
+    );
+
+  text-align: center;
+}
+
+.final-cta-title {
+  margin-bottom: 16px;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.final-cta-title span {
+  font-family:
+    var(--font-script);
+
+  color:
+    var(--color-primary);
+}
+
+.final-cta-subtitle {
+  width: 100%;
+  max-width: 600px;
+
+  margin-right: auto;
+  margin-bottom: 40px;
+  margin-left: auto;
+
+  font-size: 1.1rem;
+
+  color:
+    var(--color-text-light);
+}
+
+
+/* ==========================================================================
+   Rodapé
+   ========================================================================== */
+
+.footer {
+  padding: 24px 0 0;
+
+  background-color:
+    var(--color-text);
+
+  color:
+    var(--color-bg-alt);
+}
+
+.footer-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 60px;
+
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  padding:
+    48px
+    24px
+    40px;
+
+  box-sizing: border-box;
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-brand-name {
+  margin-bottom: 8px;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 1.3rem;
+  font-weight: 700;
+
+  color:
+    var(--color-bg);
+}
+
+.footer-brand p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+
+  color:
+    rgba(255, 255, 255, 0.6);
+}
+
+.footer-links {
+  display: flex;
+
+  gap: 48px;
+}
+
+.footer-links-group h4 {
+  margin-bottom: 12px;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  color:
+    var(--color-bg);
+}
+
+.footer-links-group ul {
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.footer-links-group li {
+  margin-bottom: 8px;
+}
+
+.footer-links-group a {
+  font-size: 0.85rem;
+
+  color:
+    rgba(255, 255, 255, 0.6);
+
+  transition:
+    color 0.3s;
+}
+
+.footer-links-group a:hover {
+  color:
+    var(--color-white);
+}
+
+.footer-bottom {
+  padding: 20px 10px;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+
+  font-size: 0.8rem;
+  line-height: 1.5;
+
+  text-align: center;
+
+  color:
+    rgba(255, 255, 255, 0.4);
+}
+
+
+/* ==========================================================================
+   FAQ + Rodapé — Tablet / Mobile
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  .final-cta {
+    padding: 32px 0;
+  }
+
+  .final-cta-title {
+    font-size: 1.75rem;
+  }
+
+  .final-cta-subtitle {
+    width: 100%;
+    max-width: 100%;
+
+    margin-bottom: 28px;
+  }
+
+  .footer {
+    padding-top: 18px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+
+    gap: 28px;
+
+    width: 100%;
+
+    /*
+     * Seguimos a nova lógica do site:
+     * apenas 10px de margem lateral no mobile.
+     */
+    padding:
+      36px
+      10px
+      30px;
+
+    text-align: center;
+  }
+
+  .footer-brand {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+
+    gap: 24px;
+
+    width: 100%;
+  }
+
+  .footer-links-group {
+    width: 100%;
+  }
+
+  .footer-links-group ul {
+    width: 100%;
+  }
+}
+
+
+/* ==========================================================================
+   Rodapé — Mobile pequeno
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+  .footer-content {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .footer-bottom {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+
+/* ==========================================================
+ PREÇOS
+========================================================== */
+
+
+.hero-price {
+
+    text-align: center;
+    margin: 0 0 16px;
+
+}
+
+
+.hero-price-label {
+
+    font-size: 14px;
+    margin-bottom: 4px;
+
+}
+
+
+.hero-price-current {
+
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.1;
+
+}
+
+
+/* ==========================================================
+   Barra fixa de oferta
+========================================================== */
+
+.promo-bar {
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:36px;
+
+    background:#C4784A;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    z-index:9999;
+
+    padding:0 10px;
+
+    box-sizing:border-box;
+
+}
+
+
+.promo-icon {
+
+    font-size:13px;
+
+    flex-shrink:0;
+
+}
+
+
+.promo-message {
+
+    font-family:var(--font-body);
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#fff8ec;
+
+    text-align:center;
+
+    letter-spacing:.2px;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .promo-bar {
+
+        height:34px;
+
+        padding:0 8px;
+
+    }
+
+
+    .promo-icon {
+
+        font-size:12px;
+
+    }
+
+
+    .promo-message {
+
+        font-size:10.5px;
+
+        white-space:nowrap;
+
+    }
+
+
+}
+
+
+body {
+
+    padding-top:36px;
+
+}
+
+
+/* ==========================================================================
+   DEPOIMENTOS — CARROSSEL CONTÍNUO
+   ========================================================================== */
+
+.customer-results {
+    position: relative;
+    width: 100%;
+    padding: 48px 0;
+    overflow: hidden;
+    background: var(--color-white, #ffffff);
+}
+
+
+/* CABEÇALHO */
+
+.customer-results-heading {
+    width: calc(100% - 40px);
+    max-width: 800px;
+    margin: 0 auto 38px;
+}
+
+.customer-results-heading .section-subtitle {
+    max-width: 650px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* VIEWPORT */
+
+.testimonials-marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    /* importante para mobile */
+    touch-action: pan-y;
+
+    /* cria camada própria */
+    transform: translateZ(0);
+}
+
+
+/* TRACK */
+
+.testimonials-track {
+    display: flex;
+    align-items: flex-start;
+
+    width: max-content;
+
+    transform: translate3d(0, 0, 0);
+
+    /*
+     * MUITO IMPORTANTE:
+     * nenhuma animação CSS.
+     * O movimento será controlado pelo JS.
+     */
+    animation: none !important;
+    transition: none !important;
+
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+
+/* GRUPOS */
+
+.testimonials-group {
+    display: flex;
+    flex: 0 0 auto;
+
+    align-items: flex-start;
+
+    gap: 18px;
+
+    /*
+     * cria exatamente o mesmo espaço
+     * entre o fim do grupo 1 e início do grupo 2
+     */
+    padding-right: 18px;
+}
+
+
+/* CARDS */
+
+.testimonial-slide {
+    flex: 0 0 260px;
+
+    width: 260px;
+    margin: 0;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(196, 120, 74, 0.20);
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 28px
+        rgba(70, 47, 31, 0.10);
+}
+
+
+/* IMAGENS */
+
+.testimonial-slide img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    margin: 0;
+
+    background: #ffffff;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+
+    pointer-events: none;
+}
+
+
+/* FADE ESQUERDO/DIREITO */
+
+.testimonials-marquee::before,
+.testimonials-marquee::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    z-index: 10;
+
+    width: clamp(20px, 5vw, 70px);
+
+    pointer-events: none;
+}
+
+.testimonials-marquee::before {
+    left: 0;
+
+    background:
+        linear-gradient(
+            to right,
+            #ffffff 0%,
+            rgba(255, 255, 255, 0) 100%
+        );
+}
+
+.testimonials-marquee::after {
+    right: 0;
+
+    background:
+        linear-gradient(
+            to left,
+            #ffffff 0%,
+            rgba(255, 255, 255, 0) 100%
+        );
+}
+
+
+/* NOTA */
+
+.testimonials-note {
+    width: calc(100% - 40px);
+    max-width: 650px;
+
+    margin: 25px auto 0;
+
+    font-family: var(--font-body);
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    text-align: center;
+
+    color: var(--color-text-light);
+
+    opacity: 0.78;
+}
+
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+    .testimonials-group {
+        gap: 16px;
+        padding-right: 16px;
+    }
+
+    .testimonial-slide {
+        flex-basis: 245px;
+        width: 245px;
+    }
+
+}
+
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+    .customer-results {
+        padding: 32px 0;
+    }
+
+    .customer-results-heading {
+        width: 100%;
+
+        margin-bottom: 27px;
+
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .customer-results-heading .section-subtitle {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .testimonials-group {
+        gap: 12px;
+        padding-right: 12px;
+    }
+
+    .testimonial-slide {
+        flex: 0 0 min(76vw, 300px);
+
+        width: min(76vw, 300px);
+
+        border-radius: 15px;
+
+        box-shadow:
+            0 8px 22px
+            rgba(70, 47, 31, 0.09);
+    }
+
+    .testimonials-marquee::before,
+    .testimonials-marquee::after {
+        width: 18px;
+    }
+
+    .testimonials-note {
+        width: calc(100% - 28px);
+
+        margin-top: 20px;
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* ==========================================================================
+   MOBILE PEQUENO
+   ========================================================================== */
+
+@media (max-width: 380px) {
+
+    .testimonials-group {
+        gap: 10px;
+        padding-right: 10px;
+    }
+
+    .testimonial-slide {
+        flex-basis: 78vw;
+        width: 78vw;
+    }
+
+}
+
+
+/* ==========================================================
+   CRIADORA DA COLEÇÃO
+========================================================== */
+
+
+.creator-section {
+
+    padding:30px 0;
+
+    background-color:var(--color-white);
+
+}
+
+
+/* ==========================================================
+   CONTAINER PRINCIPAL
+========================================================== */
+
+
+.creator-wrapper {
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(320px, 0.85fr)
+        minmax(420px, 1.15fr);
+
+    align-items:center;
+
+    gap:35px;
+
+    max-width:1100px;
+
+    margin:0 auto;
+
+}
+
+
+/* ==========================================================
+   IMAGEM
+========================================================== */
+
+
+.creator-image {
+
+    width:100%;
+
+    max-width:420px;
+
+    aspect-ratio:4 / 5;
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+
+.creator-image img {
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center;
+
+    display:block;
+
+}
+
+
+/* ==========================================================
+   CONTEÚDO
+========================================================== */
+
+
+.creator-content {
+
+    color:var(--color-text);
+
+}
+
+
+.creator-content p {
+
+    font-family:var(--font-body);
+
+    font-size:15px;
+
+    line-height:1.55;
+
+    color:var(--color-text-light);
+
+    margin-bottom:12px;
+
+}
+
+
+/* ==========================================================
+   TÍTULO
+========================================================== */
+
+
+.creator-title {
+
+    font-family:var(--font-display);
+
+    font-size:36px;
+
+    line-height:1.2;
+
+    margin-bottom:12px;
+
+    color:var(--color-text);
+
+}
+
+
+.creator-title span {
+
+    display:block;
+
+    font-family:var(--font-script);
+
+    color:var(--color-primary);
+
+    font-size:110%;
+
+    margin-top:3px;
+
+}
+
+
+/* ==========================================================
+   ASSINATURA
+========================================================== */
+
+
+.creator-signature {
+
+    margin-top:15px;
+
+    font-family:var(--font-script);
+
+    font-size:42px;
+
+    line-height:1;
+
+    color:var(--color-primary);
+
+}
+
+
+.creator-signature small {
+
+    display:block;
+
+    margin-top:6px;
+
+    font-family:var(--font-body);
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    line-height:1.6;
+
+    color:var(--color-text);
+
+}
+
+
+/* ==========================================================
+   TABLET / MOBILE
+========================================================== */
+
+
+@media(max-width:900px){
+
+
+    .creator-section {
+
+        padding:24px 0;
+
+    }
+
+
+    .creator-wrapper {
+
+        grid-template-columns:1fr;
+
+        gap:20px;
+
+        max-width:500px;
+
+    }
+
+
+    .creator-image {
+
+        max-width:380px;
+
+        margin:0 auto;
+
+    }
+
+
+    .creator-content {
+
+        text-align:center;
+
+    }
+
+
+    .creator-title {
+
+        font-size:30px;
+
+    }
+
+
+    .creator-content p {
+
+        font-size:15px;
+
+        text-align:left;
+
+    }
+
+
+    .creator-signature {
+
+        text-align:center;
+
+    }
+
+
+}
+
+/* ==========================================================
+   ROLAGEM SUAVE PARA BOTÕES DE OFERTA
+========================================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Ajuste da posição final para não colar o bloco no topo */
+#oferta {
+    scroll-margin-top: 30px;
+}
+
+/* ==========================================================================
+   FIM DO STYLES.CSS LIMPO
+   ========================================================================== */
