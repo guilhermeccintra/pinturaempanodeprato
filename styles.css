@@ -452,7 +452,7 @@ section {
 
     font-family:var(--font-body);
 
-    font-size:11px;
+    font-size:20px;
 
     font-weight:600;
 
@@ -485,7 +485,7 @@ section {
 
         margin-bottom:6px;
 
-        font-size:8px;
+        font-size:16px;
 
         letter-spacing:1.8px;
 
