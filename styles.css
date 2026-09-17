@@ -1156,14 +1156,6 @@ clamp(
 }
 
 
-/* Remove espaçamento herdado do bloco de preço */
-.bonuses-cta .hero-price {
-
-    display: none;
-
-}
-
-
 /* Mantém o botão centralizado */
 .bonuses-cta .hero-buttons {
 
