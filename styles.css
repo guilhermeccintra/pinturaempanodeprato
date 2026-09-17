@@ -447,8 +447,6 @@ section {
 
     width:100%;
 
-    margin-top:8px;
-
     font-family: var(--font-body);
 
     font-style: italic;
@@ -481,8 +479,6 @@ section {
         width:100%;
 
         max-width:300px;
-
-        margin:8px auto 0;
 
         padding:0;
 
