@@ -480,17 +480,25 @@ section {
 
         width:100%;
 
-        padding:0 8px;
+        max-width:300px;
 
-        font-size:15px;
+        margin:8px auto 0;
+
+        padding:0;
+
+        font-size:16px;
 
         font-style:italic;
 
+        font-weight:400;
+
         letter-spacing:0;
 
-        line-height:1.35;
+        line-height:1.4;
 
         white-space:normal;
+
+        text-align:center;
 
     }
 
