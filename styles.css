@@ -3374,7 +3374,7 @@ clamp(
   flex-direction: column;
   width: fit-content;
   max-width: 620px;
-  margin: 0 auto 25px;
+  margin: 15px auto 25px;
   padding: 0;
   gap: 16px;
   list-style: none;
