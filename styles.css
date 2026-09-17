@@ -462,7 +462,7 @@ section {
     text-transform:uppercase;
 
 
-    color:#8B7564;
+    color: var(--color-text);
 
 
     line-height:1.3;
@@ -485,7 +485,7 @@ section {
 
         margin-bottom:6px;
 
-        font-size:16px;
+        font-size:12px;
 
         letter-spacing:1.8px;
 
