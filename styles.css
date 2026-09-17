@@ -1259,7 +1259,7 @@ clamp(
   position: relative;
   width: 100%;
   max-width: 100%;
-  margin: 12px auto;
+  margin: 0 auto;
 }
 
 .comparison-viewport {
@@ -1818,7 +1818,7 @@ clamp(
 
   .comparison-carousel {
     max-width: 100%;
-    margin: 6px auto;
+    margin: 0 auto;
   }
 
   .comparison-before {
