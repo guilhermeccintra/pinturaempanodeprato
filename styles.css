@@ -575,6 +575,39 @@ clamp(
   vertical-align: baseline;
 }
 
+/* ==========================================================
+   HERO - QUEBRA DE OBJEÇÃO
+   ========================================================== */
+
+.hero-title-objection {
+
+    display: block;
+
+    width: 100%;
+    max-width: 700px;
+
+    margin: 8px auto 18px;
+
+    font-family: var(--font-body);
+
+    font-size: clamp(
+        1rem,
+        1.5vw,
+        1.25rem
+    );
+
+    font-weight: 500;
+
+    line-height: 1.4;
+
+    letter-spacing: 0;
+
+    color: var(--color-text-light);
+
+    text-align: center;
+
+}
+
 .hero-price {
   display: flex;
   flex-direction: column;
@@ -742,6 +775,23 @@ clamp(
     color: var(--color-text);
   }
 
+
+   .hero-title-objection {
+
+    width: 100%;
+
+    max-width: 320px;
+
+    margin: 8px auto 14px;
+
+    font-size: 15px;
+
+    line-height: 1.35;
+
+    font-weight: 500;
+
+}
+   
 
   .hero-price {
     flex-direction: column;
