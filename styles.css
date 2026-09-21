@@ -5732,9 +5732,10 @@ html {
 
 .urgency-banner {background: #FFECB3;
     color: var(--primary);
+    font-size: 15px;
     font-weight: 700;
     text-align: center;
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
     font-weight: 700;
     border: 1px solid #FFE082;}
