@@ -5728,6 +5728,21 @@ html {
     scroll-margin-top: 30px;
 }
 
+
+
+.urgency-banner {background: #FFECB3;
+    color: var(--primary);
+    font-weight: 700;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    border: 1px solid #FFE082;}
+
+
+
+
 /* ==========================================================================
    FIM DO STYLES.CSS LIMPO
    ========================================================================== */
