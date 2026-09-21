@@ -5735,9 +5735,9 @@ html {
     font-size: 15px;
     font-weight: 700;
     text-align: center;
-    padding: 10px;
+    padding: 8px;
+    margin-bottom: 16px;             
     border-radius: 10px;
-    font-weight: 700;
     border: 1px solid #FFE082;}
 
 
