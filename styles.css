@@ -4429,6 +4429,24 @@ clamp(
 }
 
 
+/* ==========================================================
+   CARROSSEL DE RISCOS — HOVER PAUSA + CURSOR
+========================================================== */
+
+.risks-marquee:hover .risks-track {
+    animation-play-state: paused;
+}
+
+.risks-track {
+    cursor: grab;
+}
+
+.risks-marquee:hover .risks-track {
+    cursor: grabbing;
+}
+
+
+
 /* ==========================================================================
    Oferta final — ajustes de hierarquia e conversão
    ========================================================================== */
