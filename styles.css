@@ -6231,49 +6231,96 @@ body {
    MOBILE
 ========================================================== */
 
-
 @media(max-width:768px){
 
+    .pain-grid {
+
+        display:grid;
+
+        grid-template-columns:1fr;
+
+        gap:16px;
+
+        width:100%;
+
+        max-width:100%;
+
+    }
+
+
+    .pain-card {
+
+        width:100%;
+
+        padding:24px 18px;
+
+    }
+
+
+
+    /* ======================================================
+       FOOTER PADRÃO
+    ====================================================== */
 
     .pain-footer {
 
-    align-items:flex-start;
+        align-items:flex-start;
 
-    padding:15px 14px;
+        padding:15px 14px;
 
-    margin-top:28px;
+        margin-top:28px;
 
-}
-
-
-
-.pain-footer-icon {
-
-    flex-basis:35px;
-
-    width:35px;
-
-    height:35px;
-
-    font-size:16px;
-
-}
+    }
 
 
 
-.pain-footer strong {
+    /* ======================================================
+       ÍCONE FOOTER
+    ====================================================== */
 
-    font-size:16px;
+    .pain-footer-icon {
 
-}
+        flex-basis:35px;
+
+        width:35px;
+
+        height:35px;
+
+        font-size:16px;
+
+    }
 
 
 
-.pain-footer span {
+    /* ======================================================
+       TEXTOS FOOTER
+    ====================================================== */
 
-    font-size:14px;
+    .pain-footer strong {
 
-}
+        font-size:16px;
+
+    }
+
+
+    .pain-footer span {
+
+        font-size:14px;
+
+    }
+
+
+
+    /* ======================================================
+       AJUSTE DO CABEÇALHO
+    ====================================================== */
+
+    .pain-heading {
+
+        margin-bottom:28px;
+
+    }
+
 
 }
 
