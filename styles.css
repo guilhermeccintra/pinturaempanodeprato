@@ -598,7 +598,7 @@ section {
   width: 100%;
   margin-top: 0;
   margin-left: 0;
-  margin-bottom:0;
+  margin-bottom:7px;
   font-family: var(--font-script);
   font-size:
 clamp(
@@ -724,7 +724,7 @@ clamp(
 
     letter-spacing: -0.02em;
 
-    margin-bottom:5px;
+    margin-bottom:0;
 
 }
 
