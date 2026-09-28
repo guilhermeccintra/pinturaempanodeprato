@@ -5227,32 +5227,24 @@ clamp(
 
 .testimonial-slide {
 
-    flex:0 0 190px;
+    flex:0 0 210px;
 
-    width:190px;
+    width:210px;
 
     margin:0;
 
     overflow:hidden;
 
-
     border:
-
     1px solid
-
     rgba(196,120,74,0.20);
-
 
     border-radius:16px;
 
-
     background:#ffffff;
 
-
     box-shadow:
-
     0 8px 22px
-
     rgba(70,47,31,0.08);
 
 }
