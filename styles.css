@@ -342,7 +342,7 @@ section {
 
   overflow: hidden;
 
-  padding: 10px 20px 48px;
+  padding: 0 20px 48px;
 
   background: var(--color-bg);
 }
@@ -674,7 +674,7 @@ clamp(
 
   .hero {
     padding:
-      10px
+      0
       10px
       32px;
   }
