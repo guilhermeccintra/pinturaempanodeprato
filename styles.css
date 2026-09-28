@@ -5283,31 +5283,6 @@ clamp(
 
 
 
-.offer-delivery-content li {
-
-    display:flex;
-
-    align-items:center;
-
-
-    font-family:var(--font-body);
-
-
-    font-size:17px;
-
-
-    font-weight:500;
-
-
-    line-height:1.45;
-
-
-    color:var(--color-text);
-
-}
-
-
-
 /* ==========================================================================
    Ancoragem de preço
 ========================================================================== */
