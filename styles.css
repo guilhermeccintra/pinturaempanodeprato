@@ -3467,10 +3467,11 @@ clamp(
 
 
 /* ==========================================================================
-   HERO RATING - Barra de prova social
+   HERO COLLECTION PROOF - Avatares + benefício
 ========================================================================== */
 
-.hero-rating {
+
+.hero-collection-proof {
 
     display:flex;
 
@@ -3482,31 +3483,14 @@ clamp(
     gap:12px;
 
 
-    width:max-content;
-
-    max-width:calc(100% - 32px);
+    max-width:520px;
 
 
-    margin:0 auto 16px;
-
-
-    padding:8px 18px;
-
-
-    background:#ffffff;
-
-
-    border-radius:50px;
-
-
-    box-sizing:border-box;
-
-
-    box-shadow:
-        0 2px 10px rgba(96,69,50,0.06);
+    margin:14px auto 0;
 
 
 }
+
 
 
 /* ==========================================================================
@@ -3514,7 +3498,7 @@ clamp(
 ========================================================================== */
 
 
-.hero-rating__avatars {
+.hero-collection-proof__avatars {
 
     display:flex;
 
@@ -3525,7 +3509,7 @@ clamp(
 }
 
 
-.hero-rating__avatars img {
+.hero-collection-proof__avatars img {
 
 
     width:34px;
@@ -3546,64 +3530,18 @@ clamp(
 
 
     box-shadow:
-        0 1px 4px rgba(0,0,0,.12);
+    0 1px 4px rgba(0,0,0,.12);
 
 
 }
 
 
-.hero-rating__avatars img:first-child {
+.hero-collection-proof__avatars img:first-child {
 
     margin-left:0;
 
 }
 
-
-/* ==========================================================================
-   CONTEÚDO
-========================================================================== */
-
-
-.hero-rating__content {
-
-    display:flex;
-
-    align-items:center;
-
-
-    gap:8px;
-
-
-}
-
-
-/* ==========================================================================
-   ESTRELAS
-========================================================================== */
-
-
-.hero-rating__stars {
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    gap:1px;
-
-
-    font-size:17px;
-
-
-    line-height:1;
-
-
-    color:#F5B800;
-
-
-}
 
 
 /* ==========================================================================
@@ -3611,16 +3549,7 @@ clamp(
 ========================================================================== */
 
 
-.hero-rating__text {
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    gap:5px;
+.hero-collection-proof__text {
 
 
     margin:0;
@@ -3631,28 +3560,26 @@ clamp(
     serif;
 
 
-    color:#604532;
-
-
     font-size:13px;
 
 
-    line-height:1.2;
+    line-height:1.35;
+
+
+    color:#604532;
 
 
 }
 
 
-.hero-rating__text strong {
-
-
-    font-size:15px;
+.hero-collection-proof__text strong {
 
 
     font-weight:700;
 
 
 }
+
 
 
 /* ==========================================================================
@@ -3663,85 +3590,37 @@ clamp(
 @media(max-width:600px){
 
 
-.hero-rating {
+.hero-collection-proof {
 
 
-    width:auto;
+    gap:8px;
 
+    padding:0 16px;
 
-    max-width:calc(100% - 32px);
-
-
-    gap:7px;
-
-
-    padding:6px 12px;
-
-
-    margin-bottom:12px;
-
+    align-items:flex-start;
 
 }
 
 
-.hero-rating__avatars img {
+.hero-collection-proof__avatars img {
 
 
-    width:24px;
+    width:26px;
 
-    height:24px;
+    height:26px;
 
 
     margin-left:-7px;
 
-
 }
 
 
-.hero-rating__stars {
+.hero-collection-proof__text {
 
 
-    font-size:13px;
+    font-size:11px;
 
-
-}
-
-
-.hero-rating__content {
-
-
-    gap:5px;
-
-
-}
-
-
-.hero-rating__text {
-
-
-    flex-direction:row;
-
-
-    align-items:center;
-
-
-    gap:4px;
-
-
-    font-size:9px;
-
-
-    white-space:nowrap;
-
-
-}
-
-
-.hero-rating__text strong {
-
-
-    font-size:12px;
-
+    line-height:1.35;
 
 }
 
@@ -3757,48 +3636,20 @@ clamp(
 @media(max-width:380px){
 
 
-.hero-rating {
+.hero-collection-proof__avatars img {
 
 
-    padding:6px 10px;
+    width:23px;
 
-}
-
-
-.hero-rating__avatars img {
-
-
-    width:22px;
-
-    height:22px;
-
+    height:23px;
 
 }
 
 
-.hero-rating__stars {
+.hero-collection-proof__text {
 
 
-    font-size:12px;
-
-
-}
-
-
-.hero-rating__text {
-
-
-    font-size:8px;
-
-
-}
-
-
-.hero-rating__text strong {
-
-
-    font-size:11px;
-
+    font-size:10px;
 
 }
 
