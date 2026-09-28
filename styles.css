@@ -6549,11 +6549,40 @@ body {
 
     .for-who-footer {
 
-        padding:18px 14px;
+    align-items:flex-start;
 
-        margin-top:28px;
+    padding:15px 14px;
 
-    }
+    margin-top:28px;
+
+}
+
+
+.for-who-footer::before {
+
+    flex-basis:35px;
+
+    width:35px;
+
+    height:35px;
+
+    font-size:16px;
+
+}
+
+
+.for-who-footer strong {
+
+    font-size:16px;
+
+}
+
+
+.for-who-footer span {
+
+    font-size:14px;
+
+}
 
 
 
