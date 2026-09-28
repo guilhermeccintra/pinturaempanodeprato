@@ -502,6 +502,55 @@ section {
 }
 
 
+/* ==========================================================
+   EYEBROW DO HERO
+   ========================================================== */
+
+.hero-eyebrow {
+
+    display:block;
+
+    margin-bottom:12px;
+
+    font-family:var(--font-body);
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:2.8px;
+
+    text-transform:uppercase;
+
+    color:var(--color-primary);
+
+    line-height:1.3;
+
+    text-align:center;
+
+}
+
+
+/* ==========================================================
+   EYEBROW — MOBILE
+   ========================================================== */
+
+@media(max-width:768px){
+
+    .hero-eyebrow {
+
+        margin-bottom:10px;
+
+        font-size:11px;
+
+        letter-spacing:2px;
+
+        line-height:1.3;
+
+    }
+
+}
+
 .hero-title-main {
   display: block;
 
