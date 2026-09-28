@@ -3105,7 +3105,7 @@ clamp(
 .hero-method p {
 
     margin:0 auto;
-
+    font-size: 18px;
     max-width:680px;
 
     font-family:var(--font-body);
