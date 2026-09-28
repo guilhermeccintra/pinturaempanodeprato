@@ -8018,28 +8018,19 @@ body {
 
 .offer-delivery-content .benefit-text {
 
-    display:flex;
+    display:block;
 
-    align-items:center;
-
-
-    min-height:40px;
-
+    min-width:0;
 
     font-family:var(--font-body);
 
-
     font-size:18px;
-
 
     font-weight:400;
 
-
-    line-height:1.35;
-
+    line-height:1.45;
 
     color:var(--color-text-light);
-
 
     text-align:left;
 
