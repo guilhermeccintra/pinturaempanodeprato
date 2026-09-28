@@ -1688,6 +1688,38 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// ==========================================================
+// DATA DINÂMICA DA BARRA DE OFERTA
+// ==========================================================
+
+function atualizarOferta() {
+
+    const hoje = new Date();
+
+    const dia = String(hoje.getDate()).padStart(2, '0');
+
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+
+    const ano = hoje.getFullYear();
+
+
+    const dataFormatada = `${dia}/${mes}/${ano}`;
+
+
+    const elemento = document.getElementById('promo-date');
+
+
+    if (elemento) {
+
+        elemento.textContent =
+        `OFERTA ESPECIAL DISPONÍVEL APENAS HOJE ${dataFormatada}`;
+
+    }
+
+}
+
+
+atualizarOferta();
 
 /* ==========================================================
    FIM DO SCRIPT.JS
