@@ -3091,9 +3091,9 @@ clamp(
 
 .hero-method {
 
-    width:100%;
+    width:90%;
 
-    max-width:720px;
+    max-width:0;
 
     margin:16px auto 0;
 
