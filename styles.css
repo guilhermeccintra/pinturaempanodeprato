@@ -6247,7 +6247,7 @@ body {
 
     padding:60px 20px;
 
-    background:var(--color-bg);
+    background:var(--color-white);
 
 }
 
@@ -6288,7 +6288,7 @@ body {
 
     padding:30px 24px;
 
-    background:#ffffff;
+    background:var(--color-bg);
 
     border:
 
@@ -6389,7 +6389,7 @@ body {
     padding:22px;
 
 
-    background:#ffffff;
+    background:var(--color-bg);
 
 
     border-radius:18px;
