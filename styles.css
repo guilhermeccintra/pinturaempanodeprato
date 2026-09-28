@@ -5290,7 +5290,7 @@ clamp(
 .offer-anchor {
 
 
-  margin:18px auto 4px;
+  margin:18px auto 0;
 
 
   font-family:var(--font-body);
