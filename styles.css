@@ -4020,7 +4020,7 @@ clamp(
 
     padding:48px 20px;
 
-    background:var(--color-white);
+    background:var(--color-bg-alt);
 
 }
 
@@ -5911,7 +5911,7 @@ body {
 
     padding:60px 20px;
 
-    background:var(--color-bg-alt);
+    background:var(--color-white);
 
 }
 
@@ -5966,7 +5966,7 @@ body {
     padding:30px 24px;
 
 
-    background:#ffffff;
+    background:var(--color-bg-alt);
 
 
     border:
