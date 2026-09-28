@@ -4913,7 +4913,161 @@ clamp(
 
 }
 
+/* ==========================================================
+   OFERTA FINAL 2.0
+========================================================== */
 
+
+.offer-delivery-content ul {
+
+    list-style:none;
+
+    margin:8px 0 0;
+
+    padding:0;
+
+
+}
+
+
+.offer-delivery-content li {
+
+    margin-bottom:6px;
+
+    font-family:var(--font-body);
+
+    font-size:14px;
+
+    line-height:1.45;
+
+    color:var(--color-text-light);
+
+}
+
+
+
+.offer-delivery-content li::first-letter {
+
+    color:var(--color-secondary);
+
+}
+
+
+
+
+/* Parcelamento */
+
+
+.final-offer-installments {
+
+    margin-top:8px;
+
+
+    font-family:var(--font-body);
+
+
+    font-size:16px;
+
+
+    color:var(--color-text-light);
+
+
+}
+
+
+.final-offer-installments strong {
+
+
+    color:var(--color-text);
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+/* Melhor destaque do preço */
+
+
+.final-offer-current-price {
+
+
+    font-size:58px;
+
+
+    letter-spacing:-1px;
+
+
+}
+
+
+
+
+
+/* CTA mais forte */
+
+
+.offer-box .btn-primary {
+
+
+    min-height:78px;
+
+
+    font-size:18px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+/* Segurança */
+
+
+.offer-security {
+
+
+    padding-top:8px;
+
+}
+
+
+
+@media(max-width:768px){
+
+
+    .final-offer-current-price {
+
+        font-size:44px;
+
+    }
+
+
+
+    .final-offer-installments {
+
+        font-size:14px;
+
+    }
+
+
+
+    .offer-box .btn-primary {
+
+        font-size:15px;
+
+        min-height:72px;
+
+    }
+
+
+}
 
 /* ==========================================================================
    Selo superior da oferta
