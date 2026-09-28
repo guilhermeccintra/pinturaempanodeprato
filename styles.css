@@ -4687,7 +4687,7 @@ clamp(
   }
 
   .final-offer-label {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.45;
   }
 
@@ -5292,7 +5292,7 @@ clamp(
   font-family:var(--font-body);
 
 
-  font-size:16px;
+  font-size:18px;
 
 
   color:var(--color-text-light);
@@ -5321,7 +5321,7 @@ clamp(
 
 @media (max-width: 768px) {
    .offer-anchor {
-          font-size: 15px;
+          font-size: 16px;
    }
 }
 
@@ -5346,7 +5346,7 @@ clamp(
   margin-bottom:5px;
 
 
-  font-size:16px;
+  font-size:18px;
 
 
 }
