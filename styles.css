@@ -3095,26 +3095,9 @@ clamp(
 
     max-width:720px;
 
-    margin:28px auto 24px;
+    margin:28px auto 0;
 
     text-align:center;
-
-}
-
-
-.hero-method h2 {
-
-    margin:0 0 10px;
-
-    font-family:var(--font-display);
-
-    font-size:24px;
-
-    font-weight:700;
-
-    line-height:1.3;
-
-    color:var(--color-text);
 
 }
 
@@ -3156,7 +3139,7 @@ clamp(
 
     .hero-method {
 
-        margin:22px auto 20px;
+        margin:22px auto 0;
 
         padding:0 8px;
 
