@@ -4197,7 +4197,58 @@ clamp(
 
 }
 
+/* ==========================================================
+   SEGUNDO CARROSSEL DE RISCOS - DIREÇÃO INVERSA
+========================================================== */
 
+
+.risks-marquee-reverse {
+
+    margin-top:24px;
+
+}
+
+
+
+.risks-marquee-reverse .risks-track {
+
+    animation:
+
+    risksMoveReverse 35s linear infinite;
+
+}
+
+
+
+/* Movimento contrário */
+
+@keyframes risksMoveReverse {
+
+
+    from {
+
+        transform:translateX(-50%);
+
+    }
+
+
+    to {
+
+        transform:translateX(0);
+
+    }
+
+}
+
+
+
+/* pausa no hover */
+
+.risks-marquee-reverse:hover .risks-track {
+
+    animation-play-state:paused;
+
+}
 
 /* ==========================================================================
    TEMAS INCLUÍDOS
