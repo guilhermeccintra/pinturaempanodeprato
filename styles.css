@@ -7904,6 +7904,74 @@ body {
 
 }
 
+
+/* ==========================================================
+   ÍCONES DA ENTREGA - IGUAL AO HERO
+========================================================== */
+
+
+.offer-delivery-content li {
+
+    display:grid;
+
+    grid-template-columns:40px minmax(0,1fr);
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+
+.offer-delivery-content .benefit-icon {
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    width:40px;
+
+    height:40px;
+
+
+    background:#f7e6d8;
+
+
+    border-radius:50%;
+
+
+    font-size:18px;
+
+
+    line-height:1;
+
+
+    box-shadow:
+
+    0 3px 10px rgba(28,17,10,.10);
+
+}
+
+
+
+.offer-delivery-content .benefit-text {
+
+
+    font-family:var(--font-body);
+
+    font-size:17px;
+
+    line-height:1.45;
+
+    color:var(--color-text);
+
+}
+
 /* ==========================================================================
    FIM DO STYLES.CSS LIMPO
    ========================================================================== */
