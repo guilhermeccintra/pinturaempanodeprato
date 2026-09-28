@@ -95,6 +95,10 @@ html {
     scroll-margin-top: 20px;
 }
 
+#oferta {
+    scroll-margin-top: 20px;
+}
+
 body {
   font-family: var(--font-body);
 
