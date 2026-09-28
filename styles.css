@@ -7981,22 +7981,45 @@ body {
 
     justify-content:center;
 
+
     width:40px;
 
     height:40px;
 
-    margin-top:2px;
 
-    background:#f7e6d8;
+    min-width:40px;
+
+
+    margin:0;
+
+
+    padding:0;
+
+
+    box-sizing:border-box;
+
+
+    background:var(--color-primary);
+
 
     border-radius:50%;
 
-    font-size:18px;
+
+    font-size:20px;
+
+
+    font-weight:800;
+
 
     line-height:1;
 
+
+    color:#ffffff;
+
+
     box-shadow:
-    0 3px 10px rgba(28,17,10,.10);
+
+    0 4px 12px rgba(196,120,74,.20);
 
 }
 
