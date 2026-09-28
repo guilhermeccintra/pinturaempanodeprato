@@ -5059,19 +5059,6 @@ clamp(
 
 
 
-
-/* Segurança */
-
-
-.offer-security {
-
-
-    padding-top:8px;
-
-}
-
-
-
 @media(max-width:768px){
 
 
@@ -5435,7 +5422,7 @@ clamp(
   gap:3px;
 
 
-  margin-top:20px;
+  margin-top:18px;
 
 
   font-family:var(--font-body);
