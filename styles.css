@@ -4047,7 +4047,9 @@ clamp(
 
     position:relative;
 
-    width:100%;
+    width:100vw;
+
+    margin-left:calc(50% - 50vw);
 
     overflow:hidden;
 
