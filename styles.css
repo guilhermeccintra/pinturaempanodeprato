@@ -4935,15 +4935,15 @@ clamp(
 
 .offer-delivery-content li {
 
-    margin-bottom:6px;
+    display:grid;
 
-    font-family:var(--font-body);
+    grid-template-columns:40px minmax(0,1fr);
 
-    font-size:14px;
+    align-items:start;
 
-    line-height:1.45;
+    column-gap:12px;
 
-    color:var(--color-text-light);
+    width:100%;
 
 }
 
@@ -7951,26 +7951,21 @@ body {
 
     justify-content:center;
 
-
     width:40px;
 
     height:40px;
 
+    margin-top:2px;
 
     background:#f7e6d8;
 
-
     border-radius:50%;
-
 
     font-size:18px;
 
-
     line-height:1;
 
-
     box-shadow:
-
     0 3px 10px rgba(28,17,10,.10);
 
 }
@@ -7981,21 +7976,17 @@ body {
 
     display:block;
 
+    padding-top:6px;
 
     font-family:var(--font-body);
 
-
     font-size:18px;
-
 
     font-weight:400;
 
-
     line-height:1.45;
 
-
     color:var(--color-text-light);
-
 
     text-align:left;
 
