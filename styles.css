@@ -3565,7 +3565,7 @@ clamp(
 
     line-height:1.4;
 
-    color:#604532;
+    color:var(--color-text);
 
 }
 
