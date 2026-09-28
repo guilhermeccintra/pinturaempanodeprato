@@ -5966,7 +5966,7 @@ body {
     padding:30px 24px;
 
 
-    background:var(--color-bg-alt);
+    background:var(--color-bg);
 
 
     border:
@@ -6009,7 +6009,7 @@ body {
     margin:0 auto 18px;
 
 
-    background:#FFF0E0;
+    background:var(--color-bg-alt);
 
 
     border-radius:50%;
@@ -6085,7 +6085,7 @@ body {
     padding:22px;
 
 
-    background:#ffffff;
+    background:var(--color-bg);
 
 
     border-radius:18px;
