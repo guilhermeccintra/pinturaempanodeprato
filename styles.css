@@ -3471,7 +3471,7 @@ clamp(
 
 
 /* ==========================================================================
-   HERO COLLECTION PROOF - Avatares + benefício
+   HERO COLLECTION PROOF - PROVA SOCIAL PREMIUM
 ========================================================================== */
 
 
@@ -3483,15 +3483,13 @@ clamp(
 
     justify-content:center;
 
+    gap:14px;
 
-    gap:12px;
+    width:100%;
 
+    max-width:540px;
 
-    max-width:520px;
-
-
-    margin:14px auto 0;
-
+    margin:18px auto 0;
 
 }
 
@@ -3510,15 +3508,18 @@ clamp(
 
     flex-shrink:0;
 
+    padding-left:8px;
+
 }
+
 
 
 .hero-collection-proof__avatars img {
 
 
-    width:34px;
+    width:38px;
 
-    height:34px;
+    height:38px;
 
 
     object-fit:cover;
@@ -3527,15 +3528,28 @@ clamp(
     border-radius:50%;
 
 
-    border:2px solid #fff;
+    border:2px solid #ffffff;
 
 
-    margin-left:-9px;
+    margin-left:-12px;
 
 
     box-shadow:
-    0 1px 4px rgba(0,0,0,.12);
 
+    0 4px 12px rgba(0,0,0,.14);
+
+
+    background:#fff;
+
+    transition:.25s ease;
+
+
+}
+
+
+.hero-collection-proof__avatars img:hover {
+
+    transform:translateY(-3px);
 
 }
 
@@ -3555,21 +3569,29 @@ clamp(
 
 .hero-collection-proof__text {
 
+
     margin:0;
 
-    max-width:320px;
+
+    max-width:330px;
+
 
     text-align:left;
+
 
     font-family:Georgia,
     "Times New Roman",
     serif;
 
-    font-size:13px;
 
-    line-height:1.4;
+    font-size:14px;
+
+
+    line-height:1.45;
+
 
     color:var(--color-text);
+
 
 }
 
@@ -3578,6 +3600,9 @@ clamp(
 
 
     font-weight:700;
+
+
+    color:#46301f;
 
 
 }
@@ -3595,39 +3620,55 @@ clamp(
 .hero-collection-proof {
 
 
-    gap:8px;
+    gap:10px;
 
-    padding:0 16px;
+    padding:0 18px;
 
-    align-items:flex-start;
+    align-items:center;
 
 }
+
+
+
+.hero-collection-proof__avatars {
+
+    padding-left:6px;
+
+}
+
 
 
 .hero-collection-proof__avatars img {
 
 
-    width:26px;
+    width:32px;
 
-    height:26px;
+    height:32px;
 
 
-    margin-left:-7px;
+    margin-left:-10px;
+
 
 }
+
 
 
 .hero-collection-proof__text {
 
 
-    font-size:11px;
+    max-width:260px;
 
-    line-height:1.35;
+    font-size:12px;
+
+    line-height:1.4;
+
 
 }
 
 
+
 }
+
 
 
 /* ==========================================================================
@@ -3638,22 +3679,37 @@ clamp(
 @media(max-width:380px){
 
 
+.hero-collection-proof {
+
+
+    gap:8px;
+
+    padding:0 12px;
+
+}
+
+
+
 .hero-collection-proof__avatars img {
 
 
-    width:23px;
+    width:28px;
 
-    height:23px;
+    height:28px;
+
 
 }
+
 
 
 .hero-collection-proof__text {
 
 
-    font-size:10px;
+    font-size:11px;
+
 
 }
+
 
 
 }
