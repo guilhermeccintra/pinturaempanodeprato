@@ -440,7 +440,7 @@ section {
    SUBHEADLINE PREMIUM DO HERO
    ========================================================== */
 
-.hero-title-eyebrow {
+.hero-title-subheadline {
 
     display:block;
 
@@ -468,12 +468,12 @@ section {
 
 
 /* ==========================================================================
-   Hero Eyebrow — Mobile
+   Hero Subheadline — Mobile
 ========================================================================== */
 
 @media(max-width:768px){
 
-    .hero-title-eyebrow {
+    .hero-title-subheadline {
 
         width:90%;
 
