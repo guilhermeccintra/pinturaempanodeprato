@@ -476,9 +476,9 @@ section {
 
     .hero-title-eyebrow {
 
-        width:100%;
+        width:90%;
 
-        max-width:300px;
+        max-width:none;
 
         margin:0 auto 0;
 
