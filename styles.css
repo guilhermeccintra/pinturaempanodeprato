@@ -7906,8 +7906,26 @@ body {
 
 
 /* ==========================================================
-   ÍCONES DA ENTREGA - IGUAL AO HERO
+   OFERTA FINAL - BENEFÍCIOS IGUAL AO HERO
 ========================================================== */
+
+
+.offer-delivery-content ul {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+    margin:0;
+
+    padding:0;
+
+    list-style:none;
+
+}
+
 
 
 .offer-delivery-content li {
@@ -7918,14 +7936,15 @@ body {
 
     align-items:center;
 
-    gap:12px;
+    column-gap:12px;
+
+    width:100%;
 
 }
 
 
 
 .offer-delivery-content .benefit-icon {
-
 
     display:flex;
 
@@ -7961,14 +7980,25 @@ body {
 
 .offer-delivery-content .benefit-text {
 
+    display:block;
+
 
     font-family:var(--font-body);
 
-    font-size:17px;
+
+    font-size:18px;
+
+
+    font-weight:400;
+
 
     line-height:1.45;
 
-    color:var(--color-text);
+
+    color:var(--color-text-light);
+
+
+    text-align:left;
 
 }
 
