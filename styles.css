@@ -5663,6 +5663,126 @@ html {
 }
 
 
+/* ==========================================================
+   Barra fixa de oferta dinâmica
+========================================================== */
+
+.promo-bar {
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    min-height:36px;
+
+    background:#C4784A;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:9999;
+
+    padding:7px 12px;
+
+    box-sizing:border-box;
+
+}
+
+
+/* ==========================================================
+   Texto da oferta
+========================================================== */
+
+.promo-message {
+
+    font-family:var(--font-body);
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#fff8ec;
+
+    text-align:center;
+
+    letter-spacing:.3px;
+
+    line-height:1.25;
+
+}
+
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:600px){
+
+
+    .promo-bar {
+
+        min-height:34px;
+
+        padding:6px 10px;
+
+    }
+
+
+    .promo-message {
+
+        font-size:10.5px;
+
+        line-height:1.25;
+
+        white-space:normal;
+
+    }
+
+
+}
+
+
+/* ==========================================================
+   MOBILE PEQUENO
+========================================================== */
+
+@media(max-width:380px){
+
+
+    .promo-bar {
+
+        padding:6px 8px;
+
+    }
+
+
+    .promo-message {
+
+        font-size:10px;
+
+    }
+
+
+}
+
+
+/* ==========================================================
+   COMPENSAÇÃO DA BARRA FIXA
+========================================================== */
+
+body {
+
+    padding-top:36px;
+
+}
+
 
 
 /* ==========================================================================
