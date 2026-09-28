@@ -4942,17 +4942,18 @@ clamp(
   transform:translateX(-50%);
 
 
+  width:max-content;
 
-  padding:8px 22px;
+  max-width:none;
+
+
+  padding:8px 26px;
 
 
   border-radius:999px;
 
 
-  background:
-
-  #F7E6D8;
-
+  background:#F7E6D8;
 
 
   border:
@@ -4960,7 +4961,6 @@ clamp(
   1px solid
 
   rgba(196,120,74,.25);
-
 
 
   font-family:var(--font-body);
@@ -4972,13 +4972,30 @@ clamp(
   font-weight:800;
 
 
-  letter-spacing:1.5px;
+  letter-spacing:1.2px;
 
 
   text-transform:uppercase;
 
 
+  white-space:nowrap;
+
+
   color:var(--color-primary);
+
+}
+
+@media(max-width:600px){
+
+  .offer-box::before {
+
+    font-size:10px;
+
+    padding:7px 14px;
+
+    letter-spacing:.8px;
+
+  }
 
 }
 
