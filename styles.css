@@ -4873,13 +4873,15 @@ clamp(
 }
 
 /* ==========================================================================
-   Card da oferta final
-   ========================================================================== */
+   Card da oferta final — BLOCO DE DECISÃO DE COMPRA
+========================================================================== */
 
 .offer-box {
+
   position: relative;
 
   width: 100%;
+
   max-width: 600px;
 
   margin: 0 auto;
@@ -4888,74 +4890,549 @@ clamp(
 
   box-sizing: border-box;
 
+
   background:
     var(--color-white);
+
 
   border:
     2px solid
     var(--color-primary-light);
 
+
   border-radius:
     var(--radius-lg);
 
+
   box-shadow:
-    var(--shadow-lg);
+    0 18px 50px
+    rgba(70,47,31,0.12);
+
 
   text-align: center;
+
 }
+
+
+
+/* ==========================================================================
+   Selo superior da oferta
+========================================================================== */
+
+.offer-box::before {
+
+  content:"OFERTA COMPLETA";
+
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+
+  position:absolute;
+
+
+  top:-16px;
+
+  left:50%;
+
+
+  transform:translateX(-50%);
+
+
+
+  padding:8px 22px;
+
+
+  border-radius:999px;
+
+
+  background:
+
+  #F7E6D8;
+
+
+
+  border:
+
+  1px solid
+
+  rgba(196,120,74,.25);
+
+
+
+  font-family:var(--font-body);
+
+
+  font-size:12px;
+
+
+  font-weight:800;
+
+
+  letter-spacing:1.5px;
+
+
+  text-transform:uppercase;
+
+
+  color:var(--color-primary);
+
+}
+
+
+
+/* ==========================================================================
+   Título da oferta
+========================================================================== */
+
+
+.final-cta-title {
+
+  margin-bottom:20px;
+
+}
+
+
+.final-cta-title span {
+
+  color:var(--color-primary);
+
+}
+
+
+
+/* ==========================================================================
+   Bloco de entrega
+========================================================================== */
+
+
+.offer-delivery {
+
+  display:flex;
+
+  align-items:flex-start;
+
+
+  gap:14px;
+
+
+  width:100%;
+
+
+  margin:22px auto;
+
+
+  padding:18px;
+
+
+  box-sizing:border-box;
+
+
+  text-align:left;
+
+
+  background:
+
+  var(--color-bg);
+
+
+  border:
+
+  1px solid
+
+  rgba(196,120,74,.18);
+
+
+
+  border-radius:16px;
+
+}
+
+
+
+.offer-icon {
+
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  justify-content:center;
+
+
+  flex:0 0 42px;
+
+
+  width:42px;
+
+
+  height:42px;
+
+
+  border-radius:50%;
+
+
+  background:#F7E6D8;
+
+
+  font-size:20px;
+
+}
+
+
+
+.offer-delivery strong {
+
+
+  display:block;
+
+
+  margin-bottom:4px;
+
+
+  font-family:var(--font-display);
+
+
+  font-size:17px;
+
+
+}
+
+
+
+.offer-delivery p {
+
+
+  margin:0;
+
+
+  font-family:var(--font-body);
+
+
+  font-size:14px;
+
+
+  line-height:1.45;
+
+
+  color:var(--color-text-light);
+
+}
+
+
+
+/* ==========================================================================
+   Ancoragem de preço
+========================================================================== */
+
+
+.offer-anchor {
+
+
+  margin:18px auto 4px;
+
+
+  font-family:var(--font-body);
+
+
+  font-size:15px;
+
+
+  color:var(--color-text-light);
+
+}
+
+
+
+.offer-anchor span {
+
+
+  font-weight:700;
+
+
+  text-decoration:line-through;
+
+
+  opacity:.65;
+
+}
+
+
+
+/* ==========================================================================
+   Preço principal
+========================================================================== */
+
+
+.final-offer-price {
+
+
+  margin:12px auto 18px;
+
+}
+
+
+
+.final-offer-label {
+
+
+  margin-bottom:5px;
+
+
+  font-size:16px;
+
+
+}
+
+
+
+.final-offer-current-price {
+
+
+  font-family:var(--font-display);
+
+
+  font-size:52px;
+
+
+  font-weight:700;
+
+
+  line-height:1;
+
+
+  color:var(--color-primary);
+
+}
+
+
+
+.final-offer-info {
+
+
+  margin-top:10px;
+
+
+  font-size:14px;
+
+
+  color:var(--color-text-light);
+
+}
+
+
+
+/* ==========================================================================
+   CTA
+========================================================================== */
+
+
+.offer-box .hero-buttons {
+
+
+  margin-top:18px;
+
+}
+
+
+.offer-box .btn-primary {
+
+
+  width:100%;
+
+  max-width:430px;
+
+}
+
+
+
+/* ==========================================================================
+   Segurança
+========================================================================== */
+
+
+.offer-security {
+
+
+  display:flex;
+
+
+  flex-direction:column;
+
+
+  gap:3px;
+
+
+  margin-top:20px;
+
+
+  font-family:var(--font-body);
+
+
+  font-size:14px;
+
+
+  font-weight:700;
+
+
+  color:var(--color-text);
+
+}
+
+
+
+.offer-security span {
+
+
+  font-weight:400;
+
+
+  color:var(--color-text-light);
+
+}
+
+
+
 
 
 /* ==========================================================================
    Card da oferta final — Mobile
-   ========================================================================== */
+========================================================================== */
 
-@media (max-width: 768px) {
+
+@media (max-width:768px) {
+
 
   .offer-box {
-    width: 100%;
-    max-width: 600px;
 
-    /*
-     * Mantemos espaço interno suficiente para o
-     * card continuar com aparência premium, mas
-     * aproveitamos melhor a largura do celular.
-     */
+
+    width:100%;
+
+
+    max-width:600px;
+
+
     padding:
-      32px
-      16px;
+
+    38px
+
+    16px
+
+    28px;
+
 
     border-radius:
-      var(--radius-lg);
+
+    var(--radius-lg);
+
   }
 
-  .offer-benefits {
-    grid-template-columns: 1fr;
 
-    justify-items: stretch;
 
-    width: 100%;
+  .offer-box::before {
 
-    margin-right: auto;
-    margin-left: auto;
 
-    text-align: left;
+    font-size:10px;
+
+
+    padding:
+
+    7px
+
+    16px;
+
   }
+
+
+
+  .offer-delivery {
+
+
+    padding:15px;
+
+  }
+
+
+
+  .final-offer-current-price {
+
+
+    font-size:42px;
+
+  }
+
+
+
+  .offer-box .btn-primary {
+
+
+    width:100%;
+
+
+    max-width:400px;
+
+  }
+
+
+
 }
+
 
 
 /* ==========================================================================
-   Card da oferta final — Mobile pequeno
-   ========================================================================== */
+   Mobile pequeno
+========================================================================== */
 
-@media (max-width: 480px) {
+
+@media(max-width:480px){
+
 
   .offer-box {
-    padding:
-      28px
-      14px;
-  }
-}
 
+
+    padding:
+
+    34px
+
+    14px
+
+    26px;
+
+  }
+
+
+
+  .offer-delivery {
+
+
+    gap:10px;
+
+  }
+
+
+
+  .offer-delivery p {
+
+
+    font-size:13px;
+
+  }
+
+
+
+  .final-offer-current-price {
+
+
+    font-size:38px;
+
+  }
+
+}
 
 /* ==========================================================================
    CTA Final — estrutura base
