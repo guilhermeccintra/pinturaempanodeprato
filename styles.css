@@ -3551,23 +3551,21 @@ clamp(
 
 .hero-collection-proof__text {
 
-
     margin:0;
 
+    max-width:320px;
+
+    text-align:left;
 
     font-family:Georgia,
     "Times New Roman",
     serif;
 
-
     font-size:13px;
 
-
-    line-height:1.35;
-
+    line-height:1.4;
 
     color:#604532;
-
 
 }
 
