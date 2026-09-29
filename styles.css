@@ -7148,7 +7148,10 @@ body {
 
 }
 
-
+.final-reminder::before,
+.final-reminder::after {
+    display:none;
+}
 
 .final-reminder-content {
 
