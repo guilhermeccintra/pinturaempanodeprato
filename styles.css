@@ -7125,20 +7125,31 @@ body {
 
 
 /* =========================================================
-   BLOCO FINAL - RETORNO PARA OFERTA
+   CTA FINAL ANTES DO RODAPÉ
 ========================================================= */
 
 
 .final-reminder {
 
     padding:
-        70px 20px;
+        60px 20px;
 
     background:
-        var(--color-bg-alt);
+        var(--color-bg);
 
     background-image:
         none;
+
+}
+
+
+.final-reminder-content {
+
+    max-width:
+        1000px;
+
+    margin:
+        0 auto;
 
     text-align:
         center;
@@ -7146,86 +7157,44 @@ body {
 }
 
 
+/* reaproveita headline do hero,
+mas limita somente aqui */
 
-.final-reminder-content {
+.final-reminder .hero-title-main {
 
-    max-width:
-        850px;
-
-    margin:
-        0 auto;
+    font-size:
+        2.65rem;
 
 }
 
 
+.final-reminder .hero-title-script {
 
-.final-reminder-tag {
+    display:
+        inline-block;
+
+    font-size:
+        3.4rem;
+
+}
+
+
+.final-reminder .hero-title-subheadline {
 
     display:
         block;
 
-    margin-bottom:
-        18px;
-
-    font-size:
+    margin-top:
         12px;
 
-    letter-spacing:
-        3px;
-
-    font-weight:
-        700;
-
-    color:
-        var(--color-primary);
-
 }
 
 
 
-.final-reminder h2 {
+.final-reminder .hero-buttons {
 
-    margin:
-        0 auto 18px;
-
-    font-family:
-        var(--font-display);
-
-    font-size:
-        clamp(32px,4vw,48px);
-
-    line-height:
-        1.15;
-
-    color:
-        var(--color-text);
-
-}
-
-
-
-.final-reminder h2 span {
-
-    color:
-        var(--color-primary);
-
-}
-
-
-
-.final-reminder p {
-
-    max-width:
-        600px;
-
-    margin:
-        0 auto 32px;
-
-    font-size:
-        18px;
-
-    color:
-        var(--color-text-light);
+    margin-top:
+        32px;
 
 }
 
@@ -7233,28 +7202,30 @@ body {
 
 @media(max-width:768px){
 
-    .final-reminder {
 
-        padding:
-            45px 20px;
+.final-reminder {
 
-    }
+    padding:
+        40px 10px;
 
-
-    .final-reminder h2 {
-
-        font-size:
-            30px;
-
-    }
+}
 
 
-    .final-reminder p {
+.final-reminder .hero-title-main {
 
-        font-size:
-            16px;
+    font-size:
+        1.55rem;
 
-    }
+}
+
+
+.final-reminder .hero-title-script {
+
+    font-size:
+        2rem;
+
+}
+
 
 }
 
