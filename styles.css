@@ -598,12 +598,7 @@ section {
   margin-left: 0;
   margin-bottom:7px;
   font-family: var(--font-script);
-  font-size:
-clamp(
-2.8rem,
-6vw,
-4.8rem
-);
+  font-size: 2.64rem;
   font-weight: 800;
   line-height: 1;
   color: var(--color-primary);
@@ -749,12 +744,7 @@ clamp(
     margin-top: 0;
     margin-left: 0;
    margin-bottom:5px;
-    font-size:
-      clamp(
-        2.25rem,
-        10vw,
-        3rem
-      );
+    font-size:1.98rem;
     line-height: 1;
   }
 
