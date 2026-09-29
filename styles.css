@@ -578,7 +578,7 @@ section {
 
   font-family: var(--font-display);
 
-  font-size: 2.2rem;
+  font-size: 2.65rem;
 
   font-weight: 700;
 
@@ -598,7 +598,7 @@ section {
   margin-left: 0;
   margin-bottom:7px;
   font-family: var(--font-script);
-  font-size: 2.64rem;
+  font-size: 3.2rem;
   font-weight: 800;
   line-height: 1;
   color: var(--color-primary);
@@ -706,7 +706,7 @@ section {
 
     margin-left: -8px;
 
-    font-size: 1.65rem;
+    font-size: 1.55rem;
 
     line-height: 1.2;
 
@@ -744,7 +744,7 @@ section {
     margin-top: 0;
     margin-left: 0;
    margin-bottom:5px;
-    font-size:1.98rem;
+    font-size:1.9rem;
     line-height: 1;
   }
 
