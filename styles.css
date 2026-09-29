@@ -7130,8 +7130,11 @@ body {
 
 .final-cta-section {
 
-    background:
+    background-color:
         var(--color-bg-alt);
+
+    background-image:
+        none;
 
     padding:
         64px 0;
