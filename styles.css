@@ -7131,9 +7131,13 @@ body {
 
 .final-reminder {
 
-    padding:64px 20px;
+    padding:48px 20px;
 
-    background:#FFF8F0;
+    background-color:
+        var(--color-bg-alt);
+
+    background-image:
+        none;
 
 }
 
