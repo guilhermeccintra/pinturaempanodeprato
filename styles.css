@@ -7125,206 +7125,180 @@ body {
 
 
 /* =========================================================
-   BLOCO FINAL CTA
+   BLOCO FINAL DE RETORNO À OFERTA
 ========================================================= */
 
 
-.final-cta-box {
+.final-reminder {
 
-    max-width:
-        900px;
+    padding:64px 20px;
 
-    margin:
-        0 auto;
+    background:#FFF8F0;
 
-    padding:
-        48px 40px;
+}
 
-    text-align:
-        center;
 
-    background:
-        var(--color-white);
 
-    border:
-        1px solid var(--color-border);
+.final-reminder-box {
 
-    border-radius:
-        var(--radius-xl);
+    max-width:900px;
+
+    margin:0 auto;
+
+    padding:48px 40px;
+
+    text-align:center;
+
+    background:#FFFFFF;
+
+    border:1px solid #E8D5C4;
+
+    border-radius:32px;
 
     box-shadow:
-        var(--shadow-md);
+        0 8px 32px rgba(139,111,71,.15);
 
 }
 
 
 
-.final-cta-box .section-title {
+.final-reminder-tag {
 
-    margin-bottom:
-        16px;
+    display:block;
 
-}
+    margin-bottom:16px;
 
+    font-size:12px;
 
+    letter-spacing:3px;
 
-.final-cta-box .section-subtitle {
+    font-weight:700;
 
-    margin:
-        0 auto 36px;
-
-    max-width:
-        650px;
+    color:#C4784A;
 
 }
 
 
 
-.final-cta-steps {
+.final-reminder h2 {
 
-    display:
-        grid;
+    margin-bottom:16px;
 
-    grid-template-columns:
-        repeat(3,1fr);
+    font-family:var(--font-display);
 
-    gap:
-        18px;
+    font-size:clamp(1.5rem,4vw,2.2rem);
 
-    margin-bottom:
-        40px;
+    color:var(--color-text);
 
 }
 
 
 
-.final-cta-card {
+.final-reminder p {
 
-    padding:
-        22px 18px;
+    max-width:650px;
 
-    border-radius:
-        var(--radius-md);
+    margin:0 auto 32px;
 
-    background:
-        var(--color-bg);
-
-    border:
-        1px solid rgba(196,120,74,.18);
+    color:var(--color-text-light);
 
 }
 
 
 
-.final-cta-card span {
+.final-reminder-steps {
 
-    display:
-        inline-flex;
+    display:grid;
 
-    align-items:
-        center;
+    grid-template-columns:repeat(3,1fr);
 
-    justify-content:
-        center;
+    gap:18px;
 
-
-    width:
-        34px;
-
-    height:
-        34px;
-
-
-    margin-bottom:
-        12px;
-
-
-    border-radius:
-        50%;
-
-
-    background:
-        var(--color-primary);
-
-
-    color:
-        white;
-
-
-    font-weight:
-        700;
+    margin-bottom:36px;
 
 }
 
 
 
-.final-cta-card h3 {
+.final-reminder-steps div {
 
-    font-family:
-        var(--font-display);
+    padding:22px;
 
-    font-size:
-        18px;
+    background:#FFF8F0;
 
-    margin-bottom:
-        8px;
+    border-radius:16px;
 
-}
-
-
-
-.final-cta-card p {
-
-    font-size:
-        15px;
-
-    color:
-        var(--color-text-light);
+    border:1px solid rgba(196,120,74,.18);
 
 }
 
 
 
-/* MOBILE */
+.final-reminder-steps strong {
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:38px;
+
+    height:38px;
+
+    border-radius:50%;
+
+    background:#C4784A;
+
+    color:#fff;
+
+    margin-bottom:12px;
+
+}
+
+
+
+.final-reminder-steps h3 {
+
+    margin-bottom:8px;
+
+    font-family:var(--font-display);
+
+}
+
+
+
+.final-reminder-steps p {
+
+    margin:0;
+
+    font-size:14px;
+
+}
+
+
 
 @media(max-width:768px){
 
+    .final-reminder {
 
-.final-cta-section {
+        padding:40px 15px;
 
-    padding:
-        40px 0;
-
-}
+    }
 
 
-.final-cta-box {
+    .final-reminder-box {
 
-    padding:
-        32px 16px;
+        padding:32px 20px;
 
-}
-
-
-.final-cta-steps {
-
-    grid-template-columns:
-        1fr;
-
-    gap:
-        14px;
-
-}
+    }
 
 
-.final-cta-box .btn-primary {
+    .final-reminder-steps {
 
-    width:
-        100%;
+        grid-template-columns:1fr;
 
-}
-
-
+    }
 
 }
 
