@@ -4946,17 +4946,17 @@ section {
 
 
 .offer-delivery-content li {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 12px;
+    width: 100%;
 
-    display:grid;
-
-    grid-template-columns:40px minmax(0,1fr);
-
-    align-items:center;
-
-    column-gap:12px;
-
-    width:100%;
-
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--color-text-light);
 }
 
 
@@ -7978,6 +7978,33 @@ body {
 
     text-align:left;
 
+}
+
+
+
+
+/* ==========================================================
+   BENEFÍCIOS DA OFERTA — MESMA TIPOGRAFIA DO HERO
+   ========================================================== */
+
+.offer-delivery-content li {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--color-text-light);
+}
+
+.offer-delivery-content li strong {
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+@media (max-width: 768px) {
+    .offer-delivery-content li {
+        font-size: 16px;
+        line-height: 1.5;
+    }
 }
 
 /* ==========================================================================
