@@ -7122,6 +7122,223 @@ body {
 
 }
 
+
+/* =========================================================
+   BLOCO FINAL CTA
+========================================================= */
+
+
+.final-cta-section {
+
+    background:
+        var(--color-bg-alt);
+
+    padding:
+        64px 0;
+
+}
+
+
+
+.final-cta-box {
+
+    max-width:
+        900px;
+
+    margin:
+        0 auto;
+
+    padding:
+        48px 40px;
+
+    text-align:
+        center;
+
+    background:
+        var(--color-white);
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-xl);
+
+    box-shadow:
+        var(--shadow-md);
+
+}
+
+
+
+.final-cta-box .section-title {
+
+    margin-bottom:
+        16px;
+
+}
+
+
+
+.final-cta-box .section-subtitle {
+
+    margin:
+        0 auto 36px;
+
+    max-width:
+        650px;
+
+}
+
+
+
+.final-cta-steps {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        18px;
+
+    margin-bottom:
+        40px;
+
+}
+
+
+
+.final-cta-card {
+
+    padding:
+        22px 18px;
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        var(--color-bg);
+
+    border:
+        1px solid rgba(196,120,74,.18);
+
+}
+
+
+
+.final-cta-card span {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+
+    margin-bottom:
+        12px;
+
+
+    border-radius:
+        50%;
+
+
+    background:
+        var(--color-primary);
+
+
+    color:
+        white;
+
+
+    font-weight:
+        700;
+
+}
+
+
+
+.final-cta-card h3 {
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        18px;
+
+    margin-bottom:
+        8px;
+
+}
+
+
+
+.final-cta-card p {
+
+    font-size:
+        15px;
+
+    color:
+        var(--color-text-light);
+
+}
+
+
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+
+.final-cta-section {
+
+    padding:
+        40px 0;
+
+}
+
+
+.final-cta-box {
+
+    padding:
+        32px 16px;
+
+}
+
+
+.final-cta-steps {
+
+    grid-template-columns:
+        1fr;
+
+    gap:
+        14px;
+
+}
+
+
+.final-cta-box .btn-primary {
+
+    width:
+        100%;
+
+}
+
+
+
+}
+
 /* ==========================================================================
    FIM DO STYLES.CSS LIMPO
    ========================================================================== */
