@@ -7125,42 +7125,35 @@ body {
 
 
 /* =========================================================
-   BLOCO FINAL DE RETORNO À OFERTA
+   BLOCO FINAL - RETORNO PARA OFERTA
 ========================================================= */
 
 
 .final-reminder {
 
-    padding:48px 20px;
+    padding:
+        70px 20px;
 
-    background-color:
+    background:
         var(--color-bg-alt);
 
     background-image:
         none;
 
+    text-align:
+        center;
+
 }
 
 
 
-.final-reminder-box {
+.final-reminder-content {
 
-    max-width:900px;
+    max-width:
+        850px;
 
-    margin:0 auto;
-
-    padding:48px 40px;
-
-    text-align:center;
-
-    background:#FFFFFF;
-
-    border:1px solid #E8D5C4;
-
-    border-radius:32px;
-
-    box-shadow:
-        0 8px 32px rgba(139,111,71,.15);
+    margin:
+        0 auto;
 
 }
 
@@ -7168,17 +7161,23 @@ body {
 
 .final-reminder-tag {
 
-    display:block;
+    display:
+        block;
 
-    margin-bottom:16px;
+    margin-bottom:
+        18px;
 
-    font-size:12px;
+    font-size:
+        12px;
 
-    letter-spacing:3px;
+    letter-spacing:
+        3px;
 
-    font-weight:700;
+    font-weight:
+        700;
 
-    color:#C4784A;
+    color:
+        var(--color-primary);
 
 }
 
@@ -7186,13 +7185,29 @@ body {
 
 .final-reminder h2 {
 
-    margin-bottom:16px;
+    margin:
+        0 auto 18px;
 
-    font-family:var(--font-display);
+    font-family:
+        var(--font-display);
 
-    font-size:clamp(1.5rem,4vw,2.2rem);
+    font-size:
+        clamp(32px,4vw,48px);
 
-    color:var(--color-text);
+    line-height:
+        1.15;
+
+    color:
+        var(--color-text);
+
+}
+
+
+
+.final-reminder h2 span {
+
+    color:
+        var(--color-primary);
 
 }
 
@@ -7200,83 +7215,17 @@ body {
 
 .final-reminder p {
 
-    max-width:650px;
+    max-width:
+        600px;
 
-    margin:0 auto 32px;
+    margin:
+        0 auto 32px;
 
-    color:var(--color-text-light);
+    font-size:
+        18px;
 
-}
-
-
-
-.final-reminder-steps {
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:18px;
-
-    margin-bottom:36px;
-
-}
-
-
-
-.final-reminder-steps div {
-
-    padding:22px;
-
-    background:#FFF8F0;
-
-    border-radius:16px;
-
-    border:1px solid rgba(196,120,74,.18);
-
-}
-
-
-
-.final-reminder-steps strong {
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    width:38px;
-
-    height:38px;
-
-    border-radius:50%;
-
-    background:#C4784A;
-
-    color:#fff;
-
-    margin-bottom:12px;
-
-}
-
-
-
-.final-reminder-steps h3 {
-
-    margin-bottom:8px;
-
-    font-family:var(--font-display);
-
-}
-
-
-
-.final-reminder-steps p {
-
-    margin:0;
-
-    font-size:14px;
+    color:
+        var(--color-text-light);
 
 }
 
@@ -7286,21 +7235,24 @@ body {
 
     .final-reminder {
 
-        padding:40px 15px;
+        padding:
+            45px 20px;
 
     }
 
 
-    .final-reminder-box {
+    .final-reminder h2 {
 
-        padding:32px 20px;
+        font-size:
+            30px;
 
     }
 
 
-    .final-reminder-steps {
+    .final-reminder p {
 
-        grid-template-columns:1fr;
+        font-size:
+            16px;
 
     }
 
