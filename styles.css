@@ -1117,6 +1117,29 @@ section {
   gap: 8px;
 }
 
+.comparison-dot {
+  width: 8px;
+  height: 8px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background-color: rgba(196, 120, 74, 0.25);
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.comparison-dot.active {
+  background-color: var(--color-primary);
+  transform: scale(1.25);
+}
+
 
 /* ==========================================================================
    Comparação — Tablet
