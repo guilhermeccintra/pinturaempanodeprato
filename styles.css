@@ -5213,20 +5213,33 @@ clamp(
 /* TRACK */
 
 .testimonials-track {
-
     display:flex;
-
     align-items:flex-start;
-
     width:max-content;
 
-    transform:translate3d(0,0,0);
-
-    animation:none !important;
-
-    transition:none !important;
+    animation:
+        testimonialsMove 45s linear infinite;
 
     will-change:transform;
+}
+
+@keyframes testimonialsMove {
+
+    from {
+        transform:translate3d(0, 0, 0);
+    }
+
+    to {
+        transform:translate3d(-50%, 0, 0);
+    }
+
+}
+
+@media (hover:hover) and (pointer:fine) {
+
+    .testimonials-marquee:hover .testimonials-track {
+        animation-play-state:paused;
+    }
 
 }
 
