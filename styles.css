@@ -4590,27 +4590,6 @@ section {
 
 
 
-.offer-delivery-content ul {
-
-    display:flex;
-
-    flex-direction:column;
-
-
-    gap:10px;
-
-
-    margin:0;
-
-    padding:0;
-
-
-    list-style:none;
-
-}
-
-
-
 /* ==========================================================================
    Ancoragem de preço
 ========================================================================== */
@@ -7130,92 +7109,6 @@ body {
 
     rgba(196,120,74,0.18);
 
-}
-
-
-/* ==========================================================
-   OFERTA FINAL - BENEFÍCIOS IGUAL AO HERO
-========================================================== */
-
-
-.offer-delivery-content ul {
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:16px;
-
-    margin:0;
-
-    padding:0;
-
-    list-style:none;
-
-}
-
-
-
-.offer-delivery-content li {
-
-    display:grid;
-
-    grid-template-columns:40px minmax(0,1fr);
-
-    align-items:center;
-
-    column-gap:12px;
-
-    width:100%;
-
-}
-
-
-.offer-delivery-content .benefit-text {
-
-    display:block;
-
-    min-width:0;
-
-    font-family:var(--font-body);
-
-    font-size:18px;
-
-    font-weight:400;
-
-    line-height:1.45;
-
-    color:var(--color-text-light);
-
-    text-align:left;
-
-}
-
-
-
-
-/* ==========================================================
-   BENEFÍCIOS DA OFERTA — MESMA TIPOGRAFIA DO HERO
-   ========================================================== */
-
-.offer-delivery-content li {
-    font-family: var(--font-body);
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.45;
-    color: var(--color-text-light);
-}
-
-.offer-delivery-content li strong {
-    font-weight: 700;
-    color: var(--color-text);
-}
-
-@media (max-width: 768px) {
-    .offer-delivery-content li {
-        font-size: 16px;
-        line-height: 1.5;
-    }
 }
 
 }
