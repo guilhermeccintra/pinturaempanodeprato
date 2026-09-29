@@ -2666,7 +2666,7 @@ section {
   display: grid;
 
   grid-template-columns:
-    40px minmax(0, 1fr);
+    32px minmax(0, 1fr);
 
   align-items: center;
 
@@ -2689,55 +2689,34 @@ section {
     var(--color-text-light);
 }
 
+
 .hero-benefits .benefit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    display:flex;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
 
-    align-items:center;
+  margin: 0;
+  padding: 0;
 
-    justify-content:center;
+  box-sizing: border-box;
 
+  background: var(--color-primary);
+  border-radius: 50%;
 
-    width:40px;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
 
-    height:40px;
+  color: #ffffff;
 
-
-    min-width:40px;
-
-
-    margin:0;
-
-
-    padding:0;
-
-
-    box-sizing:border-box;
-
-
-    background:var(--color-primary);
-
-
-    border-radius:50%;
-
-
-    font-size:20px;
-
-
-    font-weight:800;
-
-
-    line-height:1;
-
-
-    color:#ffffff;
-
-
-    box-shadow:
-
-    0 4px 12px rgba(196,120,74,.20);
-
+  box-shadow:
+    0 4px 12px rgba(196, 120, 74, 0.20);
 }
+
 
 .hero-benefits .benefit-text {
   display: block;
@@ -2784,7 +2763,7 @@ section {
 
   .hero-benefits li {
     grid-template-columns:
-      36px minmax(0, 1fr);
+      30px minmax(0, 1fr);
 
     column-gap: 10px;
 
@@ -2792,12 +2771,13 @@ section {
     line-height: 1.5;
   }
 
-  .hero-benefits .benefit-icon {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    font-size: 16px;
-  }
+   .hero-benefits .benefit-icon {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+
+  font-size: 14px;
+      }
 }
 
 
@@ -4308,7 +4288,7 @@ section {
 
 .offer-delivery-content li {
     display: grid;
-    grid-template-columns: 40px minmax(0, 1fr);
+    grid-template-columns: 32px minmax(0, 1fr);
     align-items: center;
     column-gap: 12px;
     width: 100%;
@@ -4320,6 +4300,32 @@ section {
     color: var(--color-text-light);
 }
 
+.offer-delivery-content .benefit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  background: var(--color-primary);
+  border-radius: 50%;
+
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 4px 12px rgba(196, 120, 74, 0.20);
+}
 
 
 .offer-delivery-content li::first-letter {
@@ -4824,9 +4830,20 @@ section {
 
 
 .offer-delivery-content li {
+  grid-template-columns:
+    30px minmax(0, 1fr);
 
-    font-size:16px;
+  column-gap: 10px;
 
+  font-size: 16px;
+}
+
+.offer-delivery-content .benefit-icon {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+
+  font-size: 14px;
 }
 
   .final-offer-current-price {
@@ -7154,59 +7171,6 @@ body {
 }
 
 
-
-.offer-delivery-content .benefit-icon {
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-
-    width:40px;
-
-    height:40px;
-
-
-    min-width:40px;
-
-
-    margin:0;
-
-
-    padding:0;
-
-
-    box-sizing:border-box;
-
-
-    background:var(--color-primary);
-
-
-    border-radius:50%;
-
-
-    font-size:20px;
-
-
-    font-weight:800;
-
-
-    line-height:1;
-
-
-    color:#ffffff;
-
-
-    box-shadow:
-
-    0 4px 12px rgba(196,120,74,.20);
-
-}
-
-
-
 .offer-delivery-content .benefit-text {
 
     display:block;
@@ -7252,6 +7216,8 @@ body {
         font-size: 16px;
         line-height: 1.5;
     }
+}
+
 }
 
 /* ==========================================================================
