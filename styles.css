@@ -4901,16 +4901,17 @@ section {
    ========================================================================== */
 
 .final-cta {
+
   padding: 48px 0;
 
-  background:
-    linear-gradient(
-      135deg,
-      var(--color-bg-alt),
-      var(--color-bg-warm)
-    );
+  background-color:
+    var(--color-bg-alt);
 
-  text-align: center;
+  background-image:
+    none;
+
+  text-align:center;
+
 }
 
 .final-cta-title {
@@ -7126,21 +7127,6 @@ body {
 /* =========================================================
    BLOCO FINAL CTA
 ========================================================= */
-
-
-.final-cta-section {
-
-    background-color:
-        var(--color-bg-alt);
-
-    background-image:
-        none;
-
-    padding:
-        64px 0;
-
-}
-
 
 
 .final-cta-box {
