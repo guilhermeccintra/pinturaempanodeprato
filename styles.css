@@ -1203,8 +1203,10 @@ section {
 
 .comparison-carousel {
   position: relative;
+
   width: 100%;
-  max-width: 100%;
+  max-width: 520px;
+
   margin: 0 auto;
 }
 
@@ -1235,7 +1237,7 @@ section {
 
   box-sizing: border-box;
 
-  padding: 24px;
+  padding: 20px;
 
   border: 1px solid rgba(196, 120, 74, 0.24);
   border-radius: 18px;
