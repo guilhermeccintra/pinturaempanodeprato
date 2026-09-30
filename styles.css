@@ -7135,7 +7135,9 @@ body {
     padding: 48px 20px;
     background: red !important;
 }
-
+.final-offer-close__box {
+    background: blue !important;
+}
 
 /* CARD CENTRAL */
 
