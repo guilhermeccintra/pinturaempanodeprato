@@ -7136,7 +7136,7 @@ body {
 
     padding: 48px 20px;
 
-    background-color: var(--color-bg-alt);
+    background: var(--color-bg-alt);
 
 }
 
