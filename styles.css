@@ -7131,17 +7131,9 @@ body {
 ========================================================== */
 
 .final-offer-close {
-
     position: relative;
-
     padding: 48px 20px;
-
-    background-color:
-    var(--color-bg-alt) !important;
-
-  background-image:
-    none !important;
-
+    background: red !important;
 }
 
 
