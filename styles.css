@@ -695,14 +695,12 @@ section {
 
   .hero-buttons .btn-primary {
     width: 100%;
-    max-width: 360px;
-    min-height: 58px;
+    max-width: 400px;
+    min-height: 75px;
 
     padding:
-      12px
-      16px;
-
-    font-size: 15px;
+      15px
+      18px;
 }
 }
 
