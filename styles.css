@@ -7134,7 +7134,7 @@ body {
 
     position: relative;
 
-    padding: 52px 20px;
+    padding: 48px 20px;
 
     background-color: var(--color-bg);
 
@@ -7240,7 +7240,7 @@ body {
     .final-offer-close {
 
         padding:
-            36px
+            40px
             10px;
 
     }
