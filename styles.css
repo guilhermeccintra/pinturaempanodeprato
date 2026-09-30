@@ -7136,7 +7136,11 @@ body {
 
     padding: 48px 20px;
 
-    background: var(--color-bg-alt);
+    background-color:
+    var(--color-bg-alt);
+
+  background-image:
+    none;
 
 }
 
