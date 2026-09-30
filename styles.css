@@ -7137,10 +7137,10 @@ body {
     padding: 48px 20px;
 
     background-color:
-    var(--color-bg-alt);
+    var(--color-bg-alt) !important;
 
   background-image:
-    none;
+    none !important;
 
 }
 
