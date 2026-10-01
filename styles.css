@@ -406,9 +406,6 @@ section {
 
   width: 100%;
   max-width: 1000px;
-
-  margin: 0 auto 16px;
-
   font-family: var(--font-display);
 
   font-size:
@@ -509,7 +506,7 @@ section {
 
     justify-content:center;
 
-    margin:0 auto 14px;
+    margin:0 auto 8px;
 
     padding:7px 18px;
 
@@ -544,7 +541,7 @@ section {
 
     .hero-eyebrow {
 
-        margin-bottom:10px;
+        margin-bottom:8px;
 
         padding:6px 14px;
 
@@ -656,7 +653,6 @@ section {
 
   .hero-title {
     width: 100%;
-    margin: 0 auto 12px;
   }
 
  
