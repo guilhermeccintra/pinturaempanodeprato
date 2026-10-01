@@ -7243,149 +7243,123 @@ body {
 }
 
 
+
+
 /* ==========================================================
-   HERO NOVO - SEM BOX
-   Baseado no final-offer-close
+   HERO FINAL
 ========================================================== */
 
+.hero-final {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 48px 0;
 
-.hero-new {
+    background: var(--color-bg-alt);
+}
 
-    padding: 40px 20px;
-
-    text-align:center;
-
+.hero-final > .container {
+    position: relative;
+    width: 100%;
 }
 
 
+/* CARD CENTRAL */
 
-.hero-new__content {
+.hero-final__box {
+    position: relative;
 
-    width:100%;
+    width: 100%;
+    max-width: 760px;
 
-    max-width:760px;
+    margin: 0 auto;
+    padding: 44px 32px;
 
-    margin:0 auto;
+    text-align: center;
 
+    background: var(--color-white);
+
+    border: 1px solid rgba(196, 120, 74, 0.20);
+    border-radius: var(--radius-xl);
+
+    box-shadow: var(--shadow-md);
 }
-
 
 
 /* TÍTULO */
 
-.hero-new__title {
+.hero-final__title {
+    max-width: 650px;
 
-    max-width:650px;
+    margin: 10px auto 16px;
 
-    margin:10px auto 16px;
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.25;
 
-    font-family:var(--font-display);
+    color: var(--color-text);
+}
 
-    font-size:2.2rem;
+.hero-final__title span {
+    display: block;
 
-    font-weight:700;
+    font-family: var(--font-script);
+    font-size: 120%;
+    font-weight: 700;
 
-    line-height:1.25;
-
-    color:var(--color-text);
-
+    color: var(--color-primary);
 }
 
 
+/* TEXTO */
 
-.hero-new__title span {
+.hero-final__text {
+    max-width: 600px;
 
-    display:block;
+    margin: 0 auto 25px;
 
-    font-family:var(--font-script);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.55;
 
-    font-size:120%;
-
-    font-weight:700;
-
-    line-height:1.25;
-
-    color:var(--color-primary);
-
+    color: var(--color-text-light);
 }
 
 
+/* ==========================================================
+   MOBILE
+========================================================== */
 
-/* SUBHEADLINE */
+@media (max-width: 768px) {
 
-.hero-new__text {
-
-    max-width:600px;
-
-    margin:0 auto 25px;
-
-    font-family:var(--font-body);
-
-    font-size:18px;
-
-    line-height:1.55;
-
-    color:var(--color-text-light);
-
-}
-
-
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-
-    .hero-new {
-
-        padding:32px 10px;
-
+    .hero-final {
+        padding: 40px 0;
     }
 
+    .hero-final__box {
+        width: 100%;
 
+        padding: 32px 18px;
 
-    .hero-new__content {
-
-        width:100%;
-
+        border-radius: var(--radius-lg);
     }
 
+    .hero-final__title {
+        width: 100%;
 
-
-    .hero-new__title {
-
-        width:100%;
-
-        margin:10px auto 16px;
-
-        font-size:1.55rem;
-
-        line-height:1.3;
-
+        font-size: 1.55rem;
+        line-height: 1.3;
     }
 
+    .hero-final__text {
+        width: 100%;
 
+        margin-bottom: 24px;
 
-    .hero-new__title span {
-
-        font-size:120%;
-
+        font-size: 16px;
+        line-height: 1.5;
     }
-
-
-
-    .hero-new__text {
-
-        width:100%;
-
-        margin-bottom:24px;
-
-        font-size:16px;
-
-        line-height:1.5;
-
-    }
-
 }
 
 /* ==========================================================================
