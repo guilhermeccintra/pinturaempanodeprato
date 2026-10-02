@@ -7394,54 +7394,6 @@ body {
 }
 
 
-/* ==========================================================
-   DATA DE DESCONTO - BLOCO DA OFERTA
-========================================================== */
-
-.offer-price-text {
-
-    margin: 0 0 8px;
-
-    font-family: var(--font-body);
-
-    font-size: 18px;
-
-    font-weight: 400;
-
-    line-height: 1.4;
-
-    text-align: center;
-
-    color: var(--color-text-light);
-
-}
-
-
-.offer-price-text strong {
-
-    font-weight: 700;
-
-    color: var(--color-primary);
-
-}
-
-
-
-/* MOBILE */
-
-@media (max-width:768px){
-
-    .offer-price-text {
-
-        font-size:16px;
-
-        line-height:1.4;
-
-    }
-
-}
-
-
 /* ==========================================================================
    FIM DO STYLES.CSS LIMPO
    ========================================================================== */
