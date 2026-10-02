@@ -1293,7 +1293,7 @@ document.addEventListener(
 
 
 // ==========================================================
-// DATA DINÂMICA DA BARRA DE OFERTA
+// DATA DINÂMICA DA BARRA DE OFERTA + BLOCO DE PREÇO
 // ==========================================================
 
 function atualizarOferta() {
@@ -1310,6 +1310,7 @@ function atualizarOferta() {
     const dataFormatada = `${dia}/${mes}/${ano}`;
 
 
+    // BARRA SUPERIOR
     const elemento = document.getElementById('promo-date');
 
 
@@ -1320,9 +1321,21 @@ function atualizarOferta() {
 
     }
 
+
+    // DATA NO BLOCO DA OFERTA
+    const elementoOferta = document.getElementById('offer-date');
+
+
+    if (elementoOferta) {
+
+        elementoOferta.textContent = dataFormatada;
+
+    }
+
 }
 
 
+// EXECUTA AO CARREGAR A PÁGINA
 atualizarOferta();
 
 /* ==========================================================
