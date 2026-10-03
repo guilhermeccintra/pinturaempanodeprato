@@ -451,7 +451,7 @@
             'BRL',
 
           value:
-            27.90,
+            37.90,
 
           cta_name:
             ctaName,
@@ -470,7 +470,7 @@
                 '120 Riscos para Pintura em Pano de Prato',
 
               price:
-                27.90,
+                37.90,
 
               quantity:
                 1
