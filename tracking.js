@@ -7,7 +7,7 @@
    - TTL de 30 minutos
    - Envia parâmetros para a Hotmart
    - Identifica qual CTA foi clicado no GA4
-   - Dispara begin_checkout somente no CTA de checkout
+   - Identifica cliques de CTA no GA4
 ========================================================= */
 
 (function () {
@@ -361,7 +361,6 @@
 
     var destinationType = 'other';
 
-    var isCheckout = false;
 
 
     /*
@@ -394,7 +393,6 @@
         destinationType =
           'checkout';
 
-        isCheckout = true;
 
       }
 
