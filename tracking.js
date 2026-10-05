@@ -431,59 +431,6 @@
 
       }
     );
-
-
-    /* =====================================================
-       BEGIN CHECKOUT
-
-       Disparado somente quando o destino
-       realmente é a Hotmart.
-    ===================================================== */
-
-    if (isCheckout) {
-
-      window.gtag(
-        'event',
-        'begin_checkout',
-        {
-
-          currency:
-            'BRL',
-
-          value:
-            37.90,
-
-          cta_name:
-            ctaName,
-
-          cta_location:
-            ctaLocation,
-
-          items: [
-
-            {
-
-              item_id:
-                '120-riscos-pano-de-prato',
-
-              item_name:
-                '120 Riscos para Pintura em Pano de Prato',
-
-              price:
-                37.90,
-
-              quantity:
-                1
-
-            }
-
-          ]
-
-        }
-      );
-
-    }
-
   }
 
 
