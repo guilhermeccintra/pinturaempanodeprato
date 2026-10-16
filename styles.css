@@ -4578,7 +4578,8 @@ section {
 
 @media (max-width: 768px) {
    .offer-anchor {
-          font-size: 18px;
+      margin:0 auto 0;    
+      font-size: 18px;
    }
 }
 
@@ -7065,7 +7066,7 @@ body {
 
     .offer-mockup {
 
-        margin: 8px auto 8px;
+        margin: 0 auto 0;
 
     }
 
