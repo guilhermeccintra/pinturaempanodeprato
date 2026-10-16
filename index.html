@@ -1,0 +1,3193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+ 
+  <!-- =========================================================
+       CONFIGURAÇÕES BÁSICAS / SEO
+  ========================================================== -->
+
+  <meta charset="UTF-8">
+   
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Crie lindos panos de prato
+feitos por você
+mesmo começando do zero"
+  >
+
+  <meta name="theme-color" content="#C4784A">
+
+  <title>Crie lindos panos de prato
+feitos por você
+mesmo começando do zero</title>
+
+
+  <!-- =========================================================
+       OPEN GRAPH
+  ========================================================== -->
+
+  <meta
+    property="og:title"
+    content="Crie lindos panos de prato
+feitos por você
+mesmo começando do zero"
+  >
+
+  <meta
+    property="og:description"
+    content="Tenha em mãos 120 riscos exclusivos,
+                videoaula passo a passo da pintura e materiais simples
+                para transformar desenhos em lindas peças artesanais."
+  >
+
+  <meta property="og:type" content="product">
+  <meta property="og:locale" content="pt_BR">
+
+
+  <!-- =========================================================
+       DNS PREFETCH PARA TRACKING
+  ========================================================== -->
+
+  <link rel="dns-prefetch" href="https://connect.facebook.net">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+
+  <!-- =========================================================
+       FONTES
+  ========================================================== -->
+
+  
+<!-- =========================================================
+     FONTES — CARREGAMENTO OTIMIZADO
+========================================================== -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+>
+
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+    media="print"
+    onload="this.media='all'"
+>
+
+<noscript>
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+    >
+</noscript>
+
+  
+  <!-- =========================================================
+       CSS
+  ========================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+
+  <!-- TRACKING CARREGADO APÓS CSS PARA REDUZIR BLOQUEIO -->
+<!-- =========================================================
+       GOOGLE TAG - GOOGLE ADS + GOOGLE ANALYTICS 4
+  ========================================================== -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18379872794"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    /* Google Ads */
+    gtag('config', 'AW-18379872794');
+
+    /* Google Analytics 4 */
+    gtag('config', 'G-04GHL0BCBB');
+  </script>
+
+
+<!-- =========================================================
+     META PIXEL + CAPI
+     PageView e ViewContent com deduplicação
+========================================================= -->
+
+<script>
+!function(f,b,e,v,n,t,s)
+{
+  if(f.fbq)return;
+
+  n=f.fbq=function(){
+    n.callMethod ?
+    n.callMethod.apply(n,arguments) :
+    n.queue.push(arguments);
+  };
+
+  if(!f._fbq)f._fbq=n;
+
+  n.push=n;
+  n.loaded=!0;
+  n.version='2.0';
+  n.queue=[];
+
+  t=b.createElement(e);
+  t.async=!0;
+  t.src=v;
+
+  s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s);
+
+}(
+  window,
+  document,
+  'script',
+  'https://connect.facebook.net/en_US/fbevents.js'
+);
+
+
+/* =========================================================
+   FUNÇÕES AUXILIARES
+========================================================= */
+
+function generateMetaEventId(eventName) {
+  return (
+    eventName +
+    '_' +
+    Date.now() +
+    '_' +
+    Math.random().toString(36).substring(2, 12)
+  );
+}
+
+function generateUuidV4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+function getCookie(name) {
+  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+
+function getExternalId() {
+  try {
+    var extId = localStorage.getItem('meta_external_id');
+    if (!extId) {
+      extId = generateUuidV4();
+      localStorage.setItem('meta_external_id', extId);
+    }
+    return extId;
+  } catch(e) {
+    return null;
+  }
+}
+
+function getStoredFbclid() {
+  try {
+    var savedTracking = JSON.parse(localStorage.getItem('traffic_tracking') || '{}');
+    return savedTracking.fbclid || null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function buildFbc() {
+  // 1. Tenta recuperar do sessionStorage (já calculado nesta sessão)
+  try {
+    var sessionFbc = sessionStorage.getItem('meta_fbc');
+    if (sessionFbc) return sessionFbc;
+  } catch(e) {}
+
+  // 2. Prioridade para o cookie _fbc já criado pela Meta
+  var existingFbc = getCookie('_fbc');
+  if (existingFbc) {
+    try { sessionStorage.setItem('meta_fbc', existingFbc); } catch(e) {}
+    return existingFbc;
+  }
+
+  // 3. Tenta pegar fbclid da URL
+  var params = new URLSearchParams(window.location.search);
+  var urlFbclid = params.get('fbclid');
+
+  // 4. Se a URL atual não tiver, tenta usar o fbclid salvo pelo tracking.js
+  var fbclid = urlFbclid || getStoredFbclid();
+
+  if (!fbclid) {
+    return null;
+  }
+
+  var newFbc = 'fb.1.' + Date.now() + '.' + fbclid;
+  
+  try { sessionStorage.setItem('meta_fbc', newFbc); } catch(e) {}
+
+  return newFbc;
+}
+
+
+/* =========================================================
+   WAIT FOR FBP
+========================================================= */
+
+function waitForFbp(callback, maxWaitMs = 2000, intervalMs = 50) {
+  var elapsed = 0;
+  
+  var check = function() {
+    var fbp = getCookie('_fbp');
+    if (fbp) {
+      callback(fbp);
+    } else if (elapsed >= maxWaitMs) {
+      callback(null); // Timeout
+    } else {
+      elapsed += intervalMs;
+      setTimeout(check, intervalMs);
+    }
+  };
+  
+  check();
+}
+
+
+/* =========================================================
+   ENVIA EVENTO PARA CAPI
+========================================================= */
+
+function sendMetaCapi(eventName, eventId, eventCustomData = {}) {
+  // Ler valores consistentes
+  var currentFbc = buildFbc();
+  var currentExternalId = getExternalId();
+  
+  waitForFbp(function(currentFbp) {
+    var payload = {
+      eventName: eventName,
+      eventId: eventId,
+      eventSourceUrl: window.location.href,
+      eventCustomData: eventCustomData,
+      fbp: currentFbp || undefined,
+      fbc: currentFbc || undefined,
+      externalId: currentExternalId || undefined
+    };
+
+    fetch('/api/capi', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).catch(function(error) {
+      console.warn('Erro ao enviar Meta CAPI:', error);
+    });
+  });
+}
+
+
+/* =========================================================
+   INICIALIZA PIXEL
+========================================================= */
+
+var globalExternalId = getExternalId();
+
+if (globalExternalId) {
+  fbq('init', '1901694047194455', { external_id: globalExternalId });
+} else {
+  fbq('init', '1901694047194455');
+}
+
+
+/* =========================================================
+   PAGEVIEW
+   Browser + Server
+========================================================= */
+
+var pageViewEventId = generateMetaEventId('PageView');
+
+fbq(
+  'track',
+  'PageView',
+  {},
+  { eventID: pageViewEventId }
+);
+
+sendMetaCapi('PageView', pageViewEventId);
+
+
+/* =========================================================
+   VIEWCONTENT
+   Browser + Server
+========================================================= */
+
+var viewContentEventId = generateMetaEventId('ViewContent');
+
+var viewContentData = {
+  content_name: '120 Riscos para Pintura em Pano de Prato',
+  content_category: 'Artesanato - Pintura em Tecido',
+  content_ids: ['120-riscos-pano-de-prato'],
+  content_type: 'product',
+  value: 27.90,
+  currency: 'BRL'
+};
+
+fbq(
+  'track',
+  'ViewContent',
+  viewContentData,
+  { eventID: viewContentEventId }
+);
+
+sendMetaCapi('ViewContent', viewContentEventId, viewContentData);
+
+</script>
+
+
+  <!-- =========================================================
+       SCHEMA.ORG PRODUCT
+  ========================================================== -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Crie lindos panos de prato
+feitos por você
+mesmo começando do zero",
+    "description": "Tenha em mãos 120 riscos exclusivos,
+                videoaula passo a passo da pintura e materiais simples
+                para transformar desenhos em lindas peças artesanais.",
+    "category": "Artesanato > Pintura em Tecido",
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "BRL"
+    },
+    "brand": {
+      "@type": "Brand",
+      "name": "Pintura em Pano de Prato"
+    }
+  }
+  </script>
+
+
+
+  <script src="tracking.js" defer></script>
+
+</head>
+
+
+<body>
+
+  <!-- =========================================================
+       META PIXEL - FALLBACK SEM JAVASCRIPT
+  ========================================================== -->
+
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=1901694047194455&ev=PageView&noscript=1"
+      alt=""
+    >
+  </noscript>
+
+  <!-- RESTANTE DO SEU SITE CONTINUA AQUI -->
+
+  <div class="promo-bar">
+
+    <span class="promo-message">
+    ⚠️ Oferta encerra hoje, <span class="promo-date-highlight" id="promo-date"></span>
+</span>
+
+</div>
+
+    
+<!-- HERO -->
+<section class="hero bg-default" id="inicio">
+
+    <div class="container">
+
+        <div class="hero-content centered">
+          
+
+
+<!-- HEADLINE -->
+
+<h1 class="hero-title">
+
+    <span class="hero-eyebrow">
+        DESPERTE SEU LADO ARTESÃO
+    </span>
+
+    <h2 class="hero-final__title">
+                Pinte panos de prato lindos,
+                <span>mesmo começando do zero</span>
+           
+            </h2>
+
+</h1>
+
+<!-- MECANISMO SIMPLES -->
+
+<div class="hero-method">
+
+    <p>
+        Coleção completa com 120 riscos prontos, videoaula passo a passo e materiais simples
+                para você criar peças artesanais <strong>sem saber desenhar ou pintar</strong>.
+    </p>
+
+</div>
+
+<!-- =====================================================
+     CARROSSEL NO LUGAR DO MOCKUP
+===================================================== -->
+
+<div
+    class="comparison-carousel hero-comparison-carousel"
+    data-comparison-carousel
+    aria-label="Exemplos de riscos e resultados de pinturas em pano de prato"
+>
+
+    <div
+        class="comparison-viewport"
+        data-comparison-viewport
+    >
+
+        <div
+            class="comparison-track"
+            data-comparison-track
+        >
+
+<!-- =====================================================
+     COMPARAÇÃO 1
+===================================================== -->
+<article
+    class="comparison-card hero-comparison-card"
+    data-comparison-card
+>
+
+    <div class="comparison-pair">
+
+        <figure class="comparison-before">
+
+            <div class="comparison-before-media">
+
+                <span class="comparison-label">
+                    ANTES: RISCO
+                </span>
+
+                <img
+                    src="images/risco-01.webp"
+                    alt="Risco pronto para imprimir e transferir para o pano de prato"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    width="400"
+                    height="566"
+                >
+
+            </div>
+
+        </figure>
+
+
+        <figure class="comparison-image comparison-image-result">
+
+            <div class="comparison-result-media">
+
+                <span class="comparison-label comparison-label-result">
+                    RESULTADO PINTADO
+                </span>
+
+                <picture>
+
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="images/resultado-01-mobile.webp"
+                        width="400"
+                        height="300"
+                    >
+
+                    <img
+                        src="images/resultado-01.webp"
+                        alt="Pano de prato pintado a partir do risco"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                        width="600"
+                        height="848"
+                    >
+
+                </picture>
+
+            </div>
+
+        </figure>
+
+    </div>
+
+</article>
+
+
+<!-- =====================================================
+     COMPARAÇÃO 2
+===================================================== -->
+<article
+    class="comparison-card hero-comparison-card"
+    data-comparison-card
+>
+
+    <div class="comparison-pair">
+
+        <figure class="comparison-before">
+
+            <div class="comparison-before-media">
+
+                <span class="comparison-label">
+                    ANTES: RISCO
+                </span>
+
+                <img
+                    src="images/risco-02.webp"
+                    alt="Risco pronto para impressão e transferência"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="566"
+                >
+
+            </div>
+
+        </figure>
+
+
+        <figure class="comparison-image comparison-image-result">
+
+            <div class="comparison-result-media">
+
+                <span class="comparison-label comparison-label-result">
+                    RESULTADO PINTADO
+                </span>
+
+                <picture>
+
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="images/resultado-02-mobile.webp"
+                        width="400"
+                        height="300"
+                    >
+
+                    <img
+                        src="images/resultado-02.webp"
+                        alt="Pano de prato pintado usando o mesmo risco"
+                        loading="lazy"
+                        decoding="async"
+                        width="600"
+                        height="848"
+                    >
+
+                </picture>
+
+            </div>
+
+        </figure>
+
+    </div>
+
+</article>
+
+
+<!-- =====================================================
+     COMPARAÇÃO 3
+===================================================== -->
+<article
+    class="comparison-card hero-comparison-card"
+    data-comparison-card
+>
+
+    <div class="comparison-pair">
+
+        <figure class="comparison-before">
+
+            <div class="comparison-before-media">
+
+                <span class="comparison-label">
+                    ANTES: RISCO
+                </span>
+
+                <img
+                    src="images/risco-03.webp"
+                    alt="Risco de pintura pronto para transferir ao tecido"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="566"
+                >
+
+            </div>
+
+        </figure>
+
+
+        <figure class="comparison-image comparison-image-result">
+
+            <div class="comparison-result-media">
+
+                <span class="comparison-label comparison-label-result">
+                    RESULTADO PINTADO
+                </span>
+
+                <picture>
+
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="images/resultado-03-mobile.webp"
+                        width="400"
+                        height="300"
+                    >
+
+                    <img
+                        src="images/resultado-03.webp"
+                        alt="Pano de prato finalizado com pintura feita a partir do risco"
+                        loading="lazy"
+                        decoding="async"
+                        width="600"
+                        height="848"
+                    >
+
+                </picture>
+
+            </div>
+
+        </figure>
+
+    </div>
+
+</article>
+
+
+<!-- =====================================================
+     COMPARAÇÃO 4
+===================================================== -->
+<article
+    class="comparison-card hero-comparison-card"
+    data-comparison-card
+>
+
+    <div class="comparison-pair">
+
+        <figure class="comparison-before">
+
+            <div class="comparison-before-media">
+
+                <span class="comparison-label">
+                    ANTES: RISCO
+                </span>
+
+                <img
+                    src="images/risco-04.webp"
+                    alt="Risco pronto para ser transferido ao pano de prato"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="566"
+                >
+
+            </div>
+
+        </figure>
+
+
+        <figure class="comparison-image comparison-image-result">
+
+            <div class="comparison-result-media">
+
+                <span class="comparison-label comparison-label-result">
+                    RESULTADO PINTADO
+                </span>
+
+                <picture>
+
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="images/resultado-04-mobile.webp"
+                        width="400"
+                        height="300"
+                    >
+
+                    <img
+                        src="images/resultado-04.webp"
+                        alt="Pano de prato pintado a partir de um risco pronto"
+                        loading="lazy"
+                        decoding="async"
+                        width="600"
+                        height="848"
+                    >
+
+                </picture>
+
+            </div>
+
+        </figure>
+
+    </div>
+
+</article>
+
+
+<!-- =====================================================
+     COMPARAÇÃO 5
+===================================================== -->
+<article
+    class="comparison-card hero-comparison-card"
+    data-comparison-card
+>
+
+    <div class="comparison-pair">
+
+        <figure class="comparison-before">
+
+            <div class="comparison-before-media">
+
+                <span class="comparison-label">
+                    ANTES: RISCO
+                </span>
+
+                <img
+                    src="images/risco-05.webp"
+                    alt="Risco pronto para imprimir e pintar"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="566"
+                >
+
+            </div>
+
+        </figure>
+
+
+        <figure class="comparison-image comparison-image-result">
+
+            <div class="comparison-result-media">
+
+                <span class="comparison-label comparison-label-result">
+                    RESULTADO PINTADO
+                </span>
+
+                <picture>
+
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="images/resultado-05-mobile.webp"
+                        width="400"
+                        height="300"
+                    >
+
+                    <img
+                        src="images/resultado-05.webp"
+                        alt="Pano de prato pintado e finalizado"
+                        loading="lazy"
+                        decoding="async"
+                        width="600"
+                        height="848"
+                    >
+
+                </picture>
+
+            </div>
+
+        </figure>
+
+    </div>
+
+</article>
+
+</div>
+
+</div>
+
+<button type="button" class="comparison-button comparison-button-prev" data-comparison-prev aria-label="Ver comparação anterior">
+    <span aria-hidden="true">‹</span>
+</button>
+
+<button type="button" class="comparison-button comparison-button-next" data-comparison-next aria-label="Ver próxima comparação">
+    <span aria-hidden="true">›</span>
+</button>
+
+</div>   
+
+
+
+<div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="hero_ver_riscos"
+  >
+    QUERO COMEÇAR A PINTAR
+  </a>
+
+</div>
+
+
+
+<!-- AVATARES + BENEFÍCIO DOS RISCOS -->
+
+<div class="hero-collection-proof hero-social-proof-row">
+
+    <div class="hero-social-proof-stars">
+        <span class="stars">★★★★★</span>
+    </div>
+
+    <span class="hero-social-proof-divider"></span>
+
+    <div class="hero-social-proof-avatars">
+
+        <div class="hero-collection-proof__avatars">
+            <img src="images/avatar1.webp" alt="">
+            <img src="images/avatar2.webp" alt="">
+            <img src="images/avatar3.webp" alt="">
+            <img src="images/avatar4.webp" alt="">
+        </div>
+
+        <span class="hero-social-proof-text"><strong>+1639 alunos!</strong></span>
+
+    </div>
+
+</div>       
+          
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     GALERIA DE RISCOS — CARROSSEL ÚNICO
+========================================================= -->
+
+<section class="risks-gallery bg-white fade-in" id="riscos">
+
+    <div class="container">
+
+
+        <div class="text-center risks-gallery-heading">
+
+
+            <span class="section-tag">
+                Alguns dos modelos incluídos
+            </span>
+
+
+            <h2 class="section-title">
+
+                Veja alguns dos
+
+                <span>
+                    120 riscos exclusivos
+                </span>
+
+            </h2>
+
+
+            <p class="section-subtitle">
+
+                Modelos prontos para imprimir,
+                transferir e transformar em lindas pinturas
+                para seus panos de prato.
+
+            </p>
+
+
+        </div>
+
+
+
+
+        <!-- =====================================================
+     CARROSSEL CONTÍNUO DE RISCOS
+====================================================== -->
+
+
+<div class="risks-marquee">
+
+
+    <div class="risks-track">
+
+
+        <!-- =========================
+             FRUTAS
+        ========================== -->
+
+
+        <img 
+            src="images/frutas-01.webp"
+            alt="Risco de frutas para pintura em pano de prato"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/frutas-02.webp"
+            alt="Risco de frutas para pintura em tecido"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/frutas-03.webp"
+            alt="Modelo de risco de frutas"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/frutas-04.webp"
+            alt="Risco pronto para pintar de frutas"
+            loading="lazy"
+            decoding="async"
+        >
+
+
+
+        <!-- =========================
+             CAFÉ E COZINHA
+        ========================== -->
+
+
+        <img 
+            src="images/cafeecozinha-01.webp"
+            alt="Risco de café e cozinha para pintura"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/cafeecozinha-02.webp"
+            alt="Risco de cozinha para pano de prato"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/cafeecozinha-03.webp"
+            alt="Modelo de risco café e cozinha"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/cafeecozinha-04.webp"
+            alt="Risco pronto para transferir"
+            loading="lazy"
+            decoding="async"
+        >
+
+
+
+        <!-- =========================
+             FLORES
+        ========================== -->
+
+
+        <img 
+            src="images/flores-01.webp"
+            alt="Risco de flores para pintura"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/flores-02.webp"
+            alt="Modelo de flores para pano de prato"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/flores-03.webp"
+            alt="Risco floral para pintura em tecido"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/flores-04.webp"
+            alt="Risco de flores pronto para imprimir"
+            loading="lazy"
+            decoding="async"
+        >
+
+
+
+        <!-- =========================
+             ANIMAIS
+        ========================== -->
+
+
+        <img 
+            src="images/animais-01.webp"
+            alt="Risco de animais para pintura em pano de prato"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/animais-02.webp"
+            alt="Risco de animais para pintura em tecido"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/animais-03.webp"
+            alt="Modelo de risco de animais"
+            loading="lazy"
+            decoding="async"
+        >
+
+        <img 
+            src="images/animais-04.webp"
+            alt="Risco pronto para pintar de animais"
+            loading="lazy"
+            decoding="async"
+        >
+
+
+
+        <!-- =========================
+             REPETIÇÃO PARA LOOP
+        ========================== -->
+
+
+        <img src="images/frutas-01.webp" alt="" loading="lazy">
+        <img src="images/cafeecozinha-01.webp" alt="" loading="lazy">
+        <img src="images/flores-01.webp" alt="" loading="lazy">
+        <img src="images/animais-01.webp" alt="" loading="lazy">
+
+
+    </div>
+
+
+</div>
+
+<!-- =====================================================
+     SEGUNDO CARROSSEL DE RISCOS - DIREÇÃO CONTRÁRIA
+====================================================== -->
+
+<div class="risks-marquee risks-marquee-reverse">
+
+    <div class="risks-track">
+
+    <img src="images/frutas-01.webp" alt="">
+    <img src="images/frutas-02.webp" alt="">
+    <img src="images/frutas-03.webp" alt="">
+    <img src="images/frutas-04.webp" alt="">
+
+
+    <img src="images/cafeecozinha-01.webp" alt="">
+    <img src="images/cafeecozinha-02.webp" alt="">
+    <img src="images/cafeecozinha-03.webp" alt="">
+    <img src="images/cafeecozinha-04.webp" alt="">
+
+
+    <img src="images/flores-01.webp" alt="">
+    <img src="images/flores-02.webp" alt="">
+    <img src="images/flores-03.webp" alt="">
+    <img src="images/flores-04.webp" alt="">
+
+
+    <img src="images/animais-01.webp" alt="">
+    <img src="images/animais-02.webp" alt="">
+    <img src="images/animais-03.webp" alt="">
+    <img src="images/animais-04.webp" alt="">
+
+
+    <!-- MESMO LOOP DO PRIMEIRO -->
+
+    <img src="images/frutas-01.webp" alt="">
+    <img src="images/cafeecozinha-01.webp" alt="">
+    <img src="images/flores-01.webp" alt="">
+    <img src="images/animais-01.webp" alt="">
+
+</div>
+
+</div>
+
+
+
+        <!-- =====================================================
+             TEMAS INCLUÍDOS
+        ====================================================== -->
+
+
+        <div class="risks-themes">
+
+
+            <h3>
+                Você recebe riscos de:
+            </h3>
+
+
+
+            <div class="risks-theme-list">
+
+
+                <span>
+                    🌸 Flores
+                </span>
+
+
+                <span>
+                    🍓 Frutas
+                </span>
+
+
+                <span>
+                    ☕ Café e Cozinha
+                </span>
+
+
+                <span>
+                    🐔 Galinhas
+                </span>
+
+
+                <span>
+                    🐾 Animais
+                </span>
+
+
+                <span>
+                    🍰 Doces
+                </span>
+
+
+                <span>
+                    🎄 Natal
+                </span>
+
+
+                <span>
+                    🐰 Páscoa
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+<div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="riscos_ir_oferta"
+  >
+    QUERO COMEÇAR A PINTAR
+  </a>
+
+</div>
+
+    </div>
+
+
+</section>
+
+
+
+ <!-- =========================================================
+     BENEFÍCIOS DO PRODUTO
+========================================================= -->
+
+<section class="benefits-section bg-white fade-in">
+
+    <div class="container">
+
+
+        <div class="text-center benefits-heading">
+
+            <span class="section-tag">
+                O que você recebe
+            </span>
+
+
+            <h2 class="section-title">
+                Mais do que riscos,
+                <span>um caminho para criar</span>
+            </h2>
+
+
+            <p class="section-subtitle">
+                Tudo organizado para você sair da ideia
+                e transformar panos de prato simples em lindas peças pintadas.
+            </p>
+
+        </div>
+
+
+
+        <div class="benefits-grid">
+
+
+            <article class="benefit-card">
+
+                <div class="benefit-icon">
+                    ✨
+                </div>
+
+                <h3>
+                    Crie sem precisar desenhar
+                </h3>
+
+                <p>
+                    Tenha modelos prontos para imprimir,
+                    transferir e começar sua pintura com segurança.
+                </p>
+
+            </article>
+
+
+
+            <article class="benefit-card">
+
+                <div class="benefit-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    Economize tempo procurando modelos
+                </h3>
+
+                <p>
+                    Uma coleção organizada com diversos temas
+                    para você escolher o desenho ideal.
+                </p>
+
+            </article>
+
+
+
+            <article class="benefit-card">
+
+                <div class="benefit-icon">
+                    💝
+                </div>
+
+                <h3>
+                    Faça peças para você ou vender
+                </h3>
+
+                <p>
+                    Transforme panos de prato em presentes,
+                    decoração ou uma nova fonte de renda.
+                </p>
+
+            </article>
+
+
+
+            <article class="benefit-card">
+
+                <div class="benefit-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Aprenda o processo completo
+                </h3>
+
+                <p>
+                    Tenha apoio com videoaula, guias de transferência, pintura
+                    e combinação de cores.
+                </p>
+
+            </article>
+
+
+        </div>
+
+
+
+        <div class="benefits-footer">
+
+
+    <div class="benefits-footer-icon">
+        ✓
+    </div>
+
+
+    <div class="benefits-footer-text">
+
+        <strong>
+            Você recebe tudo organizado para começar.
+        </strong>
+
+        <span>
+            Escolha o risco, transfira para o tecido e coloque sua criatividade em prática.
+        </span>
+
+    </div>         
+
+</div>
+
+<div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="o_que_recebe_ir_oferta"
+  >
+    QUERO COMEÇAR A PINTAR
+  </a>
+
+</div>
+     
+</section>
+
+
+  <!-- =========================================================
+     BÔNUS EXCLUSIVOS
+     ========================================================= -->
+<section class="bonuses bonuses-dark fade-in" id="bonus">
+
+    <div class="container">
+
+        <div class="text-center bonuses-heading">
+
+            <span class="section-tag">
+                Material Extra
+            </span>
+
+            <h2 class="section-title">
+                Você também recebe
+                <span>4 bônus exclusivos</span>
+            </h2>
+
+            <p class="section-subtitle">
+                Materiais complementares para facilitar sua pintura,
+                melhorar seus resultados e ajudar você a começar
+                com mais segurança.
+            </p>
+
+        </div>
+
+        <div class="bonuses-grid">
+
+            
+
+            <!-- BÔNUS 1 -->
+            <article class="bonus-card">
+
+                <div class="bonus-image">
+
+                    <span class="bonus-badge">
+                        BÔNUS 1
+                    </span>
+
+                    <img
+                        src="images/bonus-pintura.webp"
+                        alt="Capa do guia Segredos da Pintura Perfeita"
+                        loading="lazy"
+                                         decoding="async"
+                        width="1000"
+                        height="1000"
+                    >
+
+                </div>
+
+                <div class="bonus-content">
+
+                    <h3>Videoaula: Pintura em Tecido do Zero</h3>
+
+                    <p>
+                        Acompanhe na prática o passo a passo da pintura em tecido, do preparo ao acabamento, com explicações simples para quem está começando.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+           <!-- BÔNUS 2 -->
+            <article class="bonus-card">
+
+                <div class="bonus-image">
+
+                    <span class="bonus-badge">
+                        BÔNUS 2
+                    </span>
+
+                    <img
+                        src="images/bonus-transferencia.webp"
+                        alt="Capa do Guia de Transferência Perfeita"
+                        loading="lazy"
+                                         decoding="async"
+                        width="1000"
+                        height="1000"
+                    >
+
+                </div>
+
+                <div class="bonus-content">
+
+                    <h3>Guia de Transferência Perfeita</h3>
+
+                    <p>
+                        Aprenda a transferir seus riscos para o pano de prato
+                        com papel carbono, evitando desenhos tortos,
+                        falhas e marcas fora do lugar.
+                    </p>
+
+                </div>
+
+            </article>
+          
+
+            <!-- BÔNUS 3 -->
+            <article class="bonus-card">
+
+                <div class="bonus-image">
+
+                    <span class="bonus-badge">
+                        BÔNUS 3
+                    </span>
+
+                    <img
+                        src="images/bonus-cores.webp"
+                        alt="Capa do Guia de Combinação de Cores"
+                        loading="lazy"
+                                         decoding="async"
+                        width="1000"
+                        height="1000"
+                    >
+
+                </div>
+
+                <div class="bonus-content">
+
+                    <h3>Guia de Combinação de Cores</h3>
+
+                    <p>
+                        Receba sugestões de paletas harmoniosas para escolher
+                        suas tintas com mais facilidade e criar pinturas
+                        ainda mais bonitas.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- BÔNUS 4 -->
+            <article class="bonus-card">
+
+                <div class="bonus-image">
+
+                    <span class="bonus-badge">
+                        BÔNUS 4
+                    </span>
+
+                    <img
+                        src="images/bonus-vendas.webp"
+                        alt="Capa do guia Primeiros Passos para Vender suas Peças"
+                        loading="lazy"
+                                         decoding="async"
+                        width="1000"
+                        height="1000"
+                    >
+
+                </div>
+
+                <div class="bonus-content">
+
+                    <h3>Primeiros Passos para Vender suas Peças</h3>
+
+                    <p>
+                        Aprenda como calcular preços, montar kits, divulgar
+                        seus trabalhos e conquistar seus primeiros clientes.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        <!-- Informação final -->
+        <div class="bonuses-summary">
+
+            <div class="bonuses-summary-icon" aria-hidden="true">
+                ✓
+            </div>
+
+            <div class="bonuses-summary-text">
+
+                <strong>
+                    Todos os bônus estão incluídos na coleção.
+                </strong>
+
+                <span>
+                    Você recebe os 120 riscos e os quatro materiais extras
+                    sem pagar nada a mais.
+                </span>
+
+            </div>
+
+        </div>
+      
+    </div>
+
+ <div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="hero_ver_riscos"
+  >
+    QUERO COMEÇAR A PINTAR
+  </a>
+
+</div>
+
+</section>
+
+ 
+<!-- =========================================================
+     PINTURAS DE QUEM JÁ COMEÇOU
+========================================================= -->
+
+<section
+    class="customer-results fade-in"
+    id="depoimentos"
+>
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+    <div class="customer-results-heading container text-center">
+
+        <span class="section-tag">
+            Pinturas de quem já começou
+        </span>
+
+        <h2 class="section-title">
+            Veja o que nossas clientes estão
+            <span>pintando</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Veja alguns trabalhos compartilhados por clientes
+            que já colocaram os riscos em prática.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         CARROSSEL INFINITO
+    ====================================================== -->
+
+    <div
+        class="testimonials-marquee"
+        data-testimonials-marquee
+        aria-label="Pinturas compartilhadas por clientes"
+    >
+
+        <div
+            class="testimonials-track"
+            data-testimonials-track
+        >
+
+            <!-- =================================================
+                 GRUPO ORIGINAL
+            ================================================== -->
+
+            <div class="testimonials-group">
+
+                <!-- DEPOIMENTO 1 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-01.webp"
+                        alt="Depoimento de cliente mostrando uma pintura de rosa em pano de prato"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+
+                <!-- DEPOIMENTO 2 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-02.webp"
+                        alt="Cliente mostrando uma pintura de limões em pano de prato"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+
+                <!-- DEPOIMENTO 3 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-03.webp"
+                        alt="Cliente mostrando uma pintura de xícara em pano de prato"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+
+                <!-- DEPOIMENTO 4 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-04.webp"
+                        alt="Depoimento de cliente mostrando uma pintura de bolo em pano de prato"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+
+                <!-- DEPOIMENTO 5 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-05.webp"
+                        alt="Cliente mostrando uma pintura de cachorro em pano de prato"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+
+                <!-- DEPOIMENTO 6 -->
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-06.webp"
+                        alt="Depoimento de cliente iniciante mostrando uma pintura de bananas em pano de prato"
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+            </div>
+
+
+            <!-- =================================================
+                 CÓPIA PARA LOOP INFINITO
+            ================================================== -->
+
+            <div
+                class="testimonials-group"
+                aria-hidden="true"
+            >
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-01.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-02.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-03.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-04.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-05.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+                <figure class="testimonial-slide">
+                    <img
+                        src="images/depoimento-06.webp"
+                        alt=""
+                        width="391"
+                        height="709"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                    >
+                </figure>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         OBSERVAÇÃO
+    ====================================================== -->
+
+    <p class="testimonials-note">
+        Resultados compartilhados por clientes. A experiência e o acabamento
+        podem variar de acordo com a prática e os materiais utilizados.
+    </p>
+
+
+<div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="hero_ver_riscos"
+  >
+    QUERO COMEÇAR A PINTAR
+  </a>
+
+</div>
+ 
+
+</section>
+
+
+ 
+   <!-- =========================================================
+     BLOCO DE DOR / IDENTIFICAÇÃO
+========================================================= -->
+
+<section class="pain-section bg-default fade-in">
+
+    <div class="container">
+
+        <div class="text-center pain-heading">
+
+            <span class="section-tag">
+                Antes de começar
+            </span>
+
+
+            <h2 class="section-title">
+
+                Você também já pensou:
+
+                <span>
+                    "Será que eu consigo?"
+                </span>
+
+            </h2>
+
+
+            <p class="section-subtitle">
+
+                Muitas pessoas têm vontade de pintar,
+                mas acabam desistindo antes mesmo de começar
+                por medo de não saber fazer.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="pain-grid">
+
+
+            <article class="pain-card">
+
+                <div class="pain-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    "Eu não sei desenhar"
+                </h3>
+
+                <p>
+                    Olha trabalhos lindos e pensa que nunca conseguiria criar algo parecido.
+                </p>
+
+            </article>
+
+
+
+            <article class="pain-card">
+
+                <div class="pain-icon">
+                    😰
+                </div>
+
+                <h3>
+                    "Tenho medo de errar"
+                </h3>
+
+                <p>
+                    Não saber transferir o desenho ou escolher as cores certas gera insegurança.
+                </p>
+
+            </article>
+
+
+
+            <article class="pain-card">
+
+                <div class="pain-icon">
+                    ⏳
+                </div>
+
+                <h3>
+                    "Não sei por onde começar"
+                </h3>
+
+                <p>
+                    Procurar modelos, técnicas e materiais pode deixar tudo mais complicado.
+                </p>
+
+            </article>
+
+
+
+        </div>
+
+
+
+        <div class="pain-footer">
+
+
+    <div class="pain-footer-icon">
+        ✓
+    </div>
+
+
+    <div class="pain-footer-text">
+
+        <strong>
+            Você não precisa de experiência anterior.
+        </strong>
+
+        <span>
+            Basta seguir o processo e começar sua primeira pintura.
+        </span>
+
+    </div>
+
+
+</div>
+
+
+    </div>
+
+
+<div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="hero_ver_riscos"
+  >
+    QUERO COMEÇAR A PINTAR
+  </a>
+
+</div>
+
+
+ 
+</section>
+  
+  
+<!-- =========================================================
+     COMO TRANSFERIR O RISCO PARA O TECIDO
+     ========================================================= -->
+<section class="transfer-process bg-white fade-in" id="como-funciona">
+
+    <div class="container">
+
+        <div class="text-center transfer-process-heading">
+
+            <span class="section-tag">
+                Simples e rápido
+            </span>
+
+            <h2 class="section-title">
+                Agora veja como é simples passar qualquer risco para o
+                <span>pano de prato</span>
+            </h2>
+
+            <p class="section-subtitle">
+                Você não precisa saber desenhar. Depois de imprimir o modelo,
+                basta usar papel carbono para passar as linhas ao pano antes de começar a pintura.
+            </p>
+
+        </div>
+
+        <div class="transfer-process-grid">
+
+            <!-- ETAPA 1 -->
+            <article class="transfer-process-card">
+
+                <div class="transfer-process-image">
+
+                    <span class="transfer-process-number">
+                        01
+                    </span>
+
+                    <img
+                        src="images/transferencia-01.webp"
+                        alt="Risco impresso em uma folha A4"
+                        loading="lazy"
+                                         decoding="async"
+                        width="900"
+                        height="900"
+                    >
+
+                </div>
+
+                <div class="transfer-process-content">
+
+                    <h3>Imprima o risco</h3>
+
+                    <p>
+                        Escolha um dos 120 modelos e imprima o desenho
+                        em uma folha A4.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- ETAPA 2 -->
+            <article class="transfer-process-card transfer-process-card-highlight">
+
+                <div class="transfer-process-image">
+
+                    <span class="transfer-process-number">
+                        02
+                    </span>
+
+                    <span class="transfer-process-badge">
+                        PAPEL CARBONO
+                    </span>
+
+                    <img
+                        src="images/transferencia-02.webp"
+                        alt="Papel carbono posicionado sobre o pano de prato"
+                        loading="lazy"
+                                         decoding="async"
+                        width="900"
+                        height="900"
+                    >
+
+                </div>
+
+                <div class="transfer-process-content">
+
+                    <h3>Posicione o papel carbono</h3>
+
+                    <p>
+                        Coloque o <strong>papel carbono</strong>
+                        sobre o pano, com o lado que transfere a marca voltado
+                        para o tecido.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- ETAPA 3 -->
+            <article class="transfer-process-card">
+
+                <div class="transfer-process-image">
+
+                    <span class="transfer-process-number">
+                        03
+                    </span>
+
+                    <img
+                        src="images/transferencia-03.webp"
+                        alt="Risco impresso posicionado sobre o papel carbono e o pano de prato"
+                        loading="lazy"
+                                         decoding="async"
+                        width="900"
+                        height="900"
+                    >
+
+                </div>
+
+                <div class="transfer-process-content">
+
+                    <h3>Coloque o risco por cima</h3>
+
+                    <p>
+                        Posicione a folha impressa sobre o carbono e prenda
+                        as extremidades para o desenho não sair do lugar.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- ETAPA 4 -->
+            <article class="transfer-process-card">
+
+                <div class="transfer-process-image">
+
+                    <span class="transfer-process-number">
+                        04
+                    </span>
+
+                    <img
+                        src="images/transferencia-04.webp"
+                        alt="Pessoa contornando o risco com lápis para transferir o desenho ao tecido"
+                        loading="lazy"
+                                         decoding="async"
+                        width="900"
+                        height="900"
+                    >
+
+                </div>
+
+                <div class="transfer-process-content">
+
+                    <h3>Contorne as linhas</h3>
+
+                    <p>
+                        Passe um lápis ou uma ponta firme sobre as linhas
+                        do desenho para transferir o contorno ao pano.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- ETAPA 5 -->
+            <article class="transfer-process-card">
+
+                <div class="transfer-process-image">
+
+                    <span class="transfer-process-number">
+                        05
+                    </span>
+
+                    <img
+                        src="images/transferencia-05.webp"
+                        alt="Desenho transferido para o pano de prato pronto para começar a pintura"
+                        loading="lazy"
+                                         decoding="async"
+                        width="900"
+                        height="900"
+                    >
+
+                </div>
+
+                <div class="transfer-process-content">
+
+                    <h3>Retire os papéis e pinte</h3>
+
+                    <p>
+                        Retire a folha e o carbono. O desenho ficará marcado
+                        no tecido, pronto para receber a pintura.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        <div class="transfer-process-summary">
+
+            <div class="transfer-process-summary-icon" aria-hidden="true">
+                ✓
+            </div>
+
+            <div class="transfer-process-summary-content">
+
+                <strong>
+                    O Guia de Transferência está incluído na sua compra.
+                </strong>
+
+                <p>
+                    Você receberá orientações para utilizar o papel carbono
+                    e transferir os riscos, mesmo que nunca tenha
+                    feito esse processo antes.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+ <div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="hero_ver_riscos"
+  >
+    QUERO COMEÇAR A PINTAR
+  </a>
+
+</div>
+
+ 
+
+</section>
+
+
+<!-- =========================================================
+     PARA QUEM É
+     ========================================================= -->
+
+<section class="for-who-section bg-default fade-in">
+
+    <div class="container">
+
+        <div class="text-center for-who-heading">
+
+            <span class="section-tag">
+                Feito para você
+            </span>
+
+
+            <h2 class="section-title">
+                Essa coleção é perfeita para quem quer
+                <span>começar a pintar</span>
+            </h2>
+
+
+            <p class="section-subtitle">
+                Mesmo sem experiência, você terá modelos prontos
+                e um caminho simples para criar suas primeiras peças.
+            </p>
+
+        </div>
+
+
+
+        <div class="for-who-grid">
+
+
+            <article class="for-who-card">
+
+                <div class="for-who-icon">
+                    🌱
+                </div>
+
+                <h3>
+                    Está começando agora
+                </h3>
+
+                <p>
+                    Para quem sempre teve vontade de pintar,
+                    mas nunca soube por onde começar.
+                </p>
+
+            </article>
+
+
+
+            <article class="for-who-card">
+
+                <div class="for-who-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    Não sabe desenhar
+                </h3>
+
+                <p>
+                    Use riscos prontos para imprimir e
+                    transforme desenhos em lindas pinturas.
+                </p>
+
+            </article>
+
+
+
+            <article class="for-who-card">
+
+                <div class="for-who-icon">
+                    💝
+                </div>
+
+                <h3>
+                    Quer criar peças únicas
+                </h3>
+
+                <p>
+                    Ideal para decorar sua casa, presentear
+                    ou começar uma nova atividade artesanal.
+                </p>
+
+            </article>
+
+
+
+        </div>
+
+
+
+        <div class="for-who-footer">
+
+    <div class="for-who-footer-icon">
+        ✓
+    </div>
+
+
+    <div class="for-who-footer-text">
+
+        <strong>
+            Você não precisa nascer com talento.
+        </strong>
+
+        <span>
+            Precisa apenas de um modelo certo e vontade de criar.
+        </span>
+
+    </div>
+
+</div>
+
+
+  <div class="hero-buttons">
+
+  <a
+    href="#oferta"
+    class="btn-primary btn-large"
+    data-cta="hero_ver_riscos"
+  >
+    QUERO COMEÇAR A PINTAR
+  </a>
+
+</div>
+
+
+     
+</section>
+
+
+
+ <!-- 9. FINAL CTA SECTION -->
+<section class="final-cta bg-default fade-in" id="oferta">
+    <div class="container">
+        <div class="offer-box">
+
+    <h2 class="final-cta-title">
+
+        A coleção completa para pintar lindos panos de prato, mesmo começando do zero
+
+    </h2>
+
+<!-- MOCKUP DA COLEÇÃO -->
+
+<div class="offer-mockup">
+
+    <img 
+        src="images/MOCKUP_NOVO.webp"
+        alt="Coleção com 120 riscos exclusivos para pintura em pano de prato"
+        width="800"
+        height="800"
+        loading="lazy"
+        decoding="async"
+    >
+
+</div>
+
+
+    <!-- ENTREGA -->
+
+    <div class="offer-delivery">
+
+
+        <div class="offer-delivery-content">
+
+<ul>
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            120 Riscos Exclusivos para Pintura em Pano de Prato
+        </span>
+
+    </li>
+
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            Videoaula: Pintura em Tecido do Zero
+        </span>
+
+    </li>
+
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            Guia de Transferência Perfeita
+        </span>
+
+    </li>
+
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            Guia de Combinação de Cores
+        </span>
+
+    </li>
+
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            Primeiros Passos para Vender suas Peças
+        </span>
+
+    </li>
+
+
+    <li>
+
+        <span class="benefit-icon" aria-hidden="true">
+            ✓
+        </span>
+
+        <span class="benefit-text">
+            Acesso vitalício ao material
+        </span>
+
+    </li>
+
+
+</ul>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- ANCORAGEM -->
+
+
+    <div class="offer-anchor">
+
+       <span> Valor da coleção completa: R$ 97,90
+        </span>
+
+
+    </div>
+
+
+
+
+
+    <!-- PREÇO -->
+
+
+    <div class="final-offer-price">
+
+
+        <div class="final-offer-label">
+
+    Oferta especial hoje 
+    <strong id="offer-date"></strong>:
+
+</div>
+
+
+
+        <div class="final-offer-current-price">
+
+            R$ 27,90
+
+        </div>
+
+
+
+
+        <div class="final-offer-installments">
+
+            ou em até
+
+            <strong>
+                6x de R$ 5,23*
+            </strong>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- CTA -->
+
+
+    <div class="hero-buttons">
+
+
+        <a
+        href="https://pay.hotmart.com/S106956139O?checkoutMode=10"
+        class="btn-primary btn-large"
+        data-cta="oferta_checkout">
+         
+
+
+            QUERO APROVEITAR A OFERTA
+
+
+        </a>
+
+
+    </div>
+
+
+
+
+
+    <!-- SEGURANÇA -->
+
+
+    <div class="offer-security">
+
+
+        🔒 Compra protegida
+
+
+        <span>
+
+            Acesso imediato após confirmação do pagamento.
+
+        </span>
+
+
+    </div>
+
+
+
+</div>
+</section>
+
+  
+  <!-- =========================================================
+     GARANTIA DE 7 DIAS
+     ========================================================= -->
+<section class="guarantee-section fade-in" id="garantia">
+
+    <div class="container">
+
+        <div class="guarantee-wrapper">
+
+            <!-- Selo principal -->
+            <div class="guarantee-seal" aria-hidden="true">
+
+                <div class="guarantee-seal-icon">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="54"
+                        height="54"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                </div>
+
+                <span class="guarantee-seal-label">
+                    GARANTIA
+                </span>
+
+                <strong class="guarantee-seal-days">
+                    7 DIAS
+                </strong>
+
+                <span class="guarantee-seal-bottom">
+                    PARA AVALIAR
+                </span>
+
+            </div>
+
+            <!-- Conteúdo principal -->
+            <div class="guarantee-content">
+
+                <span class="section-tag">
+                    Compra protegida
+                </span>
+
+                <h2 class="section-title">
+                    Você tem 7 dias para
+                    <span>avaliar o material</span>
+                </h2>
+
+                <p class="guarantee-description">
+                    Compre hoje, acesse os arquivos e conheça os riscos e bônus
+                    incluídos na coleção. Caso o material não atenda às suas
+                    expectativas, você poderá solicitar o reembolso dentro do
+                    prazo e das condições da garantia.
+                </p>
+
+                <ul class="guarantee-checklist">
+
+                    <li>
+                        <span class="guarantee-check" aria-hidden="true">✓</span>
+                        <span>Acesse os 120 riscos após a confirmação do pagamento.</span>
+                    </li>
+
+                    <li>
+                        <span class="guarantee-check" aria-hidden="true">✓</span>
+                        <span>Confira os arquivos e os quatro bônus incluídos.</span>
+                    </li>
+
+                    <li>
+                        <span class="guarantee-check" aria-hidden="true">✓</span>
+                        <span>Avalie se o material atende ao que você procura.</span>
+                    </li>
+
+                    <li>
+                        <span class="guarantee-check" aria-hidden="true">✓</span>
+                        <span>Solicite o reembolso dentro das condições da garantia.</span>
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SOBRE A CRIADORA DA COLEÇÃO
+========================================================= -->
+
+<section class="creator-section bg-default fade-in">
+
+    <div class="container">
+
+        <div class="creator-wrapper">
+
+
+            <!-- IMAGEM PRINCIPAL -->
+
+            <div class="creator-image">
+
+                <img 
+                    src="images/criadora-pano.webp"
+                    alt="Criadora da coleção segurando um pano de prato pintado"
+                    loading="lazy"
+                    decoding="async"
+                    width="700"
+                    height="875"
+                >
+
+            </div>
+
+
+
+            <!-- CONTEÚDO -->
+
+            <div class="creator-content">
+
+
+                <span class="section-tag">
+                    Quem criou esta coleção
+                </span>
+
+
+                <h2 class="creator-title">
+
+                    Uma paixão que se transformou
+
+                    <span>
+                        em inspiração para você
+                    </span>
+
+                </h2>
+
+
+
+                <p>
+                    Eu sou apaixonada por pintura em pano de prato
+                    e sei como pode ser desafiador encontrar riscos
+                    bonitos, bem definidos e prontos para usar.
+                </p>
+
+
+                <p>
+                    Por isso, criei esta coleção com muito carinho,
+                    reunindo 120 riscos exclusivos, organizados por temas,
+                    para que você possa imprimir, transferir e começar
+                    a pintar sem perder tempo procurando modelos pela internet.
+                </p>
+
+
+                <p>
+                    Cada desenho foi selecionado pensando em facilitar
+                    o seu dia a dia e ajudar você a criar peças lindas,
+                    seja para o seu prazer, para presentear ou até
+                    para gerar uma renda extra.
+                </p>
+
+
+
+                <div class="creator-signature">
+
+                    Maria Silva
+
+                    <small>
+                        CRIADORA DA COLEÇÃO<br>
+                        120 RISCOS EXCLUSIVOS
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+  
+
+  <!-- 11. FAQ SECTION -->
+  <section class="faq bg-white fade-in" id="duvidas">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Tire suas Dúvidas</span>
+        <h2 class="section-title">Perguntas <span>Frequentes</span></h2>
+        <p class="section-subtitle">Respondemos as dúvidas mais comuns sobre o produto.</p>
+      </div>
+
+      <div class="faq-list">
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>É um produto físico?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Não. Este é um produto 100% digital. Você receberá os arquivos em PDF para download imediato após a confirmação do pagamento. Nada será enviado pelos correios.</p>
+          </div>
+        </div>
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Como recebo os arquivos?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Após a confirmação do pagamento, você receberá um e-mail com o link para download imediato de todos os 120 riscos em PDF.</p>
+          </div>
+        </div>
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Posso imprimir quantas vezes quiser?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Sim! Após o download, os arquivos são seus para sempre. Você pode imprimir quantas vezes precisar, sem nenhum custo adicional.</p>
+          </div>
+        </div>
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Preciso de impressora especial?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Não. Os riscos podem ser impressos em qualquer impressora comum, seja jato de tinta ou laser, em papel A4 comum.</p>
+          </div>
+        </div>
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Como faço a transferência do risco para o pano?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Basta imprimir o risco, posicionar o papel carbono sobre o pano de prato, colocar o risco por cima e passar o lápis ou boleador sobre o desenho. É muito simples!</p>
+          </div>
+        </div>
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Os arquivos ficam disponíveis imediatamente?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Sim! O acesso é imediato após a confirmação do pagamento. Você já pode baixar e começar a usar na hora.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- =========================================================
+     FECHAMENTO FINAL DA OFERTA (ESTRUTURA DE CHECKOUT)
+========================================================= -->
+<section class="final-offer-close">
+
+    <div class="container">
+
+        <div class="final-offer-close__box">
+
+            <span class="section-tag">
+                Aproveite a oferta
+            </span>
+
+            <h2 class="final-offer-close__title">
+                Garanta sua coleção
+                <span>pelo menor valor</span>
+            </h2>
+
+            <p class="final-offer-close__text">
+                Oferta válida até hoje. Garanta seu acesso com segurança.
+            </p>
+
+            <div class="hero-buttons">
+                <a
+                    href="https://pay.hotmart.com/S106956139O?checkoutMode=10"
+                    class="btn-primary btn-large"
+                    data-cta="fechamento_final_oferta"
+                >
+                    QUERO COMEÇAR A PINTAR
+                </a>
+            </div>
+
+            <div class="final-offer-close__security">
+                🔒 Compra protegida. Acesso imediato após a confirmação do pagamento.
+            </div>
+
+            <div class="final-offer-close__divider"></div>
+
+            <ul class="final-offer-close__list">
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>120 riscos exclusivos para pintura em pano de prato</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>Videoaula: pintura em tecido do zero</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>Guia de Transferência Perfeita</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>Guia de Combinação de Cores</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>Primeiros Passos para Vender suas Peças</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>Acesso vitalício ao material</span>
+                </li>
+                <li>
+                    <span class="final-offer-close__check" aria-hidden="true">✓</span>
+                    <span>Garantia incondicional de 7 dias</span>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+ 
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <div class="footer-content">
+
+    <div class="footer-brand">
+      <h3 class="footer-brand-name">Pintura em Pano de Prato</h3>
+
+      <p>
+        Arquivos digitais em PDF prontos para imprimir e usar.
+      </p>
+    </div>
+
+    <div class="footer-links">
+
+      <div class="footer-links-group">
+        <h4>Links</h4>
+
+        <ul>
+          <li>
+            <a href="#inicio">Início</a>
+          </li>
+
+          <li>
+            <a href="#duvidas">Dúvidas</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>Legal</h4>
+
+        <ul>
+          <li>
+            <a href="#" id="openPrivacy">
+              Política de Privacidade
+            </a>
+          </li>
+
+          <li>
+            <a href="#" id="openTerms">
+              Termos de Uso
+            </a>
+          </li>
+
+          <li>
+            <a href="mailto:pinturaempanodeprato@outlook.com">
+              Contato
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      &copy; 2026 Pintura em Pano de Prato. Todos os direitos reservados.
+    </p>
+  </div>
+
+</footer>
+
+  
+<!-- =========================================================
+     MODAL - TERMOS DE USO
+========================================================= -->
+
+<div
+  id="termsModal"
+  class="legal-modal"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="termsTitle"
+>
+
+  <div class="legal-modal-content">
+
+    <button
+      class="legal-modal-close"
+      id="closeTerms"
+      type="button"
+      aria-label="Fechar Termos de Uso"
+    >
+      &times;
+    </button>
+
+    <h2 id="termsTitle">
+      Termos de Uso
+    </h2>
+
+    <div class="legal-modal-text">
+
+      <p>
+        Ao adquirir o produto digital
+        <strong>120 Riscos Exclusivos para Pintura em Pano de Prato</strong>,
+        você concorda com os termos apresentados abaixo.
+      </p>
+
+      <h3>1. Produto Digital</h3>
+
+      <p>
+        Este produto consiste em arquivos digitais disponibilizados para
+        download após a confirmação do pagamento. Nenhum produto físico
+        será enviado.
+      </p>
+
+      <h3>2. Uso do Material</h3>
+
+      <p>
+        Os arquivos são destinados ao uso pessoal do comprador.
+        É permitido imprimir e utilizar os riscos para a criação
+        de peças artesanais.
+      </p>
+
+      <h3>3. Direitos Autorais</h3>
+
+      <p>
+        É proibido revender, compartilhar, distribuir, disponibilizar
+        ou reproduzir os arquivos digitais como produto digital,
+        seja de forma gratuita ou paga.
+      </p>
+
+      <h3>4. Acesso ao Produto</h3>
+
+      <p>
+        Após a confirmação do pagamento, o acesso ao produto será
+        disponibilizado conforme as instruções enviadas pela
+        plataforma de pagamento.
+      </p>
+
+      <h3>5. Resultados</h3>
+
+      <p>
+        Os resultados apresentados podem variar de acordo com
+        a experiência, os materiais e as técnicas utilizadas
+        por cada pessoa.
+      </p>
+
+      <h3>6. Suporte</h3>
+
+      <p>
+        Em caso de dúvidas sobre o acesso ao produto,
+        entre em contato pelo e-mail
+        <a href="mailto:pinturaempanodeprato@outlook.com">
+          pinturaempanodeprato@outlook.com
+        </a>.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL - POLÍTICA DE PRIVACIDADE
+========================================================= -->
+
+<div
+  id="privacyModal"
+  class="legal-modal"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="privacyTitle"
+>
+
+  <div class="legal-modal-content">
+
+    <button
+      class="legal-modal-close"
+      id="closePrivacy"
+      type="button"
+      aria-label="Fechar Política de Privacidade"
+    >
+      &times;
+    </button>
+
+    <h2 id="privacyTitle">
+      Política de Privacidade
+    </h2>
+
+    <div class="legal-modal-text">
+
+      <p>
+        Esta Política de Privacidade explica de forma geral como
+        as informações fornecidas pelos usuários podem ser utilizadas
+        durante a navegação e aquisição deste produto.
+      </p>
+
+      <h3>1. Informações Coletadas</h3>
+
+      <p>
+        Podemos receber informações fornecidas voluntariamente pelo
+        usuário durante o processo de compra, como nome, e-mail
+        e outras informações necessárias para processamento do pedido.
+      </p>
+
+      <h3>2. Uso das Informações</h3>
+
+      <p>
+        As informações podem ser utilizadas para processar pedidos,
+        disponibilizar o acesso ao produto, prestar suporte e melhorar
+        a experiência do usuário.
+      </p>
+
+      <h3>3. Pagamentos</h3>
+
+      <p>
+        Os pagamentos são processados pela plataforma responsável
+        pela transação. Não armazenamos diretamente os dados completos
+        do cartão de pagamento.
+      </p>
+
+      <h3>4. Compartilhamento</h3>
+
+      <p>
+        As informações pessoais não são vendidas a terceiros.
+        Os dados podem ser compartilhados apenas quando necessário
+        para o funcionamento do serviço, processamento do pagamento
+        ou cumprimento de obrigações legais.
+      </p>
+
+      <h3>5. Cookies</h3>
+
+      <p>
+        Este site pode utilizar cookies e tecnologias semelhantes
+        para melhorar a navegação, analisar o desempenho e auxiliar
+        na personalização da experiência do usuário.
+      </p>
+
+      <h3>6. Contato</h3>
+
+      <p>
+        Caso tenha dúvidas relacionadas à privacidade ou ao uso
+        de suas informações, entre em contato pelo e-mail
+        <a href="mailto:pinturaempanodeprato@outlook.com">
+          pinturaempanodeprato@outlook.com
+        </a>.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
