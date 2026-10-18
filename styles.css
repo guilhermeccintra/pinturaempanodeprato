@@ -7269,7 +7269,7 @@ body {
     margin: 0 auto 10px;
 
     font-family: var(--font-display);
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
     line-height: 1;
     
@@ -7324,7 +7324,7 @@ body {
     .hero-final__title {
         width: 100%;
         font-weight: 700;
-        font-size: 1.6rem;
+        font-size: 1.55rem;
         line-height: 1;
         margin: 0 auto 10px;
     }
