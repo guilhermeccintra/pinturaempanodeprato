@@ -1,6 +1,6 @@
 
 /* ==========================================================
-   PURCHASE TOAST — COLEÇÃO PINTURA EM PANO DE PRATO
+   POP-UP ALEATÓRIO — COLEÇÃO PINTURA EM PANO DE PRATO
    Controla exclusivamente o pop-up.
 ========================================================== */
 
@@ -10,97 +10,119 @@
   function iniciarPurchaseToast() {
     const toast = document.getElementById("purchase-notification");
     const closeButton = document.getElementById("toast-close");
-
     const nameElement = document.getElementById("toast-name");
     const actionElement = document.getElementById("toast-action");
     const timeElement = document.getElementById("toast-time");
 
-    if (!toast || !closeButton || !nameElement ||
-        !actionElement || !timeElement) {
+    if (
+      !toast ||
+      !closeButton ||
+      !nameElement ||
+      !actionElement ||
+      !timeElement
+    ) {
+      console.warn("[Purchase Toast] Elementos não encontrados.");
       return;
     }
 
     if (toast.dataset.initialized === "true") return;
     toast.dataset.initialized = "true";
 
-    const messages = [
-      {
-        title: "Coleção Completa",
-        action: "Conheça os 120 riscos para pintar panos de prato!",
-        time: "120 riscos + 4 bônus digitais"
-      },
-      {
-        title: "Pintura em Tecido",
-        action: "Encontre inspiração para sua próxima pintura!",
-        time: "Modelos prontos para imprimir"
-      },
-      {
-        title: "Sua Criatividade",
-        action: "Comece a criar lindas peças artesanais!",
-        time: "Conheça todo o material incluído"
-      },
-      {
-        title: "Coleção Completa",
-        action: "Veja os riscos e bônus disponíveis na coleção!",
-        time: "Acesso digital"
-      }
+    // A. Nomes
+    const firstNames = [
+      "Mariana", "Carlos", "Fernanda", "Thiago", "Gabriela",
+      "Felipe", "Aline", "Lucas", "Juliana", "Rodrigo",
+      "Camila", "Bruno", "Beatriz", "Gustavo", "Patricia",
+      "Renato", "Larissa", "Diego", "Amanda", "Matheus",
+      "Pedro", "Joao", "Ana", "Maria", "Sofia", "Julia",
+      "Gabriel", "Rafael", "Daniel", "Marcos", "Andre",
+      "Ricardo", "Vanessa", "Renata", "Laura", "Giovanna",
+      "Isabela", "Luana", "Eduardo", "Leonardo", "Vinicius"
     ];
 
-    let hideTimer;
-    let nextTimer;
-    let lastIndex = -1;
-    let closed = false;
+    // B. Iniciais de sobrenome
+    const lastInitials = [
+      "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.",
+      "J.", "K.", "L.", "M.", "N.", "O.", "P.", "Q.", "R.",
+      "S.", "T.", "U.", "V.", "W.", "X.", "Y.", "Z."
+    ];
 
-    function escolherMensagem() {
-      let index;
+    // C. Mensagens adaptadas ao produto
+    const actions = [
+      "garantiu a Coleção!",
+      "acabou de garantir a Coleção!",
+      "garantiu a Coleção Completa!"
+    ];
 
-      do {
-        index = Math.floor(Math.random() * messages.length);
-      } while (messages.length > 1 && index === lastIndex);
+    // D. Textos de tempo
+    const times = [
+      "há poucos segundos",
+      "há 1 minuto",
+      "há 2 minutos",
+      "há 42 segundos",
+      "há 3 minutos"
+    ];
 
-      lastIndex = index;
-      return messages[index];
+    let hideTimer = null;
+    let nextTimer = null;
+    let fechado = false;
+
+    const TEMPO_INICIAL = 2500;
+    const TEMPO_VISIVEL = 6000;
+    const INTERVALO = 15000;
+
+    function aleatorio(lista) {
+      return lista[Math.floor(Math.random() * lista.length)];
     }
 
-    function esconder() {
+    function preencherPopUp() {
+      const nome = aleatorio(firstNames);
+      const inicial = aleatorio(lastInitials);
+
+      nameElement.textContent = nome + " " + inicial;
+      actionElement.textContent = aleatorio(actions);
+      timeElement.textContent = aleatorio(times);
+    }
+
+    function esconderPopUp() {
       toast.classList.remove("show");
 
       clearTimeout(nextTimer);
 
-      if (!closed) {
-        nextTimer = setTimeout(exibir, 15000);
+      if (!fechado) {
+        nextTimer = setTimeout(mostrarPopUp, INTERVALO);
       }
     }
 
-    function exibir() {
-      if (closed || !toast.isConnected) return;
+    function mostrarPopUp() {
+      if (fechado || !toast.isConnected) return;
 
-      const message = escolherMensagem();
-
-      nameElement.textContent = message.title;
-      actionElement.textContent = message.action;
-      timeElement.textContent = message.time;
+      // Sorteia novamente a cada exibição.
+      preencherPopUp();
 
       toast.classList.add("show");
 
       clearTimeout(hideTimer);
-      hideTimer = setTimeout(esconder, 6000);
+      hideTimer = setTimeout(esconderPopUp, TEMPO_VISIVEL);
     }
 
-    closeButton.addEventListener("click", function () {
-      closed = true;
+    function fecharPopUp() {
+      fechado = true;
 
       clearTimeout(hideTimer);
       clearTimeout(nextTimer);
 
       toast.classList.remove("show");
       toast.style.display = "none";
-    });
+    }
 
-    nextTimer = setTimeout(exibir, 2500);
+    closeButton.addEventListener("click", fecharPopUp);
 
-    // Permite testar pelo console do navegador.
-    window.purchaseToastTest = exibir;
+    // Primeira aparição após 2,5 segundos.
+    nextTimer = setTimeout(mostrarPopUp, TEMPO_INICIAL);
+
+    // Atalho para testar manualmente pelo Console do navegador.
+    window.purchaseToastTest = mostrarPopUp;
   }
 
   if (document.readyState === "loading") {
