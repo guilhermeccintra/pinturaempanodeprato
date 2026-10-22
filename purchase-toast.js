@@ -91,7 +91,7 @@ const times = [
 
     const TEMPO_INICIAL = 2500;
     const TEMPO_VISIVEL = 6000;
-    const INTERVALO = 15000;
+    const INTERVALO = 25000;
 
     function aleatorio(lista) {
       return lista[Math.floor(Math.random() * lista.length)];
