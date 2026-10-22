@@ -1,74 +1,115 @@
 
 /* ==========================================================
-   POP-UP DA COLEÇÃO PINTURA EM PANO DE PRATO
-   Este arquivo controla somente a notificação flutuante.
+   PURCHASE TOAST — COLEÇÃO PINTURA EM PANO DE PRATO
+   Controla exclusivamente o pop-up.
 ========================================================== */
 
-(() => {
+(function () {
   "use strict";
 
-  function initPurchaseToast() {
+  function iniciarPurchaseToast() {
     const toast = document.getElementById("purchase-notification");
     const closeButton = document.getElementById("toast-close");
 
-    // Se o HTML do pop-up não existir, não faz nada.
-    if (!toast || !closeButton) return;
+    const nameElement = document.getElementById("toast-name");
+    const actionElement = document.getElementById("toast-action");
+    const timeElement = document.getElementById("toast-time");
 
-    // Evita inicialização duplicada.
+    if (!toast || !closeButton || !nameElement ||
+        !actionElement || !timeElement) {
+      return;
+    }
+
     if (toast.dataset.initialized === "true") return;
     toast.dataset.initialized = "true";
 
-    const DISPLAY_DELAY = 4000;
-    const VISIBLE_DURATION = 5000;
-    const REPEAT_INTERVAL = 30000;
+    const messages = [
+      {
+        title: "Coleção Completa",
+        action: "Conheça os 120 riscos para pintar panos de prato!",
+        time: "120 riscos + 4 bônus digitais"
+      },
+      {
+        title: "Pintura em Tecido",
+        action: "Encontre inspiração para sua próxima pintura!",
+        time: "Modelos prontos para imprimir"
+      },
+      {
+        title: "Sua Criatividade",
+        action: "Comece a criar lindas peças artesanais!",
+        time: "Conheça todo o material incluído"
+      },
+      {
+        title: "Coleção Completa",
+        action: "Veja os riscos e bônus disponíveis na coleção!",
+        time: "Acesso digital"
+      }
+    ];
 
-    let hideTimeout = null;
-    let firstTimeout = null;
-    let repeatInterval = null;
+    let hideTimer;
+    let nextTimer;
+    let lastIndex = -1;
     let closed = false;
 
-    function showNotification() {
+    function escolherMensagem() {
+      let index;
+
+      do {
+        index = Math.floor(Math.random() * messages.length);
+      } while (messages.length > 1 && index === lastIndex);
+
+      lastIndex = index;
+      return messages[index];
+    }
+
+    function esconder() {
+      toast.classList.remove("show");
+
+      clearTimeout(nextTimer);
+
+      if (!closed) {
+        nextTimer = setTimeout(exibir, 15000);
+      }
+    }
+
+    function exibir() {
       if (closed || !toast.isConnected) return;
 
-      clearTimeout(hideTimeout);
+      const message = escolherMensagem();
+
+      nameElement.textContent = message.title;
+      actionElement.textContent = message.action;
+      timeElement.textContent = message.time;
 
       toast.classList.add("show");
 
-      hideTimeout = setTimeout(() => {
-        toast.classList.remove("show");
-      }, VISIBLE_DURATION);
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(esconder, 6000);
     }
 
-    function closeNotification() {
+    closeButton.addEventListener("click", function () {
       closed = true;
 
-      clearTimeout(firstTimeout);
-      clearTimeout(hideTimeout);
-      clearInterval(repeatInterval);
+      clearTimeout(hideTimer);
+      clearTimeout(nextTimer);
 
       toast.classList.remove("show");
-    }
+      toast.style.display = "none";
+    });
 
-    closeButton.addEventListener("click", closeNotification);
+    nextTimer = setTimeout(exibir, 2500);
 
-    // Primeira exibição após 4 segundos.
-    firstTimeout = setTimeout(() => {
-      showNotification();
-
-      // Repete a cada 30 segundos enquanto a página estiver aberta.
-      repeatInterval = setInterval(() => {
-        showNotification();
-      }, REPEAT_INTERVAL);
-    }, DISPLAY_DELAY);
+    // Permite testar pelo console do navegador.
+    window.purchaseToastTest = exibir;
   }
 
   if (document.readyState === "loading") {
     document.addEventListener(
       "DOMContentLoaded",
-      initPurchaseToast,
+      iniciarPurchaseToast,
       { once: true }
     );
   } else {
-    initPurchaseToast();
+    iniciarPurchaseToast();
   }
 })();
