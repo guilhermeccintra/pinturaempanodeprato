@@ -7512,6 +7512,261 @@ body {
 
 
 
+
+/* ==========================================================
+   POP-UP FLUTUANTE — COLEÇÃO PINTURA EM PANO DE PRATO
+   Estilo isolado para não alterar os outros componentes
+========================================================== */
+
+.purchase-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: max-content;
+  max-width: 345px;
+  box-sizing: border-box;
+
+  padding: 14px 34px 14px 18px;
+
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  text-align: left;
+  z-index: 99998;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translate3d(-30px, 0, 0) scale(0.95);
+
+  transition:
+    transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 0.6s,
+    visibility 0.6s;
+}
+
+.purchase-toast.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.purchase-toast .toast-avatar-container {
+  position: relative;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+}
+
+.purchase-toast .toast-avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.purchase-toast .toast-avatar-check {
+  position: absolute;
+  right: -3px;
+  bottom: -3px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 15px;
+  height: 15px;
+
+  color: #fff;
+  background: #10b981;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.purchase-toast .toast-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+  padding: 0;
+
+  color: #94a3b8;
+  background: transparent;
+  border: 0;
+
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1;
+
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.purchase-toast .toast-close:hover {
+  color: #475569;
+  transform: scale(1.15);
+}
+
+.purchase-toast .toast-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  padding-right: 2px;
+}
+
+.purchase-toast .toast-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  color: #4A3728;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.purchase-toast .toast-verified {
+  padding: 2px 5px;
+
+  color: #059669;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 4px;
+
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  line-height: 1.3;
+}
+
+.purchase-toast .toast-desc {
+  color: #7A6555;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.purchase-toast .toast-time {
+  margin-top: 2px;
+
+  color: #a1a1aa;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+/* CELULARES */
+@media (max-width: 480px) {
+  .purchase-toast {
+    right: auto;
+    bottom: 16px;
+    left: 12px;
+
+    width: calc(100% - 24px);
+    max-width: 290px;
+
+    padding: 10px 28px 10px 12px;
+    gap: 10px;
+    border-radius: 14px;
+
+    transform: translate3d(-20px, 0, 0) scale(0.95);
+  }
+
+  .purchase-toast.show {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .purchase-toast .toast-avatar-container {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .purchase-toast .toast-avatar-check {
+    right: -2px;
+    bottom: -2px;
+    width: 13px;
+    height: 13px;
+    font-size: 8px;
+    border-width: 1.2px;
+  }
+
+  .purchase-toast .toast-title {
+    gap: 5px;
+    font-size: 12px;
+  }
+
+  .purchase-toast .toast-verified {
+    padding: 1px 4px;
+    font-size: 8px;
+  }
+
+  .purchase-toast .toast-desc {
+    font-size: 11px;
+  }
+
+  .purchase-toast .toast-time {
+    margin-top: 1px;
+    font-size: 9px;
+  }
+
+  .purchase-toast .toast-close {
+    top: 6px;
+    right: 8px;
+    font-size: 16px;
+  }
+}
+
+/* RESPEITA A PREFERÊNCIA POR MENOS ANIMAÇÕES */
+@media (prefers-reduced-motion: reduce) {
+  .purchase-toast {
+    transition: opacity 0.2s, visibility 0.2s;
+    transform: none;
+  }
+
+  .purchase-toast.show {
+    transform: none;
+  }
+}
+
+
+
 /* ==========================================================================
    FIM DO STYLES.CSS LIMPO
    ========================================================================== */
