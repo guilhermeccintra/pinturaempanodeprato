@@ -30,38 +30,60 @@
 
     // A. Nomes
     const firstNames = [
-      "Mariana", "Carlos", "Fernanda", "Thiago", "Gabriela",
-      "Felipe", "Aline", "Lucas", "Juliana", "Rodrigo",
-      "Camila", "Bruno", "Beatriz", "Gustavo", "Patricia",
-      "Renato", "Larissa", "Diego", "Amanda", "Matheus",
-      "Pedro", "Joao", "Ana", "Maria", "Sofia", "Julia",
-      "Gabriel", "Rafael", "Daniel", "Marcos", "Andre",
-      "Ricardo", "Vanessa", "Renata", "Laura", "Giovanna",
-      "Isabela", "Luana", "Eduardo", "Leonardo", "Vinicius"
+  "Mariana", "Carolina", "Fernanda", "Tatiane", "Gabriela",
+  "Aline", "Laís", "Juliana", "Roberta", "Camila",
+  "Bruna", "Beatriz", "Gabrielle", "Patricia", "Renata",
+  "Larissa", "Amanda", "Manuella", "Ana", "Maria",
+  "Sofia", "Julia", "Vanessa", "Laura", "Giovanna",
+  "Isabela", "Luana", "Letícia", "Rafaela", "Priscila",
+  "Débora", "Natália", "Vitória", "Bianca", "Helena",
+  "Cláudia", "Cristiane", "Daniela", "Elaine", "Flávia",
+  "Jéssica", "Kelly", "Lívia", "Michele", "Monique",
+  "Paula", "Raquel", "Simone", "Tainá", "Yasmin"
     ];
 
-    // B. Iniciais de sobrenome
-    const lastInitials = [
-      "A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.",
-      "J.", "K.", "L.", "M.", "N.", "O.", "P.", "Q.", "R.",
-      "S.", "T.", "U.", "V.", "W.", "X.", "Y.", "Z."
-    ];
+// B. Iniciais de sobrenome
+const lastInitials = [
+  "S.", "M.", "O.", "C.", "A.",
+  "R.", "L.", "P.", "F.", "B.",
+  "G.", "D.", "T.", "N.", "V.",
+  "E.", "J.", "I.", "H.", "K."
+];
 
     // C. Mensagens adaptadas ao produto
     const actions = [
       "garantiu a Coleção!",
       "acabou de garantir a Coleção!",
-      "garantiu a Coleção Completa!"
+      "garantiu a Coleção completa!"
     ];
 
-    // D. Textos de tempo
-    const times = [
-      "há poucos segundos",
-      "há 1 minuto",
-      "há 2 minutos",
-      "há 42 segundos",
-      "há 3 minutos"
-    ];
+// D. Textos de tempo
+const times = [
+  "há poucos segundos",
+  "há 8 segundos",
+  "há 12 segundos",
+  "há 17 segundos",
+  "há 23 segundos",
+  "há 28 segundos",
+  "há 35 segundos",
+  "há 42 segundos",
+  "há 47 segundos",
+  "há 53 segundos",
+  "há 58 segundos",
+  "há 1 minuto",
+  "há 1 minuto e 10 segundos",
+  "há 1 minuto e 20 segundos",
+  "há 1 minuto e 30 segundos",
+  "há 1 minuto e 40 segundos",
+  "há 1 minuto e 50 segundos",
+  "há 2 minutos",
+  "há 2 minutos e 15 segundos",
+  "há 2 minutos e 30 segundos",
+  "há 2 minutos e 45 segundos",
+  "há 3 minutos",
+  "há 4 minutos",
+  "há 5 minutos"
+];
 
     let hideTimer = null;
     let nextTimer = null;
